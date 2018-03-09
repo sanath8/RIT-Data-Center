@@ -3,12 +3,12 @@ var fs = require('fs');
 var excelGenerator = module.exports = {};
 
 excelGenerator.data = "";
-excelGenerator.getExcelSheet = function(tableData)
+excelGenerator.getExcelSheet = function(tableData, fileName)
 {
  try{
         var structuredData = excelGenerator.getStructuredData(tableData);
         //var excelFileName = excelGenerator.getFileName();
-        excelGenerator.writeIntoFile(structuredData, "");
+        excelGenerator.writeIntoFile(structuredData, fileName);
     }
   catch(error)
     {
@@ -70,15 +70,8 @@ excelGenerator.setDataEntries = function(noOfRows, noOfColumns,tableData, column
 excelGenerator.writeIntoFile = function(structuredData, excelFileName)
 {
 
-  fs.appendFile('Filename.xls', excelGenerator.data, (err) => {
+  fs.writeFile(excelFileName, excelGenerator.data, (err) => {
       if (err) throw err;
-      console.log('File created');
+      console.log(excelFileName+ 'excel filesss created');
    });
 }
-
-excelGenerator.getFileName = function()
-{
-  var fileName = prompt("Enter the file name to save the sheet.");
-  return fileName;
-}
-

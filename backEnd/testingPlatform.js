@@ -16,10 +16,13 @@ var jsn = [{
  }];
 var app = express();
 
-app.get('/hellothere', function(request, response){
+app.get('/', function(request, response){
 	//response.send("Hello there, from express!!!");
 	//response.sendFile("test1.html",  { root :"html/" });
-	excelTools.getExcelSheet(jsn);
+	var fileName = request.query.fileName;
+	console.log("file name is "+fileName);
+	formattedName = fileName + '.xls';
+	excelTools.getExcelSheet(jsn, formattedName);
 });
 
 app.listen(1337, function(){
