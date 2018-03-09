@@ -3,8 +3,10 @@ var fs = require('fs');
 var excelGenerator = module.exports = {};
 
 excelGenerator.data = "";
+
 excelGenerator.getExcelSheet = function(tableData, fileName)
 {
+
  try{
         var structuredData = excelGenerator.getStructuredData(tableData);
         //var excelFileName = excelGenerator.getFileName();
@@ -22,6 +24,8 @@ console.log("Process successfull\n");
 excelGenerator.getStructuredData = function(tableData)
 {
   var noOfRows = tableData.length;
+  console.log("excel generator1"+tableData[0]);
+
   var noOfColumns = Object.keys(tableData[0]).length;
   var columnsAttributes = Object.keys(tableData[0]);
   excelGenerator.setHeadings(noOfColumns, columnsAttributes);

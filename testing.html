@@ -1,9 +1,16 @@
 <html>
   <body>
-    <form method="get" action="http://localhost:1337/hellothere">
-      File Name:<input type = "text" name = "fileName">
-      <input type = "submit" value = "submit">
-    </form>
+
+      <input type = "button" value = "request" onclick="sendRequest()">
 
   </body>
 </html>
+<script>
+
+  function sendRequest()
+  {
+    var fileName = prompt("Enter the name of the file to save excel sheet in.");
+    window.location.href = "http://localhost:1337/?fileName="+fileName;
+  }
+
+</script>
