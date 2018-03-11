@@ -1,27 +1,27 @@
 <% include ../partials/faculty-header %>
 <% include ../partials/faculty-sidebar %>
 <% include ../partials/faculty-navbar %>
-
-
 <div class="content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-              <h2>Academic Details</h2>
+              <h2>R&D Details</h2>
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
-                        <h4 class="title">Courses</h4>
-                        <p class="category">information about courses handled.</p>
+                        <h4 class="title">Funded Projects</h4>
+                        <p class="category">information about projects handled.</p>
                     </div>
                     <div class="card-content table-responsive">
                         <table class="table">
                             <thead class="text-primary">
                                 <th>Sl. No</th>
-                                <th>Year handled</th>
-                                <th>Course name</th>
-                                <th>UG / PG</th>
-                                <th>Labs Handled</th>
-                                <th>UG / PG</th>
+                                <th>Principal Investigator</th>
+                                <th>Project Title</th>
+                                <th>Funding Agency</th>
+                                <th>Sanctioned Order NUmber</th>
+                                <th>Project Duration</th>
+                                <th>Sanctioned Date</th>
+                                <th>Sanctioned Amount (in Rs.)</th>
                             </thead>
                             <tbody>
                                 <tr>
@@ -31,6 +31,8 @@
                                     <td>Niger</td>
                                     <td class="text-primary">$36,738</td>
                                     <td>UG</td>
+                                    <td>Sinaai-Waas</td>
+                                    <td>Netherlands</td>
                                 </tr>
                                 <tr>
                                     <td>2</td>
@@ -39,6 +41,8 @@
                                     <td>Netherlands</td>
                                     <td class="text-primary">$23,789</td>
                                     <td>UG</td>
+                                    <td>Sinaai-Waas</td>
+                                    <td>Netherlands</td>
                                 </tr>
                                 <tr>
                                     <td>3</td>
@@ -47,6 +51,8 @@
                                     <td>Curaçao</td>
                                     <td class="text-primary">$56,142</td>
                                     <td>PG</td>
+                                    <td>Sinaai-Waas</td>
+                                    <td>Netherlands</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -55,16 +61,17 @@
                 </div>
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
-                        <h4 class="title">Projects</h4>
-                        <p class="category">information about projects guided.</p>
+                        <h4 class="title">Patents</h4>
+                        <p class="category">Patents applied for and granted.</p>
                     </div>
                     <div class="card-content table-responsive">
                         <table class="table">
                             <thead class="text-primary">
                                 <th>Sl. No</th>
-                                <th>Batch</th>
-                                <th>UG / PG</th>
-                                <th>Project Title</th>
+                                <th>Title</th>
+                                <th>Application Number</th>
+                                <th>Date of Filing Application</th>
+                                <th>Publication Date</th>
                             </thead>
                             <tbody>
                                 <tr>
@@ -72,18 +79,61 @@
                                     <td>Dakota Rice</td>
                                     <td>Niger</td>
                                     <td>Oud-Turnhout</td>
+                                    <td>Netherlands</td>
                                 </tr>
                                 <tr>
                                     <td>2</td>
                                     <td>Minerva Hooper</td>
                                     <td>Curaçao</td>
                                     <td>Sinaai-Waas</td>
+                                    <td>Netherlands</td>
                                 </tr>
                                 <tr>
                                     <td>3</td>
                                     <td>Sage Rodriguez</td>
                                     <td>Netherlands</td>
                                     <td>Baileux</td>
+                                    <td>Netherlands</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button type="submit" class="btn btn-primary pull-right">Edit</button>
+                </div><div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Consultancy Details</h4>
+                        <p class="category">Consultancy for projects with organizations.</p>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <table class="table">
+                            <thead class="text-primary">
+                              <th>Sl. No</th>
+                              <th>Financial Year</th>
+                              <th>Client Orgnization</th>
+                              <th>Title of Consultancy of Project</th>
+                              <th>Amount received ( in Rs )</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Dakota Rice</td>
+                                    <td>Niger</td>
+                                    <td>Oud-Turnhout</td>
+                                    <td class="text-primary">$36,738</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Minerva Hooper</td>
+                                    <td>Curaçao</td>
+                                    <td>Sinaai-Waas</td>
+                                    <td class="text-primary">$23,789</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Sage Rodriguez</td>
+                                    <td>Netherlands</td>
+                                    <td>Baileux</td>
+                                    <td class="text-primary">$56,142</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -92,19 +142,17 @@
                 </div>
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
-                        <h4 class="title">Faculty Research</h4>
-                        <p class="category">information about faculty research etc.</p>
+                        <h4 class="title">Industrial Collaborations MOU</h4>
+                        <p class="category">information about MOUs signed with industries</p>
                     </div>
                     <div class="card-content table-responsive">
                         <table class="table">
                             <thead class="text-primary">
-                                <th>Guide name</th>
-                                <th>USN</th>
-                                <th>Centre Name</th>
-                                <th>University</th>
-                                <th>Year of registration</th>
-                                <th>Title</th>
-                                <th>Status</th>
+                              <th>Sl. No</th>
+                              <th>Title of MOU</th>
+                              <th>MOU signed with Industry</th>
+                              <th>Signing Date</th>
+                              <th>Faculty Incharge</th>
                             </thead>
                             <tbody>
                                 <tr>
@@ -112,79 +160,20 @@
                                     <td>Niger</td>
                                     <td>Oud-Turnhout</td>
                                     <td class="text-primary">$36,738</td>
-                                    <td>Niger</td>
-                                    <td>Oud-Turnhout</td>
-                                    <td>Dakota Rice</td>
+                                    <td>Minerva Hooper</td>
                                 </tr>
                                 <tr>
                                     <td>Minerva Hooper</td>
                                     <td>Curaçao</td>
                                     <td>Sinaai-Waas</td>
                                     <td class="text-primary">$23,789</td>
-                                    <td>Niger</td>
                                     <td>Oud-Turnhout</td>
-                                    <td>Minerva Hooper</td>
                                 </tr>
                                 <tr>
                                     <td>Sage Rodriguez</td>
                                     <td>Netherlands</td>
                                     <td>Baileux</td>
                                     <td class="text-primary">$56,142</td>
-                                    <td>Niger</td>
-                                    <td>Oud-Turnhout</td>
-                                    <td>Sage Rodriguez</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <button type="submit" class="btn btn-primary pull-right">Edit</button>
-                </div>
-                <div class="card">
-                    <div class="card-header" data-background-color="purple">
-                        <h4 class="title">PhD Scholar</h4>
-                        <p class="category">information about PhD scholars etc.</p>
-                    </div>
-                    <div class="card-content table-responsive">
-                        <table class="table">
-                            <thead class="text-primary">
-                              <th>Research Scholar name</th>
-                              <th>Guide name</th>
-                              <th>USN</th>
-                              <th>Centre Name</th>
-                              <th>University</th>
-                              <th>Year of registration</th>
-                              <th>Title</th>
-                              <th>Status</th>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Dakota Rice</td>
-                                    <td>Niger</td>
-                                    <td>Oud-Turnhout</td>
-                                    <td class="text-primary">$36,738</td>
-                                    <td>Niger</td>
-                                    <td>Oud-Turnhout</td>
-                                    <td>Minerva Hooper</td>
-                                    <td>Curaçao</td>
-                                </tr>
-                                <tr>
-                                    <td>Minerva Hooper</td>
-                                    <td>Curaçao</td>
-                                    <td>Sinaai-Waas</td>
-                                    <td class="text-primary">$23,789</td>
-                                    <td>Niger</td>
-                                    <td>Oud-Turnhout</td>
-                                    <td>Minerva Hooper</td>
-                                    <td>Curaçao</td>
-                                </tr>
-                                <tr>
-                                    <td>Sage Rodriguez</td>
-                                    <td>Netherlands</td>
-                                    <td>Baileux</td>
-                                    <td class="text-primary">$56,142</td>
-                                    <td>Niger</td>
-                                    <td>Oud-Turnhout</td>
-                                    <td>Minerva Hooper</td>
                                     <td>Curaçao</td>
                                 </tr>
                             </tbody>

@@ -28,6 +28,14 @@ router.get('/academic-details', function(req, res, next) {
   res.render('faculty/academic-details', { title: 'Express' });
 });
 
+router.get('/rnd-details', function(req, res, next) {
+  res.render('faculty/rnd-details', { title: 'Express' });
+});
+
+router.get('/achievements', function(req, res, next) {
+  res.render('faculty/achievements'  , { title: 'Express' });
+});
+
 router.use('/init', require('./f-init'))
 
 module.exports = router;
