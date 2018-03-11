@@ -23,6 +23,7 @@ app.use('/', require('./routes/users/user-index'));
 app.use('/faculty', require('./routes/faculty/faculty-index'));
 app.use('/hod', require('./routes/hod/hod-index'));
 app.use('/admin', require('./routes/admin/admin-index'));
+app.use('/department', require('./routes/department/department-index'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
