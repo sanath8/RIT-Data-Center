@@ -14,7 +14,7 @@ router.get('/activities', function(req, res, next) {
   res.render('department/activities', { title: 'Express' });
 });
 
-router.get('/admission-details', function(req, res, next) {
+router.get('/admission-details', function(req, res, next) { 
   res.render('department/admission-details', { title: 'Express' });
 });
 
