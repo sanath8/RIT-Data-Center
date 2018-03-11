@@ -14,7 +14,7 @@ excelGenerator.getExcelSheet = function(tableData, fileName)
     }
   catch(error)
     {
-      console.log("Cannot write into excel sheet!");
+      console.log("Cannot write into excel sheet!" + error);
     }
 console.log("Process successfull\n");
 }
