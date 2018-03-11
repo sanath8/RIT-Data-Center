@@ -1,24 +1,29 @@
 var express = require('express');
 var router = express.Router();
+var hodLogin = require('./hod-login')
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('hod/index', { title: 'Express' });
+
+router.get('/index', function(req, res, next) {
+  res.render('hod/index', { title: 'HOD Default Page' });
 });
 
 router.get('/login', function(req, res, next) {
-  res.render('faculty/login', { title: 'Express' });
+  res.render('hod/login', { title: 'HOD Login' });
 });
 
-router.get('/personnal-info', function(req, res, next) {
+//this is the post that the user makes when he/she submits the credentials to login
+router.post('/login', hodLogin.login);
+
+router.get('/personal-info', function(req, res, next) {
   // document.getElementById('personnallist').className = "active";
-  res.render('faculty/personnal-info', { title: 'Express' });
+  res.render('hod/personal-info', { title: 'personal Info' });
 });
 
 router.get('/service-details', function(req, res, next) {
-  res.render('faculty/service-details', { title: 'Express' });
+  res.render('hod/service-details', { title: 'hod-service-details' });
 });
 
 
-router.use('/init', require('./hod-init'))
+//router.use('/init', require('./hod-init'))
 module.exports = router;
