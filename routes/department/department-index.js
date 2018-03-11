@@ -26,6 +26,4 @@ router.get('/:id', function(req, res, next) {
   res.render('department/index', { title: 'Express', departmentname: req.params.id });
 });
 
-
-
 module.exports = router;
