@@ -5,17 +5,34 @@ var dbConnection = require('./connectDB');
 //Establish connection
 var con = dbConnection.connectDB();
 
-var sqlQueryFetcher = module.exports = {};
+var sqlQueryHandler = module.exports = {};
 var sqlResults={};
-sqlQueryFetcher.fetchResults = function(tableName, callBack)
+sqlQueryHandler.query = "";
+sqlQueryHandler.fetchResults = function(columns, tableName, whereOptions, callBack)
 {
-  con.query("SELECT * FROM " + tableName, function (err, result, fields) {
-    if (err)
-      throw err;
-    //console.log(result);
-    sqlResults = result;
-    if(callBack != false)
-      callBack(sqlResults);
+  try
+  {
+    sqlQueryHandler.query = "SELECT " + columns + " FROM " + tableName + " WHERE 1=1";
+    for(var i = 0; i < whereOptions.length; i++)
+    {
+      sqlQueryHandler.query += " AND " + whereOptions[i];
+    }
+    con.query(sqlQueryHandler.query,
+      function (err, result, fields)
+      {
+          if (err)
+            throw err;
+            //console.log(result);
+          sqlResults = result;
+          if(callBack != false)
+            callBack(sqlResults);
+    }
+    );
+  }
 
-  });
+  catch(err)
+  {
+    console.log("SQL error for "+ query +"occured : " + e);
+  }
+
 }

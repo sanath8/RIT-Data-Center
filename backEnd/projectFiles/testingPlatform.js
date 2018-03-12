@@ -7,7 +7,7 @@ var fileHandler = require('./fileManager');
 
 app.get('/', function(request, response){
 
-  sqlAPI.fetchResults("employee", syncSQLfunction);
+  sqlAPI.fetchResults(/*"empId, address"*/"*", "employee", [/*"empId IN ('1', 'qwe')", "employeeName = 'san'"*/], syncSQLfunction);
   //This method will always be followed by a synchronous function to perform tasks immediately after getting results
   function syncSQLfunction(resultSet)
   {
