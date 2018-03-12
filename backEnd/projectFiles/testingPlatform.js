@@ -3,6 +3,7 @@ var express = require('express');
 var excelTools = require('./excelGenerator');
 var sqlAPI = require('./sqlAPI');
 var app = express();
+var fileHandler = require('./fileManager');
 
 app.get('/', function(request, response){
 
@@ -13,8 +14,10 @@ app.get('/', function(request, response){
     var fileName = request.query.fileName;
     console.log("file name is " + fileName);
     var formattedName = fileName + '.xls';
-    excelTools.getExcelSheet(resultSet, formattedName);
+    excelTools.getExcelSheet(resultSet, formattedName, response);
   }
+  //response.sendFile("test1.html",  { root :"html/" });
+
 
 });
 

@@ -1,22 +1,25 @@
+//Import modules
 var fs = require('fs');
+var fileHandler = require('./fileManager');
 
 var excelGenerator = module.exports = {};
 
 excelGenerator.data = "";
 
-excelGenerator.getExcelSheet = function(tableData, fileName)
+excelGenerator.getExcelSheet = function(tableData, fileName, response)
 {
 
  try{
+        excelGenerator.data = "";
         var structuredData = excelGenerator.getStructuredData(tableData);
-        //var excelFileName = excelGenerator.getFileName();
-        excelGenerator.writeIntoFile(structuredData, fileName);
+        excelGenerator.writeIntoFile(structuredData, fileName, response);
+        console.log("Process successfull\n");
+
     }
   catch(error)
     {
-      console.log("Cannot write into excel sheet!" + error);
+      console.log("Cannot generate excel sheet!" + error);
     }
-console.log("Process successfull\n");
 }
 //var data='';
 
@@ -71,11 +74,14 @@ excelGenerator.setDataEntries = function(noOfRows, noOfColumns,tableData, column
    }
 
 }
-excelGenerator.writeIntoFile = function(structuredData, excelFileName)
+excelGenerator.writeIntoFile = function(structuredData, excelFileName, response)
 {
 
-  fs.writeFile(excelFileName, excelGenerator.data, (err) => {
-      if (err) throw err;
-      console.log(excelFileName+ 'excel filesss created');
+  fs.writeFile(__dirname+ '/excelSheets/' + excelFileName, excelGenerator.data, (err) => {
+    console.log(excelFileName+ 'excel filesss created');
+
+      if (err)
+        throw err;
+      fileHandler.downloadExcel(response, excelFileName);
    });
 }
