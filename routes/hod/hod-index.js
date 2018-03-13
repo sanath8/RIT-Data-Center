@@ -25,5 +25,4 @@ router.get('/service-details', function(req, res, next) {
 });
 
 
-//router.use('/init', require('./hod-init'))
 module.exports = router;
