@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var sqlExecute = require('../apis/mySqlCalls');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -17,7 +18,9 @@ router.get('/personnal-info', function(req, res, next) {
 });
 
 router.get('/qualification', function(req, res, next) {
-  res.render('faculty/qualification', { title: 'Express' , type:"qualification"});
+  var data = sqlExecute.facultyQualification();
+  console.log(data);
+  res.render('faculty/qualification', {type:"qualification", resultSet:data});
 });
 
 router.get('/service-details', function(req, res, next) {
