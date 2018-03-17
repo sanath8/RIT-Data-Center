@@ -1,15 +1,13 @@
 //Importing Modules
 var express = require('express');
 var excelTools = require('./excelGenerator');
-//var sqlAPI = require('./sqlAPI');
+var sqlAPI = require('./sqlAPI');
 var app = express();
 var fileHandler = require('./fileManager');
-var excelReader = require('./excelReader');
 
-app.get('/', function(request, response)
-{
+app.get('/', function(request, response){
 
-  /*sqlAPI.fetchResults("empId, address", "employee", ["empId IN ('1', 'qwe')", "employeeName = 'san'"], syncSQLfunction);
+  sqlAPI.fetchResults("name, head_name", "employee", syncSQLfunction);
   //This method will always be followed by a synchronous function to perform tasks immediately after getting results
   function syncSQLfunction(resultSet)
   {
@@ -18,10 +16,7 @@ app.get('/', function(request, response)
     var formattedName = fileName + '.xls';
     excelTools.getExcelSheet(resultSet, formattedName, response);
   }
-  //response.sendFile("test1.html",  { root :"html/" });*/
-  console.log(excelReader.readExcel('excelSheets/hii.xls'));
-  console.log("END");
-
+  //response.sendFile("test1.html",  { root :"html/" });
 
 
 });

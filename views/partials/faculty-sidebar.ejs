@@ -1,0 +1,82 @@
+<div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-1.jpg" style="z-index:4">
+
+<div class="logo" style=" background-color:#9C27B0">
+    <img src="/assets/img/brand.png" style="height:70px;" class="img-responsive">
+    </img>
+</div>
+<div class="sidebar-wrapper">
+    <ul class="nav">
+        <li
+        <% if(type=="dashboard"){%>
+        class="active"
+        <% } %>
+        >
+            <a href="/faculty">
+                <i class="material-icons">dashboard</i>
+                <p>Dashboard</p>
+            </a>
+        </li>
+        <li
+        <% if(type=="qualification"){%>
+        class="active"
+        <% } %>
+        >
+            <a href="/faculty/qualification" onclick="activate(event)">
+                <i class="material-icons">person</i>
+                <p>Qualification Details</p>
+            </a>
+        </li>
+        <li
+        <% if(type=="service-details"){%>
+        class="active"
+        <% } %>
+        >
+            <a href="/faculty/service-details">
+                <i class="material-icons">content_paste</i>
+                <p>Service Details</p>
+            </a>
+        </li>
+        <li
+        <% if(type=="achievements"){%>
+        class="active"
+        <% } %>
+        >
+            <a href="/faculty/achievements">
+                <i class="material-icons">library_books</i>
+                <p>Achievments</p>
+            </a>
+        </li>
+        <li
+        <% if(type=="academic-details"){%>
+        class="active"
+        <% } %>
+        >
+            <a href="/faculty/academic-details">
+                <i class="material-icons">bubble_chart</i>
+                <p>Acedemic Details</p>
+            </a>
+        </li>
+        <li
+        <% if(type=="rnd-details"){%>
+        class="active"
+        <% } %>
+        >
+            <a href="/faculty/rnd-details">
+                <i class="material-icons">location_on</i>
+                <p>R&D</p>
+            </a>
+        </li>
+        <li id="personnallist">
+            <a href="/faculty/personnal-info">
+                <i class="material-icons text-gray">notifications</i>
+                <p>Update personnal info</p>
+            </a>
+        </li>
+        <li class="active-pro">
+            <a href="upgrade.html">
+                <i class="material-icons">unarchive</i>
+                <p>Upgrade to PRO</p>
+            </a>
+        </li>
+    </ul>
+</div>

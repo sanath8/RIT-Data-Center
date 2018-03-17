@@ -52,14 +52,14 @@ excelGenerator.setHeadings = function(noOfColumns, columnsAttributes)
   }
 }
 
-excelGenerator.setDataEntries = function(noOfRows, noOfColumns,tableData, columnsAttributes)
+excelGenerator.setDataEntries = function(noOfRows, noOfColumns, tableData, columnsAttributes)
 {
   for (var i = 0; i < noOfRows; i++)
    {
 
      for(var j = 0; j < noOfColumns; j++)
      {
-       console.log( eval("tableData[i]."+columnsAttributes[j]));
+       //console.log( eval("tableData[i]."+columnsAttributes[j]));
        dataEntry = eval("tableData[i]."+columnsAttributes[j]);
 
        if(j == noOfColumns-1)
@@ -82,6 +82,8 @@ excelGenerator.writeIntoFile = function(structuredData, excelFileName, response)
 
       if (err)
         throw err;
-      fileHandler.downloadExcel(response, excelFileName);
+      if(response != false)
+        fileHandler.downloadExcel(response, excelFileName);
+      
    });
 }
