@@ -21,9 +21,9 @@ router.get('/qualification', function(req, res, next) {
   var callback = function(err, result){
     if(err)
       throw err;
-    
-    console.log(data);
-    res.render('faculty/qualification', {type:"qualification", resultSet:data});
+
+    console.log(result);
+    res.render('faculty/qualification', {type:"qualification", resultSet:result});
   }
   sqlExecute.facultyQualification(callback);
 });
