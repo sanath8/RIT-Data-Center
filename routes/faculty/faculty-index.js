@@ -18,9 +18,14 @@ router.get('/personnal-info', function(req, res, next) {
 });
 
 router.get('/qualification', function(req, res, next) {
-  var data = sqlExecute.facultyQualification();
-  console.log(data);
-  res.render('faculty/qualification', {type:"qualification", resultSet:data});
+  var callback = function(err, result){
+    if(err)
+      throw err;
+    
+    console.log(data);
+    res.render('faculty/qualification', {type:"qualification", resultSet:data});
+  }
+  sqlExecute.facultyQualification(callback);
 });
 
 router.get('/service-details', function(req, res, next) {

@@ -17,12 +17,12 @@ var sqlObject = function() {
   });
 }
 
-sqlObject.prototype.facultyQualification = function(){
+sqlObject.prototype.facultyQualification = function(callback){
   var sql = "select * from qualification";
   var data;
   this.connection.query(sql,function(err,results,fields){
     console.log(results);
-    return results;
+    callback(err, results);
   });
   // // getDetails();
   // var sendDetails = function(getDetails){
