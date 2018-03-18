@@ -7,6 +7,9 @@
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
+create Database rit_data_center;
+use rit_data_center;
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;

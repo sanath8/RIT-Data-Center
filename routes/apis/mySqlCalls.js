@@ -5,12 +5,12 @@ var sqlObject = function() {
   this.connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '',
+    password: 'mysql12345',
     database: 'rit_data_center'   //has tobe changed later
   })
 
   this.connection.connect(function(err){
-    if(err) throw error;
+    if(err) throw err;
     else{
       console.log("connection established");
     }
@@ -24,13 +24,6 @@ sqlObject.prototype.facultyQualification = function(callback){
     console.log(results);
     callback(err, results);
   });
-  // // getDetails();
-  // var sendDetails = function(getDetails){
-  //   console.log(data + "data in the snd");
-  //   return data;
-  // }
-  // sendDetails(getDetails);
-
 }
 
 var object = new sqlObject();

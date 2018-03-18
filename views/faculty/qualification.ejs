@@ -1,6 +1,7 @@
 <% include ../partials/header %>
 <% include ../partials/faculty-sidebar %>
 <% include ../partials/faculty-navbar %>
+<% include ../partials/loadTablePartial %>
 
 
 <div class="content">
@@ -35,15 +36,7 @@
                               </tr>
                             </thead>
                             <tbody>
-                                <% for(var i = 0 ; i<resultSet.length;i++){%>
-                                <tr>
-                                  <% for(var j in resultSet[i]){ %>
-                                      <td>
-                                        <%=resultSet[i][j]%>
-                                      </td>
-                                    <%}%>
-                                </tr>
-                                <%}%>
+                                <% loadInTable(resultSet)%>
                             </tbody>
                         </table>
                     </div>
@@ -53,5 +46,6 @@
         </div>
     </div>
 </div>
+
 
 <% include ../partials/footer %>
