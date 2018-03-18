@@ -6,43 +6,66 @@
 </div>
 <div class="sidebar-wrapper">
     <ul class="nav">
-        <li class="active">
-            <a href="/department">
+        <li
+        <% if(type=="index"){%>
+        class="active"
+        <% } %>
+        >
+            <a href="/department/cse">
                 <i class="material-icons">dashboard</i>
                 <p>General Information</p>
             </a>
         </li>
-        <li>
-            <a href="/department/student-info">
+        <li
+        <% if(type=="student-info"){%>
+        class="active"
+        <% } %>
+        >            <a href="/department/student-info">
                 <i class="material-icons">person</i>
                 <p>Student Information</p>
             </a>
         </li>
-        <li>
-            <a href="/department/infrastructure-details">
+        <li
+        <% if(type=="infrastructure-details"){%>
+        class="active"
+        <% } %>
+        >            <a href="/department/infrastructure-details">
                 <i class="material-icons">content_paste</i>
                 <p>Infrastructure Details</p>
             </a>
         </li>
-        <li>
-            <a href="/department/admission-details">
+        <li
+        <% if(type=="admission-details"){%>
+        class="active"
+        <% } %>
+        >            <a href="/department/admission-details">
                 <i class="material-icons">library_books</i>
                 <p>Admission Details</p>
             </a>
         </li>
-        <li>
-            <a href="/department/activities">
+        <li
+        <% if(type=="activities"){%>
+        class="active"
+        <% } %>
+        >            <a href="/department/activities">
                 <i class="material-icons">bubble_chart</i>
                 <p>Activities</p>
             </a>
         </li>
-        <li>
-            <a href="/department/bosboe">
+        <li
+        <% if(type=="bosboe"){%>
+        class="active"
+        <% } %>
+        >            <a href="/department/bosboe">
                 <i class="material-icons">location_on</i>
                 <p>BOS | BOE</p>
             </a>
         </li>
-        <li id="personnallist">
+        <li id="personnallist"
+        <% if(type=="personnal-info"){%>
+        class="active"
+        <% } %>
+        >
             <a href="/department/personnal-info">
                 <i class="material-icons text-gray">dashboard</i>
                 <p>Faculty Information</p>

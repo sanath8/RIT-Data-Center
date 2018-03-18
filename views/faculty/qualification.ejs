@@ -1,6 +1,7 @@
 <% include ../partials/header %>
 <% include ../partials/faculty-sidebar %>
 <% include ../partials/faculty-navbar %>
+<% include ../partials/loadTablePartial %>
 
 
 <div class="content">
@@ -31,21 +32,11 @@
                                   <th>University</th>
                                   <th>Year of Award</th>
                                   <th>Area of Specialization</th>
+                                  <th>faculty id</th>
                               </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Niger</td>
-                                    <td>Oud-Turnhout</td>
-                                    <td class="text-primary">$36,738</td>
-                                    <td>Niger</td>
-                                    <td>Oud-Turnhout</td>
-                                    <td>Dakota Rice</td>
-                                    <td>Niger</td>
-                                    <td>Oud-Turnhout</td>
-                                    <td>Dakota Rice</td>
-                                </tr>
+                                <% loadInTable(resultSet)%>
                             </tbody>
                         </table>
                     </div>
@@ -55,5 +46,6 @@
         </div>
     </div>
 </div>
+
 
 <% include ../partials/footer %>

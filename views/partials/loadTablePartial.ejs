@@ -1,0 +1,27 @@
+<%
+    loadInTable=function(resultSet){
+        for(var i = 0 ; i<resultSet.length;i++){
+            __append("<tr>");
+            for(var j in resultSet[i]){
+                __append("<td>");
+                if(resultSet[i][j]!=null)
+                    __append(""+resultSet[i][j]);
+                else
+                    __append("-");
+                __append("</td>");
+            }
+        __append("</tr>");
+        }
+    }
+    loadInTableEditable=function(resultSet){
+        for(var i = 0 ; i<resultSet.length;i++){
+            __append("<tr>");
+            for(var j in resultSet[i]){
+                __append("<td>");
+                __append(""+resultSet[i][j]);
+                __append("</td>");
+            }
+        __append("</tr>");
+        }
+    }
+%>
