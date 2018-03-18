@@ -2,19 +2,7 @@ var mysql = require('mysql');
 
 
 var sqlObject = function() {
-  this.connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'mysql12345',
-    database: 'rit_data_center'   //has tobe changed later
-  })
-
-  this.connection.connect(function(err){
-    if(err) throw err;
-    else{
-      console.log("connection established");
-    }
-  });
+  this.connection = require('../../dbConnect').connectDB();
 }
 
 sqlObject.prototype.facultyQualification = function(callback){
