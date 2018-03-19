@@ -5,8 +5,10 @@ var sqlObject = function() {
   this.connection = require('../../dbConnect').connectDB();
 }
 
-sqlObject.prototype.facultyQualification = function(callback){
-  var sql = "select * from qualification";
+var mappingUrlTable = {'facultyQualification' : 'qualification','facultyServiceDetails': 'service'}
+
+sqlObject.prototype.getWholeTable = function(callback,url){
+  var sql = "select * from " + mappingUrlTable[url];
   var data;
   this.connection.query(sql,function(err,results,fields){
     console.log(results);
