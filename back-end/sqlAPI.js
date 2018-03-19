@@ -36,7 +36,7 @@ sqlQueryHandler.fetchResults = function(columns, tableName, whereOptions, callBa
   }
 
 }
-sqlQueryHandler.insertRow = function(columns, tableName, whereOptions, callBack)
+sqlQueryHandler.insertRow1 = function(columns, tableName, whereOptions, callBack)
 {
   try
   {
@@ -54,6 +54,35 @@ sqlQueryHandler.insertRow = function(columns, tableName, whereOptions, callBack)
           sqlResults = result;
           if(callBack != false)
             callBack(sqlResults);
+    }
+    );
+  }
+
+  catch(err)
+  {
+    console.log("SQL error for "+ query +"occured : " + e);
+  }
+
+}
+
+
+sqlQueryHandler.insertRow = function(tableName, values)
+{
+  var length =values.length;
+  try
+  {
+    sqlQueryHandler.query = "INSERT INTO " + tableName + " VALUES(" + values[0];
+    for(var i = 0; i < values.length; i++)
+    {
+      sqlQueryHandler.query += " , " + values[i];
+    }
+    con.query(sqlQueryHandler.query,
+      function (err, result, fields)
+      {
+          if (err)
+            throw err;
+            //console.log(result);
+          sqlResults = result;
     }
     );
   }
