@@ -25,11 +25,18 @@ router.get('/qualification', function(req, res, next) {
     console.log(result);
     res.render('faculty/qualification', {type:"qualification", resultSet:result});
   }
-  sqlExecute.facultyQualification(callback);
+  sqlExecute.getWholeTable(callback,'facultyQualification');
 });
 
 router.get('/service-details', function(req, res, next) {
-  res.render('faculty/service-details', { title: 'Express' , type:"service-details"});
+  var callback = function(err, result){
+    if(err)
+      throw err;
+
+    console.log(result);
+    res.render('faculty/service-details', {type:"service-details", resultSet:result});
+  }
+  sqlExecute.getWholeTable(callback,'facultyServiceDetails');
 });
 
 router.get('/academic-details', function(req, res, next) {
