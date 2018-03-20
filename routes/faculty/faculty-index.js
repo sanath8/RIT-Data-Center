@@ -21,7 +21,6 @@ router.get('/qualification', function(req, res, next) {
   var callback = function(err, result){
     if(err)
       throw err;
-
     console.log(result);
     res.render('faculty/qualification', {type:"qualification", resultSet:result});
   }
@@ -32,7 +31,6 @@ router.get('/service-details', function(req, res, next) {
   var callback = function(err, result){
     if(err)
       throw err;
-
     console.log(result);
     res.render('faculty/service-details', {type:"service-details", resultSet:result});
   }
@@ -40,20 +38,30 @@ router.get('/service-details', function(req, res, next) {
 });
 
 router.get('/academic-details', function(req, res, next) {
-  res.render('faculty/academic-details', { title: 'Express' , type:"academic-details"});
+  var callback = function(err, result1, result2, result3, result4){
+    if(err)
+      throw err;
+    res.render('faculty/academic-details', {type:"academic-details", resultSet1:result1, resultSet2:result2, resultSet3:result3, resultSet4:result4});
+  }
+  sqlExecute.getFourTables(callback,'facultyCourseHandled', 'facultyProjectGuided', 'facultyResearch', 'PhdScholar');
 });
 
 router.get('/rnd-details', function(req, res, next) {
-  res.render('faculty/rnd-details', { title: 'Express', type:"rnd-details" });
+  var callback = function(err, result1, result2, result3, result4){
+    if(err)
+      throw err;
+    res.render('faculty/rnd-details', {type:"rnd-details", resultSet1:result1, resultSet2:result2, resultSet3:result3, resultSet4:result4});
+  }
+  sqlExecute.getFourTables(callback,'facultyFundedProjects', 'facultyPatents', 'consultancyDetails', 'industrialCollaborations');
 });
 
 router.get('/achievements', function(req, res, next) {
-  var callback = function(err, result1,result2){
+  var callback = function(err, result1, result2, result3, result4, result5, result6, result7){
     if(err)
       throw err;
-    res.render('faculty/achievements'  , { title: 'Express',type: 'achievements', resultSet1:result1, resultSet2:result2 });
+    res.render('faculty/achievements', { type:"achievements", resultSet1:result1, resultSet2:result2, resultSet3:result3, resultSet4:result4, resultSet5:result5, resultSet6:result6, resultSet7:result7});
   }
-  sqlExecute.getFacultyAchievements(callback);
+  sqlExecute.getAchievements(callback);
 });
 
 router.use('/init', require('./f-init'))
