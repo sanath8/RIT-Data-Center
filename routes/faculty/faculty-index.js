@@ -48,7 +48,12 @@ router.get('/rnd-details', function(req, res, next) {
 });
 
 router.get('/achievements', function(req, res, next) {
-  res.render('faculty/achievements'  , { title: 'Express', type:"achievements" });
+  var callback = function(err, result1,result2){
+    if(err)
+      throw err;
+    res.render('faculty/achievements'  , { title: 'Express',type: 'achievements', resultSet1:result1, resultSet2:result2 });
+  }
+  sqlExecute.getFacultyAchievements(callback);
 });
 
 router.use('/init', require('./f-init'))

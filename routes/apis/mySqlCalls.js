@@ -16,6 +16,29 @@ sqlObject.prototype.getWholeTable = function(callback,url){
   });
 }
 
+sqlObject.prototype.getFacultyAchievements = function(callback){
+  var sql = "select * from workshop_fdp";
+  var sql1 = "select * from conference";
+  var data;
+  this.connection.query(sql,function(err,results){
+    console.log(results);
+    data = results;
+  })
+  this.connection.query(sql1,function(err,results){
+    console.log(results);
+    callback(err,data,results);
+  })
+  // this.connection.query(sql,function(err,results){
+  //   console.log(results);
+  //   this.connection = require('../../dbConnect').connectDB();
+  //   this.connection.query(sql1,function(err,results1){
+  //     console.log(results1);
+  //     callback(err,results,results1);
+  //   })
+  // })
+
+} 
+
 var object = new sqlObject();
 
 module.exports = object;

@@ -1,6 +1,7 @@
 <% include ../partials/header %>
 <% include ../partials/faculty-sidebar %>
 <% include ../partials/faculty-navbar %>
+<% include ../partials/loadTablePartial %>
 
 <div class="content">
     <div class="container-fluid">
@@ -23,6 +24,7 @@
                                 <th>Organized / Attended</th>
                             </thead>
                             <tbody>
+                                <% loadInTable(resultSet1) %>
                                 <tr>
                                     <td>1</td>
                                     <td>2010</td>
@@ -68,6 +70,7 @@
                                 <th>Invited / Deputed</th>
                             </thead>
                             <tbody>
+                                <% loadInTable(resultSet2) %>
                                 <tr>
                                     <td>1</td>
                                     <td>2010</td>
