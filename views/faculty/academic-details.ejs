@@ -1,7 +1,7 @@
 <% include ../partials/header %>
 <% include ../partials/faculty-sidebar %>
 <% include ../partials/faculty-navbar %>
-
+<% include ../partials/loadTablePartial %>
 
 <div class="content">
     <div class="container-fluid">
@@ -24,30 +24,7 @@
                                 <th>UG / PG</th>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>2010</td>
-                                    <td>Oud-Turnhout</td>
-                                    <td>Niger</td>
-                                    <td class="text-primary">$36,738</td>
-                                    <td>UG</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>2013</td>
-                                    <td>Sinaai-Waas</td>
-                                    <td>Netherlands</td>
-                                    <td class="text-primary">$23,789</td>
-                                    <td>UG</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>2012</td>
-                                    <td>Baileux</td>
-                                    <td>Curaçao</td>
-                                    <td class="text-primary">$56,142</td>
-                                    <td>PG</td>
-                                </tr>
+                                <% loadInTable(resultSet1)%>
                             </tbody>
                         </table>
                     </div>
@@ -67,24 +44,7 @@
                                 <th>Project Title</th>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Dakota Rice</td>
-                                    <td>Niger</td>
-                                    <td>Oud-Turnhout</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Minerva Hooper</td>
-                                    <td>Curaçao</td>
-                                    <td>Sinaai-Waas</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Sage Rodriguez</td>
-                                    <td>Netherlands</td>
-                                    <td>Baileux</td>
-                                </tr>
+                                <% loadInTable(resultSet2)%>
                             </tbody>
                         </table>
                     </div>
@@ -107,33 +67,7 @@
                                 <th>Status</th>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Dakota Rice</td>
-                                    <td>Niger</td>
-                                    <td>Oud-Turnhout</td>
-                                    <td class="text-primary">$36,738</td>
-                                    <td>Niger</td>
-                                    <td>Oud-Turnhout</td>
-                                    <td>Dakota Rice</td>
-                                </tr>
-                                <tr>
-                                    <td>Minerva Hooper</td>
-                                    <td>Curaçao</td>
-                                    <td>Sinaai-Waas</td>
-                                    <td class="text-primary">$23,789</td>
-                                    <td>Niger</td>
-                                    <td>Oud-Turnhout</td>
-                                    <td>Minerva Hooper</td>
-                                </tr>
-                                <tr>
-                                    <td>Sage Rodriguez</td>
-                                    <td>Netherlands</td>
-                                    <td>Baileux</td>
-                                    <td class="text-primary">$56,142</td>
-                                    <td>Niger</td>
-                                    <td>Oud-Turnhout</td>
-                                    <td>Sage Rodriguez</td>
-                                </tr>
+                                <% loadInTable(resultSet3)%>
                             </tbody>
                         </table>
                     </div>
@@ -157,36 +91,7 @@
                               <th>Status</th>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Dakota Rice</td>
-                                    <td>Niger</td>
-                                    <td>Oud-Turnhout</td>
-                                    <td class="text-primary">$36,738</td>
-                                    <td>Niger</td>
-                                    <td>Oud-Turnhout</td>
-                                    <td>Minerva Hooper</td>
-                                    <td>Curaçao</td>
-                                </tr>
-                                <tr>
-                                    <td>Minerva Hooper</td>
-                                    <td>Curaçao</td>
-                                    <td>Sinaai-Waas</td>
-                                    <td class="text-primary">$23,789</td>
-                                    <td>Niger</td>
-                                    <td>Oud-Turnhout</td>
-                                    <td>Minerva Hooper</td>
-                                    <td>Curaçao</td>
-                                </tr>
-                                <tr>
-                                    <td>Sage Rodriguez</td>
-                                    <td>Netherlands</td>
-                                    <td>Baileux</td>
-                                    <td class="text-primary">$56,142</td>
-                                    <td>Niger</td>
-                                    <td>Oud-Turnhout</td>
-                                    <td>Minerva Hooper</td>
-                                    <td>Curaçao</td>
-                                </tr>
+                                <% loadInTable(resultSet4)%>
                             </tbody>
                         </table>
                     </div>
