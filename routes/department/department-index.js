@@ -1,13 +1,24 @@
 var express = require('express');
 var router = express.Router();
+var sqlExecute = require('../apis/mySqlCalls');
 
 /* GET home page. */
 router.get('/student-info', function(req, res, next) {
-  res.render('department/student-info', { title: 'Express', type: 'student-info' });
+  var callback = function(err, result1, result2){
+    if(err)
+      throw err;
+    res.render('department/student-info', {type:"student-info", resultSet1:result1, resultSet2:result2});
+  }
+  sqlExecute.getTwoTables(callback, 'studentPublications', 'studentAchievements');
 });
 
 router.get('/infrastructure-details', function(req, res, next) {
-  res.render('department/infrastructure-details', { title: 'Express', type:'infrastructure-details' });
+  var callback = function(err, result1, result2){
+    if(err)
+      throw err;
+    res.render('department/infrastructure-details', {type:"infrastructure-details", resultSet1:result1, resultSet2:result2});
+  }
+  sqlExecute.getTwoTables(callback, 'hardware', 'software');
 });
 
 router.get('/activities', function(req, res, next) {
