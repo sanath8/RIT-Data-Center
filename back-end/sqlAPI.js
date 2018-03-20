@@ -69,20 +69,26 @@ sqlQueryHandler.insertRow1 = function(columns, tableName, whereOptions, callBack
 sqlQueryHandler.insertRow = function(tableName, values)
 {
   var length =values.length;
+  for(var i=0; i<length; i++){
+    if(!isNaN(values[i])){
+      values[i] = parseInt(values[i]);
+    }
+  }
   try
   {
-    sqlQueryHandler.query = "INSERT INTO " + tableName + " VALUES(" + values[0];
-    for(var i = 0; i < values.length; i++)
-    {
-      sqlQueryHandler.query += " , " + values[i];
-    }
-    con.query(sqlQueryHandler.query,
-      function (err, result, fields)
+    // sqlQueryHandler.query = "INSERT INTO " + tableName + " VALUES(" + values[0];
+    // for(var i = 1; i < values.length; i++)
+    // {
+    //   sqlQueryHandler.query += " , " + values[i];
+    // }
+    // sqlQueryHandler.query += ")";
+    console.log(values);
+    sqlQueryHandler.query = "INSERT INTO " + tableName + " VALUES ?";
+    con.query(sqlQueryHandler.query,values,
+      function (err, result)
       {
           if (err)
             throw err;
-            //console.log(result);
-          sqlResults = result;
     }
     );
   }
