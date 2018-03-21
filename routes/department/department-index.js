@@ -1,9 +1,11 @@
 var express = require('express');
+var sqlApi = require('../../back-end/sqlAPI');
 var router = express.Router();
 
 /* GET home page. */
 router.get('/student-info', function(req, res, next) {
-  res.render('department/student-info', { title: 'Express', type: 'student-info' });
+    var publicationData = " ";
+  res.render('department/student-info', { title: 'Express', type: 'student-info', publication : publicationData});
 });
 
 router.get('/infrastructure-details', function(req, res, next) {
