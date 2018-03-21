@@ -3,6 +3,16 @@
 <% include ../partials/faculty-navbar %>
 <% include ../partials/loadTablePartial %>
 
+<script type = "text/javascript">
+    $(document).ready(function(){
+        $('button').click(function(){
+        var $div=$('#editableEntry'), isEditable=$div.is('.editable');
+        $('#editableEntry').prop('contenteditable',!isEditable).toggleClass('editable')
+        })
+    })
+
+</script>
+
 
 <div class="content">
     <div class="container-fluid">
@@ -40,7 +50,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <button type="submit" class="btn btn-primary pull-right" style="margin:13px">Edit</button>
+                    <button onclick = "makeEntryEditable()" class="btn btn-primary pull-right" style="margin:13px">Edit</button>
                 </div>
             </div>
         </div>
