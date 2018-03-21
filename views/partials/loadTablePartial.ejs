@@ -1,14 +1,23 @@
 <%
-    loadInTable=function(resultSet){
+    loadInTable=function(resultSet, tableName){
         for(var i = 0 ; i<resultSet.length;i++){
             __append("<tr>");
             for(var j in resultSet[i]){
-                __append('<td><div id = "editableEntry">');
-                if(resultSet[i][j]!=null)
-                    __append(""+resultSet[i][j]);
-                else
-                    __append("-");
-                __append("</div></td>");
+                console.log(j);
+
+                if(j == 'slNo'){
+                    __append('<td><input type = "text" size = "5" readonly value = "');
+                    __append(resultSet[i][j] + '">');
+
+                }
+                else{
+                    __append('<td><input type = "text" id = "' + tableName + '" size = "5" readonly ');
+                    if(resultSet[i][j]!=null)
+                        __append('value = "'+resultSet[i][j] +'">');
+                    else
+                        __append("-");
+                }
+                __append("</td>");
             }
         __append("</tr>");
         }
