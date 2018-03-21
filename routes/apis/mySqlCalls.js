@@ -20,6 +20,16 @@ sqlObject.prototype.getWholeTable = function(callback, url){
   });
 }
 
+
+  // this.connection.query(sql,function(err,results){
+  //   console.log(results);
+  //   this.connection = require('../../dbConnect').connectDB();
+  //   this.connection.query(sql1,function(err,results1){
+  //     console.log(results1);
+  //     callback(err,results,results1);
+  //   })
+  // })
+
 sqlObject.prototype.getTwoTables = function(callback, url1, url2){
   var sql1 = "select * from " + mappingUrlTable[url1];
   var sql2 = "select * from " + mappingUrlTable[url2];
