@@ -4,12 +4,6 @@
 <% include ../partials/faculty-navbar %>
 <% include ../partials/loadTablePartial %>
 
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> 7964f05645713f87755792ffb338bdf2b4b32e08
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -46,7 +40,11 @@
                             </tbody>
                         </table>
                     </div>
-                    <button class="btn btn-primary pull-right" id = "qualificationEdit" style="margin:13px">Edit</button>
+
+                    <button type="submit" class="btn btn-primary pull-right" style="margin:13px">Edit</button>
+                    <a href = "/faculty/generateexcel/<%- type %>/1">
+                    <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
+                    </a>
                 </div>
             </div>
         </div>
