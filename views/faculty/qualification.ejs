@@ -4,6 +4,12 @@
 <% include ../partials/faculty-navbar %>
 <% include ../partials/loadTablePartial %>
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 7964f05645713f87755792ffb338bdf2b4b32e08
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -36,11 +42,11 @@
                               </tr>
                             </thead>
                             <tbody>
-                                <% loadInTable(resultSet)%>
+                                <% loadInTable(resultSet, 'qualificationEntry')%>
                             </tbody>
                         </table>
                     </div>
-                    <button type="submit" class="btn btn-primary pull-right" style="margin:13px">Edit</button>
+                    <button class="btn btn-primary pull-right" id = "qualificationEdit" style="margin:13px">Edit</button>
                 </div>
             </div>
         </div>
@@ -49,3 +55,24 @@
 
 
 <% include ../partials/footer %>
+<script type = "text/javascript">
+    $(document).ready(function(){
+        $('#qualificationEdit').click(function(){
+            //console.log('entered');
+            $('[id=qualificationEntry]').each(function(){
+                //console.log($(this).prop('readonly'));
+                if($(this).prop('readonly') === false){
+                    //console.log('setting readonly');
+                    $('#qualificationEdit').html('Edit');
+                    $(this).prop('readonly', true);
+                }
+                else{
+                    //console.log("unsetting readonly");
+                    $('#qualificationEdit').html('Save');
+                    $(this).prop('readonly', false);
+                }
+            });
+        })
+    })
+
+</script>
