@@ -5,7 +5,7 @@ var sqlQueryHandler = require('./sqlAPI');
 if(typeof require !== 'undefined') XLSX = require('xlsx');
 
 
-module.exports = function(filePath)
+module.exports = function(filePath, table)
 {
   var jsonExcelData = excelReader.readExcel(filePath);
   var tableArray = [];
@@ -24,6 +24,6 @@ module.exports = function(filePath)
   }
   console.log(tableArray);
 
-  sqlQueryHandler.insertRow('service', tableArray);
+  sqlQueryHandler.insertRow(table, tableArray);
 
 }
