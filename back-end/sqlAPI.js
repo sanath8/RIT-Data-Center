@@ -135,70 +135,55 @@ sqlQueryHandler.getTableAttributesInfo = function(tableName, callBack)
 function adjustDataTypes(resultSet, values)
 {
   console.log(values);
-  for(var i = 0; i < resultSet.length; i++)
+  for(var i = 0; i < values.length; i++)
   {
-    if(eval(JSON.stringify(resultSet[i].dataType) == JSON.stringify("varchar") || JSON.stringify(resultSet[i].dataType) == JSON.stringify("date")))
+    for(var j = 0; j < resultSet.length; j++)
     {
-      values[i].dataType = eval("'" + resultSet[i].dataType + "'");
-    }
-    else if(eval(JSON.stringify(resultSet[i].dataType) == JSON.stringify("int")))
-    {
-      resultSet[i].dataType = parseInt(resultSet[i].dataType);
-    }
 
+      if(eval(JSON.stringify(resultSet[j].dataType) == JSON.stringify("int")))
+      {
+        values[i][j] = parseInt(values[i][j]);
+      }
+
+    }
   }
 
-  return resultSet;
+  return values;
 
 }
 
 sqlQueryHandler.insertRow = function(tableName, values)
 {
   var length =values.length;
-  for(var i=0; i<length; i++){
-    if(!isNaN(values[i])){
-      values[i] = parseInt(values[i]);
-    }
-  }
+  var modValues;
+  console.log("values are "+values);
 
   try
   {
 
 
-    sqlQueryHandler.getTableAttributesInfo("faculty", adjustingCallBack);
+    sqlQueryHandler.getTableAttributesInfo(tableName, adjustingCallBack);
 
     function adjustingCallBack(resultSet)
     {
       console.log("Before: " + JSON.stringify(resultSet));
-      resultSet = adjustDataTypes(resultSet, values);
-      console.log("After: " + JSON.stringify(resultSet));
-
+      modValues = adjustDataTypes(resultSet, values);
+      console.log("modified values are:");
+      console.log(modValues);
+      sqlQueryHandler.query = "INSERT INTO " + tableName + " VALUES ?";
+      console.log(sqlQueryHandler.query);
+      con.query(sqlQueryHandler.query, [modValues],
+        function (err, result)
+        {
+            if (err)
+              throw err;
+      }
+      );
     }
 
-
-    // sqlQueryHandler.query = "INSERT INTO " + tableName + " VALUES(" + values[0];
-    // for(var i = 1; i < values.length; i++)
-    // {
-    //   sqlQueryHandler.query += " , " + values[i];
-    // }
-    // sqlQueryHandler.query += ")";
-    console.log(values);
-    sqlQueryHandler.query = "INSERT INTO " + tableName + " VALUES ?";
-    con.query(sqlQueryHandler.query,values,
-      function (err, result)
-      {
-          if (err)
-            throw err;
-    }
-    );
   }
 
-  /*
-    SELECT column_name as 'Column Name', data_type as 'Data Type',
-    character_maximum_length as 'Max Length'
-    FROM information_schema.columns
-    WHERE table_name = 'tblUsers'
-  */
+
 
   catch(err)
   {
