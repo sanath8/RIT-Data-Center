@@ -1,18 +1,13 @@
 var mysql = require('mysql');
-
+var mappingUrl = require('../../back-end/mappingUrlTable');
 var sqlObject = function() {
   this.connection = require('../../dbConnect').connectDB();
 }
 
-var mappingUrlTable = {'facultyQualification' : 'qualification', 'facultyServiceDetails': 'service',
-'facultyCourseHandled' : 'course', 'facultyProjectGuided' : 'project', 'facultyResearch' : 'faculty_research',
-'PhdScholar' : 'phd_scholar', 'facultyFundedProjects' : 'funded_projects', 'facultyPatents' : 'patent',
-'consultancyDetails' : 'cunsultancy', 'industrialCollaborations' : 'industrial_collaboration_mou',
-'studentPublications' : 'publication', 'studentAchievements' : 'award_achivement', 'hardware' : 'hardware',
-'software' : 'software'}
+
 
 sqlObject.prototype.getWholeTable = function(callback, url){
-  var sql = "select * from " + mappingUrlTable[url];
+  var sql = "select * from " + mappingUrl.mappingUrlTable[url];
   var data;
   this.connection.query(sql,function(err,results,fields){
     console.log(results);
@@ -31,8 +26,8 @@ sqlObject.prototype.getWholeTable = function(callback, url){
   // })
 
 sqlObject.prototype.getTwoTables = function(callback, url1, url2){
-  var sql1 = "select * from " + mappingUrlTable[url1];
-  var sql2 = "select * from " + mappingUrlTable[url2];
+  var sql1 = "select * from " + mappingUrl.mappingUrlTable[url1];
+  var sql2 = "select * from " + mappingUrl.mappingUrlTable[url2];
   var data1;
   this.connection.query(sql1,function(err,results,fields){
     data1 = results;
@@ -43,9 +38,9 @@ sqlObject.prototype.getTwoTables = function(callback, url1, url2){
 }
 
 sqlObject.prototype.getThreeTables = function(callback, url1, url2, url3){
-  var sql1 = "select * from " + mappingUrlTable[url1];
-  var sql2 = "select * from " + mappingUrlTable[url2];
-  var sql3 = "select * from " + mappingUrlTable[url3];
+  var sql1 = "select * from " + mappingUrl.mappingUrlTable[url1];
+  var sql2 = "select * from " + mappingUrl.mappingUrlTable[url2];
+  var sql3 = "select * from " + mappingUrl.mappingUrlTable[url3];
   var data1, data2;
   this.connection.query(sql1,function(err,results,fields){
     data1 = results;
@@ -59,10 +54,10 @@ sqlObject.prototype.getThreeTables = function(callback, url1, url2, url3){
 }
 
 sqlObject.prototype.getFourTables = function(callback, url1, url2, url3, url4){
-  var sql1 = "select * from " + mappingUrlTable[url1];
-  var sql2 = "select * from " + mappingUrlTable[url2];
-  var sql3 = "select * from " + mappingUrlTable[url3];
-  var sql4 = "select * from " + mappingUrlTable[url4];
+  var sql1 = "select * from " + mappingUrl.mappingUrlTable[url1];
+  var sql2 = "select * from " + mappingUrl.mappingUrlTable[url2];
+  var sql3 = "select * from " + mappingUrl.mappingUrlTable[url3];
+  var sql4 = "select * from " + mappingUrl.mappingUrlTable[url4];
   var data1, data2, data3;
   this.connection.query(sql1,function(err,results,fields){
     data1 = results;

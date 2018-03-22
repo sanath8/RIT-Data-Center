@@ -16,13 +16,15 @@ router.get('/excelExtract', function(req,res,next){
 });
 
 //RESTful API to get information
-router.get('/data/:tableName/:columnName', function(req, res, next){
+
+router.get('/data/:tableName/:columns', function(req, res, next){
     callback = function(result){
         res.setHeader('Content-Type', 'application/json');
         res.send(result);
         //res.send(sqlAPI.fetchResults(req.params.columnName, req.params.tableName));
     }
-    sqlAPI.fetchResults(req.params.columnName, req.params.tableName, '', callback);
+    console.log(req.params.columns.split(', '));
+    sqlAPI.fetchResults(req.params.columns, req.params.tableName, '', callback);
 });
 
 router.get('/data/:tableName/', function(req, res, next){
@@ -34,6 +36,29 @@ router.get('/data/:tableName/', function(req, res, next){
       res.send(result);
     }
     sqlExecute.getWholeTable(callback, req.params.tableName);
+});
+
+router.get('/data/:tableName/:columns', function(req, res, next){
+    callback = function(result){
+        res.setHeader('Content-Type', 'application/json');
+        res.send(result);
+        //res.send(sqlAPI.fetchResults(req.params.columnName, req.params.tableName));
+    }
+    console.log(req.params.columns.split(', '));
+    sqlAPI.fetchResults(req.params.columns, req.params.tableName, '', callback);
+});
+
+router.get('/update/:authority/:tableName/:columns', function(req, res, next){
+    //here authority is the id of the person making the edit. This way we can figure out whether the right person
+    //is updating the database or not.
+
+    callback = function(result){
+        res.setHeader('Content-Type', 'text/plain');
+        res.send(result).end();;
+        //res.send(sqlAPI.fetchResults(req.params.columnName, req.params.tableName));
+    }
+    //console.log(req.params.columns.split(', '));
+    sqlAPI.updateResults(JSON.parse(req.params.columns), req.params.tableName, req.params.authority, callback);
 });
 
 module.exports = router;
