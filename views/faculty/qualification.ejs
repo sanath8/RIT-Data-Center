@@ -1,8 +1,8 @@
+
 <% include ../partials/header %>
 <% include ../partials/faculty-sidebar %>
 <% include ../partials/faculty-navbar %>
 <% include ../partials/loadTablePartial %>
-
 
 <div class="content">
     <div class="container-fluid">
@@ -36,10 +36,11 @@
                               </tr>
                             </thead>
                             <tbody>
-                                <% loadInTable(resultSet)%>
+                                <% loadInTable(resultSet, 'qualificationEntry')%>
                             </tbody>
                         </table>
                     </div>
+
                     <button type="submit" class="btn btn-primary pull-right" style="margin:13px">Edit</button>
                     <a href = "/faculty/generateexcel/<%- type %>/1">
                     <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
@@ -52,3 +53,24 @@
 
 
 <% include ../partials/footer %>
+<script type = "text/javascript">
+    $(document).ready(function(){
+        $('#qualificationEdit').click(function(){
+            //console.log('entered');
+            $('[id=qualificationEntry]').each(function(){
+                //console.log($(this).prop('readonly'));
+                if($(this).prop('readonly') === false){
+                    //console.log('setting readonly');
+                    $('#qualificationEdit').html('Edit');
+                    $(this).prop('readonly', true);
+                }
+                else{
+                    //console.log("unsetting readonly");
+                    $('#qualificationEdit').html('Save');
+                    $(this).prop('readonly', false);
+                }
+            });
+        })
+    })
+
+</script>

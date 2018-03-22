@@ -7,7 +7,7 @@ var reportData = [];
 /* GET home page. */
 router.get('/', function(req, res, next) {
   console.log("you just sent " + req.body.name);
-  res.render('faculty/index', { title: 'Express', type:"dashboard" });
+  res.render('faculty/index', { title: 'Express', type:"dashboard", });
 });
 
 router.get('/login', function(req, res, next) {
