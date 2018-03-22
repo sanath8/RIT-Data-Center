@@ -11,7 +11,8 @@ router.get('/', function(req, res, next) {
 
 router.get('/excelExtract', function(req,res,next){
   var path = './back-end/excelSheets/service.xlsx';
-  extractExcel(path);
+  var table = 'service';
+  extractExcel(path, table);
   res.render('index2');
 });
 
