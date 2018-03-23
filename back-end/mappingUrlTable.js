@@ -7,7 +7,7 @@
 var mappingUrlTable = {'facultyInformation' : 'faculty', 'facultyQualification' : 'qualification', 'facultyServiceDetails': 'service',
 'facultyCourseHandled' : 'course', 'facultyProjectGuided' : 'project', 'facultyResearch' : 'faculty_research',
 'PhdScholar' : 'phd_scholar', 'facultyFundedProjects' : 'funded_projects', 'facultyPatents' : 'patent',
-'consultancyDetails' : 'cunsultancy', 'industrialCollaborations' : 'industrial_collaboration_mou',
+'consultancyDetails' : 'consultancy', 'industrialCollaborations' : 'industrial_collaboration_mou',
 'studentPublications' : 'publication', 'studentAchievements' : 'award_achivement', 'hardware' : 'hardware',
 'software' : 'software'}
 

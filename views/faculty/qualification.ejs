@@ -33,15 +33,14 @@
                                   <th>Year of Award</th>
                                   <th>Area of Specialization</th>
                                   <th>faculty id</th>
+                                  <th> Edit or Save</th>
                               </tr>
                             </thead>
                             <tbody>
-                                <% loadInTable(resultSet, 'qualificationEntry')%>
+                                <% loadInTable(resultSet, 'qualification', ['slNo', 'facultyId'])%>
                             </tbody>
                         </table>
                     </div>
-
-                    <button type="submit" class="btn btn-primary pull-right" style="margin:13px">Edit</button>
                     <a href = "/faculty/generateexcel/<%- type %>/1">
                     <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
                     </a>
@@ -55,21 +54,80 @@
 <% include ../partials/footer %>
 <script type = "text/javascript">
     $(document).ready(function(){
-        $('#qualificationEdit').click(function(){
-            //console.log('entered');
-            $('[id=qualificationEntry]').each(function(){
-                //console.log($(this).prop('readonly'));
+        $('[id^=qualificationEdit]').click(function(){
+            var qualificationSchema = ['slNo', 'beUniversity', 'bePassYear', 'bePassPercentage', 'mtechUniversity', 'mtechPassYear', 'mtechPassPercentage', 'phdUniversity', 'phdAwardYear', 'phdAreaOfSpecialization'];
+            //console.log($(this).attr('id').slice(0, -5) + 'Entry' + $(this).attr('id').slice(-1) + ' entered');
+            buttonId = '#' + $(this).attr('id');
+            //this is the data of the row
+            DataRow = []
+            //console.log(buttonId);
+            $('[id=' + $(this).attr('id').slice(0, -5) + 'Entry' + $(this).attr('id').slice(-1) + ']').each(function(){
+                //console.log($(this).attr('id'));
+                //console.log($(this).val());
                 if($(this).prop('readonly') === false){
                     //console.log('setting readonly');
-                    $('#qualificationEdit').html('Edit');
                     $(this).prop('readonly', true);
                 }
                 else{
                     //console.log("unsetting readonly");
-                    $('#qualificationEdit').html('Save');
+                    $(buttonId).html('Save');
                     $(this).prop('readonly', false);
                 }
+                DataRow.push($(this).val());
             });
+
+            if($(buttonId).val() === "Edit"){
+              $(buttonId).attr('value', 'Save');
+            }
+            else{
+              //console.log("Data we got : " + DataRow);
+              //Data in correct representation
+              DataRep = {};
+              for(var i = 1 ; i < qualificationSchema.length; i++){
+                DataRep[qualificationSchema[i]] = DataRow[i - 1];
+              }
+              DataRep[qualificationSchema[0]] = $('#' + $(this).attr('id').slice(0, -5) + 'ReadOnly' + $(this).attr('id').slice(-1)).val();// this fetches slNo we need
+              //console.log(JSON.stringify(DataRep));
+              //we do an ajax call to our apis here
+              $.ajax({
+                type: 'POST',
+                data: JSON.stringify(DataRep),
+				        contentType: 'application/json',
+                url: 'http://localhost:3000/update/qualification/facultyQualification/',
+                success: function(dataRecieved) {
+                  //console.log('success');
+                  //console.log(JSON.stringify(dataRecieved));
+                }
+              });
+              dataForSelect = {};//the data we want to send to the api
+              /*really trying to make it as modular as possible but somehow this cant be done*/
+              dataForSelect['schema'] = qualificationSchema.slice(1);
+              dataForSelect['whereOption'] = qualificationSchema[0] + '=' + $('#' + $(this).attr('id').slice(0, -5) + 'ReadOnly' + $(this).attr('id').slice(-1)).val();
+              /*till here*/
+
+              $.ajax({
+                type: 'POST',
+                data: JSON.stringify(dataForSelect),
+				        contentType: 'application/json',
+                url: 'http://localhost:3000/data/facultyQualification/',
+                success: function(dataRecieved) {
+                  //console.log('success');
+                  //console.log(dataRecieved[0]);// if there is integrity constraint maintained it should recieve only one result entry
+                  var counter = 1;
+                  //this code renders the data back to the input entries
+                  $('[id=' + buttonId.slice(1, -5) + 'Entry' + buttonId.slice(-1) + ']').each(function(){
+                      //console.log($(this).attr('id'));
+                      //console.log(qualificationSchema[counter] + " " + dataRecieved[0][qualificationSchema[counter]])
+                      $(this).val(dataRecieved[0][qualificationSchema[counter++]]);
+                  });
+                  //end
+
+                }
+              });
+
+              $(buttonId).attr('value', 'Edit');
+            }
+
         })
     })
 

@@ -9,15 +9,19 @@ var con = dbConnection.connection;
 var sqlQueryHandler = module.exports = {};
 var sqlResults={};
 sqlQueryHandler.query = "";
+
 sqlQueryHandler.fetchResults = function(columns, url, whereOptions, callBack)
 {
+  //whereOptions is an array of strings
   try
   {
-    sqlQueryHandler.query = "SELECT " + columns + " FROM " + mappingUrl.mappingUrlTable[tableName] + " WHERE 1=1";
+    sqlQueryHandler.query = "SELECT " + columns + " FROM " + mappingUrl.mappingUrlTable[url] + " WHERE 1=1";
+    //console.log("whereOptions" + whereOptions);
     for(var i = 0; i < whereOptions.length; i++)
     {
       sqlQueryHandler.query += " AND " + whereOptions[i];
     }
+    console.log("the query is " + sqlQueryHandler.query);
     con.query(sqlQueryHandler.query,
       function (err, result, fields)
       {
@@ -33,7 +37,7 @@ sqlQueryHandler.fetchResults = function(columns, url, whereOptions, callBack)
 
   catch(err)
   {
-    console.log("SQL error for "+ query +"occured : " + e);
+    console.log("SQL error for "+ query +"occured : " + err);
   }
 
 }
@@ -42,6 +46,8 @@ sqlQueryHandler.updateResults = function(jsonObject, url, authority, callBack)
 {
   //this function takes json object from rest api and then formulates a corresponding update query
   //and returns the results;
+  //console.log(JSON.parse(jsonObject));
+  jsonObject = JSON.parse(jsonObject);
   try
   {
     sqlQueryHandler.query = "UPDATE " + mappingUrl.mappingUrlTable[url] + " SET " + " ";

@@ -1,25 +1,27 @@
 <%
-    loadInTable=function(resultSet, tableName){
+    loadInTable=function(resultSet, tableName, uneditableColumns){
         for(var i = 0 ; i<resultSet.length;i++){
             __append("<tr>");
             for(var j in resultSet[i]){
                 console.log(j);
 
-                if(j == 'slNo'){
-                    __append('<td><input type = "text" size = "5" readonly value = "');
+                if(uneditableColumns.indexOf(j) != -1){
+                    __append('<td><input type = "text" id = "' + tableName + 'ReadOnly' + (i + 1) + '"size = "5" readonly value = "');
                     __append(resultSet[i][j] + '">');
 
                 }
                 else{
-                    __append('<td><input type = "text" id = "' + tableName + '" size = "5" readonly ');
+                    __append('<td><input type = "text" id = "' + tableName + 'Entry' + (i + 1) + '" size = "5" readonly ');
                     if(resultSet[i][j]!=null)
                         __append('value = "'+resultSet[i][j] +'">');
                     else
                         __append("-");
                 }
-                __append("</td>");
+                __append('</td>');
             }
-        __append("</tr>");
+            __append('<td><input class = "btn btn-primary" id = "' + tableName + 'Edit' + (i + 1) + '" style="margin:13px" value = "Edit" type = "button"></button></td>')
+
+        __append('</tr>');
         }
     }
     loadInTableEditable=function(resultSet){
