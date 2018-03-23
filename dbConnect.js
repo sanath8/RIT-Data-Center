@@ -8,7 +8,7 @@ exports.connectDB = function ()
 			host: "localhost",
 			user: "root",
 			password: "mysql12345",
-			database: "collegeDB"
+			database: "rit_data_center"
 		}
 	);
 	con.connect
