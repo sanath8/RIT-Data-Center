@@ -48,17 +48,16 @@ router.get('/data/:tableName/:columns', function(req, res, next){
     sqlAPI.fetchResults(req.params.columns, req.params.tableName, '', callback);
 });
 
-router.get('/update/:authority/:tableName/:columns', function(req, res, next){
+router.post('/update/:authority/:tableName/', function(req, res, next){
     //here authority is the id of the person making the edit. This way we can figure out whether the right person
     //is updating the database or not.
-
     callback = function(result){
         res.setHeader('Content-Type', 'text/plain');
         res.send(result).end();;
         //res.send(sqlAPI.fetchResults(req.params.columnName, req.params.tableName));
     }
-    //console.log(req.params.columns.split(', '));
-    sqlAPI.updateResults(JSON.parse(req.params.columns), req.params.tableName, req.params.authority, callback);
+    console.log(req.body);
+    sqlAPI.updateResults(JSON.stringify(req.body), req.params.tableName, req.params.authority, callback);
 });
 
 module.exports = router;

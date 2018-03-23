@@ -42,6 +42,8 @@ sqlQueryHandler.updateResults = function(jsonObject, url, authority, callBack)
 {
   //this function takes json object from rest api and then formulates a corresponding update query
   //and returns the results;
+  //console.log(JSON.parse(jsonObject));
+  jsonObject = JSON.parse(jsonObject);
   try
   {
     sqlQueryHandler.query = "UPDATE " + mappingUrl.mappingUrlTable[url] + " SET " + " ";
