@@ -138,9 +138,16 @@ sqlQueryHandler.getTableAttributesInfo = function(tableName, callBack)
   );
 }
 
+sqlQueryHandler.getFormattedDate = function(date)
+{
+  var modDate = date.split("-");
+  modDate = modDate.reverse();
+  modDate = modDate.join("-");
+  return modDate;
+}
+
 function adjustDataTypes(resultSet, values)
 {
-  console.log(values);
   for(var i = 0; i < values.length; i++)
   {
     for(var j = 0; j < resultSet.length; j++)
@@ -149,6 +156,11 @@ function adjustDataTypes(resultSet, values)
       if(eval(JSON.stringify(resultSet[j].dataType) == JSON.stringify("int")))
       {
         values[i][j] = parseInt(values[i][j]);
+      }
+
+      else if(eval(JSON.stringify(resultSet[j].dataType) == JSON.stringify("date")))
+      {
+        values[i][j] = sqlQueryHandler.getFormattedDate(values[i][j]);
       }
 
     }
