@@ -1,11 +1,11 @@
 <%
-    loadInTable=function(resultSet, tableName){
+    loadInTable=function(resultSet, tableName, uneditableColumns){
         for(var i = 0 ; i<resultSet.length;i++){
             __append("<tr>");
             for(var j in resultSet[i]){
                 console.log(j);
 
-                if(j == 'slNo'){
+                if(uneditableColumns.indexOf(j) != -1){
                     __append('<td><input type = "text" id = "' + tableName + 'ReadOnly' + (i + 1) + '"size = "5" readonly value = "');
                     __append(resultSet[i][j] + '">');
 
