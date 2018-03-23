@@ -55,12 +55,29 @@
 
 
             var serviceSchema = ['slNo', 'designation', 'joiningDate', 'payScale', 'promotionDate', 'yearsOfExperience'];
-            //console.log($(this).attr('id').slice(0, -5) + 'Entry' + $(this).attr('id').slice(-1) + ' entered');
+            //console.log(targetInputId + ' entered');
             buttonId = '#' + $(this).attr('id');
+            targetInputId = '';
+            slNoInputId = '';
+            indexOfEdit = buttonId.indexOf('Edit');
+            for(var buttonIdi = 1; buttonIdi < indexOfEdit ; buttonIdi++){
+              targetInputId += buttonId[buttonIdi];
+              slNoInputId += buttonId[buttonIdi];
+            }
+
+            targetInputId += 'Entry';
+            slNoInputId += 'ReadOnly';
+
+            for(var buttonIdi = indexOfEdit + 4; buttonIdi < buttonId.length ; buttonIdi++){
+              targetInputId += buttonId[buttonIdi];
+              slNoInputId += buttonId[buttonIdi];
+            }
+            console.log("The id of the target input is" + targetInputId + " " + slNoInputId);
+
             //this is the data of the row
             DataRow = []
             //console.log(buttonId);
-            $('[id=' + $(this).attr('id').slice(0, -5) + 'Entry' + $(this).attr('id').slice(-1) + ']').each(function(){
+            $('[id=' + targetInputId + ']').each(function(){
                 //console.log($(this).attr('id'));
                 //console.log($(this).val());
                 if($(this).prop('readonly') === false){
@@ -85,8 +102,9 @@
               for(var i = 1 ; i < serviceSchema.length; i++){
                 DataRep[serviceSchema[i]] = DataRow[i - 1];
               }
-              DataRep[serviceSchema[0]] = $('#' + $(this).attr('id').slice(0, -5) + 'ReadOnly' + $(this).attr('id').slice(-1)).val();// this fetches slNo we need
-              //console.log(JSON.stringify(DataRep));
+              DataRep[serviceSchema[0]] = $('#' + slNoInputId).val();// this fetches slNo we need
+              //console.log($('#' + slNoInputId).val());
+              console.log(JSON.stringify(DataRep));
               //we do an ajax call to our apis here
               $.ajax({
                 type: 'POST',
@@ -101,7 +119,7 @@
               dataForSelect = {};//the data we want to send to the api
               /*really trying to make it as modular as possible but somehow this cant be done*/
               dataForSelect['schema'] = serviceSchema.slice(1);
-              dataForSelect['whereOption'] = serviceSchema[0] + '=' + $('#' + $(this).attr('id').slice(0, -5) + 'ReadOnly' + $(this).attr('id').slice(-1)).val();
+              dataForSelect['whereOption'] = serviceSchema[0] + '=' + $('#' + slNoInputId).val();
               /*till here*/
 
               $.ajax({

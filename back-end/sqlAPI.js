@@ -12,6 +12,7 @@ sqlQueryHandler.query = "";
 
 sqlQueryHandler.fetchResults = function(columns, url, whereOptions, callBack)
 {
+  console.log("this is whereOptions" + whereOptions);
   //whereOptions is an array of strings
   try
   {
