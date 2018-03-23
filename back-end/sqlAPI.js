@@ -125,33 +125,83 @@ sqlQueryHandler.insertRow1 = function(columns, tableName, whereOptions, callBack
 
 }
 
+sqlQueryHandler.getTableAttributesInfo = function(tableName, callBack)
+{
+
+    var query = "SELECT column_name as 'columnName', data_type as 'dataType', character_maximum_length as 'maxLength' FROM information_schema.columns WHERE table_name = '"+tableName+"'" ;
+    con.query(query, function (err, result, fields)
+    {
+      if (err)
+        throw err;
+      callBack(result);
+    }
+  );
+}
+
+sqlQueryHandler.getFormattedDate = function(date)
+{
+  var modDate = date.split("-");
+  modDate = modDate.reverse();
+  modDate = modDate.join("-");
+  return modDate;
+}
+
+function adjustDataTypes(resultSet, values)
+{
+  for(var i = 0; i < values.length; i++)
+  {
+    for(var j = 0; j < resultSet.length; j++)
+    {
+
+      if(eval(JSON.stringify(resultSet[j].dataType) == JSON.stringify("int")))
+      {
+        values[i][j] = parseInt(values[i][j]);
+      }
+
+      else if(eval(JSON.stringify(resultSet[j].dataType) == JSON.stringify("date")))
+      {
+        values[i][j] = sqlQueryHandler.getFormattedDate(values[i][j]);
+      }
+
+    }
+  }
+
+  return values;
+
+}
 
 sqlQueryHandler.insertRow = function(tableName, values)
 {
   var length =values.length;
-  for(var i=0; i<length; i++){
-    if(!isNaN(values[i])){
-      values[i] = parseInt(values[i]);
-    }
-  }
+  var modValues;
+  console.log("values are "+values);
+
   try
   {
-    // sqlQueryHandler.query = "INSERT INTO " + tableName + " VALUES(" + values[0];
-    // for(var i = 1; i < values.length; i++)
-    // {
-    //   sqlQueryHandler.query += " , " + values[i];
-    // }
-    // sqlQueryHandler.query += ")";
-    console.log(values);
-    sqlQueryHandler.query = "INSERT INTO " + tableName + " VALUES ?";
-    con.query(sqlQueryHandler.query,values,
-      function (err, result)
-      {
-          if (err)
-            throw err;
+
+
+    sqlQueryHandler.getTableAttributesInfo(tableName, adjustingCallBack);
+
+    function adjustingCallBack(resultSet)
+    {
+      console.log("Before: " + JSON.stringify(resultSet));
+      modValues = adjustDataTypes(resultSet, values);
+      console.log("modified values are:");
+      console.log(modValues);
+      sqlQueryHandler.query = "INSERT INTO " + tableName + " VALUES ?";
+      console.log(sqlQueryHandler.query);
+      con.query(sqlQueryHandler.query, [modValues],
+        function (err, result)
+        {
+            if (err)
+              throw err;
+      }
+      );
     }
-    );
+
   }
+
+
 
   catch(err)
   {

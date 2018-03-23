@@ -1,10 +1,8 @@
+
 <% include ../partials/header %>
 <% include ../partials/faculty-sidebar %>
 <% include ../partials/faculty-navbar %>
 <% include ../partials/loadTablePartial %>
-
-
-
 
 <div class="content">
     <div class="container-fluid">
@@ -43,7 +41,9 @@
                             </tbody>
                         </table>
                     </div>
-
+                    <a href = "/faculty/generateexcel/<%- type %>/1">
+                    <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
+                    </a>
                 </div>
             </div>
         </div>

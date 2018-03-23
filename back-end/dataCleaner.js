@@ -4,7 +4,7 @@ var dataCleaner = module.exports = {};
 
 dataCleaner.cleanExcelData = function(filePath)
 {
-  excelData = excelReader.readExcel(filePath);
+  var excelData = excelReader.readExcel(filePath);
   var columnsAttributes = Object.keys(excelData[0]);
   excelData = dataCleaner.removeSpecialCharacters(excelData, columnsAttributes);
   excelData = dataCleaner.dataToLowerCase(excelData, columnsAttributes);
@@ -21,8 +21,8 @@ dataCleaner.removeSpecialCharacters = function(excelData, columnsAttributes)
   {
     for(var j = 0; j < columnsAttributes.length; j++)
     {
-      var dataEntry = eval("excelData[i]."+columnsAttributes[j]);
-      eval("excelData[i]." + columnsAttributes[j] + " = '" + dataCleaner.specialCharacterFilter(dataEntry)+"'");
+      var dataEntry = eval("excelData[i]." + columnsAttributes[j]);
+      eval("excelData[i]." + columnsAttributes[j] + " = '" + dataCleaner.specialCharacterFilter(dataEntry) + "'");
     }
   }
 
