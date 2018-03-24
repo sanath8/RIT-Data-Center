@@ -24,7 +24,7 @@ router.use('/achievements', require('./faculty-achievements'));
 
 router.get('/generateexcel/:facultyTable/:tableNo',function(req,res,next){
   console.log("this is " + req.params.facultyTable);
-  generateexcel.getExcelSheet(reportData[req.params.tableNo - 1],req.params.facultyTable + ".xls",res);
+  //generateexcel.getExcelSheet(reportData[req.params.tableNo - 1],req.params.facultyTable + ".xls",res);
 })
 
 
