@@ -3,16 +3,13 @@ var router = express.Router();
 var sqlExecute = require('../apis/mySqlCalls');
 var generateexcel = require('../../back-end/excelGenerator');
 
-var reportData = [];
+var reportData = [null,null];
 /* GET home page. */
 router.get('/', function(req, res, next) {
   console.log("you just sent " + req.body.name);
   res.render('faculty/index', { title: 'Express', type:"dashboard", });
 });
 
-router.get('/login', function(req, res, next) {
-  res.render('faculty/login', { title: 'Express', type:"login" });
-});
 
 router.get('/personnal-info', function(req, res, next) {
   // document.getElementById('personnallist').className = "active";
