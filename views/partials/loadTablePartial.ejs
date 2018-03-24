@@ -3,30 +3,15 @@
         for(var i = 0 ; i<resultSet.length;i++){
             __append("<tr>");
             for(var j in resultSet[i]){
-                console.log(j);
-
-                if(uneditableColumns.indexOf(j) != -1){
-                    if(j === 'slNo'){
-                      __append('<td><input type = "text" id = "' + tableName + 'ReadOnly' + (i + 1) + '"size = "5" readonly value = "');
-
-                    }
-                    else{
-                      __append('<td><input type = "text" id = "' + tableName + 'ReadOnly' + '"size = "5" readonly value = "');
-
-                    }
-                    __append(resultSet[i][j] + '">');
-
-                }
-                else{
-                    __append('<td><input type = "text" id = "' + tableName + 'Entry' + (i + 1) + '" size = "5" readonly ');
-                    if(resultSet[i][j]!=null)
-                        __append('value = "'+resultSet[i][j] +'">');
-                    else
-                        __append("-");
-                }
+                console.log(j);                
+                __append('<td>');
+                if(resultSet[i][j]!=null)
+                    __append(''+resultSet[i][j] +'');
+                else
+                    __append("-");
                 __append('</td>');
             }
-            __append('<td><input class = "btn btn-primary" id = "' + tableName + 'Edit' + (i + 1) + '" style="margin:13px" value = "Edit" type = "button"></button></td>')
+            // __append('<td><input class = "btn btn-primary" id = "' + tableName + 'Edit' + (i + 1) + '" style="margin:13px" value = "Edit" type = "button"></button></td>')
 
         __append('</tr>');
         }
