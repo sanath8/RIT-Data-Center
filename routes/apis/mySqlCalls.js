@@ -4,7 +4,14 @@ var sqlObject = function() {
   this.connection = require('../../dbConnect').connectDB();
 }
 
-
+sqlObject.prototype.login = function(email, pass, callback){
+	var sql= "select * \
+			from faculty \
+			where emailId=? and password=?";
+	this.connection.query(sql, [email, pass], function(err, result){
+		callback(err, result);
+	})
+}
 
 sqlObject.prototype.getWholeTable = function(callback, url){
   var sql = "select * from " + mappingUrl.mappingUrlTable[url];
