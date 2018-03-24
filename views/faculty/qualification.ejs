@@ -86,7 +86,7 @@
                 type: 'POST',
                 data: JSON.stringify(DataRep),
 				        contentType: 'application/json',
-                url: 'http://localhost:3000/update/qualification/facultyQualification/',
+                url: '/v1/apis/update/qualification/facultyQualification/',
                 success: function(dataRecieved) {
                   //console.log('success');
                   //console.log(JSON.stringify(dataRecieved));
@@ -103,7 +103,7 @@
                 type: 'POST',
                 data: JSON.stringify(dataForSelect),
 				        contentType: 'application/json',
-                url: 'http://localhost:3000/data/facultyQualification/',
+                url: '/v1/apis/data/facultyQualification/',
                 success: function(dataRecieved) {
 
                   // if there is integrity constraint maintained it should recieve only one result entry
