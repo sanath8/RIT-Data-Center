@@ -1,6 +1,7 @@
 <%
     loadInTable=function(resultSet, tableName, uneditableColumns){
         for(var i = 0 ; i<resultSet.length;i++){
+            //TODO Put onhover and onclick in <tr>
             __append("<tr>");
             for(var j in resultSet[i]){
                 console.log(j);                
