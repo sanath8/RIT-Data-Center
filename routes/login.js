@@ -5,7 +5,11 @@ router.get('/', function(req, res, next) {
     if(req.session.email){
         res.redirect("/faculty");
     }else{
-        res.render('login', { title: 'Express', type:"login" });
+        if(!req.query.error){
+            res.render('login', { title: 'Express', type:"login" });
+        }else{
+            res.render('login', { title: 'Express', type:"loginError", message:req.query.error });
+        }
     }
 });
 

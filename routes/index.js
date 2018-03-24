@@ -72,9 +72,4 @@ router.post('/update/:authority/:tableName/', function(req, res, next){
     sqlAPI.updateResults(JSON.stringify(req.body), req.params.tableName, req.params.authority, callback);
 });
 
-
-router.get('/login', function(req, res, next) {
-    res.render('login', { title: 'Express', type:"login" });
-});
-
 module.exports = router;

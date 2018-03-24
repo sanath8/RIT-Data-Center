@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require("./mySqlCalls");
+var qs=require("querystring");
 
 router.post('/', function(req, res, next) {
     console.log("It reached here");
@@ -10,11 +11,13 @@ router.post('/', function(req, res, next) {
     var callback = function(err, result){
         if(err){
             console.log(err.message);
-            res.redirect("/login");
+            res.redirect("/login?error="+qs.escape(err.message));
+            //res.render('login', { title: 'Express', type:"loginError", message:"Something went wrong." });
         }
         if(result.length==0){
             console.log("Cannot find user");
-            res.redirect("/login");
+            res.redirect("/login?error="+qs.escape("Please check your username and password"));
+            // res.render('login', { title: 'Express', type:"loginError", message:"Please check your username and password" });
         }else{
             var myDet=result[0];
             //TODO Perform Search on my details and find of it is in which category

@@ -2,7 +2,14 @@
 
 
 <div class="container"  style="align-items: center; margin-top:12%;max-width:600px">
+            <%if(type=="loginError"){%>
+            <div class="alert alert-warning">
+                <strong>Error!</strong> <%= message%>
+            </div>
+            <%}%>
+            
         <div class="card">
+        
             <div class="card-header" data-background-color="purple">
                 <h4 class="title">Faculty Login</h4>
             </div>
