@@ -1,8 +1,9 @@
 <%
+
     loadInTable=function(resultSet, tableName, uneditableColumns){
         for(var i = 0 ; i<resultSet.length;i++){
             //TODO Put onhover and onclick in <tr>
-            __append("<tr>");
+            __append('<tr onmouseover="hoverEffect(this)" onmouseout="removeHoverEffect(this)">');
             for(var j in resultSet[i]){
                 console.log(j);                
                 __append('<td>');
@@ -28,4 +29,18 @@
         __append("</tr>");
         }
     }
+
+
 %>
+
+
+
+<script>
+    function hoverEffect(event){
+        event.style.background = "#BDBDBD";
+        console.log("this function is a");
+    }
+    function removeHoverEffect(event){
+        event.style.background = "white";
+    }
+</script>
