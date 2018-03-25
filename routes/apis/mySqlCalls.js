@@ -81,9 +81,9 @@ sqlObject.prototype.getFourTables = function(callback, url1, url2, url3, url4){
 }
 
 sqlObject.prototype.getAchievements = function(callback){
-  var sql1 = "select * from workshop_fdp";
-  var sql2 = "select * from conference";
-  var sql3 = "select * from guest_lecture";
+  var sql1 = "select * from faculty_workshop_fdp";
+  var sql2 = "select * from faculty_conference_symposia";
+  var sql3 = "select * from faculty_guest_lecture";
   var sql4 = "select * from book";
   var sql5 = "select * from book_chapter";
   var sql6 = "select * from conference_paper";
