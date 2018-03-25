@@ -4,11 +4,11 @@
 //that's why we have a separate module for it in the backend cause we can use it in the REST api and also in the
 //and also in the apis folder where all the sqlCalls.js file is located.
 
-var mappingUrlTable = {'facultyInformation' : 'faculty', 'facultyQualification' : 'qualification', 'facultyServiceDetails': 'service',
-'facultyCourseHandled' : 'course', 'facultyProjectGuided' : 'project', 'facultyResearch' : 'faculty_research',
-'PhdScholar' : 'phd_scholar', 'facultyFundedProjects' : 'funded_projects', 'facultyPatents' : 'patent',
+var mappingUrlTable = {'facultyInformation' : 'faculty', 'facultyQualification' : 'faculty_qualification', 'facultyServiceDetails': 'faculty_service',
+'facultyCourseHandled' : 'courses_handled', 'facultyProjectGuided' : 'projects_handled', 'facultyResearch' : 'faculty_research',
+'PhdScholar' : 'phd_scholar', 'facultyFundedProjects' : 'funded_projects', 'facultyPatents' : 'faculty_patent',
 'consultancyDetails' : 'consultancy', 'industrialCollaborations' : 'industrial_collaboration_mou',
-'studentPublications' : 'publication', 'studentAchievements' : 'award_achivement', 'hardware' : 'hardware',
+'studentPublications' : 'student_publication', 'studentAchievements' : 'student_achievement', 'hardware' : 'hardware',
 'software' : 'software'}
 
 module.exports.mappingUrlTable = mappingUrlTable;
