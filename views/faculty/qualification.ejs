@@ -36,7 +36,7 @@
                               </tr>
                             </thead>
                             <tbody>
-                                <% loadInTable(resultSet, 'qualification', ['slNo', 'facultyId'])%>
+                                <% loadInTable(resultSet,1)%>
                             </tbody>
                         </table>
                     </div>
@@ -53,7 +53,7 @@
 <!--model containing form for faculty qualification below -->
 <!-- TODO == MAKE MODEL MODULAR -->
 
-<div class="modal fade" id="myModal" role="dialog">
+<div class="modal fade" id="myModal1" role="dialog">
 <div class="modal-dialog">
 
   <!-- Modal content-->
@@ -66,39 +66,39 @@
           <form>
             <div class="form-group ">
                 <label class="control-label">BE University</label>
-                <input id="data1" type="text" class="form-control">
+                <input id="data11" type="text" class="form-control">
             </div>
             <div class="form-group ">
                 <label class="control-label">BE Pass Percentage</label>
-                <input id= "data2" type="email" class="form-control">
+                <input id= "data12" type="email" class="form-control">
             </div>
             <div class="form-group ">
                 <label class="control-label">BE Year of Passing</label>
-                <input id= "data3" type="text" class="form-control">
+                <input id= "data13" type="text" class="form-control">
             </div>
             <div class="form-group ">
                 <label class="control-label">M.Tech University</label>
-                <input id= "data4" type="text" class="form-control">
+                <input id= "data14" type="text" class="form-control">
             </div>
             <div class="form-group ">
                 <label class="control-label">M.Tech Pass Percentage</label>
-                <input id= "data5" type="text" class="form-control">
+                <input id= "data15" type="text" class="form-control">
             </div>
             <div class="form-group ">
                 <label class="control-label">M.Tech Year of Passing</label>
-                <input id= "data6" type="text" class="form-control">
+                <input id= "data16" type="text" class="form-control">
             </div>
             <div class="form-group ">
                 <label class="control-label">PhD University</label>
-                <input id= "data7" type="text" class="form-control">
+                <input id= "data17" type="text" class="form-control">
             </div>
             <div class="form-group ">
                 <label class="control-label">PhD Year of Award</label>
-                <input id= "data8" type="text" class="form-control">
+                <input id= "data18" type="text" class="form-control">
             </div>
             <div class="form-group ">
                 <label class="control-label">PhD Area of Specialization</label>
-                <input id= "data9" type="text" class="form-control">
+                <input id= "data19" type="text" class="form-control">
             </div>
             <button type="submit" class="btn btn-primary pull-right">Update</button>
             <button type="submit" class="btn btn-warning pull-right">Cancel</button>
