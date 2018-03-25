@@ -189,6 +189,9 @@ CREATE TABLE `faculty` (
   `departmentId` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+Alter table `faculty`
+add column `password` varchar(50) after `emailId`;
+desc `faculty`;
 -- --------------------------------------------------------
 
 --
