@@ -22,7 +22,6 @@
                                 <th>Promotion Date</th>
                                 <th>Years of Experience</th>
                                 <th> Faculty Id</th>
-                                <th> Edit or Save </th>
                             </thead>
                             <tbody>
                                 <% loadInTable(resultSet, 'service', ['slNo', 'facultyId']) %>
@@ -37,6 +36,52 @@
         </div>
     </div>
 </div>
+
+
+
+<div class="modal fade" id="myModal" role="dialog">
+<div class="modal-dialog">
+
+  <!-- Modal content-->
+  <div class="modal-content">
+  <div class="card">
+      <div class="card-header" data-background-color="purple" style="margin-top:-50px;">
+          <h4 class="title">Edit Row Data</h4>
+      </div>
+      <div class="card-content">
+          <form>
+            <div class="form-group ">
+                <label class="control-label" id="label1">Designation</label>
+                <input id="data1" type="text" class="form-control">
+            </div>
+            <div class="form-group ">
+                <label class="control-label">Date of Joining</label>
+                <input id= "data2" type="email" class="form-control">
+            </div>
+            <div class="form-group ">
+                <label class="control-label">Scale of Pay</label>
+                <input id= "data3" type="text" class="form-control">
+            </div>
+            <div class="form-group ">
+                <label class="control-label">Promotion Date</label>
+                <input id= "data4" type="text" class="form-control">
+            </div>
+            <div class="form-group ">
+                <label class="control-label">Years of Experience</label>
+                <input id= "data5" type="text" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary pull-right">Update</button>
+            <button type="submit" class="btn btn-warning pull-right">Cancel</button>
+            <button type="submit" class="btn btn-danger pull-right">Delete</button>          </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
 
 <% include ../partials/footer %>
 <script type = "text/javascript">

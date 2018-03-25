@@ -2,10 +2,10 @@
 
     loadInTable=function(resultSet, tableName, uneditableColumns){
         for(var i = 0 ; i<resultSet.length;i++){
-            //TODO Put onhover and onclick in <tr>
-            __append('<tr onmouseover="hoverEffect(this)" onmouseout="removeHoverEffect(this)">');
+            __append('<tr data-toggle="modal" data-target="#myModal" onclick="fillData(this,resultSet[i])" onmouseover="hoverEffect(this)" onmouseout="removeHoverEffect(this)">');
             for(var j in resultSet[i]){
-                console.log(j);                
+                // console.log(j + 'hello');    
+                // console.log(resultSet[i]);            
                 __append('<td>');
                 if(resultSet[i][j]!=null)
                     __append(''+resultSet[i][j] +'');
@@ -35,12 +35,22 @@
 
 
 
+
+
 <script>
     function hoverEffect(event){
-        event.style.background = "#BDBDBD";
+        event.style.background = "#EEEEEE";
         console.log("this function is a");
     }
     function removeHoverEffect(event){
         event.style.background = "white";
+    }
+    function fillData(resultSet){
+        console.log(resultSet.head);
+        var rowData = resultSet.cells;
+        var noOfEntries = rowData.length;
+            for(var i = 1;i<noOfEntries-1;i++){
+                document.getElementById('data' + i).value = rowData[i].innerHTML;
+            }
     }
 </script>
