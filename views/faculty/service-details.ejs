@@ -132,7 +132,7 @@
                   //console.log(dataRecieved[0]);// if there is integrity constraint maintained it should recieve only one result entry
                   var counter = 1;
                   //this code renders the data back to the input entries
-                  $('[id=' + buttonId.slice(1, -5) + 'Entry' + buttonId.slice(-1) + ']').each(function(){
+                  $('[id=' + targetInputId + ']').each(function(){
                       //console.log($(this).attr('id'));
                       //console.log(serviceSchema[counter] + " " + dataRecieved[0][serviceSchema[counter]])
                       $(this).val(dataRecieved[0][serviceSchema[counter++]]);
