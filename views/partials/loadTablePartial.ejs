@@ -1,8 +1,8 @@
 <%
 
-    loadInTable=function(resultSet, tableName, uneditableColumns){
+    loadInTable=function(resultSet, tableNumber){
         for(var i = 0 ; i<resultSet.length;i++){
-            __append('<tr data-toggle="modal" data-target="#myModal" onclick="fillData(this)" onmouseover="hoverEffect(this)" onmouseout="removeHoverEffect(this)">');
+            __append('<tr data-toggle="modal" data-target="#myModal'+tableNumber +'" onclick="fillData(this,'+tableNumber+')" onmouseover="hoverEffect(this)" onmouseout="removeHoverEffect(this)">');
             for(var j in resultSet[i]){
                 // console.log(j + 'hello');    
                 // console.log(resultSet[i]);            
@@ -45,11 +45,11 @@
     function removeHoverEffect(event){
         event.style.background = "white";
     }
-    function fillData(resultSet){
+    function fillData(resultSet,tableNumber){
         var rowData = resultSet.cells;
         var noOfEntries = rowData.length;
             for(var i = 1;i<noOfEntries-1;i++){
-                document.getElementById('data' + i).value = rowData[i].innerHTML;
+                document.getElementById('data'+tableNumber + i).value = rowData[i].innerHTML;
             }
     }
 </script>
