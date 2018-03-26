@@ -4,8 +4,16 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session')
 
 var app = express();
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true }
+}))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -20,6 +28,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', require('./routes/index'));
+app.use('/login', require('./routes/login'));
+app.use('/v1/apis', require('./routes/apis/api-index'));
 app.use('/faculty', require('./routes/faculty/faculty-index'));
 app.use('/hod', require('./routes/hod/hod-index'));
 app.use('/admin', require('./routes/admin/admin-index'));
