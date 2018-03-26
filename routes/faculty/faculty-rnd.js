@@ -1,8 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var sqlExecute = require('../apis/mySqlCalls');
+var utility = require('../utilities');
 
 router.get('/', function(req, res, next) {
+  utility.checkSesssion(req, res);
   var callback = function(err, result1, result2, result3, result4){
     if(err)
       throw err;
