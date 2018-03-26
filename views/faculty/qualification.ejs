@@ -32,7 +32,6 @@
                                   <th>University</th>
                                   <th>Year of Award</th>
                                   <th>Area of Specialization</th>
-                                  <th>faculty id</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -121,9 +120,9 @@
             buttonId = '#' + $(this).attr('id');
 
             DataRow = []
-            
+
             $('[id=' + $(this).attr('id').slice(0, -5) + 'Entry' + $(this).attr('id').slice(-1) + ']').each(function(){
-                
+
                 if($(this).prop('readonly') === false){
                     $(this).prop('readonly', true);
                 }
@@ -143,7 +142,7 @@
                 DataRep[qualificationSchema[i]] = DataRow[i - 1];
               }
               DataRep[qualificationSchema[0]] = $('#' + $(this).attr('id').slice(0, -5) + 'ReadOnly' + $(this).attr('id').slice(-1)).val();// this fetches slNo we need
-              
+
               //we do an ajax call to our apis here
               $.ajax({
                 type: 'POST',

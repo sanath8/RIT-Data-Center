@@ -17,12 +17,11 @@
                         <table class="table">
                             <thead class="text-primary">
                                 <th>Sl. No</th>
-                                <th>Event Name</th>
-                                <th>Date</th>
-                                <th>Organized / Attended</th>
                                 <th>Title</th>
-                                <th>Number of Participants</th>
                                 <th>Sponsered / Funded</th>
+                                <th>Date</th>
+                                <th>Number of Participants</th>
+                                <th>type</th>
                             </thead>
                             <tbody>
                                 <% loadInTable(resultSet1) %>
@@ -46,8 +45,8 @@
                                 <th>Name of the Event</th>
                                 <th>Place</th>
                                 <th>Date</th>
-                                <th>Number of Papers Presented</th>
                                 <th>Invited / Deputed</th>
+                                <th>Number of Papers Presented</th>
                             </thead>
                             <tbody>
                                 <% loadInTable(resultSet2) %>
@@ -147,7 +146,6 @@
                             <th>Conference Name</th>
                             <th>Conference Type</th>
                             <th>Organized By</th>
-                            <th>Date</th>
                             <th>Year</th>
                         </thead>
                         <tbody>
@@ -171,11 +169,13 @@
                               <th>Sl. No</th>
                               <th>Authors</th>
                               <th>Title</th>
+                              <th>ISSN</th>
                               <th>Journal Name</th>
-                                <th>Journal Type</th>
+                              <th>Journal Type</th>
                               <th>Volume Number</th>
                               <th>Page Numbers</th>
                               <th>Year</th>
+                              <th>SJR Quartile</th>
                           </thead>
                           <tbody>
                               <% loadInTable(resultSet7) %>
