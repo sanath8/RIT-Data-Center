@@ -31,7 +31,7 @@ sqlQueryHandler.fetchResults = function(columns, url, whereOptions, callBack)
           sqlResults = result;
           if(callBack != false)
             callBack(sqlResults);
-    }
+      }
     );
   }
 

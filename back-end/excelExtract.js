@@ -3,13 +3,15 @@ var router = express.Router();
 var excelReader = require('./excelReader');
 var sqlQueryHandler = require('./sqlAPI');
 if(typeof require !== 'undefined') XLSX = require('xlsx');
+var excelExtractor = module.exports = {};
 
 
-module.exports = function(filePath, table)
+excelExtractor.uploadExcel = function(filePath, table)
 {
   var jsonExcelData = excelReader.readExcel(filePath);
   var tableArray = [];
   var rowArray = [];
+  console.log(jsonExcelData[0]);
   var objectKeys = Object.keys(jsonExcelData[0]);
 
   for(var i = 0; i < jsonExcelData.length; i++)
