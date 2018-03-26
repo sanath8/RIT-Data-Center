@@ -12,7 +12,8 @@ router.get('/', function(req, res, next) {
     //reportData[0] = result;
     res.render('faculty/qualification', {type:"qualification", resultSet:result});
   }
-  sqlExecute.getWholeTable(callback,'facultyQualification');
+  //sqlExecute.getWholeTable(callback,'facultyQualification', req.session.email);
+  sqlExecute.getFaultyQualification(req.session.facultyId, callback);
 });
 
 module.exports=router;

@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
     // reportData[0] = result;
     res.render('faculty/service-details', {type:"service-details", resultSet:result});
   }
-  sqlExecute.getWholeTable(callback,'facultyServiceDetails');
+  sqlExecute.getWholeTable(callback,'facultyServiceDetails', req.session.email);
 });
 
 
