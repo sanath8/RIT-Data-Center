@@ -1,8 +1,8 @@
 <%
 
-    loadInTable=function(resultSet, tableNumber){
+    loadInTable=function(resultSet, tableNumber, tableName){
         for(var i = 0 ; i<resultSet.length;i++){
-            __append('<tr data-toggle="modal" data-target="#myModal'+tableNumber +'" onclick="fillData(this,'+tableNumber+')" onmouseover="hoverEffect(this)" onmouseout="removeHoverEffect(this)">');
+            __append('<tr id = "' + tableName + 'Row' + (i + 1) + '"data-toggle="modal" data-target="#myModal'+tableNumber +'" onclick="fillData(this,'+tableNumber+')" onmouseover="hoverEffect(this)" onmouseout="removeHoverEffect(this)">');
             for(var j in resultSet[i]){
                 // console.log(j + 'hello');    
                 // console.log(resultSet[i]);            
@@ -51,5 +51,20 @@
             for(var i = 1;i<noOfEntries-1;i++){
                 document.getElementById('data'+tableNumber + i).value = rowData[i].innerHTML;
             }
+        add("Update", tableNumber)
     }
+    function add(type, tableNumber) {
+        //Create an input type dynamically.   
+        var element = document.createElement("button");
+        //Assign different attributes to the element. 
+        element.class = "btn btn-primary pull-right";
+        element.innerHTML = type; // Really? You want the default value to be the type string?; // And the name too?
+        element.onclick = function() { // Note this is a function
+            alert("blabla");
+        };
+
+        var foo = document.getElementById("myModal" + tableNumber);
+        //Append the element in page (in span).  
+        foo.appendChild(element);
+}
 </script>

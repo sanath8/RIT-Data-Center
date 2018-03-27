@@ -36,7 +36,7 @@
                               </tr>
                             </thead>
                             <tbody>
-                                <% loadInTable(resultSet,1)%>
+                                <% loadInTable(resultSet,1, 'facultyQualification')%>
                             </tbody>
                         </table>
                     </div>
@@ -70,7 +70,7 @@
             </div>
             <div class="form-group ">
                 <label class="control-label">BE Pass Percentage</label>
-                <input id= "data12" type="email" class="form-control">
+                <input id= "data12" type="text" class="form-control">
             </div>
             <div class="form-group ">
                 <label class="control-label">BE Year of Passing</label>
@@ -100,7 +100,7 @@
                 <label class="control-label">PhD Area of Specialization</label>
                 <input id= "data19" type="text" class="form-control">
             </div>
-            <button type="submit" class="btn btn-primary pull-right">Update</button>
+            <!--<button id = "" class="btn btn-primary pull-right">Update</button>-->
             <button type="submit" class="btn btn-warning pull-right">Cancel</button>
             <button type="submit" class="btn btn-danger pull-right">Delete</button>
           </form>
