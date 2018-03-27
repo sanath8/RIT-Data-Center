@@ -8,8 +8,9 @@ router.get('/', function(req, res, next) {
   var callback = function(err, result){
     if(err)
       throw err;
-    console.log(result);
+    console.log("special : " + result[0]['slNo']);
     //reportData[0] = result;
+    //console.log(result);
     res.render('faculty/qualification', {type:"qualification", resultSet:result});
   }
   sqlExecute.getWholeTable(callback,'facultyQualification');

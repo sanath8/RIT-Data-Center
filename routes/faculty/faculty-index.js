@@ -24,11 +24,20 @@ router.use('/rnd-details', require('./faculty-rnd'));
 
 router.use('/achievements', require('./faculty-achievements'));
 
-router.get('/generateexcel/:facultyTable/:tableNo',function(req,res,next){
+router.use('/reports', require('./faculty-reports'));
+
+
+/*router.get('/generateexcel/:facultyTable/:tableNo',function(req,res,next){
   utility.checkSesssion(req, res);
   console.log("this is " + req.params.facultyTable);
-  //generateexcel.getExcelSheet(reportData[req.params.tableNo - 1],req.params.facultyTable + ".xls",res);
-})
+  generateexcel.getExcelSheet(reportData[req.params.tableNo - 1],req.params.facultyTable + ".xls",res);
+})*/
 
+router.get('/generateexcel/:jsonObject',function(req,res,next){
+  utility.checkSesssion(req, res);
+  console.log("this is " + req.params.jsonObject);
+  console.log(JSON.parse(req.params.jsonObject));
+  generateexcel.getExcelSheet(JSON.parse(req.params.jsonObject),"Report.xls",res);
+})
 
 module.exports = router;

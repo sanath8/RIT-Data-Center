@@ -1,0 +1,62 @@
+<% include ../partials/header %>
+<% include ../partials/faculty-sidebar %>
+<% include ../partials/faculty-navbar %>
+<% include ../partials/loadSelectList %>
+
+<div class="form-group">
+    <label for="exampleFormControlSelect1">journal Name</label>
+    <select class="form-control" id="exampleFormControlSelect1">
+      <%loadInList(selectList1)%>
+    </select>
+</div>
+<div class="form-group">
+    <label for="exampleFormControlSelect1">journal Type</label>
+    <select class="form-control" id="exampleFormControlSelect2">
+      <%loadInList(selectList2)%>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">sjr Quartile</label>
+    <select class="form-control" id="exampleFormControlSelect3">
+        <%loadInList(selectList3)%>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Year</label>
+    <select class="form-control" id="exampleFormControlSelect4">
+        <%loadInList(selectList4)%>
+    </select>
+  </div>
+  <button type="button" id = "getReport" class="btn btn-primary">Get Report</button>
+
+<% include ../partials/footer %>
+<script>
+    $("#getReport").click(function(){
+        var journalName = $('#exampleFormControlSelect1').val();
+        var journalType =$('#exampleFormControlSelect2').val();
+        var sjrQuartile = $('#exampleFormControlSelect3').val();
+        var year = $('#exampleFormControlSelect4').val();
+        console.log(journalName + " " + journalType + " " + sjrQuartile);
+        dataForSelect = {
+            'schema': '*',
+            'whereOption' : ['journalName = "' + journalName + '"']
+        }
+
+        $.ajax({
+              type: 'POST',
+              data: JSON.stringify(dataForSelect),
+              contentType: 'application/json',
+              url: 'http://localhost:3000/v1/apis/data/journalPaper/',
+              success: function(dataRecieved) {
+                console.log('success');
+                console.log(dataRecieved[0]);// if there is integrity constraint maintained it should recieve only one result entry
+                var counter = 1;
+                //this code renders the data back to the input entries
+                window.location.href = "http:localhost:3000/faculty/generateExcel/" + JSON.stringify(dataRecieved[0]);
+                //end
+
+              }
+            });
+    })
+</script>

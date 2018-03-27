@@ -23,7 +23,7 @@ sqlQueryHandler.fetchResults = function(columns, url, whereOptions, callBack)
       sqlQueryHandler.query += " AND " + whereOptions[i];
     }
     console.log("the query is " + sqlQueryHandler.query);
-    /*con.query(sqlQueryHandler.query,
+    con.query(sqlQueryHandler.query,
       function (err, result, fields)
       {
           if (err)
@@ -33,7 +33,7 @@ sqlQueryHandler.fetchResults = function(columns, url, whereOptions, callBack)
           if(callBack != false)
             callBack(sqlResults);
       }
-    );*/
+    );
   }
 
   catch(err)

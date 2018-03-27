@@ -8,7 +8,7 @@ var session = require('express-session')
 
 var app = express();
 app.set('trust proxy', 1) // trust first proxy
-app.use(session({ secret: 'RIT Data Center 19089905', cookie: { maxAge: 6000000 }}))
+app.use(session({ secret: 'RIT Data Center 19089905', cookie: { maxAge: 600000000000 }}))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
