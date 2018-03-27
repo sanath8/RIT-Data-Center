@@ -1,4 +1,7 @@
 var express = require('express');
+
+var sqlAPI = require('../../back-end/sqlAPI');
+var sqlExecute = require('./mySqlCalls');
 var router = express.Router();
 
 router.post('/:tableName/', function(req, res, next){
