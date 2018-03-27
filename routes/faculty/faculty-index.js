@@ -8,7 +8,23 @@ var utility = require('../utilities');
 router.get('/', function(req, res, next) {
   utility.checkSesssion(req, res);
   console.log("you just sent " + req.body.name);
-  res.render('faculty/index', { title: 'Express', type:"dashboard", });
+  res.render('faculty/index', { title: 'Express', type:"dashboard",resultSet: [
+    {
+     facultyName:"Anita Kanavalli",
+     gender:"F",
+     address:"bengaluru",
+     religion:"Indian",
+     caste:"Indian",
+     category:"GM",
+     dob :"1968-03-23",
+     natureOfAppoment:"full time",
+     contactNumber:"9754567332",
+     emailId:"anitak@msrit.edu",
+     panNumber:"389479413",
+     accountNumber:"8769874243",
+     pfNumber:"65849213"
+    }
+] });
 });
 
 
