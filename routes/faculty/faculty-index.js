@@ -38,6 +38,7 @@ router.get('/generateexcel/:jsonObject',function(req,res,next){
   console.log("this is " + req.params.jsonObject);
   console.log(JSON.parse(req.params.jsonObject));
   generateexcel.getExcelSheet(JSON.parse(req.params.jsonObject),"Report.xls",res);
+  //res.redirect('/faculty/reports');
 })
 
 module.exports = router;
