@@ -21,6 +21,7 @@ router.post('/', function(req, res, next) {
         }else{
             var myDet=result[0];
             //TODO Perform Search on my details and find of it is in which category
+            console.log("Session ID : "+myDet["emailId"]);
             req.session.email=myDet["emailId"];
             res.redirect("/faculty");
         }
