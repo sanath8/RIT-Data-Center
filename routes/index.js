@@ -59,7 +59,7 @@ router.get('/data/:tableName/:columns', function(req, res, next){
   }
   console.log(req.params.columns.split(', '));
   sqlAPI.fetchResults(req.params.columns, req.params.tableName, '', callback);
-});*/
+});
 
 router.post('/update/:authority/:tableName/', function(req, res, next){
   //here authority is the id of the person making the edit. This way we can figure out whether the right person
