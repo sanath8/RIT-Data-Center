@@ -16,6 +16,7 @@ router.get('/excelExtract', function(req,res,next){
   res.render('index2');
 });
 
+
 //RESTful API to get information
 
 /*router.get('/data/:tableName/:columns', function(req, res, next){
@@ -27,7 +28,7 @@ router.get('/excelExtract', function(req,res,next){
     console.log(req.params.columns.split(', '));
     sqlAPI.fetchResults(req.params.columns, req.params.tableName, '', callback);
 });*/
-
+/*
 router.post('/data/:tableName/', function(req, res, next){
   callback = function(result){
       res.setHeader('Content-Type', 'application/json');
@@ -71,5 +72,5 @@ router.post('/update/:authority/:tableName/', function(req, res, next){
   console.log(req.body);
   sqlAPI.updateResults(JSON.stringify(req.body), req.params.tableName, req.params.authority, callback);
 });
-
+*/
 module.exports = router;
