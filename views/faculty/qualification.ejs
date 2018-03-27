@@ -36,7 +36,7 @@
                               </tr>
                             </thead>
                             <tbody>
-                                <% loadInTable(resultSet,1, 'facultyQualification')%>
+                                <% loadInTable(resultSet, 1, 'facultyQualification')%>
                             </tbody>
                         </table>
                     </div>
@@ -63,7 +63,6 @@
           <h4 class="title">Edit Row Data</h4>
       </div>
       <div class="card-content">
-          <form>
             <div class="form-group ">
                 <label class="control-label">BE University</label>
                 <input id="data11" type="text" class="form-control">
@@ -100,10 +99,12 @@
                 <label class="control-label">PhD Area of Specialization</label>
                 <input id= "data19" type="text" class="form-control">
             </div>
-            <!--<button id = "" class="btn btn-primary pull-right">Update</button>-->
-            <button type="submit" class="btn btn-warning pull-right">Cancel</button>
-            <button type="submit" class="btn btn-danger pull-right">Delete</button>
-          </form>
+            <div style = "display: none">
+                <input id= "data110" type="text" class="form-control">
+            </div>
+            <button id = "Update1" name = "facultyQualification" class="btn btn-primary pull-right" onclick="updateData(this.id, this.name)">Update</button>
+            <button id = "Cancel1" name = "facultyQualification" type="" class="btn btn-warning pull-right">Cancel</button>
+            <button id = "Delete1" name = "facultyQualification" type="" class="btn btn-danger pull-right" onclick="deleteData(this.id)">Delete</button>
       </div>
     </div>
   </div>

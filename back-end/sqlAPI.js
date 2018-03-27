@@ -23,7 +23,7 @@ sqlQueryHandler.fetchResults = function(columns, url, whereOptions, callBack)
       sqlQueryHandler.query += " AND " + whereOptions[i];
     }
     console.log("the query is " + sqlQueryHandler.query);
-    con.query(sqlQueryHandler.query,
+    /*con.query(sqlQueryHandler.query,
       function (err, result, fields)
       {
           if (err)
@@ -33,7 +33,7 @@ sqlQueryHandler.fetchResults = function(columns, url, whereOptions, callBack)
           if(callBack != false)
             callBack(sqlResults);
       }
-    );
+    );*/
   }
 
   catch(err)
@@ -49,6 +49,7 @@ sqlQueryHandler.updateResults = function(jsonObject, url, authority, callBack)
   //and returns the results;
   //console.log(JSON.parse(jsonObject));
   jsonObject = JSON.parse(jsonObject);
+  
   try
   {
     sqlQueryHandler.query = "UPDATE " + mappingUrl.mappingUrlTable[url] + " SET " + " ";
@@ -71,7 +72,7 @@ sqlQueryHandler.updateResults = function(jsonObject, url, authority, callBack)
       console.log(jsonObject[key]);
     }
     //console.log(setString);
-    //console.log(sqlQueryHandler.query);
+    console.log(sqlQueryHandler.query);
     con.query(sqlQueryHandler.query,
       function (err, result, fields)
       {
