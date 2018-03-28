@@ -53,7 +53,7 @@ router.get('/', function(req, res, next) {
 		myR["PF Number"]=tresult["pfNumber"];
 		
 		var data=[myR];
-		res.render('faculty/index', { title: 'Express', type:"dashboard",data: data});
+		res.render('faculty/index', { title: 'Express', type:"dashboard",data: {faculty : data}});
 		//res.send(JSON.stringify(result));
 	}
 	console.log("Param : "+req.session.email+":"+req.session.facultyId);
