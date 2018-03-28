@@ -493,10 +493,10 @@ CREATE TABLE `faculty_qualification` (
 -- CREATE TABLE `faculty_qualification` (
 --   `slNo` int(11) NOT NULL,
 --   `degree` varchar(10) NOT NULL,
---   `University` varchar(100) NOT NULL,
---   `PassPercentage` float NOT NULL,
---   `PassYear` varchar(10) NOT NULL,
---   `phdAreaOfSpecialization` varchar(100) NOT NULL,
+--   `university` varchar(100) NOT NULL,
+--   `passClass` float NOT NULL,
+--   `passYear` varchar(10) NOT NULL,
+--   `areaOfSpecialization` varchar(100) NOT NULL,
 --   `facultyId` varchar(10) NOT NULL
 -- ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
