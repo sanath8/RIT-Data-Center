@@ -3,8 +3,8 @@ var mappingUrl = require('../../back-end/mappingUrlTable');
 
 
 var sqlObject = function() {
-  this.connection = require('../../dbConnect').connectDB();
-  this.tables = mappingUrl.mappingUrlTable;
+	this.connection = require('../../dbConnect').connectDB();
+	this.tables = mappingUrl.mappingUrlTable;
 }
 
 sqlObject.prototype.login = function(email, pass, callback){
@@ -15,24 +15,34 @@ sqlObject.prototype.login = function(email, pass, callback){
 		callback(err, result);
 	})
 }
+
+sqlObject.prototype.getFacultyInfo=function(fid, callback){
+	var sql="Select * \
+			from "+this.tables.facultyInformation+" \
+			where facultyId=?";
+	this.connection.query(sql, [fid], function(err, result){
+		callback(err, result);
+	})
+}
+
 sqlObject.prototype.getFaultyQualification = function(fid, callback){
-  var sql = "select * \
-      from " + this.tables.facultyQualification+" natural join "+this.tables.facultyInformation+"\
-      WHERE facultyId=?";
-  this.connection.query(sql, [fid],function(err,results,fields){
-    console.log(results);
-    callback(err, results);
-  });
+	var sql = "select * \
+		from " + this.tables.facultyQualification+" natural join "+this.tables.facultyInformation+"\
+		WHERE facultyId=?";
+	this.connection.query(sql, [fid],function(err,results,fields){
+		console.log(results);
+		callback(err, results);
+	});
 }
 sqlObject.prototype.getFaultyAcademics = function(fid, callback){
   var sql = "select * \
       from " + this.tables.facultyCourseHandled+" natural join "+this.tables.facultyInformation+"\
       WHERE facultyId=?";
   
-  this.connection.query(sql, [fid],function(err,results,fields){
-    console.log(results);
-    callback(err, results);
-  });
+	this.connection.query(sql, [fid],function(err,results,fields){
+		console.log(results);
+		callback(err, results);
+	});
 }
 
 
