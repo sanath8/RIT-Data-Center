@@ -490,6 +490,16 @@ CREATE TABLE `faculty_qualification` (
   `facultyId` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- CREATE TABLE `faculty_qualification` (
+--   `slNo` int(11) NOT NULL,
+--   `degree` varchar(10) NOT NULL,
+--   `University` varchar(100) NOT NULL,
+--   `PassPercentage` float NOT NULL,
+--   `PassYear` varchar(10) NOT NULL,
+--   `phdAreaOfSpecialization` varchar(100) NOT NULL,
+--   `facultyId` varchar(10) NOT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Dumping data for table `faculty_qualification`
 --
