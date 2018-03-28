@@ -1,7 +1,7 @@
-//slno removed from everytable
+slno removed from everytable
 
+removed department no and passwprd and facultyid
 
-//removed department no and passwprd and facultyid
 {
 	title : "Faculty",
 	type : "dashboard",
@@ -33,21 +33,21 @@
        faculty:[
            {
             type: BE/MTech/Phd,
-            University:,
-            PassPercentage:,
-            PassYear:,
+            university:,
+            passPercentage:,
+            passYear:,
            },
            {
             type: BE/MTech/Phd,
-            University:,
-            PassPercentage:,
-            PassYear:,
+            university:,
+            passPercentage:,
+            passYear:,
            },
            {
             type: BE/MTech/Phd,
-            University:,
-            PassPercentage:,
-            PassYear:,
+            university:,
+            awardYear:,
+            areaOfSpecialization:
            }
        ]   
     }
