@@ -4,7 +4,7 @@ var sqlExecute = require('../apis/mySqlCalls');
 var utility = require('../utilities');
 
 router.get('/', function(req, res, next) {
-  utility.checkSesssion(req, res);
+  if(!utility.checkSesssion(req, res)) return;
   // document.getElementById('personnallist').className = "active";
   res.render('faculty/personnal-info', { title: 'Express', type:"personnal-info" });
 });
