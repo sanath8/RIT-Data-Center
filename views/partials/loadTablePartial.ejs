@@ -2,6 +2,7 @@
 
     loadInTable=function(resultSet, tableNumber){
         for(var i = 0 ; i<resultSet.length;i++){
+
             __append('<tr data-toggle="modal" data-target="#myModal'+tableNumber +'" onclick="fillData(this,'+tableNumber+')" onmouseover="hoverEffect(this)" onmouseout="removeHoverEffect(this)">');
             for(var j in resultSet[i]){
                 // console.log(j + 'hello');    
@@ -18,6 +19,29 @@
         __append('</tr>');
         }
     }
+
+    loadInTableVerticle=function(resultSet, tableNumber){
+        for(var i = 0 ; i<resultSet.length;i++){
+            for(var j in resultSet[i]){
+                __append('<tr onmouseover="hoverEffect(this)" onmouseout="removeHoverEffect(this)">');
+                __append('<th>');
+                if(j!=null)
+                    __append(''+j +'');
+                else
+                    __append("-");
+                __append('</th>');        
+                __append('<td>');
+                if(resultSet[i][j]!=null)
+                    __append(''+resultSet[i][j] +'');
+                else
+                    __append("-");
+                __append('</td>');
+                __append('</tr>');
+
+            }
+        }
+    }
+    
     loadInTableEditable=function(resultSet){
         for(var i = 0 ; i<resultSet.length;i++){
             __append("<tr>");
@@ -48,6 +72,7 @@
     function fillData(resultSet,tableNumber){
         var rowData = resultSet.cells;
         var noOfEntries = rowData.length;
+        console.log("this is from filldata");
             for(var i = 1;i<noOfEntries-1;i++){
                 document.getElementById('data'+tableNumber + i).value = rowData[i].innerHTML;
             }
