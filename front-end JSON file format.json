@@ -46,8 +46,8 @@
            {
             type: BE/MTech/Phd,
             University:,
-            PassPercentage:,
-            PassYear:,
+            AwardYear:,
+            AreaOfSpecialization:
            }
        ]   
     }
