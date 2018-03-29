@@ -4,15 +4,47 @@ var sqlExecute = require('../apis/mySqlCalls');
 var utility = require('../utilities');
 
 router.get('/', function(req, res, next) {
-  utility.checkSesssion(req, res);
+  if(!utility.checkSesssion(req, res)) return;
   var callback = function(err, result1, result2, result3, result4){
     if(err)
       throw err;
-    // reportData[0] = result1;
-    // reportData[1] = result2;
-    // reportData[2] = result3;
-    // reportData[3] = result4;
-    res.render('faculty/rnd-details', {type:"rnd-details", resultSet1:result1, resultSet2:result2, resultSet3:result3, resultSet4:result4});
+    var result = { 
+      funded_projects:[
+         {            
+          investigatorName: "hello"  ,
+          projectTitle: "hello"  ,
+          nameOfFundingAgent: "hello"  ,
+          sanctionOrderNumber: "hello"  ,
+          projectDuration: "hello"  ,
+          dateSanctioned: "hello"  ,
+          sanctionedAmount: "hello"                
+         }
+     ],
+     faculty_patent:[
+         {            
+          patentTitle: "hello"  ,
+          applicationNumber: "hello"  ,
+          dateOfFilingApplication: "hello"  ,
+          publicationDate: "hello"                
+         }
+     ],
+     consultancy:[
+         {            
+          financialYear: "hello"  ,
+          clientOrganization: "hello"  ,
+          consultancyProjectTitle: "hello"  ,
+          amountReceived: "hello"                
+         }
+     ],
+     industrial_collaboration_mou:[
+         {            
+          mouTitle: "hello"  ,
+          mouSignedWithIndustryOrGovt: "hello"  ,
+          mouSigningDate: "hello"                
+         }
+     ]   
+  };
+    res.render('faculty/rnd-details', {type:"rnd-details", data:result});
   }
   sqlExecute.getFourTables(callback,'facultyFundedProjects', 'facultyPatents', 'consultancyDetails', 'industrialCollaborations');
 });

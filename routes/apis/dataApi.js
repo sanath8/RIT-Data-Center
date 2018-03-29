@@ -19,7 +19,7 @@ router.get('/:tableName/', function(req, res, next){
       res.setHeader('Content-Type', 'application/json');
       res.send(result);
     }
-    sqlExecute.getWholeTable(callback, req.params.tableName);
+    sqlExecute.getWholeTable(callback, req.params.tableName, req.session.email);
 });
 
 
