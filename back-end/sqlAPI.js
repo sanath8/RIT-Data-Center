@@ -125,6 +125,21 @@ sqlQueryHandler.insertRow1 = function(columns, tableName, whereOptions, callBack
 
 }
 
+sqlQueryHandler.getDataBaseTables = function(dataBase, callBack)
+{
+
+  var query = "SELECT table_name FROM information_schema.tables where table_schema = '" + dataBase + "'";
+  console.log(query);
+  con.query(query, function (err, result, fields)
+  {
+    if (err)
+      console.log(err);
+    callBack(result);
+  }
+);
+
+}
+
 sqlQueryHandler.getTableAttributesInfo = function(tableName, callBack)
 {
 
@@ -140,7 +155,7 @@ sqlQueryHandler.getTableAttributesInfo = function(tableName, callBack)
 
 sqlQueryHandler.getFormattedDate = function(date)
 {
-  var modDate = date.split("-");
+  var modDate = date.split("/");
   modDate = modDate.reverse();
   modDate = modDate.join("-");
   return modDate;
