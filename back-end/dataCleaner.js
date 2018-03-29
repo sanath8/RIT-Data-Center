@@ -54,4 +54,4 @@ dataCleaner.specialCharacterFilter = function(dataEntry)
    return filteredString;
 }
 
-dataCleaner.cleanExcelData('excelSheets/hii.xls');
+//dataCleaner.cleanExcelData('excelSheets/hii.xls');
