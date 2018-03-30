@@ -10,38 +10,35 @@
               <h2>Academic Details</h2>
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
-                        <h4 class="title">Courses</h4>
+                        <h4 class="title">Courses Handled</h4>
                         <p class="category">information about courses handled.</p>
                     </div>
                     <div class="card-content table-responsive">
                         <table class="table">
                             <thead class="text-primary">
-                                <th>Sl. No</th>
                                 <th>Year handled</th>
                                 <th>Course name</th>
                                 <th>UG / PG</th>
                                 <th>Labs Handled</th>
-                                <th>UG / PG</th>
                             </thead>
                             <tbody>
                                 <% loadInTable(data.courses_handled,1)%>
                             </tbody>
                         </table>
                     </div>
-                    <a href = "/faculty/generateexcel/<%- type %>/1">
+                    <a href = "/faculty/generateexcel/1/5">
                     <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
                     </a>
-                    <button type="submit" class="btn btn-primary pull-right" style="margin:13px">Edit</button>
+                    <button type="submit" class="btn btn-primary pull-right" style="margin:13px">Insert</button>
                 </div>
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
-                        <h4 class="title">Projects</h4>
+                        <h4 class="title">Projects Handled</h4>
                         <p class="category">information about projects guided.</p>
                     </div>
                     <div class="card-content table-responsive">
                         <table class="table">
                             <thead class="text-primary">
-                                <th>Sl. No</th>
                                 <th>Batch</th>
                                 <th>UG / PG</th>
                                 <th>Project Title</th>
@@ -51,10 +48,10 @@
                             </tbody>
                         </table>
                     </div>
-                    <a href = "/faculty/generateexcel/<%- type %>/2">
+                    <a href = "/faculty/generateexcel/2/5">
                     <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
                     </a>
-                    <button type="submit" class="btn btn-primary pull-right" style="margin:13px">Edit</button>
+                    <button type="submit" class="btn btn-primary pull-right" style="margin:13px">Insert</button>
                 </div>
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
@@ -64,7 +61,8 @@
                     <div class="card-content table-responsive">
                         <table class="table">
                             <thead class="text-primary">
-                                <th>Guide name</th>
+                                <th>Guide Name</th>
+                                <th>Research Candidate Name</th>
                                 <th>USN</th>
                                 <th>Centre Name</th>
                                 <th>University</th>
@@ -77,10 +75,10 @@
                             </tbody>
                         </table>
                     </div>
-                    <a href = "/faculty/generateexcel/<%- type %>/3">
+                    <a href = "/faculty/generateexcel/3/5">
                     <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
                     </a>
-                    <button type="submit" class="btn btn-primary pull-right" style="margin:13px">Edit</button>
+                    <button type="submit" class="btn btn-primary pull-right" style="margin:13px">Insert</button>
                 </div>
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
@@ -90,12 +88,12 @@
                     <div class="card-content table-responsive">
                         <table class="table">
                             <thead class="text-primary">
-                              <th>Research Scholar name</th>
-                              <th>Guide name</th>
-                              <th>USN</th>
+                              <th>Research Scholar Name</th>
+                              <th>Guide Name</th>
                               <th>Centre Name</th>
                               <th>University</th>
                               <th>Year of registration</th>
+                              <th>USN</th>
                               <th>Title</th>
                               <th>Status</th>
                             </thead>
@@ -104,10 +102,10 @@
                             </tbody>
                         </table>
                     </div>
-                    <a href = "/faculty/generateexcel/<%- type %>/4">
+                    <a href = "/faculty/generateexcel/4/5">
                     <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
                     </a>
-                    <button type="submit" class="btn btn-primary pull-right" style="margin:13px">Edit</button>
+                    <button type="submit" class="btn btn-primary pull-right" style="margin:13px">Insert</button>
                 </div>
             </div>
         </div>

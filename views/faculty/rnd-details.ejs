@@ -16,7 +16,6 @@
                     <div class="card-content table-responsive">
                         <table class="table">
                             <thead class="text-primary">
-                                <th>Sl. No</th>
                                 <th>Principal Investigator</th>
                                 <th>Project Title</th>
                                 <th>Funding Agency</th>
@@ -26,14 +25,14 @@
                                 <th>Sanctioned Amount (in Rs.)</th>
                             </thead>
                             <tbody>
-                                <% loadInTable(data.funded_projects, )%>
+                                <% loadInTable(data.funded_projects)%>
                             </tbody>
                         </table>
                     </div>
-                    <a href = "/faculty/generateexcel/<%- type %>/1">
+                    <a href = "/faculty/generateexcel/1/6">
                     <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
                     </a>
-                    <button type="submit" class="btn btn-primary pull-right" style="margin:13px">Edit</button>
+                    <button type="submit" class="btn btn-primary pull-right" style="margin:13px">Insert</button>
                 </div>
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
@@ -43,7 +42,6 @@
                     <div class="card-content table-responsive">
                         <table class="table">
                             <thead class="text-primary">
-                                <th>Sl. No</th>
                                 <th>Title</th>
                                 <th>Application Number</th>
                                 <th>Date of Filing Application</th>
@@ -54,10 +52,10 @@
                             </tbody>
                         </table>
                     </div>
-                    <a href = "/faculty/generateexcel/<%- type %>/2">
+                    <a href = "/faculty/generateexcel/2/6">
                     <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
                     </a>
-                    <button type="submit" class="btn btn-primary pull-right" style="margin:13px">Edit</button>
+                    <button type="submit" class="btn btn-primary pull-right" style="margin:13px">Insert</button>
                 </div><div class="card">
                     <div class="card-header" data-background-color="purple">
                         <h4 class="title">Consultancy Details</h4>
@@ -66,7 +64,6 @@
                     <div class="card-content table-responsive">
                         <table class="table">
                             <thead class="text-primary">
-                              <th>Sl. No</th>
                               <th>Financial Year</th>
                               <th>Client Orgnization</th>
                               <th>Title of Consultancy of Project</th>
@@ -77,10 +74,10 @@
                             </tbody>
                         </table>
                     </div>
-                    <a href = "/faculty/generateexcel/<%- type %>/3">
+                    <a href = "/faculty/generateexcel/3/6">
                     <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
                     </a>
-                    <button type="submit" class="btn btn-primary pull-right" style="margin:13px">Edit</button>
+                    <button type="submit" class="btn btn-primary pull-right" style="margin:13px">Insert</button>
                 </div>
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
@@ -90,21 +87,19 @@
                     <div class="card-content table-responsive">
                         <table class="table">
                             <thead class="text-primary">
-                              <th>Sl. No</th>
                               <th>Title of MOU</th>
                               <th>MOU signed with Industry</th>
                               <th>Signing Date</th>
-                              <th>Faculty Incharge</th>
                             </thead>
                             <tbody>
                                 <% loadInTable(data.industrial_collaboration_mou)%>
                             </tbody>
                         </table>
                     </div>
-                    <a href = "/faculty/generateexcel/<%- type %>/4">
+                    <a href = "/faculty/generateexcel/4/6">
                     <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
                     </a>
-                    <button type="submit" class="btn btn-primary pull-right" style="margin:13px">Edit</button>
+                    <button type="submit" class="btn btn-primary pull-right" style="margin:13px">Insert</button>
                 </div>
             </div>
         </div>
