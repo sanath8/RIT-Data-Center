@@ -7,8 +7,9 @@
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
-create Database rit_data_center_original;
-use rit_data_center_original;
+drop database rit_data_center;
+create Database rit_data_center;
+use rit_data_center;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -282,7 +283,7 @@ CREATE TABLE `faculty_qualification` (
   `slNo` int(11) NOT NULL,
   `degree` varchar(10) NOT NULL,
   `university` varchar(100) NOT NULL,
-  `passClass` float NOT NULL,
+  `passClass` varchar(10) NOT NULL,
   `passYear` varchar(10) NOT NULL,
   `areaOfSpecialization` varchar(100) NOT NULL,
   `facultyId` varchar(10) NOT NULL

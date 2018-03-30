@@ -24,24 +24,233 @@ sqlObject.prototype.getFacultyInfo=function(fid, callback){
 		callback(err, result);
 	})
 }
-
 sqlObject.prototype.getFaultyQualification = function(fid, callback){
-	var sql = "select * \
-		from " + this.tables.facultyQualification+" natural join "+this.tables.facultyInformation+"\
+	var sql = "select Q.* \
+		from " + this.tables.facultyQualification+" Q natural join "+this.tables.facultyInformation+"\
 		WHERE facultyId=?";
 	this.connection.query(sql, [fid],function(err,results,fields){
 		console.log(results);
 		callback(err, results);
 	});
 }
-sqlObject.prototype.getFaultyAcademics = function(fid, callback){
-  var sql = "select * \
-      from " + this.tables.facultyCourseHandled+" natural join "+this.tables.facultyInformation+"\
-      WHERE facultyId=?";
-
+sqlObject.prototype.getFacultyService = function(fid, callback){
+	var sql = "select designation, qualification, joiningDate, yearsOfExperience, promotionDate, payScale \
+		from " + this.tables.facultyServiceDetails+" S \
+		WHERE facultyId=?";
 	this.connection.query(sql, [fid],function(err,results,fields){
 		console.log(results);
 		callback(err, results);
+	});
+}
+
+sqlObject.prototype.getFaultyAcademics = function(fid, callback){
+  	var sql = "select yearHandled, subjectName, ugOrPg, labHandled \
+      from " + this.tables.facultyCourseHandled+" \
+      WHERE facultyId=?";
+<<<<<<< HEAD
+=======
+
+	var data={}
+	var connection = this.connection;
+	var myO=this;
+>>>>>>> e8503206aaf40269b19302b7db22d6946a17658a
+
+	this.connection.query(sql, [fid],function(err,results,fields){
+		console.log(results);
+		if(err){
+			callback(err, undefined);
+			return;
+		}
+		data["courses_handled"]=results;
+
+		sql="select  batch, ugOrPg, projectTitle\
+			from "+myO.tables.facultyProjectGuided+"\
+			Where facultyId=?";
+
+		connection.query(sql, [fid], function(err, results){
+			console.log(results);
+			if(err){
+				callback(err, undefined);
+				return;
+			}
+			data["projects_handled"]=results;
+
+			sql="select  guideName, researchCandidateName, usn, centreName, university,registrationYear,title,status\
+				from "+myO.tables.facultyResearch+"\
+				Where facultyId=?";
+			connection.query(sql, [fid], function(err, results){
+				console.log(results);
+				if(err){
+					callback(err, undefined);
+					return;
+				}
+				data["faculty_research"]=results;
+
+				sql="select scholarName, guideName, researchCentre, university, registrationYear, usn, title, status \
+					from "+myO.tables.PhdScholar+"\
+					Where facultyId=?";
+				connection.query(sql, [fid], function(err, results){
+					console.log(results);
+					if(err){
+						callback(err, undefined);
+						return;
+					}
+					data["phd_scholar"]=results;
+					callback(undefined, data);
+				})
+			})
+		})
+	});
+}
+
+sqlObject.prototype.getFaultyRND = function(fid, callback){
+  	var sql = "select investigatorName, projectTitle, nameOfFundingAgent, sanctionOrderNumber, projectDuration, dateSanctioned, sanctionedAmount \
+      from " + this.tables.facultyFundedProjects+" \
+      WHERE facultyId=?";
+
+	var data={}
+	var connection = this.connection;
+	var myO=this;
+
+	this.connection.query(sql, [fid],function(err,results,fields){
+		console.log(results);
+		if(err){
+			callback(err, undefined);
+			return;
+		}
+		data["funded_projects"]=results;
+
+		sql="select patentTitle, applicationNumber, dateOfFilingApplication, publicationDate \
+			from "+myO.tables.facultyPatents+"\
+			Where facultyId=?";
+
+		connection.query(sql, [fid], function(err, results){
+			console.log(results);
+			if(err){
+				callback(err, undefined);
+				return;
+			}
+			data["faculty_patent"]=results;
+
+			sql="select financialYear, clientOrganization, consultancyProjectTitle, amountReceived \
+				from "+myO.tables.consultancyDetails+"\
+				Where facultyId=?";
+			connection.query(sql, [fid], function(err, results){
+				console.log(results);
+				if(err){
+					callback(err, undefined);
+					return;
+				}
+				data["consultancy"]=results;
+
+				sql="select mouTitle, mouSignedWithIndustryOrGovt, mouSigningDate  \
+					from "+myO.tables.industrialCollaborations+"\
+					Where facultyId=?";
+				connection.query(sql, [fid], function(err, results){
+					console.log(results);
+					if(err){
+						callback(err, undefined);
+						return;
+					}
+					data["industrial_collaboration_mou"]=results;
+					callback(undefined, data);
+				})
+			})
+		})
+	});
+}
+
+sqlObject.prototype.getFaultyAchievements = function(fid, callback){
+  	var sql = "select title, sponsoredOrFunded, date, noOfParticipants, type  \
+      from faculty_workshop_fdp \
+      WHERE facultyId=?";
+
+	var data={}
+	var connection = this.connection;
+	var myO=this;
+
+	this.connection.query(sql, [fid],function(err,results,fields){
+		console.log(results);
+		if(err){
+			callback(err, undefined);
+			return;
+		}
+		data["faculty_workshop_fdp"]=results;
+
+		sql="select eventName, place, date, invitedOrDeputed, noOfPapersPresented  \
+			from faculty_conference_symposia\
+			Where facultyId=?";
+
+		connection.query(sql, [fid], function(err, results){
+			console.log(results);
+			if(err){
+				callback(err, undefined);
+				return;
+			}
+			data["faculty_conference_symposia"]=results;
+
+			sql="select placeInvited, title, date   \
+				from faculty_guest_lecture\
+				Where facultyId=?";
+			connection.query(sql, [fid], function(err, results){
+				console.log(results);
+				if(err){
+					callback(err, undefined);
+					return;
+				}
+				data["faculty_guest_lecture"]=results;
+
+				sql="select bookTitle, bookAuthors, bookPublisher, year \
+					from book\
+					Where facultyId=?";
+				connection.query(sql, [fid], function(err, results){
+					console.log(results);
+					if(err){
+						callback(err, undefined);
+						return;
+					}
+					data["book"]=results;
+
+					sql="select chapterName, bookName, chapterAuthors, publisher, year \
+						from book_chapter\
+						Where facultyId=?";
+					connection.query(sql, [fid], function(err, results){
+						console.log(results);
+						if(err){
+							callback(err, undefined);
+							return;
+						}
+						data["book_chapter"]=results;
+
+						sql="select authors, title, conferenceName, conferenceType, organizedBy, year  \
+							from conference_paper\
+							Where facultyId=?";
+						connection.query(sql, [fid], function(err, results){
+							console.log(results);
+							if(err){
+								callback(err, undefined);
+								return;
+							}
+							data["conference_paper"]=results;
+
+							sql="select authors, title, issn, journalName, journalType, volumeNumber, pageNumbers, year, sjrQuartile \
+								from journal_paper\
+								Where facultyId=?";
+							connection.query(sql, [fid], function(err, results){
+								console.log(results);
+								if(err){
+									callback(err, undefined);
+									return;
+								}
+								data["journal_paper"]=results;
+								callback(undefined, data);
+
+							})
+						})
+					})
+				})
+			})
+		})
 	});
 }
 
@@ -165,6 +374,7 @@ sqlObject.prototype.getAchievements = function(callback){
     callback(err, data1, data2, data3, data4, data5, data6, results);
   });
 }
+
 
 var object = new sqlObject();
 
