@@ -76,4 +76,18 @@
                 document.getElementById('data'+tableNumber + i).value = rowData[i].innerHTML;
             }
     }
+    function fillDataVerticleTable(tableNumber){
+        var resultSet = <%-JSON.stringify(data["faculty"])%>;
+        console.log(resultSet);
+        var len = resultSet.length;
+        noOfEntries =  Object.keys(resultSet[0]).length;
+        var i=1;
+        for(var k=0;k<len;k++){
+            for(var j in resultSet[k]){
+                document.getElementById('data'+tableNumber + i).value = resultSet[k][j];
+                console.log(resultSet[k][j]);
+                i++;
+            }
+        }
+    }
 </script>

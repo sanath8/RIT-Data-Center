@@ -31,7 +31,6 @@ router.get('/', function(req, res, next) {
 		if(err || result.length==0){
 			res.redirect("/login");
 			console.log("It reached in error");
-
 			throw err;
 		}
 
@@ -73,10 +72,27 @@ router.use('/rnd-details', require('./faculty-rnd'));
 
 router.use('/achievements', require('./faculty-achievements'));
 
-router.get('/generateexcel/:facultyTable/:tableNo',function(req,res,next){
+router.get('/generateexcel/:tableNo/:index',function(req,res,next){
   if(!utility.checkSesssion(req, res)) return;
   console.log("this is " + req.params.facultyTable);
-  //generateexcel.getExcelSheet(reportData[req.params.tableNo - 1],req.params.facultyTable + ".xls",res);
+  var callback=function(err, result){
+	generateexcel.getExcelSheet(result,req.params.facultyTable + ".xls",res);
+	if(err || result.length==0){
+		console.log("It reached in error");
+		throw err;
+	}
+}
+var index = req.params.index;
+var fid = req.session.facultyId;
+  if(index == 1){
+	mysql.getFacultyInfo(fid,callback);
+  }
+  if(index == 2){
+	mysql.getFaultyQualification(fid,callback);
+  }
+  if(index == 3){
+	  mysql.FacultyS
+  }
 })
 
 
