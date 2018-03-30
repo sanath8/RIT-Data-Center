@@ -158,8 +158,8 @@ sqlObject.prototype.getFaultyRND = function(fid, callback){
 }
 
 sqlObject.prototype.getFaultyAchievements = function(fid, callback){
-  	var sql = "select investigatorName, projectTitle, nameOfFundingAgent, sanctionOrderNumber, projectDuration, dateSanctioned, sanctionedAmount \
-      from " + this.tables.facultyFundedProjects+" \
+  	var sql = "select title, sponsoredOrFunded, date, noOfParticipants, type  \
+      from faculty_workshop_fdp \
       WHERE facultyId=?";
 	
 	var data={}
@@ -172,10 +172,10 @@ sqlObject.prototype.getFaultyAchievements = function(fid, callback){
 			callback(err, undefined);
 			return;
 		}
-		data["funded_projects"]=results;
+		data["faculty_workshop_fdp"]=results;
 
-		sql="select patentTitle, applicationNumber, dateOfFilingApplication, publicationDate \
-			from "+myO.tables.facultyPatents+"\
+		sql="select eventName, place, date, invitedOrDeputed, noOfPapersPresented  \
+			from faculty_conference_symposia\
 			Where facultyId=?";
 
 		connection.query(sql, [fid], function(err, results){
@@ -184,10 +184,10 @@ sqlObject.prototype.getFaultyAchievements = function(fid, callback){
 				callback(err, undefined);
 				return;
 			}
-			data["faculty_patent"]=results;
+			data["faculty_conference_symposia"]=results;
 
-			sql="select financialYear, clientOrganization, consultancyProjectTitle, amountReceived \
-				from "+myO.tables.consultancyDetails+"\
+			sql="select placeInvited, title, date   \
+				from faculty_guest_lecture\
 				Where facultyId=?";
 			connection.query(sql, [fid], function(err, results){
 				console.log(results);
@@ -195,10 +195,10 @@ sqlObject.prototype.getFaultyAchievements = function(fid, callback){
 					callback(err, undefined);
 					return;
 				}
-				data["consultancy"]=results;
+				data["faculty_guest_lecture"]=results;
 
-				sql="select mouTitle, mouSignedWithIndustryOrGovt, mouSigningDate  \
-					from "+myO.tables.industrialCollaborations+"\
+				sql="select bookTitle, bookAuthors, bookPublisher, year \
+					from book\
 					Where facultyId=?";
 				connection.query(sql, [fid], function(err, results){
 					console.log(results);
@@ -206,14 +206,50 @@ sqlObject.prototype.getFaultyAchievements = function(fid, callback){
 						callback(err, undefined);
 						return;
 					}
-					data["industrial_collaboration_mou"]=results;
-					callback(undefined, data);
+					data["book"]=results;
+
+					sql="select chapterName, bookName, chapterAuthors, publisher, year \
+						from book_chapter\
+						Where facultyId=?";
+					connection.query(sql, [fid], function(err, results){
+						console.log(results);
+						if(err){
+							callback(err, undefined);
+							return;
+						}
+						data["book_chapter"]=results;
+
+						sql="select authors, title, conferenceName, conferenceType, organizedBy, year  \
+							from conference_paper\
+							Where facultyId=?";
+						connection.query(sql, [fid], function(err, results){
+							console.log(results);
+							if(err){
+								callback(err, undefined);
+								return;
+							}
+							data["conference_paper"]=results;
+
+							sql="select authors, title, issn, journalName, journalType, volumeNumber, pageNumbers, year, sjrQuartile \
+								from journal_paper\
+								Where facultyId=?";
+							connection.query(sql, [fid], function(err, results){
+								console.log(results);
+								if(err){
+									callback(err, undefined);
+									return;
+								}
+								data["journal_paper"]=results;
+								callback(undefined, data);
+
+							})	
+						})	
+					})	
 				})
 			})	
 		})
 	});
 }
-
 
 
 sqlObject.prototype.getWholeTable = function(callback, url, email){

@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 	var callback = function(err, data){
 		if(err)
 			throw err;
-		res.render('faculty/academic-details', {title : "Faculty R&D Details", type:"rnd-details", data:data});
+		res.render('faculty/rnd-details', {title : "Faculty R&D Details", type:"rnd-details", data:data});
 	}
 	sqlExecute.getFaultyRND(req.session.facultyId, callback);
   
