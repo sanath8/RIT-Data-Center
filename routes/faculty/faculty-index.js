@@ -80,8 +80,9 @@ router.get('/generateexcelTest/:jsonObject',function(req,res,next){
   console.log(JSON.parse(req.params.jsonObject));
   generateexcel.getExcelSheet(JSON.parse(req.params.jsonObject),"Report.xls",res);
   //res.redirect('/faculty/reports');
+});
 
-  router.get('/generateexcel/:tableNo/:index',function(req,res,next){
+router.get('/generateexcel/:tableNo/:index',function(req,res,next){
   if(!utility.checkSesssion(req, res)) return;
   console.log("this is " + req.params.facultyTable);
   var map=["", "", "", "", "", "",""];
@@ -136,8 +137,6 @@ router.get('/generateexcelTest/:jsonObject',function(req,res,next){
 	map[3] = "industrial_collaboration_mou";
 	  mysql.getFaultyRND(fid,callback);
   }
-
 })
-
 
 module.exports = router;
