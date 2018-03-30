@@ -33,7 +33,7 @@ sqlObject.prototype.getFaultyQualification = function(fid, callback){
 		callback(err, results);
 	});
 }
-sqlObject.prototype.getFaultyService = function(fid, callback){
+sqlObject.prototype.getFacultyService = function(fid, callback){
 	var sql = "select designation, qualification, joiningDate, yearsOfExperience, promotionDate, payScale \
 		from " + this.tables.facultyServiceDetails+" S \
 		WHERE facultyId=?";
