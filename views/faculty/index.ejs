@@ -29,14 +29,15 @@
             <div class="card card-profile">
                 <div class="card-avatar">
                     <a href="#pablo">
-                        <img class="img" src="../assets/img/faces/marc.jpg" />
+                        <img class="img" src="../assets/img/faces/<%-fId%>.jpg" onmouseover="displayInput()" onmouseout="hideInput()"/>
                     </a>
                 </div>
+                <input type="file" class="pull-right" id="profileImage" style="display:none; margin-top:-30px; z-index:9999;"/>
                 <div class="content">
-                    <h6 class="category text-gray">HOD</h6>
-                    <h4 class="card-title">Dr. Anita Kanavalli</h4>
+                    <h6 class="category text-gray">designation</h6>
+                    <h4 class="card-title"><%-data["faculty"][0]["Name"]%></h4>
                     <p class="card-content">
-                      Dr. Anita Kanavalli received her Ph.D. in Computer Science and Engineering from Bangalore University in 2013. She has published many research papers in International Conferences and Journals. She is a member of Indian Society of Technical Education (ISTE) and IEEE (Computer Society). She has guided many M.Tech students and is guiding PhD scholars. She is serving the institution from past 20+ years. She is also a certified instructor for CISCO Networking Academy for CCNA.
+                    <%-about%>
                     </p>
                     <a href="#pablo" class="btn btn-primary btn-round">Profile info</a>
                 </div>
