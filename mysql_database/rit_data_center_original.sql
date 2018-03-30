@@ -7,10 +7,7 @@
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
-<<<<<<< HEAD
-=======
 drop database rit_data_center;
->>>>>>> 23eab12de883868354b294bc80461386d296295b
 create Database rit_data_center;
 use rit_data_center;
 
