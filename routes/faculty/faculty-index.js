@@ -78,7 +78,7 @@ router.get('/generateexcelTest/:jsonObject',function(req,res,next){
   utility.checkSesssion(req, res);
   console.log("this is " + req.params.jsonObject);
   console.log(JSON.parse(req.params.jsonObject));
-  generateexcel.getExcelSheet(JSON.parse(req.params.jsonObject),"Report.xls",res);
+  generateexcel.getExcelSheet(JSON.parse(req.params.jsonObject),"Report.xls",res)});
   //res.redirect('/faculty/reports');
 });
 
@@ -137,6 +137,6 @@ router.get('/generateexcel/:tableNo/:index',function(req,res,next){
 	map[3] = "industrial_collaboration_mou";
 	  mysql.getFaultyRND(fid,callback);
   }
-})
+});
 
 module.exports = router;

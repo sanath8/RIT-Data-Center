@@ -48,9 +48,11 @@ sqlObject.prototype.getFaultyAcademics = function(fid, callback){
       from " + this.tables.facultyCourseHandled+" \
       WHERE facultyId=?";
 
+
 	var data={}
 	var connection = this.connection;
 	var myO=this;
+
 
 	this.connection.query(sql, [fid],function(err,results,fields){
 		console.log(results);
@@ -95,7 +97,7 @@ sqlObject.prototype.getFaultyAcademics = function(fid, callback){
 					data["phd_scholar"]=results;
 					callback(undefined, data);
 				})
-			})	
+			})
 		})
 	});
 }
@@ -104,7 +106,7 @@ sqlObject.prototype.getFaultyRND = function(fid, callback){
   	var sql = "select investigatorName, projectTitle, nameOfFundingAgent, sanctionOrderNumber, projectDuration, dateSanctioned, sanctionedAmount \
       from " + this.tables.facultyFundedProjects+" \
       WHERE facultyId=?";
-	
+
 	var data={}
 	var connection = this.connection;
 	var myO=this;
@@ -152,7 +154,7 @@ sqlObject.prototype.getFaultyRND = function(fid, callback){
 					data["industrial_collaboration_mou"]=results;
 					callback(undefined, data);
 				})
-			})	
+			})
 		})
 	});
 }
@@ -161,7 +163,7 @@ sqlObject.prototype.getFaultyAchievements = function(fid, callback){
   	var sql = "select title, sponsoredOrFunded, date, noOfParticipants, type  \
       from faculty_workshop_fdp \
       WHERE facultyId=?";
-	
+
 	var data={}
 	var connection = this.connection;
 	var myO=this;
@@ -242,11 +244,11 @@ sqlObject.prototype.getFaultyAchievements = function(fid, callback){
 								data["journal_paper"]=results;
 								callback(undefined, data);
 
-							})	
-						})	
-					})	
+							})
+						})
+					})
 				})
-			})	
+			})
 		})
 	});
 }
