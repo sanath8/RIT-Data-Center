@@ -45,7 +45,7 @@ router.get('/', function(req, res, next) {
 		myR["religion"]=tresult["religion"];
 		myR["Caste"]=tresult["caste"];
 		myR["DOB"]=tresult["dob"];
-		myR["Nature of Appointment"]=tresult["natureOfAppoment"];
+		myR["Nature of Appointment"]=tresult["natureOfAppointment"];
 		myR["Contact No."]=tresult["contactNumber"];
 		myR["Email Id"]=tresult["emailId"];
 		myR["PAN Number"]=tresult["panNumber"];

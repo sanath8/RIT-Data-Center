@@ -8,6 +8,7 @@ router.get('/', function(req, res, next) {
 	var callback = function(err, data){
 		if(err)
 			throw err;
+		console.log(JSON.stringify(data));
 		res.render('faculty/academic-details', {title : "Faculty Academic Details", type:"academic-details", data:data});
 	}
 	sqlExecute.getFaultyAcademics(req.session.facultyId, callback);
