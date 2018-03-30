@@ -8,24 +8,8 @@ var utility = require('../utilities');
 router.get('/', function(req, res, next) {
 	if(!utility.checkSesssion(req, res))
 		return;
+	var facultyId = req.session.facultyId;
 	console.log("you just sent " + req.session.facultyId);
-	// res.render('faculty/index', { title: 'Express', type:"dashboard",resultSet: [
-	// 	{
-	// 	facultyName:"Anita Kanavalli",
-	// 	gender:"F",
-	// 	address:"bengaluru",
-	// 	religion:"Indian",
-	// 	caste:"Indian",
-	// 	category:"GM",
-	// 	dob :"1968-03-23",
-	// 	natureOfAppoment:"full time",
-	// 	contactNumber:"9754567332",
-	// 	emailId:"anitak@msrit.edu",
-	// 	panNumber:"389479413",
-	// 	accountNumber:"8769874243",
-	// 	pfNumber:"65849213"
-	// 	}
-	// ] });
 
 	var callback=function(err, result){
 		if(err || result.length==0){
@@ -50,9 +34,9 @@ router.get('/', function(req, res, next) {
 		myR["PAN Number"]=tresult["panNumber"];
 		myR["Account Number"]=tresult["accountNumber"];
 		myR["PF Number"]=tresult["pfNumber"];
-
+		var about = tresult["about"];
 		var data=[myR];
-		res.render('faculty/index', { title: 'Express', type:"dashboard",data: {faculty : data}});
+		res.render('faculty/index', { title: 'Express', type:"dashboard",data: {faculty : data}, fId:facultyId, about:about});
 		//res.send(JSON.stringify(result));
 	}
 	console.log("Param : "+req.session.email+":"+req.session.facultyId);
@@ -78,7 +62,7 @@ router.get('/generateexcelTest/:jsonObject',function(req,res,next){
   utility.checkSesssion(req, res);
   console.log("this is " + req.params.jsonObject);
   console.log(JSON.parse(req.params.jsonObject));
-  generateexcel.getExcelSheet(JSON.parse(req.params.jsonObject),"Report.xls",res)});
+  generateexcel.getExcelSheet(JSON.parse(req.params.jsonObject),"Report.xls",res)
   //res.redirect('/faculty/reports');
 });
 
