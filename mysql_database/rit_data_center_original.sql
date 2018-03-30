@@ -283,7 +283,7 @@ CREATE TABLE `faculty_qualification` (
   `slNo` int(11) NOT NULL,
   `degree` varchar(10) NOT NULL,
   `university` varchar(100) NOT NULL,
-  `passClass` float NOT NULL,
+  `passClass` varchar(10) NOT NULL,
   `passYear` varchar(10) NOT NULL,
   `areaOfSpecialization` varchar(100) NOT NULL,
   `facultyId` varchar(10) NOT NULL

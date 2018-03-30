@@ -15,7 +15,8 @@ router.get('/', function(req, res, next) {
 				type:result[i]["degree"],
 				university:result[i]["university"],
 				passPercentage:result[i]["passClass"],
-				passYear:result[i]["passYear"]
+				passYear:result[i]["passYear"],
+				areaOfSpecialization:result[i]["areaOfSpecialization"]
 			};
 			arr.push(temp);
 		}
