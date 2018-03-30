@@ -1,18 +1,18 @@
 //Import modules
 var fs = require('fs');
 var fileHandler = require('./fileManager');
-
+var dataCleaner = require('./dataCleaner');
 var excelGenerator = module.exports = {};
 
-excelGenerator.data = "";
+//excelGenerator.data = "";
 
 excelGenerator.getExcelSheet = function(tableData, fileName, response)
 {
-
+  var data = "";
  try{
-        excelGenerator.data = "";
-        var structuredData = excelGenerator.getStructuredData(tableData);
-        excelGenerator.writeIntoFile(structuredData, fileName, response);
+        data = "";
+        var structuredData = excelGenerator.getStructuredData(tableData, data);
+        excelGenerator.writeIntoFile(structuredData, fileName, response, data);
         console.log("Process successfull\n");
 
     }
@@ -24,35 +24,36 @@ excelGenerator.getExcelSheet = function(tableData, fileName, response)
 //var data='';
 
 
-excelGenerator.getStructuredData = function(tableData)
+excelGenerator.getStructuredData = function(tableData, data)
 {
   var noOfRows = tableData.length;
   console.log("excel generator1"+tableData[0]);
 
   var noOfColumns = Object.keys(tableData[0]).length;
   var columnsAttributes = Object.keys(tableData[0]);
-  excelGenerator.setHeadings(noOfColumns, columnsAttributes);
-  excelGenerator.setDataEntries(noOfRows, noOfColumns, tableData, columnsAttributes);
-  return excelGenerator.data;
+  data = excelGenerator.setHeadings(noOfColumns, columnsAttributes, data);
+  data = excelGenerator.setDataEntries(noOfRows, noOfColumns, tableData, columnsAttributes, data);
+  return data;
 }
 
-excelGenerator.setHeadings = function(noOfColumns, columnsAttributes)
+excelGenerator.setHeadings = function(noOfColumns, columnsAttributes, data)
 {
   for(var i = 0; i < noOfColumns; i++)
   {
     if(i == noOfColumns - 1)
     {
-      excelGenerator.data += columnsAttributes[i] + '\n';
+      data += dataCleaner.specialCharacterFilter(columnsAttributes[i].toString()) + '\n';
     }
      else
      {
-       excelGenerator.data += columnsAttributes[i] + '\t';
+       data += dataCleaner.specialCharacterFilter(columnsAttributes[i].toString()) + '\t';
      }
 
   }
+  return data;
 }
 
-excelGenerator.setDataEntries = function(noOfRows, noOfColumns, tableData, columnsAttributes)
+excelGenerator.setDataEntries = function(noOfRows, noOfColumns, tableData, columnsAttributes, data)
 {
   for (var i = 0; i < noOfRows; i++)
    {
@@ -64,26 +65,27 @@ excelGenerator.setDataEntries = function(noOfRows, noOfColumns, tableData, colum
 
        if(j == noOfColumns-1)
        {
-         excelGenerator.data += dataEntry + '\n';
+         data += dataCleaner.specialCharacterFilter(dataEntry.toString()) + '\n';
        }
         else
         {
-          excelGenerator.data += dataEntry + '\t';
+          data += dataCleaner.specialCharacterFilter(dataEntry.toString()) + '\t';
         }
     }
    }
+   return data;
 
 }
 excelGenerator.writeIntoFile = function(structuredData, excelFileName, response)
 {
 
-  fs.writeFile(__dirname+ '/excelSheets/' + excelFileName, excelGenerator.data, (err) => {
+  fs.writeFile(__dirname+ '/excelSheets/' + excelFileName, structuredData, (err) => {
     console.log(excelFileName+ 'excel filesss created');
 
       if (err)
         throw err;
       if(response != false)
         fileHandler.downloadExcel(response, excelFileName);
-      
+
    });
 }

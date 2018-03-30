@@ -50,8 +50,8 @@ dataCleaner.dataToLowerCase = function(excelData, columnsAttributes)
 dataCleaner.specialCharacterFilter = function(dataEntry)
 {
 
-   var filteredString = dataEntry.replace(/[^a-zA-Z0-9\/-]/g, '');
+   var filteredString = dataEntry.replace(/[^a-zA-Z0-9\s\/-]/g, '');
    return filteredString;
 }
 
-dataCleaner.cleanExcelData('excelSheets/hii.xls');
+//dataCleaner.cleanExcelData('excelSheets/hii.xls');
