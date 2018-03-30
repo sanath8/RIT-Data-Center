@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
 				});
 
 	}
-	sqlExecute.getFaultyService(req.session.facultyId, callback);
+	sqlExecute.getFacultyService(req.session.facultyId, callback);
 });
 
 
