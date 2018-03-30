@@ -48,12 +48,18 @@ sqlObject.prototype.getFaultyAcademics = function(fid, callback){
       from " + this.tables.facultyCourseHandled+" \
       WHERE facultyId=?";
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> a882cd2d338cfd3a88d41dfa69f76c2159f1c8a4
 
 	var data={}
 	var connection = this.connection;
 	var myO=this;
+<<<<<<< HEAD
 >>>>>>> e8503206aaf40269b19302b7db22d6946a17658a
+=======
+>>>>>>> a882cd2d338cfd3a88d41dfa69f76c2159f1c8a4
 
 	this.connection.query(sql, [fid],function(err,results,fields){
 		console.log(results);
