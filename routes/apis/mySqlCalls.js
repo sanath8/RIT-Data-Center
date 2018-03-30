@@ -38,7 +38,7 @@ sqlObject.prototype.getFaultyAcademics = function(fid, callback){
   var sql = "select * \
       from " + this.tables.facultyCourseHandled+" natural join "+this.tables.facultyInformation+"\
       WHERE facultyId=?";
-  
+
 	this.connection.query(sql, [fid],function(err,results,fields){
 		console.log(results);
 		callback(err, results);
@@ -114,7 +114,26 @@ sqlObject.prototype.getFourTables = function(callback, url1, url2, url3, url4){
     callback(err, data1, data2, data3, results);
   });
 }
+sqlObject.prototype.getFourSelectList = function(callback, url1, url2, url3, url4, tableName){
+  var sql1 = "select distinct " + url1 + " from " + mappingUrl.mappingUrlTable[tableName];
+  var sql2 = "select distinct " + url2 + " from " + mappingUrl.mappingUrlTable[tableName];
+  var sql3 = "select distinct " + url3 + " from " + mappingUrl.mappingUrlTable[tableName];
+  var sql4 = "select distinct " + url4 + " from " + mappingUrl.mappingUrlTable[tableName];
 
+  var data1, data2, data3;
+  this.connection.query(sql1,function(err,results,fields){
+    data1 = results;
+  });
+  this.connection.query(sql2,function(err,results,fields){
+    data2 = results;
+  });
+  this.connection.query(sql3,function(err,results,fields){
+    data3 = results;
+  });
+  this.connection.query(sql4,function(err,results,fields){
+    callback(err, data1, data2, data3, results);
+  });
+}
 sqlObject.prototype.getAchievements = function(callback){
   var sql1 = "select * from faculty_workshop_fdp";
   var sql2 = "select * from faculty_conference_symposia";
