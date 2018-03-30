@@ -1,29 +1,20 @@
 <%
 
-    loadInList=function(resultSet){
-        for(var i = 0 ; i<resultSet.length;i++){
-            //__append('<tr id = "' + tableName + 'Row' + (i + 1) + '"data-toggle="modal" data-target="#myModal'+tableNumber +'" onclick="fillData(this,'+tableNumber+')" onmouseover="hoverEffect(this)" onmouseout="removeHoverEffect(this)">');
-            //for(var j in resultSet[i]){
-                // console.log(j + 'hello');    
-                // console.log(resultSet[i]);            
-                //__append('<td>');
-                //if(resultSet[i][j]!=null)
-                //    __append(''+resultSet[i][j] +'');
-                //else
-                //    __append("-");
-                //__append('</td>');
-            //}
-            // __append('<td><input class = "btn btn-primary" id = "' + tableName + 'Edit' + (i + 1) + '" style="margin:13px" value = "Edit" type = "button"></button></td>')
-            for(var j in resultSet[i]){
+    loadInList=function(resultSet)
+    {
+      console.log("result set is : " + JSON.stringify(resultSet));
+        for(var i = 0; i<resultSet.length; i++)
+        {
+
+            for(var j in resultSet[i])
+            {
+              console.log("result seti is : " + JSON.stringify(j));
+
                 __append('<option>' + resultSet[i][j] + '</option>');
             }
-        
+
         }
     }
 
 
 %>
-
-
-
-
