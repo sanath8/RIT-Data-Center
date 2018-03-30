@@ -9,6 +9,6 @@ var mappingUrlTable = {'facultyInformation' : 'faculty', 'facultyQualification' 
 'PhdScholar' : 'phd_scholar', 'facultyFundedProjects' : 'funded_projects', 'facultyPatents' : 'faculty_patent',
 'consultancyDetails' : 'consultancy', 'industrialCollaborations' : 'industrial_collaboration_mou',
 'studentPublications' : 'student_publication', 'studentAchievements' : 'student_achievement', 'hardware' : 'hardware',
-'software' : 'software'}
+'software' : 'software', 'journalPaper' : 'journal_paper'};
 
 module.exports.mappingUrlTable = mappingUrlTable;

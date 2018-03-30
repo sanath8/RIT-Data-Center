@@ -1,0 +1,133 @@
+<% include ../partials/header %>
+<% include ../partials/faculty-sidebar %>
+<% include ../partials/faculty-navbar %>
+<% include ../partials/loadSelectList %>
+<form class="form-inline" action="/examples/actions/confirmation.php" method="post">
+
+
+<div class="form-group">
+    <label for="exampleFormControlSelect1">journal Name</label>
+    <select class="form-control" id="exampleFormControlSelect1">
+      <%loadInList(selectList1)%>
+    </select>
+</div>
+<div class="form-group">
+    <label for="exampleFormControlSelect1">journal Type</label>
+    <select class="form-control" id="exampleFormControlSelect2">
+      <%loadInList(selectList2)%>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">sjr Quartile</label>
+    <select class="form-control" id="exampleFormControlSelect3">
+        <%loadInList(selectList3)%>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Year</label>
+    <select class="form-control" id="exampleFormControlSelect4">
+        <%loadInList(selectList4)%>
+    </select>
+  </div>
+  <button type="button" id = "getReport" class="btn btn-primary">Get Report</button>
+</form>
+<p id = "filteredResult"></p>
+<div class="table-responsive">
+  <table class="table" border = 3>
+  </table>
+</div>
+<% include ../partials/footer %>
+<script>
+    $("#getReport").click(function(){
+        var journalName = $('#exampleFormControlSelect1').val();
+        var journalType =$('#exampleFormControlSelect2').val();
+        var sjrQuartile = $('#exampleFormControlSelect3').val();
+        var year = $('#exampleFormControlSelect4').val();
+        console.log(journalName + " " + journalType + " " + sjrQuartile);
+        dataForSelect = {
+            'schema': '*',
+            'whereOption' : ['journalName = "' + journalName + '"']
+        }
+
+        $.ajax({
+              type: 'POST',
+              data: JSON.stringify(dataForSelect),
+              contentType: 'application/json',
+              url: 'http://localhost:3000/v1/apis/data/journalPaper/',
+              success: function(dataRecieved) {
+                console.log('success');
+                console.log(dataRecieved[0]);// if there is integrity constraint maintained it should recieve only one result entry
+                var counter = 1;
+                //this code renders the data back to the input entries
+                window.location.href = "/faculty/generateExcel/" + JSON.stringify(dataRecieved);
+                //end
+
+              }
+            });
+    })
+
+    $("#exampleFormControlSelect1").change(function () {
+      var journalName = $('#exampleFormControlSelect1').val();
+      var journalType =$('#exampleFormControlSelect2').val();
+      var sjrQuartile = $('#exampleFormControlSelect3').val();
+      var year = $('#exampleFormControlSelect4').val();
+      console.log(journalName + " " + journalType + " " + sjrQuartile);
+      dataForSelect = {
+          'schema': '*',
+          'whereOption' : ['journalName = "' + journalName + '"']
+      }
+    $.ajax({
+          type: 'POST',
+          data: JSON.stringify(dataForSelect),
+          contentType: 'application/json',
+          url: 'http://localhost:3000/v1/apis/data/journalPaper/',
+          success: function(dataRecieved) {
+            console.log('success');
+            console.log(dataRecieved[0]);// if there is integrity constraint maintained it should recieve only one result entry
+            var counter = 1;
+            //this code renders the data back to the input entries
+            //document.getElementById("filteredResult").innerHTML =   JSON.stringify(dataRecieved);
+            //window.location.href = "/faculty/generateExcel/" + JSON.stringify(dataRecieved);
+            buildTable(dataRecieved)
+            //end
+
+          }
+        });
+});
+
+function buildTable(json)
+{
+   $("table").empty();
+  var columnsAttributes = Object.keys(json[0]);
+
+  var tr;
+  tr = $('<tr/>');
+
+  for(var j = 0; j < columnsAttributes.length; j++)
+  {
+    dataEntry = columnsAttributes[j];
+
+    tr.append("<th>" + dataEntry + "</th>");
+
+  }
+
+  $('table').first().append(tr);
+
+  for (var i = 0; i < json.length; i++)
+  {
+    tr = $('<tr/>');
+
+    for(var j = 0; j < columnsAttributes.length; j++)
+    {
+      dataEntry = eval("json[i]."+columnsAttributes[j]);
+
+      tr.append("<td>" + dataEntry + "</td>");
+
+    }
+    $('table').first().append(tr);
+
+  }
+
+}
+</script>

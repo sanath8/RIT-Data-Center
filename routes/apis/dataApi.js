@@ -1,4 +1,7 @@
 var express = require('express');
+
+var sqlAPI = require('../../back-end/sqlAPI');
+var sqlExecute = require('./mySqlCalls');
 var router = express.Router();
 
 router.post('/:tableName/', function(req, res, next){
@@ -19,7 +22,7 @@ router.get('/:tableName/', function(req, res, next){
       res.setHeader('Content-Type', 'application/json');
       res.send(result);
     }
-    sqlExecute.getWholeTable(callback, req.params.tableName, req.session.email);
+    sqlExecute.getWholeTable(callback, req.params.tableName);
 });
 
 
