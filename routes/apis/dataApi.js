@@ -11,7 +11,7 @@ router.post('/:tableName/', function(req, res, next){
         //res.send(sqlAPI.fetchResults(req.params.columnName, req.params.tableName));
     }
     console.log("body recieved" + JSON.stringify(req.body) + " " + req.body.schema);
-    sqlAPI.fetchResults(req.body.schema, req.params.tableName, Array(req.body.whereOption), callback);
+    sqlAPI.fetchResults("*", req.params.tableName, [], callback);
 });
 
 router.get('/:tableName/', function(req, res, next){

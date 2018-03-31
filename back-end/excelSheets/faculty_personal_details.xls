@@ -1,2 +1,2 @@
 facultyId	facultyName	gender	address	religion	caste	category	dob	natureOfAppointment	contactNumber	emailId	password	panNumber	accountNumber	pfNumber	departmentId
-1	faculty1	M	address1	religion1	caste1	category1	Sat Oct 24 1987 000000 GMT0530 India Standard Time	fulltime	9089543678	email1	pass1	567384322	2345464223	827487240	cse
+1	faculty1	M	address1	religion1	caste1	category1	SatOct241987000000GMT0530IST	fulltime	9089543678	email1	pass1	567384322	2345464223	827487240	cse

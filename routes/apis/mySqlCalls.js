@@ -374,6 +374,21 @@ sqlObject.prototype.getAchievements = function(callback){
   });
 }
 
+sqlObject.prototype.getDataBaseTables = function(dataBase, callBack)
+{
+	var query = "SELECT table_name FROM information_schema.tables where table_schema = '" + dataBase + "'";
+  console.log(query);
+	this.connection.query(query, function (err, result, fields)
+	  {
+	    if (err)
+	      console.log(err);
+			console.log(",sdnfknsdkf"+JSON.stringify(result));
+	    callBack(result);
+
+	  }
+	);
+}
+
 
 var object = new sqlObject();
 
