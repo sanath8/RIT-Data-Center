@@ -32,17 +32,24 @@
 
 <% include ../partials/footer %>
 <script>
+  $(document).ready(function(){
+    var d = new Date();
+    $("#exampleFormControlSelect4 > option").each(function(){
+      this.id = this.text + '_' + d.getFullYear();
+      this.text = this.text + ' to ' + d.getFullYear();
+    });
     $("#getReport").click(function(){
-        var journalName = $('#exampleFormControlSelect1').val();
+        var authorName = $('#exampleFormControlSelect1').val();
         var journalType =$('#exampleFormControlSelect2').val();
         var sjrQuartile = $('#exampleFormControlSelect3').val();
         var year = $('#exampleFormControlSelect4').val();
-        console.log(journalName + " " + journalType + " " + sjrQuartile);
+        year = year.split(' to ');
+        console.log("log " + authorName + " " + journalType + " " + sjrQuartile + " " + year);
         dataForSelect = {
             'schema': '*',
-            'whereOption' : ['journalName = "' + journalName + '"']
+            'whereOption' : ['authors = "' + authorName + '"', 'journalType = "' + journalType + '"', 'sjrQuartile = "' + sjrQuartile + '"', 'year BETWEEN ' + year[0] + ' AND ' + year[1]]
         }
-
+        
         $.ajax({
               type: 'POST',
               data: JSON.stringify(dataForSelect),
@@ -53,10 +60,17 @@
                 console.log(dataRecieved[0]);// if there is integrity constraint maintained it should recieve only one result entry
                 var counter = 1;
                 //this code renders the data back to the input entries
+                console.log("length of recieved " + dataRecieved.length);
+                if(dataRecieved.length === 0){
+                  dataRecieved = {"column" : "empty", "column1" : "empty"}
+                }
                 window.location.href = "/faculty/generateExcel/" + JSON.stringify(dataRecieved);
                 //end
 
               }
             });
     })
+  })
+    
+
 </script>

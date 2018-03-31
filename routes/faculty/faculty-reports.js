@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
     console.log(result1);
     res.render('faculty/faculty-reports', {type : 'reports', selectList1 : result1, selectList2 : result2, selectList3 : result3, selectList4 : result4});
   }
-  sqlExecute.getFourSelectList(callback,'journalName', 'journalType', 'sjrQuartile', 'year', 'journalPaper');
+  sqlExecute.getFourSelectList(callback, 'authors', 'journalType', 'sjrQuartile', 'year', 'journalPaper');
 
 });
 

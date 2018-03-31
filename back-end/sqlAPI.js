@@ -17,10 +17,12 @@ sqlQueryHandler.fetchResults = function(columns, url, whereOptions, callBack)
   try
   {
     sqlQueryHandler.query = "SELECT " + columns + " FROM " + mappingUrl.mappingUrlTable[url] + " WHERE 1=1";
-    //console.log("whereOptions" + whereOptions);
+    console.log("type whereOptions" + typeof(whereOptions));
     for(var i = 0; i < whereOptions.length; i++)
     {
+      
       sqlQueryHandler.query += " AND " + whereOptions[i];
+      console.log("this# " + whereOptions[i]);
     }
     console.log("the query is " + sqlQueryHandler.query);
     con.query(sqlQueryHandler.query,

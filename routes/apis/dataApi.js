@@ -10,8 +10,9 @@ router.post('/:tableName/', function(req, res, next){
         res.send(result);
         //res.send(sqlAPI.fetchResults(req.params.columnName, req.params.tableName));
     }
-    console.log("body recieved" + JSON.stringify(req.body) + " " + req.body.schema);
-    sqlAPI.fetchResults(req.body.schema, req.params.tableName, Array(req.body.whereOption), callback);
+    console.log("body recieved" + JSON.stringify(req.body) + " " + req.body.schema + " " + Array(req.body.whereOption));
+    var jsonObject = req.body;//JSON.parse(req.body);
+    sqlAPI.fetchResults(jsonObject.schema, req.params.tableName, (jsonObject.whereOption), callback);
 });
 
 router.get('/:tableName/', function(req, res, next){
