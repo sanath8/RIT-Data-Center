@@ -44,6 +44,8 @@ router.get('/', function(req, res, next) {
 });
 
 
+router.use('/changeProfilePicture', require('./faculty-profile-pic'));
+
 router.use('/personnal-info', require('./faculty-porsonal-info'));
 
 router.use('/qualification', require('./faculty-qualification'));

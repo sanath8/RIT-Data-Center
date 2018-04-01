@@ -92,9 +92,18 @@
     }
 
     function displayInput(){
-        document.getElementById("profileImage").style.display = "block";
+        document.getElementById("profileImageButton").style.display = "inline";
+        document.getElementById("profileImageButton").style.zIndex = "999";
     }
     function hideInput(){
-        document.getElementById("profileImage").style.display = "none";
+        document.getElementById("profileImageButton").style.display = "none";
+    }
+    function checkIfInput(){
+        if(document.getElementById("profileImageButton").value == null){
+            console.log("null");
+        } else{
+            console.log("yeas");
+            document.getElementById("profileForm").submit();
+        }
     }
 </script>
