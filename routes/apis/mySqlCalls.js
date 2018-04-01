@@ -254,6 +254,15 @@ sqlObject.prototype.getFaultyAchievements = function(fid, callback){
 }
 
 
+sqlObject.prototype.getCseFacultyInfo = function(callBack){
+	var sql = "select * \
+		from faculty \
+		where departmentId = 'cse'";
+		this.connection.query(sql,function(err,results,fields){
+			callBack(err,results);
+		})
+}
+
 sqlObject.prototype.getWholeTable = function(callback, url, email){
   var sql = "select * \
       from " + mappingUrl.mappingUrlTable[url]+" natural join "+this.tables.facultyInformation+"\
