@@ -1,4 +1,24 @@
 <%
+    loadInTableModular=function(columnName){
+        var resultSet=data[columnName];
+        for(var i = 0 ; i<resultSet.length;i++){
+
+            __append('<tr data-toggle="modal" data-target="#myModal" onclick="fillDataModular("'+coloumnName+'",'+i+')" onmouseover="hoverEffect(this)" onmouseout="removeHoverEffect(this)">');
+            for(var j in resultSet[i]){
+                // console.log(j + 'hello');    
+                // console.log(resultSet[i]);            
+                __append('<td>');
+                if(resultSet[i][j]!=null)
+                    __append(''+resultSet[i][j] +'');
+                else
+                    __append("-");
+                __append('</td>');
+            }
+            // __append('<td><input class = "btn btn-primary" id = "' + tableName + 'Edit' + (i + 1) + '" style="margin:13px" value = "Edit" type = "button"></button></td>')
+
+        __append('</tr>');
+        }
+    }
 
     loadInTable=function(resultSet, tableNumber){
         for(var i = 0 ; i<resultSet.length;i++){
@@ -56,7 +76,34 @@
 
 %>
 
+<div class="modal fade" id="myModalModular" role="dialog">
+<div class="modal-dialog">
 
+  <!-- Modal content-->
+  <div class="modal-content">
+  <div class="card">
+      <div class="card-header" data-background-color="purple" style="margin-top:-50px;">
+          <h4 class="title">Edit Row Data</h4>
+      </div>
+      <div class="card-content" id="modalCardContent">
+          
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<script>
+var data={};
+var index={};
+<% if(locals.data){%>
+var data = <%- JSON.stringify(data) %>
+<%}%>
+<% if(locals.index){%>
+var index = <%- JSON.stringify(index) %>
+<%}%>
+</script>
 
 
 
@@ -68,6 +115,24 @@
     function removeHoverEffect(event){
         event.style.background = "white";
     }
+    function fillDataModular(columnName, i){
+        var cardCont=document.getElementById("modalCardContent");
+        cardCont.appendChild("<form>")
+        var res = data[coloumnName][i];
+        console.log(res);
+        console.log(index);
+        for(var j in res){
+            cardCont.appendChild('<div class="form-group ">\
+                <label class="control-label">'+index[j]+'</label>\
+                <input name="'+j+'" type="text" class="form-control" value="'+res[j]+'">\
+                </div>')
+        }
+        cardCont.appendChild('<button type="submit" class="btn btn-primary pull-right">Update</button>\
+            <button type="submit" class="btn btn-warning pull-right">Cancel</button>\
+            <button type="submit" class="btn btn-danger pull-right">Delete</button>')
+        cardCont.appendChild("</form>")
+    }
+    
     function fillData(resultSet,tableNumber){
         var rowData = resultSet.cells;
         var noOfEntries = rowData.length;
@@ -107,3 +172,4 @@
         }
     }
 </script>
+
