@@ -30,7 +30,7 @@ app.use('/hod', require('./routes/hod/hod-index'));
 app.use('/admin', require('./routes/admin/admin-index'));
 app.use('/department', require('./routes/department/department-index'));
 app.use('/users', require('./routes/users/users-index'));
-app.use('/commitee', require('./routes/commitee/commitee-index'));
+app.use('/institution', require('./routes/institution/institution-index'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
