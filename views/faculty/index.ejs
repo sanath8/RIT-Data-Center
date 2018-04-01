@@ -41,7 +41,7 @@
                     <p class="card-content">
                     <%-about%>
                     </p>
-                    <a href="#pablo" class="btn btn-primary btn-round">Profile info</a>
+                    <a  data-toggle="modal" data-target="#aboutModal" style="margin:13px" class="btn btn-primary btn-round">Edit Description</a>
                 </div>
             </div>
         </div>
@@ -154,5 +154,30 @@
 </div>
 
 
+
+<div class="modal fade" id="aboutModal" role="dialog">
+<div class="modal-dialog">
+
+  <!-- Modal content-->
+  <div class="modal-content">
+  <div class="card">
+      <div class="card-header" data-background-color="purple" style="margin-top:-50px;">
+          <h4 class="title">Edit Description</h4>
+      </div>
+      <div class="card-content">
+            <div class="col-md-12">
+                  <div class="form-group">
+                      <label class="control-label">Description</label>
+                      <textarea rows="4" cols="45" class="form-control"><%-about%></textarea>
+                  </div>
+              </div>
+            <button type="submit" class="btn btn-primary pull-right">Update</button>
+            <button type="submit" class="btn btn-warning pull-right">Cancel</button>
+            <button type="submit" class="btn btn-danger pull-right">Delete</button>          </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 
 <% include ../partials/footer %>
