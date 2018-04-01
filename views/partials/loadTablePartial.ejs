@@ -3,7 +3,7 @@
         var resultSet=data[columnName];
         for(var i = 0 ; i<resultSet.length;i++){
 
-            __append('<tr data-toggle="modal" data-target="#myModal" onclick="fillDataModular("'+coloumnName+'",'+i+')" onmouseover="hoverEffect(this)" onmouseout="removeHoverEffect(this)">');
+            __append('<tr data-toggle="modal" data-target="#myModalModular" onclick="fillDataModular(\''+columnName+'\','+i+')" onmouseover="hoverEffect(this)" onmouseout="removeHoverEffect(this)">');
             for(var j in resultSet[i]){
                 // console.log(j + 'hello');    
                 // console.log(resultSet[i]);            
@@ -116,21 +116,26 @@ var index = <%- JSON.stringify(index) %>
         event.style.background = "white";
     }
     function fillDataModular(columnName, i){
-        var cardCont=document.getElementById("modalCardContent");
-        cardCont.appendChild("<form>")
-        var res = data[coloumnName][i];
+        var cardCont=$("#modalCardContent");
+        cardCont.text("");
+        cardCont.append("<form>")
+        var res = data[columnName][i];
         console.log(res);
         console.log(index);
         for(var j in res){
-            cardCont.appendChild('<div class="form-group ">\
-                <label class="control-label">'+index[j]+'</label>\
+            if(index[columnName])
+                var temp = index[columnName][j]
+            else
+                var temp = "Undefined";
+            cardCont.append('<div class="form-group ">\
+                <label class="control-label">'+temp+'</label>\
                 <input name="'+j+'" type="text" class="form-control" value="'+res[j]+'">\
                 </div>')
         }
-        cardCont.appendChild('<button type="submit" class="btn btn-primary pull-right">Update</button>\
+        cardCont.append('<button type="submit" class="btn btn-primary pull-right">Update</button>\
             <button type="submit" class="btn btn-warning pull-right">Cancel</button>\
             <button type="submit" class="btn btn-danger pull-right">Delete</button>')
-        cardCont.appendChild("</form>")
+        cardCont.append("</form>")
     }
     
     function fillData(resultSet,tableNumber){
@@ -142,7 +147,9 @@ var index = <%- JSON.stringify(index) %>
             }
     }
     function fillDataVerticleTable(tableNumber){
-        var resultSet = <%-JSON.stringify(data["faculty"])%>;
+        <%if(data["faculty"]){%>
+            var resultSet = <%-JSON.stringify(data["faculty"])%>;
+        <%}%>
         console.log(resultSet);
         var len = resultSet.length;
         noOfEntries =  Object.keys(resultSet[0]).length;
