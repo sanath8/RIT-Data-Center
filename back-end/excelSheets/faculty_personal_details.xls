@@ -1,7 +1,2 @@
-<<<<<<< HEAD
 facultyId	facultyName	gender	address	religion	caste	category	dob	natureOfAppointment	contactNumber	emailId	password	panNumber	accountNumber	pfNumber	about	departmentId
 cse22	SowmyaBJ	Female	8291STCROSS4BLOCKHMTLAYOUT	Hindu	Lingayath	3BG	SunNov301986000000GMT0530IndiaStandardTime	Regular	9886733368	sowmyabjmsrit.edu	rit	CJRPS4964D	141201011015419	KN/BN/8146/4801	SowmyaB.J.isworkingasanAssistantProfessorinComputerScienceDepartmentofRamaiahInstituteofTechnology.Herareasofinterestincludesoftwareengineeringcomputerorganizationcomputersecurityanddataanalytics.	cse
-=======
-facultyId	facultyName	gender	address	religion	caste	category	dob	natureOfAppointment	contactNumber	emailId	password	panNumber	accountNumber	pfNumber	departmentId
-1	faculty1	M	address1	religion1	caste1	category1	SatOct241987000000GMT0530IST	fulltime	9089543678	email1	pass1	567384322	2345464223	827487240	cse
->>>>>>> b0eb887b42f3d9c0697948866554ec2578f0408d

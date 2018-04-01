@@ -29,17 +29,19 @@
             <div class="card card-profile">
                 <div class="card-avatar">
                     <a href="#pablo">
-                        <img class="img" src="../assets/img/faces/<%-fId%>.jpg" onmouseover="displayInput()" onmouseout="hideInput()"/>
+                        <img class="img" style="position:relative;" id="profileImage" src="../assets/img/faces/<%-fId%>.jpg" onmouseover="displayInput()" onmouseout="hideInput()"/>
                     </a>
                 </div>
-                <input type="file" class="pull-right" id="profileImage" style="display:none; margin-top:-30px; z-index:9999;"/>
+                <form action="/faculty/changeProfilePicture" method="post" id="profileForm"  enctype="multipart/form-data">
+                    <input name="avatar" onchange="checkIfInput()" type="file" class="pull-right" id="profileImageButton" style="display:none; margin-top:-40px; position:absolute;" onmouseover="displayInput()" onmouseout="hideInput()"/>
+                </form>
                 <div class="content">
                     <h6 class="category text-gray">designation</h6>
                     <h4 class="card-title"><%-data["faculty"][0]["Name"]%></h4>
                     <p class="card-content">
                     <%-about%>
                     </p>
-                    <a href="#pablo" class="btn btn-primary btn-round">Profile info</a>
+                    <a  data-toggle="modal" data-target="#aboutModal" style="margin:13px" class="btn btn-primary btn-round">Edit Description</a>
                 </div>
             </div>
         </div>
@@ -152,5 +154,30 @@
 </div>
 
 
+
+<div class="modal fade" id="aboutModal" role="dialog">
+<div class="modal-dialog">
+
+  <!-- Modal content-->
+  <div class="modal-content">
+  <div class="card">
+      <div class="card-header" data-background-color="purple" style="margin-top:-50px;">
+          <h4 class="title">Edit Description</h4>
+      </div>
+      <div class="card-content">
+            <div class="col-md-12">
+                  <div class="form-group">
+                      <label class="control-label">Description</label>
+                      <textarea rows="4" cols="45" class="form-control"><%-about%></textarea>
+                  </div>
+              </div>
+            <button type="submit" class="btn btn-primary pull-right">Update</button>
+            <button type="submit" class="btn btn-warning pull-right">Cancel</button>
+            <button type="submit" class="btn btn-danger pull-right">Delete</button>          </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 
 <% include ../partials/footer %>
