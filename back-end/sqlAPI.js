@@ -15,7 +15,7 @@ sqlQueryHandler.fetchResults = function(columns, url, whereOptions, callBack)
   //whereOptions is an array of strings
   try
   {
-    sqlQueryHandler.query = "SELECT " + columns + " FROM " + mappingUrl.mappingUrlTable[url] + " WHERE 1=1";
+    sqlQueryHandler.query = "SELECT " + columns + " FROM " + url + " WHERE 1=1";
     //console.log("whereOptions" + whereOptions);
     for(var i = 0; i < whereOptions.length; i++)
     {

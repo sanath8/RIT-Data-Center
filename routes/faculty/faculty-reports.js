@@ -5,17 +5,19 @@ var utility = require('../utilities');
 
 router.get('/', function(req, res, next) {
   utility.checkSesssion(req, res);
-  var callback = function(err, result1, result2, result3, result4){
-    if(err)
-      throw err;
+  var callBack = function(result1){
+
     // reportData[0] = result1;
     // reportData[1] = result2;
     // reportData[2] = result3;
     // reportData[3] = result4;
-    console.log(result1);
-    res.render('faculty/faculty-reports', {type : 'reports', selectList1 : result1, selectList2 : result2, selectList3 : result3, selectList4 : result4});
+    console.log(",sdnfknsdkf"+result1);
+    //res.render('faculty/faculty-reports', {type : 'reports', selectList1 : result1, selectList2 : result2, selectList3 : result3, selectList4 : result4});
+    res.render('faculty/faculty-reports', {type : 'reports', selectList1 : result1});
+
   }
-  sqlExecute.getFourSelectList(callback,'journalName', 'journalType', 'sjrQuartile', 'year', 'journalPaper');
+  //sqlExecute.getFourSelectList(callback,'journalName', 'journalType', 'sjrQuartile', 'year', 'journalPaper');
+  sqlExecute.getDataBaseTables('rit_data_center_fake', callBack);
 
 });
 
