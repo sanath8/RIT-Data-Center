@@ -29,10 +29,12 @@
             <div class="card card-profile">
                 <div class="card-avatar">
                     <a href="#pablo">
-                        <img class="img" src="../assets/img/faces/<%-fId%>.jpg" onmouseover="displayInput()" onmouseout="hideInput()"/>
+                        <img class="img" style="position:relative;" id="profileImage" src="../assets/img/faces/<%-fId%>.jpg" onmouseover="displayInput()" onmouseout="hideInput()"/>
                     </a>
                 </div>
-                <input type="file" class="pull-right" id="profileImage" style="display:none; margin-top:-30px; z-index:9999;"/>
+                <form action="/faculty/changeProfilePicture" method="post" id="profileForm"  enctype="multipart/form-data">
+                    <input name="avatar" onchange="checkIfInput()" type="file" class="pull-right" id="profileImageButton" style="display:none; margin-top:-40px; position:absolute;" onmouseover="displayInput()" onmouseout="hideInput()"/>
+                </form>
                 <div class="content">
                     <h6 class="category text-gray">designation</h6>
                     <h4 class="card-title"><%-data["faculty"][0]["Name"]%></h4>

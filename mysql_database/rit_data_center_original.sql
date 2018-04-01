@@ -152,6 +152,7 @@ CREATE TABLE `department` (
   `address` varchar(100) NOT NULL,
   `contactNumber` varchar(100) NOT NULL,
   `officialMailId` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
   `hodName` varchar(30) NOT NULL,
   `hodContactNumber` varchar(100) NOT NULL,
   `instituteName` varchar(100) NOT NULL
