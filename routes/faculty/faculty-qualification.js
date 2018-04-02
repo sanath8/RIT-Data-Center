@@ -20,7 +20,17 @@ router.get('/', function(req, res, next) {
 			};
 			arr.push(temp);
 		}
-		res.render('faculty/qualification', {type:"qualification", data:{ faculty:arr}});
+		res.render('faculty/qualification', {type:"qualification", data:{ faculty:arr},
+				index : { 
+       			faculty:
+					{
+						type: "Type",
+						university: "University",
+						passPercentage: "Pass Percentage",
+						passYear: "Pass Year",
+					}
+				}
+			});
 	}
 	//sqlExecute.getWholeTable(callback,'facultyQualification', req.session.email);
 	sqlExecute.getFaultyQualification(req.session.facultyId, callback);

@@ -22,7 +22,7 @@
                                 <th>Labs Handled</th>
                             </thead>
                             <tbody>
-                                <% loadInTable(data.courses_handled,1)%>
+                                <% loadInTableModular("courses_handled")%>
                             </tbody>
                         </table>
                     </div>
@@ -44,7 +44,7 @@
                                 <th>Project Title</th>
                             </thead>
                             <tbody>
-                                <% loadInTable(data.projects_handled,2)%>
+                                <% loadInTableModular("projects_handled")%>
                             </tbody>
                         </table>
                     </div>
@@ -71,7 +71,7 @@
                                 <th>Status</th>
                             </thead>
                             <tbody>
-                                <% loadInTable(data.faculty_research,3)%>
+                                <% loadInTableModular("faculty_research")%>
                             </tbody>
                         </table>
                     </div>
@@ -98,7 +98,7 @@
                               <th>Status</th>
                             </thead>
                             <tbody>
-                                <% loadInTable(data.phd_scholar,4)%>
+                                <% loadInTableModular("phd_scholar")%>
                             </tbody>
                         </table>
                     </div>
@@ -111,178 +111,6 @@
         </div>
     </div>
 </div>
-
-
-<!--model containing form for faculty qualification below -->
-<!-- TODO == MAKE MODEL MODULAR -->
-
-<div class="modal fade" id="myModal1" role="dialog">
-<div class="modal-dialog">
-
-  <!-- Modal content-->
-  <div class="modal-content">
-  <div class="card">
-      <div class="card-header" data-background-color="purple" style="margin-top:-50px;">
-          <h4 class="title">Edit Row Data</h4>
-      </div>
-      <div class="card-content">
-          <form>
-            <div class="form-group ">
-                <label class="control-label">BE University</label>
-                <input id="data11" type="text" class="form-control">
-            </div>
-            <div class="form-group ">
-                <label class="control-label">BE Pass Percentage</label>
-                <input id= "data12" type="email" class="form-control">
-            </div>
-            <div class="form-group ">
-                <label class="control-label">BE Year of Passing</label>
-                <input id= "data13" type="text" class="form-control">
-            </div>
-            <div class="form-group ">
-                <label class="control-label">M.Tech University</label>
-                <input id= "data14" type="text" class="form-control">
-            </div>
-            <div class="form-group ">
-                <label class="control-label">M.Tech Pass Percentage</label>
-                <input id= "data15" type="text" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-primary pull-right">Update</button>
-            <button type="submit" class="btn btn-warning pull-right">Cancel</button>
-            <button type="submit" class="btn btn-danger pull-right">Delete</button>
-          </form>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-
-
-<div class="modal fade" id="myModal2" role="dialog">
-<div class="modal-dialog">
-
-  <!-- Modal content-->
-  <div class="modal-content">
-  <div class="card">
-      <div class="card-header" data-background-color="purple" style="margin-top:-50px;">
-          <h4 class="title">Edit Row Data</h4>
-      </div>
-      <div class="card-content">
-          <form>
-            <div class="form-group ">
-                <label class="control-label">BE University</label>
-                <input id="data21" type="text" class="form-control">
-            </div>
-            <div class="form-group ">
-                <label class="control-label">BE Pass Percentage</label>
-                <input id= "data22" type="email" class="form-control">
-            </div>
-            <div class="form-group ">
-                <label class="control-label">BE Year of Passing</label>
-                <input id= "data23" type="text" class="form-control">
-            </div>
-            <div class="form-group ">
-                <label class="control-label">M.Tech University</label>
-                <input id= "data24" type="text" class="form-control">
-            </div>
-            <div class="form-group ">
-                <label class="control-label">M.Tech Pass Percentage</label>
-                <input id= "data25" type="text" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-primary pull-right">Update</button>
-            <button type="submit" class="btn btn-warning pull-right">Cancel</button>
-            <button type="submit" class="btn btn-danger pull-right">Delete</button>
-          </form>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-
-
-<div class="modal fade" id="myModal3" role="dialog">
-<div class="modal-dialog">
-
-  <!-- Modal content-->
-  <div class="modal-content">
-  <div class="card">
-      <div class="card-header" data-background-color="purple" style="margin-top:-50px;">
-          <h4 class="title">Edit Row Data</h4>
-      </div>
-      <div class="card-content">
-          <form>
-            <div class="form-group ">
-                <label class="control-label">BE University</label>
-                <input id="data31" type="text" class="form-control">
-            </div>
-            <div class="form-group ">
-                <label class="control-label">BE Pass Percentage</label>
-                <input id= "data32" type="email" class="form-control">
-            </div>
-            <div class="form-group ">
-                <label class="control-label">BE Year of Passing</label>
-                <input id= "data33" type="text" class="form-control">
-            </div>
-            <div class="form-group ">
-                <label class="control-label">M.Tech University</label>
-                <input id= "data34" type="text" class="form-control">
-            </div>
-            <div class="form-group ">
-                <label class="control-label">M.Tech Pass Percentage</label>
-                <input id= "data35" type="text" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-primary pull-right">Update</button>
-            <button type="submit" class="btn btn-warning pull-right">Cancel</button>
-            <button type="submit" class="btn btn-danger pull-right">Delete</button>
-          </form>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-
-
-<div class="modal fade" id="myModal4" role="dialog">
-<div class="modal-dialog">
-
-  <!-- Modal content-->
-  <div class="modal-content">
-  <div class="card">
-      <div class="card-header" data-background-color="purple" style="margin-top:-50px;">
-          <h4 class="title">Edit Row Data</h4>
-      </div>
-      <div class="card-content">
-          <form>
-            <div class="form-group ">
-                <label class="control-label">BE University</label>
-                <input id="data41" type="text" class="form-control">
-            </div>
-            <div class="form-group ">
-                <label class="control-label">BE Pass Percentage</label>
-                <input id= "data42" type="email" class="form-control">
-            </div>
-            <div class="form-group ">
-                <label class="control-label">BE Year of Passing</label>
-                <input id= "data43" type="text" class="form-control">
-            </div>
-            <div class="form-group ">
-                <label class="control-label">M.Tech University</label>
-                <input id= "data44" type="text" class="form-control">
-            </div>
-            <div class="form-group ">
-                <label class="control-label">M.Tech Pass Percentage</label>
-                <input id= "data45" type="text" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-primary pull-right">Update</button>
-            <button type="submit" class="btn btn-warning pull-right">Cancel</button>
-            <button type="submit" class="btn btn-danger pull-right">Delete</button>
-          </form>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-
 
 
 
