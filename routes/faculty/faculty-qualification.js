@@ -12,6 +12,7 @@ router.get('/', function(req, res, next) {
 		var arr=[];
 		for(var i in result){
 			var temp={
+				facultyId:result[i]["facultyId"],
 				type:result[i]["degree"],
 				university:result[i]["university"],
 				passPercentage:result[i]["passClass"],

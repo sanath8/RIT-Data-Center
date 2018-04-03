@@ -5,6 +5,8 @@
 
             __append('<tr data-toggle="modal" data-target="#myModalModular" onclick="fillDataModular(\''+columnName+'\','+i+')" onmouseover="hoverEffect(this)" onmouseout="removeHoverEffect(this)">');
             for(var j in resultSet[i]){
+                if(j=="slNo" || j=="facultyId")
+                    continue;
                 // console.log(j + 'hello');    
                 // console.log(resultSet[i]);            
                 __append('<td>');
