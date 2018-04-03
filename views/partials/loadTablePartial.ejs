@@ -120,11 +120,14 @@ var index = <%- JSON.stringify(index) %>
     function fillDataModular(columnName, i){
         var cardCont=$("#modalCardContent");
         cardCont.text("");
-        cardCont.append("<form>")
+        cardCont.append("<form method='POST' action='/v1/apis/apiUpdate/"+columnName+"'>")
         var res = data[columnName][i];
         console.log(res);
         console.log(index);
         for(var j in res){
+            if(j=="slNo" || j=="facultyId"){
+                cardCont.append("<input name='"+j+"' type="hidden" value='"+res[j]+"'/>")
+            }
             if(index[columnName])
                 var temp = index[columnName][j]
             else
