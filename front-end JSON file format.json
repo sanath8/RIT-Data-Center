@@ -30,7 +30,7 @@ removed department no and passwprd and facultyid
 	title : "Faculty Qualification",
 	type : "qualification",
 	data : { 
-       faculty:[
+       faculty_qualification:[
            {
             type: BE/MTech/Phd,
             university:,
@@ -60,7 +60,7 @@ removed department no and passwprd and facultyid
 	title : "Faculty Service Details",
 	type : "service-details",
 	data : { 
-       faculty:[
+       faculty_service:[
            {
             designation  ,
             qualification  ,

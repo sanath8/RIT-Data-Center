@@ -14,10 +14,11 @@ router.get('/', function(req, res, next) {
 		res.render('faculty/service-details', {title : "Faculty Service Details",
 					type : "service-details",
 					data : { 
-						faculty:result
+						faculty_service:result
 					},
 					index : { 
-						faculty:
+						url:"/faculty/service-details",
+						faculty_service:
 							{
 							 designation : "Designation" ,
 							 qualification : "Qualification" ,

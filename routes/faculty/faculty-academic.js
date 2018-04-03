@@ -11,6 +11,7 @@ router.get('/', function(req, res, next) {
 		console.log(JSON.stringify(data));
 		res.render('faculty/academic-details', {title : "Faculty Academic Details", type:"academic-details", data:data,
 		index : { 
+			url:"/faculty/academic-details",
 			courses_handled:{ 
 				yearHandled:"Year Handled"  ,
 				subjectName:"Subject Name"  ,

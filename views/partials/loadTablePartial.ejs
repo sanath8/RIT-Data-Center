@@ -119,28 +119,32 @@ var index = <%- JSON.stringify(index) %>
     }
     function fillDataModular(columnName, i){
         var cardCont=$("#modalCardContent");
-        cardCont.text("");
-        cardCont.append("<form method='POST' action='/v1/apis/apiUpdate/"+columnName+"'>")
+        var str="";
+        str = str + ("<form method='POST' action='/v1/apis/apiUpdate/"+columnName+"'>");
+        //cardCont.append("<form method='POST' action='/v1/apis/apiUpdate/"+columnName+"'>")
+        str = str + ("<input name='url' type='hidden' value='"+index["url"]+"'>");
         var res = data[columnName][i];
         console.log(res);
         console.log(index);
         for(var j in res){
             if(j=="slNo" || j=="facultyId"){
-                cardCont.append("<input name='"+j+"' type="hidden" value='"+res[j]+"'/>")
+                str = str + ("<input name='"+j+"' type='hidden' value='"+res[j]+"'>");
+                continue;
             }
             if(index[columnName])
                 var temp = index[columnName][j]
             else
                 var temp = "Undefined";
-            cardCont.append('<div class="form-group ">\
+            str = str + ('<div class="form-group ">\
                 <label class="control-label">'+temp+'</label>\
                 <input name="'+j+'" type="text" class="form-control" value="'+res[j]+'">\
                 </div>')
         }
-        cardCont.append('<button type="submit" class="btn btn-primary pull-right">Update</button>\
+        str = str + ('<button type="submit" class="btn btn-primary pull-right">Update</button>\
             <button type="submit" class="btn btn-warning pull-right">Cancel</button>\
-            <button type="submit" class="btn btn-danger pull-right">Delete</button>')
-        cardCont.append("</form>")
+            <button type="submit" class="btn btn-danger pull-right">Delete</button>\
+            </form>')
+        cardCont.html(str);
     }
     
     function fillData(resultSet,tableNumber){

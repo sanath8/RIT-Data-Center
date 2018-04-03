@@ -21,9 +21,10 @@ router.get('/', function(req, res, next) {
 			};
 			arr.push(temp);
 		}
-		res.render('faculty/qualification', {type:"qualification", data:{ faculty:arr},
+		res.render('faculty/qualification', {type:"qualification", data:{ faculty_qualification:arr},
 				index : { 
-       			faculty:
+					url:"/faculty/qualification",
+       				faculty_qualification:
 					{
 						type: "Type",
 						university: "University",

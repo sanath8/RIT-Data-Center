@@ -7,6 +7,11 @@ var sqlObject = function() {
 	this.tables = mappingUrl.mappingUrlTable;
 }
 
+sqlObject.prototype.runRawQuery = function(sql, callback){
+	this.connection.query(sql, function(err, result){
+		callback(err, result);
+	})
+}
 sqlObject.prototype.login = function(email, pass, callback){
 	var sql= "select * \
 			from faculty \

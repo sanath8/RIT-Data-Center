@@ -10,6 +10,7 @@ router.get('/', function(req, res, next) {
 			throw err;
 		res.render('faculty/achievements', {title : "Faculty Achievement Details",type : "achievements", data:data,
 		index : { 
+			url:"/faculty/achievements",
 			faculty_workshop_fdp:
 			   {
 				title : "Title" ,
