@@ -8,7 +8,44 @@ router.get('/', function(req, res, next) {
 	var callback = function(err, data){
 		if(err)
 			throw err;
-		res.render('faculty/rnd-details', {title : "Faculty R&D Details", type:"rnd-details", data:data});
+		res.render('faculty/rnd-details', {title : "Faculty R&D Details", type:"rnd-details", data:data,
+			index : { 
+				funded_projects:
+				{            
+					investigatorName : "Investigator Name" ,
+					projectTitle  : "Project Title" ,
+					nameOfFundingAgent : "Name of Funded Agent" ,
+					sanctionOrderNumber : "Sanction Order Number" ,
+					projectDuration : "Project Duration" ,
+					dateSanctioned : "Date Sanctioned" ,
+					sanctionedAmount : "Sanctioned Amount"                
+				}
+			,
+			faculty_patent:
+				{            
+					patentTitle : "Patent Title" ,
+					applicationNumber : "Application Number" ,
+					dateOfFilingApplication : "Date of Filing Application" ,
+					publicationDate : "Publication Date"                
+				}
+			,
+			consultancy:
+				{            
+					financialYear : "Financial Year" ,
+					clientOrganization : "Client Organization" ,
+					consultancyProjectTitle : "Consultancy Project Title" ,
+					amountReceived : "Amount Received"                
+				}
+			,
+			industrial_collaboration_mou:
+				{            
+					mouTitle : "MOU Title" ,
+					mouSignedWithIndustryOrGovt : "MOU Signed (Industry/Govt)" ,
+					mouSigningDate : "MOU Sign Date"                
+				}
+			   
+			}
+	});
 	}
 	sqlExecute.getFaultyRND(req.session.facultyId, callback);
   

@@ -9,7 +9,47 @@ router.get('/', function(req, res, next) {
 		if(err)
 			throw err;
 		console.log(JSON.stringify(data));
-		res.render('faculty/academic-details', {title : "Faculty Academic Details", type:"academic-details", data:data});
+		res.render('faculty/academic-details', {title : "Faculty Academic Details", type:"academic-details", data:data,
+		index : { 
+			courses_handled:{ 
+				yearHandled:"Year Handled"  ,
+				subjectName:"Subject Name"  ,
+				ugOrPg: "UG/PG" ,
+				labHandled:"Lab Handled"                
+			   }
+		   ,
+		   projects_handled:
+			   {            
+				batch:"Batch"  ,
+				ugOrPg :"UG/Pg" ,
+				projectTitle:"Project Title"                
+			   }
+		   ,
+		   faculty_research:
+			   {            
+				guideName : "Guide Name" ,
+				researchCandidateName : "Research Candidate" ,
+				usn : "USN" ,
+				centreName : "Centre Name" ,
+				university : "University" ,
+				registrationYear : "Registration Year" ,
+				title : "Title" ,
+				status :"Status"       
+			   }
+		   ,
+		   phd_scholar:
+			   {            
+				scholarName : "Scholar Name" ,
+				guideName : "Guide Name" ,
+				researchCentre : "Research Centre" ,
+				university : "University" ,
+				registrationYear : "Registration Year" ,
+				usn : "USN" ,
+				title : "Title" ,
+				status : "Status"               
+			   }
+		      
+		}});
 	}
 	sqlExecute.getFaultyAcademics(req.session.facultyId, callback);
 });
