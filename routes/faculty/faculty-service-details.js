@@ -15,7 +15,19 @@ router.get('/', function(req, res, next) {
 					type : "service-details",
 					data : { 
 						faculty:result
-					}
+					},
+					index : { 
+						faculty:
+							{
+							 designation : "Designation" ,
+							 qualification : "Qualification" ,
+							 joiningDate : "Joining Date" ,
+							 yearsOfExperience : "Years Of Exp." ,
+							 promotionDate : "Promotion Date" ,
+							 payScale : "Payscale" 
+							}
+						
+					 }
 				});
 
 	}
