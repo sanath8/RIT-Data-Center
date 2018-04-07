@@ -141,8 +141,8 @@ var index = <%- JSON.stringify(index) %>
                 </div>')
         }
         str = str + ('<button type="submit" class="btn btn-primary pull-right">Update</button>\
-            <button type="submit" class="btn btn-warning pull-right">Cancel</button>\
-            <button type="submit" class="btn btn-danger pull-right">Delete</button>\
+            <button type="reset" class="btn btn-warning pull-right" data-dismiss="modal">Cancel</button>\
+            <button type="submit" formaction="/v1/apis/apiDelete/'+columnName+'" class="btn btn-danger pull-right">Delete</button>\
             </form>')
         cardCont.html(str);
     }
