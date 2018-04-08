@@ -396,13 +396,27 @@ sqlObject.prototype.getDataBaseTables = function(dataBase, callBack)
 	  {
 	    if (err)
 	      console.log(err);
-			console.log(",sdnfknsdkf"+JSON.stringify(result));
 	    callBack(result);
 
 	  }
 	);
 }
 
+sqlObject.prototype.getJointFacultyInfo = function (callBack, tableName)
+{
+
+	var query = "SELECT * \
+							 FROM faculty \
+							 NATURAL JOIN "+ tableName ;
+ 		this.connection.query(query, function (err, result, fields)
+	  {
+	    if (err)
+	      console.log(err);
+	    callBack(result);
+	  }
+	);
+
+}
 
 var object = new sqlObject();
 

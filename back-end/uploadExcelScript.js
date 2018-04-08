@@ -32,4 +32,4 @@ function addParentTables()
   }
 }
 
-addChildTables();
+addParentTables();

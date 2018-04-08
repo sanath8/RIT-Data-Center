@@ -5,13 +5,15 @@ var sqlExecute = require('./mySqlCalls');
 var router = express.Router();
 
 router.post('/:tableName/', function(req, res, next){
-    callback = function(result){
+    callBack = function(result){
         res.setHeader('Content-Type', 'application/json');
         res.send(result);
         //res.send(sqlAPI.fetchResults(req.params.columnName, req.params.tableName));
     }
     console.log("body recieved" + JSON.stringify(req.body) + " " + req.body.schema);
-    sqlAPI.fetchResults("*", req.params.tableName, [], callback);
+    //sqlAPI.fetchResults("*", req.params.tableName, [], callback);
+    sqlExecute.getJointFacultyInfo(callBack, req.params.tableName);
+
 });
 
 router.get('/:tableName/', function(req, res, next){

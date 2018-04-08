@@ -11,16 +11,39 @@
       </select>
   </div>
 
-  <button type="button" id = "getReport" class="btn btn-primary">Get Report</button>
 </form>
-<p id = "filteredResult"></p>
-<div class="table-responsive">
-  <table class="table" border = 3>
-  </table>
+
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Service Details</h4>
+                        <p class="category">information about duration, designation etc.</p>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <table class="table" id="tableR">
+
+                        </table>
+                    </div>
+                    <button class="btn btn-primary pull-left"  id = "getReport" style="margin:13px">Generate Excel file</button>
+                    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal1" style="margin:13px">Insert</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+
+
 <% include ../partials/footer %>
 <script>
     $("#getReport").click(function(){
+      console.log("Report Generation");
         var tableName = $('#exampleFormControlSelect0').val();
         var journalType =$('#exampleFormControlSelect2').val();
         var sjrQuartile = $('#exampleFormControlSelect3').val();
@@ -78,36 +101,40 @@
 
 function buildTable(json)
 {
-   $("table").empty();
+  console.log(json);
+   $("#tableR").empty();
   var columnsAttributes = Object.keys(json[0]);
-
+  var tab= $('#tableR');
   var tr;
-  tr = $('<tr/>');
+  tr = "";
 
+tr+=("<thead class='text-primary'>")
   for(var j = 0; j < columnsAttributes.length; j++)
   {
     dataEntry = columnsAttributes[j];
 
-    tr.append("<th>" + dataEntry + "</th>");
+    tr+=("<th>" + dataEntry + "</th>");
 
   }
+tr+=("</thead><tbody>")
 
-  $('table').first().append(tr);
 
   for (var i = 0; i < json.length; i++)
   {
-    tr = $('<tr/>');
+    tr+="<tr>"
 
     for(var j = 0; j < columnsAttributes.length; j++)
     {
       dataEntry = eval("json[i]."+columnsAttributes[j]);
 
-      tr.append("<td>" + dataEntry + "</td>");
+      tr+=("<td>" + dataEntry + "</td>");
 
     }
-    $('table').first().append(tr);
+    tr+="</tr>"
 
   }
+  tr+=("</tbody>");
+  tab.html(tr);
 
 }
 </script>
