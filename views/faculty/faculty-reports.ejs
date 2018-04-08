@@ -50,6 +50,8 @@
 
 <% include ../partials/footer %>
 <script>
+    var filterHistory = {tables:"", facultyName:"", year:""};
+
     $("#getReport").click(function(){
       console.log("Report Generation");
         var tableName = $('#exampleFormControlSelect0').val();
@@ -79,10 +81,17 @@
 
     $("#filters").change(function () {
       var tableName = $('#exampleFormControlSelect0').val();
+      var name =$('#exampleFormControlSelect1').val();
+      var year = $('#exampleFormControlSelect2').val();
+
+      filterHistory[tables] =  tableName;
+      filterHistory[name] = name;
+      filterHistory[year] = year;
+
       dataForSelect = {
           'schema': '*',
           'whereOption' : []
-      }
+      };
     $.ajax({
           type: 'POST',
           data: JSON.stringify(dataForSelect),

@@ -418,6 +418,36 @@ sqlObject.prototype.getJointFacultyInfo = function (callBack, tableName)
 
 }
 
+sqlObject.prototype.fetchResults = function(columns, url, whereOptions, callBack)
+{
+  //whereOptions is an array of strings
+  try
+  {
+    var query = "SELECT " + columns + " FROM " + url + " WHERE 1=1";
+    //console.log("whereOptions" + whereOptions);
+    for(var i = 0; i < whereOptions.length; i++)
+    {
+      query += " AND " + whereOptions[i];
+    }
+    this.connection.query(query,
+      function (err, result, fields)
+      {
+          if (err)
+            throw err;
+          sqlResults = result;
+          if(callBack != false)
+            callBack(sqlResults);
+      }
+    );
+  }
+
+  catch(err)
+  {
+    console.log("SQL error for "+ query +"occured : " + err);
+  }
+
+}
+
 var object = new sqlObject();
 
 module.exports = object;
