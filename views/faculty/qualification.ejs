@@ -28,9 +28,17 @@
                         </table>
                     </div>
                 <a href = "/faculty/generateexcel/1/2">
-                <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
+                <button class="btn btn-primary pull-left" 
+                <% if( GetParam ){%>
+                disabled = true;
+                <%}%>
+                 style="margin:13px">Generate Excel file</button>
                 </a>
-                <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal1" style="margin:13px">Insert</button>
+                <button class="btn btn-primary pull-right" 
+                <% if( GetParam ){%>
+                disabled = true;
+                <%}%>
+                 data-toggle="modal" data-target="#myModal1" style="margin:13px">Insert</button>
                 </div>
             </div>
         </div>
