@@ -17,7 +17,7 @@ router.get('/', function(req, res, next) {
 
   }
   //sqlExecute.getFourSelectList(callback,'journalName', 'journalType', 'sjrQuartile', 'year', 'journalPaper');
-  sqlExecute.getDataBaseTables('rit_data_center_fake', callBack);
+  sqlExecute.getDataBaseTables('rit_data_center', callBack);
 
 });
 
