@@ -398,6 +398,21 @@ sqlObject.prototype.getDataBaseTables = function(dataBase, callBack)
 	);
 }
 
+sqlObject.prototype.getJointFacultyInfo = function (callBack, tableName)
+{
+
+	var query = "SELECT * \
+							 FROM faculty \
+							 NATURAL JOIN "+ tableName ;
+ 		this.connection.query(query, function (err, result, fields)
+	  {
+	    if (err)
+	      console.log(err);
+	    callBack(result);
+	  }
+	);
+
+}
 
 var object = new sqlObject();
 
