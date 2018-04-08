@@ -53,19 +53,14 @@ router.get('/:id', function(req, res, next) {
     var data=[];
 		for(var i=0;i<result.length;i++){
 			var myR={};
-			tresult=result[i];
+      tresult=result[i];
+      myR["Fid"] = tresult["facultyId"];
 			myR["Name"]=tresult["facultyName"];
 			myR["Gender"]=tresult["gender"];
 			myR["Address"]=tresult["address"];
-			myR["religion"]=tresult["religion"];
-			myR["Caste"]=tresult["caste"];
-			myR["DOB"]=tresult["dob"];
 			myR["Nature of Appointment"]=tresult["natureOfAppointment"];
 			myR["Contact No."]=tresult["contactNumber"];
 			myR["Email Id"]=tresult["emailId"];
-			myR["PAN Number"]=tresult["panNumber"];
-			myR["Account Number"]=tresult["accountNumber"];
-			myR["PF Number"]=tresult["pfNumber"];
 			data.push(myR);
     }
     var newResult = {'faculty' : data};

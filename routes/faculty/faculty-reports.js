@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
     // reportData[3] = result4;
     console.log(",sdnfknsdkf"+result1);
     //res.render('faculty/faculty-reports', {type : 'reports', selectList1 : result1, selectList2 : result2, selectList3 : result3, selectList4 : result4});
-    res.render('faculty/faculty-reports', {type : 'reports', selectList1 : result1});
+    res.render('faculty/faculty-reports', {type : 'reports', selectList1 : result1, GetParam:req.query.fId});
 
   }
   //sqlExecute.getFourSelectList(callback,'journalName', 'journalType', 'sjrQuartile', 'year', 'journalPaper');

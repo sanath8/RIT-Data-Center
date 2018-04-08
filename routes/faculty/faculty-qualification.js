@@ -5,6 +5,18 @@ var utility = require('../utilities');
 
 router.get('/', function(req, res, next) {
 	if(!utility.checkSesssion(req, res)) return;
+
+	var facultyId;
+	var auth = true;
+
+	if(!utility.checkGetParam(req,res)){
+		facultyId = req.session.facultyId;
+	}
+	else{
+		auth = false;
+		facultyId = req.query.fId;
+	}
+
 	var callback = function(err, result){
 		if(err)
 			throw err;
@@ -31,11 +43,12 @@ router.get('/', function(req, res, next) {
 						passPercentage: "Pass Percentage",
 						passYear: "Pass Year",
 					}
-				}
+				},
+				GetParam:req.query.fId
 			});
 	}
 	//sqlExecute.getWholeTable(callback,'facultyQualification', req.session.email);
-	sqlExecute.getFaultyQualification(req.session.facultyId, callback);
+	sqlExecute.getFaultyQualification(facultyId, callback);
 });
 
 module.exports=router;

@@ -4,7 +4,20 @@ var sqlExecute = require('../apis/mySqlCalls');
 var utility = require('../utilities');
 
 router.get('/', function(req, res, next) {
+	var facultyId;
 	if(!utility.checkSesssion(req, res)) return;
+
+	var facultyId;
+	var auth = true;
+
+	if(!utility.checkGetParam(req,res)){
+		facultyId = req.session.facultyId;
+	}
+	else{
+		auth = false;
+		facultyId = req.query.fId;
+	}
+
 	var callback = function(err, data){
 		if(err)
 			throw err;
@@ -77,10 +90,12 @@ router.get('/', function(req, res, next) {
 				sjrQuartile : "SJR Quartile"               
 			   }
 		   
-		}});
+		},
+		GetParam:req.query.fId
+	});
 	}
 	//TODO Change the Faculty Achievements Table
-	sqlExecute.getFaultyAchievements(req.session.facultyId, callback);
+	sqlExecute.getFaultyAchievements(facultyId, callback);
 });
 
 module.exports=router;
