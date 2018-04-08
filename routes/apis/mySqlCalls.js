@@ -396,7 +396,6 @@ sqlObject.prototype.getDataBaseTables = function(dataBase, callBack)
 	  {
 	    if (err)
 	      console.log(err);
-			console.log(",sdnfknsdkf"+JSON.stringify(result));
 	    callBack(result);
 
 	  }
