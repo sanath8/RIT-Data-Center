@@ -12,6 +12,7 @@ router.get('/', function(req, res, next) {
 		var arr=[];
 		for(var i in result){
 			var temp={
+				facultyId:result[i]["facultyId"],
 				type:result[i]["degree"],
 				university:result[i]["university"],
 				passPercentage:result[i]["passClass"],
@@ -20,9 +21,10 @@ router.get('/', function(req, res, next) {
 			};
 			arr.push(temp);
 		}
-		res.render('faculty/qualification', {type:"qualification", data:{ faculty:arr},
+		res.render('faculty/qualification', {type:"qualification", data:{ faculty_qualification:arr},
 				index : { 
-       			faculty:
+					url:"/faculty/qualification",
+       				faculty_qualification:
 					{
 						type: "Type",
 						university: "University",

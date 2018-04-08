@@ -22,6 +22,7 @@ router.get('/', function(req, res, next) {
 
 		var myR={};
 		tresult=result[0];
+		myR["facultyId"]=tresult["facultyId"];
 		myR["Name"]=tresult["facultyName"];
 		myR["Gender"]=tresult["gender"];
 		myR["Address"]=tresult["address"];

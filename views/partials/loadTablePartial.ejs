@@ -5,6 +5,8 @@
 
             __append('<tr data-toggle="modal" data-target="#myModalModular" onclick="fillDataModular(\''+columnName+'\','+i+')" onmouseover="hoverEffect(this)" onmouseout="removeHoverEffect(this)">');
             for(var j in resultSet[i]){
+                if(j=="slNo" || j=="facultyId")
+                    continue;
                 // console.log(j + 'hello');    
                 // console.log(resultSet[i]);            
                 __append('<td>');
@@ -117,25 +119,32 @@ var index = <%- JSON.stringify(index) %>
     }
     function fillDataModular(columnName, i){
         var cardCont=$("#modalCardContent");
-        cardCont.text("");
-        cardCont.append("<form>")
+        var str="";
+        str = str + ("<form method='POST' action='/v1/apis/apiUpdate/"+columnName+"'>");
+        //cardCont.append("<form method='POST' action='/v1/apis/apiUpdate/"+columnName+"'>")
+        str = str + ("<input name='url' type='hidden' value='"+index["url"]+"'>");
         var res = data[columnName][i];
         console.log(res);
         console.log(index);
         for(var j in res){
+            if(j=="slNo" || j=="facultyId"){
+                str = str + ("<input name='"+j+"' type='hidden' value='"+res[j]+"'>");
+                continue;
+            }
             if(index[columnName])
                 var temp = index[columnName][j]
             else
                 var temp = "Undefined";
-            cardCont.append('<div class="form-group ">\
+            str = str + ('<div class="form-group ">\
                 <label class="control-label">'+temp+'</label>\
                 <input name="'+j+'" type="text" class="form-control" value="'+res[j]+'">\
                 </div>')
         }
-        cardCont.append('<button type="submit" class="btn btn-primary pull-right">Update</button>\
-            <button type="submit" class="btn btn-warning pull-right">Cancel</button>\
-            <button type="submit" class="btn btn-danger pull-right">Delete</button>')
-        cardCont.append("</form>")
+        str = str + ('<button type="submit" class="btn btn-primary pull-right">Update</button>\
+            <button type="reset" class="btn btn-warning pull-right" data-dismiss="modal">Cancel</button>\
+            <button type="submit" formaction="/v1/apis/apiDelete/'+columnName+'" class="btn btn-danger pull-right">Delete</button>\
+            </form>')
+        cardCont.html(str);
     }
     
     function fillData(resultSet,tableNumber){
