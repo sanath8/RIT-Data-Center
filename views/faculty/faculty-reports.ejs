@@ -4,10 +4,18 @@
 <% include ../partials/loadSelectList %>
 <form class="form-inline">
 
-  <div class="form-group">
+  <div class="form-group" id = "filters">
       <label for="exampleFormControlSelect0">Tables</label>
       <select class="form-control" id="exampleFormControlSelect0">
         <%loadInList(selectList1)%>
+      </select>
+      <label for="exampleFormControlSelect1">Name</label>
+      <select class="form-control" id="exampleFormControlSelect0">
+        <%loadInList(selectList1)%>
+      </select>
+      <label for="exampleFormControlSelect2">Year</label>
+      <select class="form-control" id="exampleFormControlSelect0">
+        <%loadInList([{year:1}, {year:2}, {year:3}, {year:4}, {year:5}])%>
       </select>
   </div>
 
@@ -45,13 +53,12 @@
     $("#getReport").click(function(){
       console.log("Report Generation");
         var tableName = $('#exampleFormControlSelect0').val();
-        var journalType =$('#exampleFormControlSelect2').val();
-        var sjrQuartile = $('#exampleFormControlSelect3').val();
-        var year = $('#exampleFormControlSelect4').val();
+        var name =$('#exampleFormControlSelect1').val();
+        var year = $('#exampleFormControlSelect2').val();
         dataForSelect = {
             'schema': '*',
             'whereOption' : []
-        }
+        };
 
         $.ajax({
               type: 'POST',
@@ -70,12 +77,8 @@
             });
     })
 
-    $("#exampleFormControlSelect0").change(function () {
+    $("#filters").change(function () {
       var tableName = $('#exampleFormControlSelect0').val();
-      var journalType =$('#exampleFormControlSelect2').val();
-      var sjrQuartile = $('#exampleFormControlSelect3').val();
-      var year = $('#exampleFormControlSelect4').val();
-      //console.log(journalName + " " + journalType + " " + sjrQuartile);
       dataForSelect = {
           'schema': '*',
           'whereOption' : []
@@ -86,18 +89,33 @@
           contentType: 'application/json',
           url: 'http://localhost:3000/v1/apis/data/'+tableName+'/',
           success: function(dataRecieved) {
-            console.log('success');
-            console.log(dataRecieved[0]);// if there is integrity constraint maintained it should recieve only one result entry
-            var counter = 1;
-            //this code renders the data back to the input entries
-            //document.getElementById("filteredResult").innerHTML =   JSON.stringify(dataRecieved);
-            //window.location.href = "/faculty/generateExcel/" + JSON.stringify(dataRecieved);
-            buildTable(dataRecieved)
-            //end
+
+            buildTable(dataRecieved);
 
           }
         });
 });
+
+  $("#exampleFormControlSelect1").change(function () {
+    var tableName = $('#exampleFormControlSelect1').val();
+    dataForSelect = {
+        'schema': '*',
+        'whereOption' : []
+    }
+  $.ajax({
+        type: 'POST',
+        data: JSON.stringify(dataForSelect),
+        contentType: 'application/json',
+        url: 'http://localhost:3000/v1/apis/data/'+tableName+'/',
+        success: function(dataRecieved) {
+          console.log('success');
+          console.log(dataRecieved[0]);
+          buildTable(dataRecieved);
+
+        }
+      });
+  });
+
 
 function buildTable(json)
 {
