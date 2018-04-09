@@ -10,8 +10,10 @@ router.post('/:tableName/', function(req, res, next){
         res.send(result);
         //res.send(sqlAPI.fetchResults(req.params.columnName, req.params.tableName));
     }
+    console.log(Array(req.body.whereOption));
+    sqlExecute.fetchResults(req.body.schema, req.params.tableName, req.body.whereOption, callBack);
 
-    sqlExecute.getJointFacultyInfo(callBack, req.params.tableName);
+    //sqlExecute.getJointFacultyInfo(callBack, req.params.tableName);
 
 });
 

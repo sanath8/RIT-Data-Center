@@ -10,12 +10,13 @@
         <%loadInList(selectList1)%>
       </select>
       <label for="exampleFormControlSelect1">Name</label>
-      <select class="form-control" id="exampleFormControlSelect0">
-        <%loadInList(selectList1)%>
+      <select class="form-control" id="exampleFormControlSelect1">
+        <option>ALL</option>
+        <%loadInList(selectList2)%>
       </select>
       <label for="exampleFormControlSelect2">Year</label>
-      <select class="form-control" id="exampleFormControlSelect0">
-        <%loadInList([{year:1}, {year:2}, {year:3}, {year:4}, {year:5}])%>
+      <select class="form-control" id="exampleFormControlSelect2">
+        <%loadInList([{year:"ALL"}, {year:1}, {year:2}, {year:3}, {year:4}, {year:5}])%>
       </select>
   </div>
 
@@ -50,18 +51,33 @@
 
 <% include ../partials/footer %>
 <script>
-    var filterHistory = {tables:"", facultyName:"", year:""};
-
     $("#getReport").click(function(){
-      console.log("Report Generation");
-        var tableName = $('#exampleFormControlSelect0').val();
-        var name =$('#exampleFormControlSelect1').val();
-        var year = $('#exampleFormControlSelect2').val();
-        dataForSelect = {
-            'schema': '*',
-            'whereOption' : []
-        };
+      var tableName = $('#exampleFormControlSelect0').val();
+      var facultyName = $('#exampleFormControlSelect1').val();
+      var year = $('#exampleFormControlSelect2').val();
+      var facultyFilter;
+      if(facultyName == "ALL")
+      {
+        facultyFilter = [];
+      }
+      else
+      {
+        facultyFilter = ["facultyName = '"+ facultyName +"'"];
+      }
+      if(year == "ALL")
+      {
 
+        facultyFilter = facultyFilter;
+      }
+      else
+      {
+        var yearFilter =  "year >= " + (new Date().getFullYear()- year).toString() + "";
+        facultyFilter.push(yearFilter);
+      }
+      dataForSelect = {
+          'schema': '*',
+          'whereOption' : facultyFilter
+      }
         $.ajax({
               type: 'POST',
               data: JSON.stringify(dataForSelect),
@@ -81,23 +97,40 @@
 
     $("#filters").change(function () {
       var tableName = $('#exampleFormControlSelect0').val();
-      var name =$('#exampleFormControlSelect1').val();
+      var facultyName = $('#exampleFormControlSelect1').val();
       var year = $('#exampleFormControlSelect2').val();
+      var facultyFilter;
+      if(facultyName == "ALL")
+      {
+        facultyFilter = [];
+      }
+      else
+      {
+        facultyFilter = ["facultyName = '"+ facultyName +"'"];
+      }
+      if(year == "ALL")
+      {
 
-      filterHistory[tables] =  tableName;
-      filterHistory[name] = name;
-      filterHistory[year] = year;
-
+        facultyFilter = facultyFilter;
+      }
+      else
+      {
+        var yearFilter =  "year >= " + (new Date().getFullYear()- year).toString() + "";
+        facultyFilter.push(yearFilter);
+      }
       dataForSelect = {
           'schema': '*',
-          'whereOption' : []
-      };
+          'whereOption' : facultyFilter
+      }
     $.ajax({
           type: 'POST',
           data: JSON.stringify(dataForSelect),
           contentType: 'application/json',
           url: 'http://localhost:3000/v1/apis/data/'+tableName+'/',
           success: function(dataRecieved) {
+            console.log('success');
+            console.log(dataRecieved[0]);
+            console.log("sssssssssssssssssssss"+tableName+" "+facultyName+" "+year);
 
             buildTable(dataRecieved);
 
@@ -105,7 +138,7 @@
         });
 });
 
-  $("#exampleFormControlSelect1").change(function () {
+  /*$("#exampleFormControlSelect1").change(function () {
     var tableName = $('#exampleFormControlSelect1').val();
     dataForSelect = {
         'schema': '*',
@@ -123,7 +156,7 @@
 
         }
       });
-  });
+  });*/
 
 
 function buildTable(json)
