@@ -9,6 +9,7 @@ router.get('/', function(req, res, next) {
 
     res.render('faculty/faculty-reports', {type : 'reports', selectList1 : result1, selectList2 : result2});
 
+
   }
   sqlExecute.getTwoSelectList(callBack,'facultyName', 'faculty');
   //sqlExecute.getDataBaseTables('rit_data_center', callBack);

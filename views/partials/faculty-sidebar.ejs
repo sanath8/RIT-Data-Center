@@ -11,7 +11,13 @@
         class="active"
         <% } %>
         >
-            <a href="/faculty">
+            <a 
+            <% if(!GetParam){%>
+             href="/faculty"
+             <%} else {%>
+             href="/faculty?fId=<%=GetParam%>"
+             <%}%>
+             >
                 <i class="material-icons">dashboard</i>
                 <p>Dashboard</p>
             </a>
@@ -21,7 +27,13 @@
         class="active"
         <% } %>
         >
-            <a href="/faculty/qualification" onclick="activate(event)">
+            <a 
+            <% if(!GetParam){%>
+             href="/faculty/qualification"
+             <%} else {%>
+             href="/faculty/qualification?fId=<%=GetParam%>"
+             <%}%>
+             >                
                 <i class="material-icons">person</i>
                 <p>Qualification Details</p>
             </a>
@@ -31,7 +43,13 @@
         class="active"
         <% } %>
         >
-            <a href="/faculty/service-details">
+            <a 
+            <% if(!GetParam){%>
+             href="/faculty/service-details"
+             <%} else {%>
+             href="/faculty/service-details?fId=<%=GetParam%>"
+             <%}%>
+             >        
                 <i class="material-icons">content_paste</i>
                 <p>Service Details</p>
             </a>
@@ -41,7 +59,13 @@
         class="active"
         <% } %>
         >
-            <a href="/faculty/achievements">
+            <a 
+            <% if(!GetParam){%>
+             href="/faculty/achievements"
+             <%} else {%>
+             href="/faculty/achievements?fId=<%=GetParam%>"
+             <%}%>
+             >       
                 <i class="material-icons">library_books</i>
                 <p>Achievments</p>
             </a>
@@ -51,7 +75,13 @@
         class="active"
         <% } %>
         >
-            <a href="/faculty/academic-details">
+            <a 
+            <% if(!GetParam){%>
+             href="/faculty/academic-details"
+             <%} else {%>
+             href="/faculty/academic-details?fId=<%=GetParam%>"
+             <%}%>
+             >     
                 <i class="material-icons">bubble_chart</i>
                 <p>Acedemic Details</p>
             </a>
@@ -61,7 +91,13 @@
         class="active"
         <% } %>
         >
-            <a href="/faculty/rnd-details">
+            <a 
+            <% if(!GetParam){%>
+             href="/faculty/rnd-details"
+             <%} else {%>
+             href="/faculty/rnd-details?fId=<%=GetParam%>"
+             <%}%>
+             >     
                 <i class="material-icons">location_on</i>
                 <p>R&D</p>
             </a>
@@ -71,7 +107,14 @@
         class="active"
         <% } %>
         >
-            <a href="/faculty/faculty-reports">
+            <a 
+            <% if(!GetParam){%>
+             href="/faculty/faculty-reports"
+             <%} else {%>
+             href="#";
+             disabled = true;
+             <%}%>
+             >     
                 <i class="material-icons">bubble_chart</i>
                 <p>Faculty Reports</p>
             </a>

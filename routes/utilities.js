@@ -6,4 +6,14 @@ var checkSesssion=function(req, res){
     return true;
 }
 
-module.exports={checkSesssion: checkSesssion}
+var checkGetParam = function(req,res){
+    if(req.query.fId){
+        return true;
+    }
+    return false;
+}
+
+module.exports={
+    checkSesssion: checkSesssion,
+    checkGetParam: checkGetParam
+    }
