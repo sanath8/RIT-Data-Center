@@ -4,10 +4,19 @@
 <% include ../partials/loadSelectList %>
 <form class="form-inline">
 
-  <div class="form-group">
+  <div class="form-group" id = "filters">
       <label for="exampleFormControlSelect0">Tables</label>
       <select class="form-control" id="exampleFormControlSelect0">
         <%loadInList(selectList1)%>
+      </select>
+      <label for="exampleFormControlSelect1">Name</label>
+      <select class="form-control" id="exampleFormControlSelect1">
+        <option>ALL</option>
+        <%loadInList(selectList2)%>
+      </select>
+      <label for="exampleFormControlSelect2">Year</label>
+      <select class="form-control" id="exampleFormControlSelect2">
+        <%loadInList([{year:"ALL"}, {year:1}, {year:2}, {year:3}, {year:4}, {year:5}])%>
       </select>
   </div>
 
@@ -43,16 +52,32 @@
 <% include ../partials/footer %>
 <script>
     $("#getReport").click(function(){
-      console.log("Report Generation");
-        var tableName = $('#exampleFormControlSelect0').val();
-        var journalType =$('#exampleFormControlSelect2').val();
-        var sjrQuartile = $('#exampleFormControlSelect3').val();
-        var year = $('#exampleFormControlSelect4').val();
-        dataForSelect = {
-            'schema': '*',
-            'whereOption' : []
-        }
+      var tableName = $('#exampleFormControlSelect0').val();
+      var facultyName = $('#exampleFormControlSelect1').val();
+      var year = $('#exampleFormControlSelect2').val();
+      var facultyFilter;
+      if(facultyName == "ALL")
+      {
+        facultyFilter = [];
+      }
+      else
+      {
+        facultyFilter = ["facultyName = '"+ facultyName +"'"];
+      }
+      if(year == "ALL")
+      {
 
+        facultyFilter = facultyFilter;
+      }
+      else
+      {
+        var yearFilter =  "year >= " + (new Date().getFullYear()- year).toString() + "";
+        facultyFilter.push(yearFilter);
+      }
+      dataForSelect = {
+          'schema': '*',
+          'whereOption' : facultyFilter
+      }
         $.ajax({
               type: 'POST',
               data: JSON.stringify(dataForSelect),
@@ -70,15 +95,32 @@
             });
     })
 
-    $("#exampleFormControlSelect0").change(function () {
+    $("#filters").change(function () {
       var tableName = $('#exampleFormControlSelect0').val();
-      var journalType =$('#exampleFormControlSelect2').val();
-      var sjrQuartile = $('#exampleFormControlSelect3').val();
-      var year = $('#exampleFormControlSelect4').val();
-      //console.log(journalName + " " + journalType + " " + sjrQuartile);
+      var facultyName = $('#exampleFormControlSelect1').val();
+      var year = $('#exampleFormControlSelect2').val();
+      var facultyFilter;
+      if(facultyName == "ALL")
+      {
+        facultyFilter = [];
+      }
+      else
+      {
+        facultyFilter = ["facultyName = '"+ facultyName +"'"];
+      }
+      if(year == "ALL")
+      {
+
+        facultyFilter = facultyFilter;
+      }
+      else
+      {
+        var yearFilter =  "year >= " + (new Date().getFullYear()- year).toString() + "";
+        facultyFilter.push(yearFilter);
+      }
       dataForSelect = {
           'schema': '*',
-          'whereOption' : []
+          'whereOption' : facultyFilter
       }
     $.ajax({
           type: 'POST',
@@ -87,17 +129,35 @@
           url: 'http://localhost:3000/v1/apis/data/'+tableName+'/',
           success: function(dataRecieved) {
             console.log('success');
-            console.log(dataRecieved[0]);// if there is integrity constraint maintained it should recieve only one result entry
-            var counter = 1;
-            //this code renders the data back to the input entries
-            //document.getElementById("filteredResult").innerHTML =   JSON.stringify(dataRecieved);
-            //window.location.href = "/faculty/generateExcel/" + JSON.stringify(dataRecieved);
-            buildTable(dataRecieved)
-            //end
+            console.log(dataRecieved[0]);
+            console.log("sssssssssssssssssssss"+tableName+" "+facultyName+" "+year);
+
+            buildTable(dataRecieved);
 
           }
         });
 });
+
+  /*$("#exampleFormControlSelect1").change(function () {
+    var tableName = $('#exampleFormControlSelect1').val();
+    dataForSelect = {
+        'schema': '*',
+        'whereOption' : []
+    }
+  $.ajax({
+        type: 'POST',
+        data: JSON.stringify(dataForSelect),
+        contentType: 'application/json',
+        url: 'http://localhost:3000/v1/apis/data/'+tableName+'/',
+        success: function(dataRecieved) {
+          console.log('success');
+          console.log(dataRecieved[0]);
+          buildTable(dataRecieved);
+
+        }
+      });
+  });*/
+
 
 function buildTable(json)
 {

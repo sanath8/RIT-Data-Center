@@ -356,6 +356,23 @@ sqlObject.prototype.getFourSelectList = function(callback, url1, url2, url3, url
     callback(err, data1, data2, data3, results);
   });
 }
+sqlObject.prototype.getTwoSelectList = function(callback, url1, tableName){
+	var sql1 = "select distinct table_name from information_schema.tables where table_schema = 'rit_data_center_fake'";
+  var sql2 = "select distinct " + url1 + " from " + tableName;
+
+  var data1, data2, data3;
+  this.connection.query(sql1,function(err,results,fields){
+    data1 = results;
+  });
+
+  this.connection.query(sql2,function(err,results,fields){
+		data2 = results;
+		callback(data1, data2);
+
+  });
+
+}
+
 sqlObject.prototype.getAchievements = function(callback){
   var sql1 = "select * from faculty_workshop_fdp";
   var sql2 = "select * from faculty_conference_symposia";
@@ -415,6 +432,41 @@ sqlObject.prototype.getJointFacultyInfo = function (callBack, tableName)
 	    callBack(result);
 	  }
 	);
+
+}
+
+sqlObject.prototype.fetchResults = function(columns, url, whereOptions, callBack)
+{
+  //whereOptions is an array of strings
+  try
+  {
+    var query = "SELECT * \
+								 FROM faculty NATURAL JOIN  " + url + "\
+								 WHERE 1=1";
+		console.log(whereOptions);
+    for(var i = 0; i < whereOptions.length; i++)
+    {
+      query += " AND " + whereOptions[i];
+    }
+		console.log(query);
+		console.log(whereOptions);
+
+    this.connection.query(query,
+      function (err, result, fields)
+      {
+          if (err)
+            throw err;
+          sqlResults = result;
+          if(callBack != false)
+            callBack(sqlResults);
+      }
+    );
+  }
+
+  catch(err)
+  {
+    console.log("SQL error for "+ query +"occured : " + err);
+  }
 
 }
 
