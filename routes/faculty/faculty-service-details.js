@@ -5,6 +5,18 @@ var utility = require('../utilities');
 
 router.get('/', function(req, res, next) {
 	if(!utility.checkSesssion(req, res)) return;
+
+	var facultyId;
+	var auth = true;
+
+	if(!utility.checkGetParam(req,res)){
+		facultyId = req.session.facultyId;
+	}
+	else{
+		auth = false;
+		facultyId = req.query.fId;
+	}
+
 	var callback = function(err, result){
 		if(err)
 			throw err;
@@ -28,11 +40,12 @@ router.get('/', function(req, res, next) {
 							 payScale : "Payscale" 
 							}
 						
-					 }
+					 },
+				GetParam: req.query.fId
 				});
 
 	}
-	sqlExecute.getFacultyService(req.session.facultyId, callback);
+	sqlExecute.getFacultyService(facultyId, callback);
 });
 
 

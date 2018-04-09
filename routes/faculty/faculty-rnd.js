@@ -5,6 +5,18 @@ var utility = require('../utilities');
 
 router.get('/', function(req, res, next) {
 	if(!utility.checkSesssion(req, res)) return;
+
+	var facultyId;
+	var auth = true;
+
+	if(!utility.checkGetParam(req,res)){
+		facultyId = req.session.facultyId;
+	}
+	else{
+		auth = false;
+		facultyId = req.query.fId;
+	}
+
 	var callback = function(err, data){
 		if(err)
 			throw err;
@@ -45,10 +57,11 @@ router.get('/', function(req, res, next) {
 					mouSigningDate : "MOU Sign Date"                
 				}
 			   
-			}
+			},
+		GetParam: req.query.fId
 	});
 	}
-	sqlExecute.getFaultyRND(req.session.facultyId, callback);
+	sqlExecute.getFaultyRND(facultyId, callback);
   
 });
 
