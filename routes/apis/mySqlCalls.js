@@ -440,7 +440,11 @@ sqlObject.prototype.fetchResults = function(columns, url, whereOptions, callBack
   //whereOptions is an array of strings
   try
   {
-    var query = "SELECT * \
+		if(columns == "")
+				columnSelect = "*";
+		else
+				columnSelect = columns;
+    var query = "SELECT "+ columnSelect +" \
 								 FROM faculty NATURAL JOIN  " + url + "\
 								 WHERE 1=1";
 		console.log(whereOptions);
