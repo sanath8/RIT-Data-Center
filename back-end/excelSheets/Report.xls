@@ -1,2 +1,2 @@
-facultyId	facultyName	gender	address	religion	caste	category	dob	natureOfAppointment	contactNumber	emailId	password	panNumber	accountNumber	pfNumber	departmentId	slNo	bookTitle	bookAuthors	bookPublisher	year
-5	faculty5	M	address5	religion2	caste2	category3	1983-10-23T183000.000Z	fulltime	9089543722	email5	pass5	567385746	2345381423	827487304	cse	20	booktitle20	author20	publisher20	2014
+facultyName	category	contactNumber	panNumber	departmentId	chapterName
+faculty4	category1	9089543711	567385390	cse	chapter17
