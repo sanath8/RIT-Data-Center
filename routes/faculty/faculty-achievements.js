@@ -4,21 +4,83 @@ var sqlExecute = require('../apis/mySqlCalls');
 var utility = require('../utilities');
 
 router.get('/', function(req, res, next) {
-  utility.checkSesssion(req, res);
-  var callback = function(err, result1, result2, result3, result4, result5, result6, result7){
-    if(err)
-      throw err;
-    // reportData[0] = result1;
-    // reportData[1] = result2;
-    // reportData[2] = result3;
-    // reportData[3] = result4;
-    // reportData[4] = result5;
-    // reportData[5] = result6;
-    // reportData[6] = result7;
-    res.render('faculty/achievements', { type:"achievements", resultSet1:result1, resultSet2:result2, resultSet3:result3, resultSet4:result4, resultSet5:result5, resultSet6:result6, resultSet7:result7});
-  }
-  sqlExecute.getAchievements(callback);
+	if(!utility.checkSesssion(req, res)) return;
+	var callback = function(err, data){
+		if(err)
+			throw err;
+		res.render('faculty/achievements', {title : "Faculty Achievement Details",type : "achievements", data:data,
+		index : { 
+			url:"/faculty/achievements",
+			faculty_workshop_fdp:
+			   {
+				title : "Title" ,
+				sponsoredOrFunded : "Sponsored/Funded" ,
+				date : "Date" ,
+				noOfParticipants : "No. of Participants" ,
+				type : "Type" 
+			   }
+		   ,
+		   faculty_conference_symposia:
+			   {
+				eventName : "Event Name" ,
+				place : "Place" ,
+				date : "Date" ,
+				invitedOrDeputed : "Invited Or Deputed" ,
+				noOfPapersPresented : "No. Of Papers Presented" 
+			   }
+		   ,
+		   faculty_guest_lecture:
+			   {            
+				placeInvited : "Place Invited" ,
+				title : "Title" ,
+				date : "Date"               
+			   }
+		   ,
+		   book:
+			   {            
+				bookTitle : "Book Title" ,
+				bookAuthors : "Book Author" ,
+				bookPublisher : "Book Publisher" ,
+				year : "Year"                
+			   }
+		   ,
+		   book_chapter:
+			   {            
+				chapterName : "Chapter Name" ,
+				bookName : "Book Name" ,
+				chapterAuthors : "Chapter Authors" ,
+				publisher : "Publisher" ,
+				year : "Year"                
+			   }
+		   ,
+		   conference_paper:
+			   {
+				
+				authors : "Authors" ,
+				title : "Title" ,
+				conferenceName : "Conference Name" ,
+				conferenceType : "Conference Type" ,
+				organizedBy : "Organized By" ,
+				year : "Year"                
+			   }
+		   ,
+		   journal_paper:
+			   {            
+				authors : "Authors" ,
+				title : "Title" ,
+				issn : "ISSN" ,
+				journalName : "Journal Name" ,
+				journalType : "Journal Type" ,
+				volumeNumber : "Volume Number" ,
+				pageNumbers : "Page Numbbers" ,
+				year : "Year" ,
+				sjrQuartile : "SJR Quartile"               
+			   }
+		   
+		}});
+	}
+	//TODO Change the Faculty Achievements Table
+	sqlExecute.getFaultyAchievements(req.session.facultyId, callback);
 });
-
 
 module.exports=router;

@@ -1,2 +1,2 @@
-slNo	beUniversity	bePassYear	bePassPercentage	mtechUniversity	mtechPassYear	mtechPassPercentage	phdUniversity	phdAwardYear	phdAreaOfSpecialization	facultyId
-1	ramaiah	1999	23	ramaiah	2004	40	ramiah	2013	computer	1
+facultyId	slNo	beUniversity	bePassPercentage	bePassYear	mtechUniversity	mtechPassPercentage	mtechPassYear	phdUniversity	phdAwardYear	phdAreaOfSpecialization	facultyName	gender	address	religion	caste	category	dob	natureOfAppointment	contactNumber	emailId	password	panNumber	accountNumber	pfNumber	departmentId
+1	1	university1	55.9	1989	mtech university1	53.8	1991	phd university1	1995	spl area1	faculty1	M	address1	religion1	caste1	category1	Sat Oct 24 1987 00:00:00 GMT+0530 (India Standard Time)	fulltime	9089543678	email1	pass1	567384322	2345464223	827487240	cse

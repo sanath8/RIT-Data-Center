@@ -16,8 +16,8 @@ sqlQueryHandler.fetchResults = function(columns, url, whereOptions, callBack)
   //whereOptions is an array of strings
   try
   {
-    sqlQueryHandler.query = "SELECT " + columns + " FROM " + mappingUrl.mappingUrlTable[url] + " WHERE 1=1";
-    console.log("type whereOptions" + typeof(whereOptions));
+    sqlQueryHandler.query = "SELECT " + columns + " FROM " + url + " WHERE 1=1";
+    //console.log("whereOptions" + whereOptions);
     for(var i = 0; i < whereOptions.length; i++)
     {
       
@@ -129,6 +129,21 @@ sqlQueryHandler.insertRow1 = function(columns, tableName, whereOptions, callBack
 
 }
 
+sqlQueryHandler.getDataBaseTables = function(dataBase, callBack)
+{
+
+  var query = "SELECT table_name FROM information_schema.tables where table_schema = '" + dataBase + "'";
+  console.log(query);
+  con.query(query, function (err, result, fields)
+  {
+    if (err)
+      console.log(err);
+    callBack(result);
+  }
+);
+
+}
+
 sqlQueryHandler.getTableAttributesInfo = function(tableName, callBack)
 {
 
@@ -144,7 +159,7 @@ sqlQueryHandler.getTableAttributesInfo = function(tableName, callBack)
 
 sqlQueryHandler.getFormattedDate = function(date)
 {
-  var modDate = date.split("-");
+  var modDate = date.split("/");
   modDate = modDate.reverse();
   modDate = modDate.join("-");
   return modDate;

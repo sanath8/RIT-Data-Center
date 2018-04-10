@@ -1,6 +1,7 @@
 <% include ../partials/header %>
 <% include ../partials/faculty-sidebar %>
 <% include ../partials/faculty-navbar %>
+<% include ../partials/loadTablePartial %>
 
 <div class="container-fluid">
     <div class="row">
@@ -11,98 +12,172 @@
                     <p class="category">Complete your profile</p>
                 </div>
                 <div class="card-content">
-                    <form>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group label-floating">
-                                    <label class="control-label">Username</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group label-floating">
-                                    <label class="control-label">Email address</label>
-                                    <input type="email" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group label-floating">
-                                    <label class="control-label">Fist Name</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group label-floating">
-                                    <label class="control-label">Last Name</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group label-floating">
-                                    <label class="control-label">Adress</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group label-floating">
-                                    <label class="control-label">City</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group label-floating">
-                                    <label class="control-label">Country</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group label-floating">
-                                    <label class="control-label">Postal Code</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>About Me</label>
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">hello everyone !</label>
-                                        <textarea class="form-control" rows="5"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
-                        <div class="clearfix"></div>
-                    </form>
+                    <table class="table">
+                        <tbody>
+                        <br>
+                            <% loadInTableVerticle(data["faculty"],1) %>
+                        </tbody>
+                    </table>
                 </div>
+                <a href = "/faculty/generateexcel/1/1">
+                <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
+                </a>
+                <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal1" style="margin:13px" onclick="fillDataVerticleTable(1)">Update</button>
             </div>
         </div>
         <div class="col-md-4">
             <div class="card card-profile">
                 <div class="card-avatar">
                     <a href="#pablo">
-                        <img class="img" src="../assets/img/faces/marc.jpg" />
+                        <img class="img" style="position:relative;" id="profileImage" src="../assets/img/faces/<%-fId%>.jpg" onmouseover="displayInput()" onmouseout="hideInput()"/>
                     </a>
                 </div>
+                <form action="/faculty/changeProfilePicture" method="post" id="profileForm"  enctype="multipart/form-data">
+                    <input name="avatar" onchange="checkIfInput()" type="file" class="pull-right" id="profileImageButton" style="display:none; margin-top:-40px; position:absolute;" onmouseover="displayInput()" onmouseout="hideInput()"/>
+                </form>
                 <div class="content">
-                    <h6 class="category text-gray">HOD</h6>
-                    <h4 class="card-title">Dr. Anita Kanavalli</h4>
+                    <h6 class="category text-gray">designation</h6>
+                    <h4 class="card-title"><%-data["faculty"][0]["Name"]%></h4>
                     <p class="card-content">
-                      Dr. Anita Kanavalli received her Ph.D. in Computer Science and Engineering from Bangalore University in 2013. She has published many research papers in International Conferences and Journals. She is a member of Indian Society of Technical Education (ISTE) and IEEE (Computer Society). She has guided many M.Tech students and is guiding PhD scholars. She is serving the institution from past 20+ years. She is also a certified instructor for CISCO Networking Academy for CCNA.
+                    <%-about%>
                     </p>
-                    <a href="#pablo" class="btn btn-primary btn-round">Profile info</a>
+                    <a  data-toggle="modal" data-target="#aboutModal" style="margin:13px" class="btn btn-primary btn-round">Edit Description</a>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+
+
+
+
+
+<!--model containing form for faculty qualification below -->
+<!-- TODO == MAKE MODEL MODULAR -->
+
+
+
+<div class="modal fade" id="myModal1" role="dialog">
+<div class="modal-dialog">
+
+  <!-- Modal content-->
+  <div class="modal-content">
+  <div class="card">
+      <div class="card-header" data-background-color="purple" style="margin-top:-50px;">
+          <h4 class="title">Edit Row Data</h4>
+      </div>
+      <div class="card-content">
+            <div class="col-md-12">
+                  <div class="form-group">
+                      <label class="control-label">Name</label>
+                      <input type="text" id="data11" class="form-control">
+                  </div>
+              </div>
+              <div class="col-md-12">
+                  <div class="form-group">
+                      <label class="control-label">Gender</label>
+                      <input type="email" id="data12" class="form-control">
+                  </div>
+              </div>
+              <div class="col-md-12">
+                  <div class="form-group">
+                      <label class="control-label">Address</label>
+                      <input type="text" id="data13" class="form-control">
+                  </div>
+              </div>
+              <div class="col-md-12">
+                  <div class="form-group">
+                      <label class="control-label">Religion</label>
+                      <input type="text" id="data14" class="form-control">
+                  </div>
+              </div>
+              <div class="col-md-12">
+                  <div class="form-group">
+                      <label class="control-label">Caste</label>
+                      <input type="text" id="data15" class="form-control">
+                  </div>
+              </div>
+              <div class="col-md-12">
+                  <div class="form-group">
+                      <label class="control-label">Date of Birth</label>
+                      <input type="text" id="data16" class="form-control">
+                  </div>
+              </div>
+              <div class="col-md-12">
+                  <div class="form-group">
+                      <label class="control-label">Nature of Appointment</label>
+                      <input type="text" id="data17" class="form-control">
+                  </div>
+              </div>
+              
+              <div class="col-md-12">
+                  <div class="form-group">
+                      <label class="control-label">Contact Number</label>
+                      <input type="text" id="data18" class="form-control">
+                  </div>
+              </div>
+              
+              <div class="col-md-12">
+                  <div class="form-group">
+                      <label class="control-label">Email-Id</label>
+                      <input type="text" id="data19" class="form-control">
+                  </div>
+              </div>
+              
+              <div class="col-md-12">
+                  <div class="form-group">
+                      <label class="control-label">PAN Number</label>
+                      <input type="text" id="data110" class="form-control">
+                  </div>
+              </div>
+              
+              <div class="col-md-12">
+                  <div class="form-group">
+                      <label class="control-label">Account Number</label>
+                      <input type="text" id="data111" class="form-control">
+                  </div>
+              </div>
+              <div class="col-md-12">
+                  <div class="form-group">
+                      <label class="control-label">Pf Number</label>
+                      <input type="text" class="form-control">
+                  </div>
+              </div>
+            <button type="submit" class="btn btn-primary pull-right">Update</button>
+            <button type="submit" class="btn btn-warning pull-right">Cancel</button>
+            <button type="submit" class="btn btn-danger pull-right">Delete</button>          </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+<div class="modal fade" id="aboutModal" role="dialog">
+<div class="modal-dialog">
+
+  <!-- Modal content-->
+  <div class="modal-content">
+  <div class="card">
+      <div class="card-header" data-background-color="purple" style="margin-top:-50px;">
+          <h4 class="title">Edit Description</h4>
+      </div>
+      <div class="card-content">
+            <div class="col-md-12">
+                  <div class="form-group">
+                      <label class="control-label">Description</label>
+                      <textarea rows="4" cols="45" class="form-control"><%-about%></textarea>
+                  </div>
+              </div>
+            <button type="submit" class="btn btn-primary pull-right">Update</button>
+            <button type="submit" class="btn btn-warning pull-right">Cancel</button>
+            <button type="submit" class="btn btn-danger pull-right">Delete</button>          </form>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 
 <% include ../partials/footer %>

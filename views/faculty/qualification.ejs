@@ -16,33 +16,21 @@
                     <div class="card-content table-responsive">
                         <table class="table">
                             <thead class="text-primary">
-                              <tr>
-                                  <th rowspan="2">Sl. No</th>
-                                  <th colspan="3" style="text-align: center">B.E</th>
-                                  <th colspan="3" style="text-align: center">M.Tech</th>
-                                  <th colspan="3" style="text-align: center">PhD</th>
-                              </tr>
-                              <tr>
-                                  <th>University</th>
-                                  <th>Pass Percentage</th>
-                                  <th>Year of Passing</th>
-                                  <th>University</th>
-                                  <th>Pass Percentage</th>
-                                  <th>Year of Passing</th>
-                                  <th>University</th>
-                                  <th>Year of Award</th>
-                                  <th>Area of Specialization</th>
-                                  <th>faculty id</th>
-                              </tr>
+                                <th>Degree</th>
+                                <th>University</th>
+                                <th>Pass Class</th>
+                                <th>Year of Degree Awarded</th>
+                                <th>Area of Specialization</th>
                             </thead>
                             <tbody>
-                                <% loadInTable(resultSet, 1, 'facultyQualification')%>
+                                <% loadInTableModular("faculty_qualification")%>
                             </tbody>
                         </table>
                     </div>
-                    <a href = "/faculty/generateexcel/<%- type %>/1">
-                    <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
-                    </a>
+                <a href = "/faculty/generateexcel/1/2">
+                <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
+                </a>
+                <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal1" style="margin:13px">Insert</button>
                 </div>
             </div>
         </div>
@@ -50,70 +38,6 @@
 </div>
 
 
-<!--model containing form for faculty qualification below -->
-<!-- TODO == MAKE MODEL MODULAR -->
-
-<div class="modal fade" id="myModal1" role="dialog">
-<div class="modal-dialog">
-
-  <!-- Modal content-->
-  <div class="modal-content">
-  <div class="card">
-      <div class="card-header" data-background-color="purple" style="margin-top:-50px;">
-          <h4 class="title">Edit Row Data</h4>
-      </div>
-      <div class="card-content">
-            <div class="form-group ">
-                <label class="control-label">BE University</label>
-                <input id="data11" type="text" class="form-control">
-            </div>
-            <div class="form-group ">
-                <label class="control-label">BE Pass Percentage</label>
-                <input id= "data12" type="text" class="form-control">
-            </div>
-            <div class="form-group ">
-                <label class="control-label">BE Year of Passing</label>
-                <input id= "data13" type="text" class="form-control">
-            </div>
-            <div class="form-group ">
-                <label class="control-label">M.Tech University</label>
-                <input id= "data14" type="text" class="form-control">
-            </div>
-            <div class="form-group ">
-                <label class="control-label">M.Tech Pass Percentage</label>
-                <input id= "data15" type="text" class="form-control">
-            </div>
-            <div class="form-group ">
-                <label class="control-label">M.Tech Year of Passing</label>
-                <input id= "data16" type="text" class="form-control">
-            </div>
-            <div class="form-group ">
-                <label class="control-label">PhD University</label>
-                <input id= "data17" type="text" class="form-control">
-            </div>
-            <div class="form-group ">
-                <label class="control-label">PhD Year of Award</label>
-                <input id= "data18" type="text" class="form-control">
-            </div>
-            <div class="form-group ">
-                <label class="control-label">PhD Area of Specialization</label>
-                <input id= "data19" type="text" class="form-control">
-            </div>
-            <div style = "display: none">
-                <input id= "data10" type="text" class="form-control">
-            </div>
-            <button id = "Update1" name = "facultyQualification" class="btn btn-primary pull-right" onclick="updateData(this.id, this.name)">Update</button>
-            <button id = "Cancel1" name = "facultyQualification" type="" class="btn btn-warning pull-right">Cancel</button>
-            <button id = "Delete1" name = "facultyQualification" type="" class="btn btn-danger pull-right" onclick="deleteData(this.id)">Delete</button>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-
-
-
 
 <% include ../partials/footer %>
-
-
+</script>

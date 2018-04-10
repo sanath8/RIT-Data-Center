@@ -66,10 +66,14 @@
                 <p>R&D</p>
             </a>
         </li>
-        <li id="personnallist">
-            <a href="/faculty/personnal-info">
-                <i class="material-icons text-gray">notifications</i>
-                <p>Update personnal info</p>
+        <li
+        <% if(type=="faculty-report"){%>
+        class="active"
+        <% } %>
+        >
+            <a href="/faculty/faculty-reports">
+                <i class="material-icons">bubble_chart</i>
+                <p>Faculty Reports</p>
             </a>
         </li>
         <li 

@@ -16,23 +16,21 @@
                     <div class="card-content table-responsive">
                         <table class="table">
                             <thead class="text-primary">
-                                <th>Sl. No</th>
-                                <th>Event Name</th>
-                                <th>Date</th>
-                                <th>Organized / Attended</th>
                                 <th>Title</th>
-                                <th>Number of Participants</th>
                                 <th>Sponsered / Funded</th>
+                                <th>Date</th>
+                                <th>Number of Participants</th>
+                                <th>type</th>
                             </thead>
                             <tbody>
-                                <% loadInTable(resultSet1) %>
+                                <% loadInTableModular("faculty_workshop_fdp") %>
                             </tbody>
                         </table>
                     </div>
-                    <a href = "/faculty/generateexcel/<%- type %>/1">
+                    <a href = "/faculty/generateexcel/1/4">
                     <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
                     </a>
-                    <button type="submit" class="btn btn-primary pull-right" style="margin:13px">Edit</button>
+                    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal1" style="margin:13px">Insert</button>
                 </div>
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
@@ -42,22 +40,21 @@
                     <div class="card-content table-responsive">
                         <table class="table">
                             <thead class="text-primary">
-                                <th>Sl. No</th>
                                 <th>Name of the Event</th>
                                 <th>Place</th>
                                 <th>Date</th>
-                                <th>Number of Papers Presented</th>
                                 <th>Invited / Deputed</th>
+                                <th>Number of Papers Presented</th>
                             </thead>
                             <tbody>
-                                <% loadInTable(resultSet2) %>
+                                <% loadInTableModular("faculty_conference_symposia") %>
                             </tbody>
                         </table>
                     </div>
-                    <a href = "/faculty/generateexcel/<%- type %>/2">
+                    <a href = "/faculty/generateexcel/2/4">
                     <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
                     </a>
-                    <button type="submit" class="btn btn-primary pull-right" style="margin:13px">Edit</button>
+                    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal1" style="margin:13px">Insert</button>
                 </div>
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
@@ -67,20 +64,19 @@
                     <div class="card-content table-responsive">
                         <table class="table">
                             <thead class="text-primary">
-                                <th>Sl. No</th>
                                 <th>Invited Place</th>
                                 <th>Title</th>
                                 <th>Date</th>
                             </thead>
                             <tbody>
-                                <% loadInTable(resultSet3) %>
+                                <% loadInTableModular("faculty_guest_lecture") %>
                             </tbody>
                         </table>
                     </div>
-                    <a href = "/faculty/generateexcel/<%- type %>/3">
+                    <a href = "/faculty/generateexcel/3/4">
                     <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
                     </a>
-                    <button type="submit" class="btn btn-primary pull-right" style="margin:13px">Edit</button>
+                    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal1" style="margin:13px">Insert</button>
                 </div>
               <h2>Book and Chapter Publications</h2>
                 <div class="card">
@@ -91,21 +87,20 @@
                   <div class="card-content table-responsive">
                       <table class="table">
                           <thead class="text-primary">
-                              <th>Sl. No</th>
                               <th>Title</th>
                               <th>Authors</th>
                               <th>Publisher</th>
                               <th>Year</th>
                           </thead>
                           <tbody>
-                              <% loadInTable(resultSet4) %>
+                              <% loadInTableModular("book") %>
                           </tbody>
                       </table>
                   </div>
-                  <a href = "/faculty/generateexcel/<%- type %>/4">
-                  <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
-                  </a>
-                  <button type="submit" class="btn btn-primary pull-right" style="margin:13px">Edit</button>
+                    <a href = "/faculty/generateexcel/4/4">
+                    <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
+                    </a>
+                    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal1" style="margin:13px">Insert</button>
                 </div>
                 <div class="card">
                   <div class="card-header" data-background-color="purple">
@@ -115,7 +110,6 @@
                   <div class="card-content table-responsive">
                       <table class="table">
                           <thead class="text-primary">
-                              <th>Sl. No</th>
                               <th>Chapter Name</th>
                               <th>Book Name</th>
                               <th>Authors</th>
@@ -123,14 +117,14 @@
                               <th>Year</th>
                           </thead>
                           <tbody>
-                              <% loadInTable(resultSet5) %>
+                              <% loadInTableModular("book_chapter") %>
                           </tbody>
                       </table>
                   </div>
-                  <a href = "/faculty/generateexcel/<%- type %>/5">
-                  <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
-                  </a>
-                  <button type="submit" class="btn btn-primary pull-right" style="margin:13px">Edit</button>
+                     <a href = "/faculty/generateexcel/5/3">
+                    <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
+                    </a>
+                    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal1" style="margin:13px">Insert</button>
                 </div>
               <h2>Paper Publications</h2>
                 <div class="card">
@@ -141,24 +135,22 @@
                 <div class="card-content table-responsive">
                     <table class="table">
                         <thead class="text-primary">
-                            <th>Sl. No</th>
                             <th>Authors</th>
                             <th>Title</th>
                             <th>Conference Name</th>
                             <th>Conference Type</th>
                             <th>Organized By</th>
-                            <th>Date</th>
                             <th>Year</th>
                         </thead>
                         <tbody>
-                            <% loadInTable(resultSet6) %>
+                            <% loadInTableModular("conference_paper") %>
                         </tbody>
                     </table>
                 </div>
-                <a href = "/faculty/generateexcel/<%- type %>/6">
-                <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
-                </a>
-                <button type="submit" class="btn btn-primary pull-right" style="margin:13px">Edit</button>
+                    <a href = "/faculty/generateexcel/6/4">
+                    <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
+                    </a>
+                    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal1" style="margin:13px">Insert</button>
               </div>
                 <div class="card">
                   <div class="card-header" data-background-color="purple">
@@ -168,24 +160,25 @@
                   <div class="card-content table-responsive">
                       <table class="table">
                           <thead class="text-primary">
-                              <th>Sl. No</th>
                               <th>Authors</th>
                               <th>Title</th>
+                              <th>ISSN</th>
                               <th>Journal Name</th>
-                                <th>Journal Type</th>
+                              <th>Journal Type</th>
                               <th>Volume Number</th>
                               <th>Page Numbers</th>
                               <th>Year</th>
+                              <th>SJR Quartile</th>
                           </thead>
                           <tbody>
-                              <% loadInTable(resultSet7) %>
+                              <% loadInTableModular("journal_paper") %>
                           </tbody>
                       </table>
                   </div>
-                  <a href = "/faculty/generateexcel/<%- type %>/7">
-                  <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
-                  </a>
-                  <button type="submit" class="btn btn-primary pull-right" style="margin:13px">Edit</button>
+                    <a href = "/faculty/generateexcel/7/4">
+                    <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
+                    </a>
+                    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal1" style="margin:13px">Insert</button>
               </div>
             </div>
         </div>

@@ -1,8 +1,31 @@
 <%
+    loadInTableModular=function(columnName){
+        var resultSet=data[columnName];
+        for(var i = 0 ; i<resultSet.length;i++){
+
+            __append('<tr data-toggle="modal" data-target="#myModalModular" onclick="fillDataModular(\''+columnName+'\','+i+')" onmouseover="hoverEffect(this)" onmouseout="removeHoverEffect(this)">');
+            for(var j in resultSet[i]){
+                if(j=="slNo" || j=="facultyId")
+                    continue;
+                // console.log(j + 'hello');    
+                // console.log(resultSet[i]);            
+                __append('<td>');
+                if(resultSet[i][j]!=null)
+                    __append(''+resultSet[i][j] +'');
+                else
+                    __append("-");
+                __append('</td>');
+            }
+            // __append('<td><input class = "btn btn-primary" id = "' + tableName + 'Edit' + (i + 1) + '" style="margin:13px" value = "Edit" type = "button"></button></td>')
+
+        __append('</tr>');
+        }
+    }
 
     loadInTable=function(resultSet, tableNumber, tableName){
         for(var i = 0 ; i<resultSet.length;i++){
-            __append('<tr id = "' + tableName + 'Row' + (i + 1) + '"data-toggle="modal" data-target="#myModal'+tableNumber +'" onclick="fillData(this,'+tableNumber+')" onmouseover="hoverEffect(this)" onmouseout="removeHoverEffect(this)">');
+
+            __append('<tr data-toggle="modal" data-target="#myModal'+tableNumber +'" onclick="fillData(this,'+tableNumber+')" onmouseover="hoverEffect(this)" onmouseout="removeHoverEffect(this)">');
             for(var j in resultSet[i]){
                 // console.log(j + 'hello');    
                 // console.log(resultSet[i]);            
@@ -18,6 +41,28 @@
         __append('</tr>');
         }
     }
+
+    loadInTableVerticle=function(resultSet, tableNumber){
+        for(var i = 0 ; i<resultSet.length;i++){
+            for(var j in resultSet[i]){
+                __append('<tr onmouseover="hoverEffect(this)" onmouseout="removeHoverEffect(this)">');
+                __append('<th>');
+                if(j!=null)
+                    __append(''+j +'');
+                else
+                    __append("-");
+                __append('</th>');        
+                __append('<td>');
+                if(resultSet[i][j]!=null)
+                    __append(''+resultSet[i][j] +'');
+                else
+                    __append("-");
+                __append('</td>');
+                __append('</tr>');
+            }
+        }
+    }
+    
     loadInTableEditable=function(resultSet){
         for(var i = 0 ; i<resultSet.length;i++){
             __append("<tr>");
@@ -33,7 +78,34 @@
 
 %>
 
+<div class="modal fade" id="myModalModular" role="dialog">
+<div class="modal-dialog">
 
+  <!-- Modal content-->
+  <div class="modal-content">
+  <div class="card">
+      <div class="card-header" data-background-color="purple" style="margin-top:-50px;">
+          <h4 class="title">Edit Row Data</h4>
+      </div>
+      <div class="card-content" id="modalCardContent">
+          
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<script>
+var data={};
+var index={};
+<% if(locals.data){%>
+var data = <%- JSON.stringify(data) %>
+<%}%>
+<% if(locals.index){%>
+var index = <%- JSON.stringify(index) %>
+<%}%>
+</script>
 
 
 
@@ -45,6 +117,36 @@
     function removeHoverEffect(event){
         event.style.background = "white";
     }
+    function fillDataModular(columnName, i){
+        var cardCont=$("#modalCardContent");
+        var str="";
+        str = str + ("<form method='POST' action='/v1/apis/apiUpdate/"+columnName+"'>");
+        //cardCont.append("<form method='POST' action='/v1/apis/apiUpdate/"+columnName+"'>")
+        str = str + ("<input name='url' type='hidden' value='"+index["url"]+"'>");
+        var res = data[columnName][i];
+        console.log(res);
+        console.log(index);
+        for(var j in res){
+            if(j=="slNo" || j=="facultyId"){
+                str = str + ("<input name='"+j+"' type='hidden' value='"+res[j]+"'>");
+                continue;
+            }
+            if(index[columnName])
+                var temp = index[columnName][j]
+            else
+                var temp = "Undefined";
+            str = str + ('<div class="form-group ">\
+                <label class="control-label">'+temp+'</label>\
+                <input name="'+j+'" type="text" class="form-control" value="'+res[j]+'">\
+                </div>')
+        }
+        str = str + ('<button type="submit" class="btn btn-primary pull-right">Update</button>\
+            <button type="reset" class="btn btn-warning pull-right" data-dismiss="modal">Cancel</button>\
+            <button type="submit" formaction="/v1/apis/apiDelete/'+columnName+'" class="btn btn-danger pull-right">Delete</button>\
+            </form>')
+        cardCont.html(str);
+    }
+    
     function fillData(resultSet,tableNumber){
         var rowData = resultSet.cells;
         console.log(rowData[1].innerHTML);
@@ -103,4 +205,37 @@
               }
             });
     }
+    function fillDataVerticleTable(tableNumber){
+        <%if(data["faculty"]){%>
+            var resultSet = <%-JSON.stringify(data["faculty"])%>;
+        <%}%>
+        console.log(resultSet);
+        var len = resultSet.length;
+        noOfEntries =  Object.keys(resultSet[0]).length;
+        var i=1;
+        for(var k=0;k<len;k++){
+            for(var j in resultSet[k]){
+                document.getElementById('data'+tableNumber + i).value = resultSet[k][j];
+                console.log(resultSet[k][j]);
+                i++;
+            }
+        }
+    }
+
+    function displayInput(){
+        document.getElementById("profileImageButton").style.display = "inline";
+        document.getElementById("profileImageButton").style.zIndex = "999";
+    }
+    function hideInput(){
+        document.getElementById("profileImageButton").style.display = "none";
+    }
+    function checkIfInput(){
+        if(document.getElementById("profileImageButton").value == null){
+            console.log("null");
+        } else{
+            console.log("yeas");
+            document.getElementById("profileForm").submit();
+        }
+    }
 </script>
+

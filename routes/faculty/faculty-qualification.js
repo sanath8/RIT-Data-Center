@@ -4,16 +4,38 @@ var sqlExecute = require('../apis/mySqlCalls');
 var utility = require('../utilities');
 
 router.get('/', function(req, res, next) {
-  utility.checkSesssion(req, res);
-  var callback = function(err, result){
-    if(err)
-      throw err;
-    console.log("special : " + result[0]['slNo']);
-    //reportData[0] = result;
-    //console.log(result);
-    res.render('faculty/qualification', {type:"qualification", resultSet:result});
-  }
-  sqlExecute.getWholeTable(callback,'facultyQualification');
+	if(!utility.checkSesssion(req, res)) return;
+	var callback = function(err, result){
+		if(err)
+			throw err;
+		// var result object below tobe deleted 
+		var arr=[];
+		for(var i in result){
+			var temp={
+				facultyId:result[i]["facultyId"],
+				type:result[i]["degree"],
+				university:result[i]["university"],
+				passPercentage:result[i]["passClass"],
+				passYear:result[i]["passYear"],
+				areaOfSpecialization:result[i]["areaOfSpecialization"]
+			};
+			arr.push(temp);
+		}
+		res.render('faculty/qualification', {type:"qualification", data:{ faculty_qualification:arr},
+				index : { 
+					url:"/faculty/qualification",
+       				faculty_qualification:
+					{
+						type: "Type",
+						university: "University",
+						passPercentage: "Pass Percentage",
+						passYear: "Pass Year",
+					}
+				}
+			});
+	}
+	//sqlExecute.getWholeTable(callback,'facultyQualification', req.session.email);
+	sqlExecute.getFaultyQualification(req.session.facultyId, callback);
 });
 
 module.exports=router;

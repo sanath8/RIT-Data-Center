@@ -4,17 +4,55 @@ var sqlExecute = require('../apis/mySqlCalls');
 var utility = require('../utilities');
 
 router.get('/', function(req, res, next) {
-  utility.checkSesssion(req, res);
-  var callback = function(err, result1, result2, result3, result4){
-    if(err)
-      throw err;
-    // reportData[0] = result1;
-    // reportData[1] = result2;
-    // reportData[2] = result3;
-    // reportData[3] = result4;
-    res.render('faculty/academic-details', {type:"academic-details", resultSet1:result1, resultSet2:result2, resultSet3:result3, resultSet4:result4});
-  }
-  sqlExecute.getFourTables(callback,'facultyCourseHandled', 'facultyProjectGuided', 'facultyResearch', 'PhdScholar');
+	if(!utility.checkSesssion(req, res)) return;
+	var callback = function(err, data){
+		if(err)
+			throw err;
+		console.log(JSON.stringify(data));
+		res.render('faculty/academic-details', {title : "Faculty Academic Details", type:"academic-details", data:data,
+		index : { 
+			url:"/faculty/academic-details",
+			courses_handled:{ 
+				yearHandled:"Year Handled"  ,
+				subjectName:"Subject Name"  ,
+				ugOrPg: "UG/PG" ,
+				labHandled:"Lab Handled"                
+			   }
+		   ,
+		   projects_handled:
+			   {            
+				batch:"Batch"  ,
+				ugOrPg :"UG/Pg" ,
+				projectTitle:"Project Title"                
+			   }
+		   ,
+		   faculty_research:
+			   {            
+				guideName : "Guide Name" ,
+				researchCandidateName : "Research Candidate" ,
+				usn : "USN" ,
+				centreName : "Centre Name" ,
+				university : "University" ,
+				registrationYear : "Registration Year" ,
+				title : "Title" ,
+				status :"Status"       
+			   }
+		   ,
+		   phd_scholar:
+			   {            
+				scholarName : "Scholar Name" ,
+				guideName : "Guide Name" ,
+				researchCentre : "Research Centre" ,
+				university : "University" ,
+				registrationYear : "Registration Year" ,
+				usn : "USN" ,
+				title : "Title" ,
+				status : "Status"               
+			   }
+		      
+		}});
+	}
+	sqlExecute.getFaultyAcademics(req.session.facultyId, callback);
 });
 
 

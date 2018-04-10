@@ -1,21 +1,46 @@
 <% include ../partials/header %>
 <% include ../partials/department-sidebar %>
 <% include ../partials/department-navbar %>
+<% include ../partials/loadTablePartial %>
 
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header" data-background-color="purple">
-                    <h4 class="title">Computer Science & Engineering</h4>
-                    <p class="category">General Details</p>
+                <div style="width:132%" class="card-header" data-background-color="purple">
+                    <h4 class="title"><%-departmentName%> General Information</h4>
+                    <p class="category">General Faculty Information</p>
                 </div>
-                <div class="card-content">
-                  <h1><%= departmentname %></h1>
+                <div class="card-content table-responsive">
+                    <table class="table" >
+                        <thead class="text-primary">
+                            <th>facultyName</th>
+                            <th>gender</th>
+                            <th>address</th>
+                            <th>religion</th>
+                            <th>caste</th>
+                            <th>dob</th>
+                            <th>natureOfAppointment</th>
+                            <th>contactNumber</th>
+                            <th>emailId</th>
+                            <th>panNumber</th>
+                            <th>accountNumber</th>
+                            <th>pfNumber</th>
+                        </thead>
+                        <tbody>
+                        <%loadInTable(data.faculty)%>
+                        </tbody>
+                    </table>
                 </div>
+                <a href = "/faculty/generateexcel/1/1">
+                <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
+                </a>
+                <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal1" style="margin:13px" onclick="fillDataVerticleTable(1)">Update</button>
             </div>
         </div>
     </div>
 </div>
+
+
 
 <% include ../partials/footer %>
