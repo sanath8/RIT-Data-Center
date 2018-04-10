@@ -188,6 +188,7 @@ CREATE TABLE `faculty` (
   `accountNumber` varchar(30) NOT NULL,
   `pfNumber` varchar(30) NOT NULL,
   `about` varchar(300) DEFAULT NULL,
+  `designation` varchar(20) NOT NULL,
   `departmentId` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -847,6 +848,19 @@ CREATE TABLE `student_publication` (
   `place` varchar(30) NOT NULL,
   `departmentId` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hod_login`
+--
+
+CREATE TABLE `hod_login` (
+  `hodEmail` varchar(30) NOT NULL,
+  `password` varchar(30) NOT NULL,
+  `departmentId` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 --
 -- Indexes for dumped tables
