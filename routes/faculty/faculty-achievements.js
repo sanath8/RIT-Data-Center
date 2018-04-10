@@ -91,7 +91,8 @@ router.get('/', function(req, res, next) {
 			   }
 		   
 		},
-		GetParam:req.query.fId
+		GetParam:req.query.fId,
+		authType:req.session.facultyId
 	});
 	}
 	//TODO Change the Faculty Achievements Table

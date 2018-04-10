@@ -63,7 +63,8 @@ router.get('/', function(req, res, next) {
 			   }
 		      
 		},
-		GetParam: req.query.fId});
+		GetParam: req.query.fId,
+		authType:req.session.facultyId});
 	}
 	sqlExecute.getFaultyAcademics(facultyId, callback);
 });

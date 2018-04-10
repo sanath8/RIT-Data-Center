@@ -16,7 +16,9 @@ router.get('/', function(req, res, next) {
 		facultyId = req.session.facultyId;
 	}
 	else{
-		auth = false;
+		if(req.session.facultyId != "coordinator"){
+			auth = false;
+		}
 		facultyId = req.query.fId;
 	}
 
@@ -54,7 +56,7 @@ router.get('/', function(req, res, next) {
 		}
 		var about = tresult["about"];
 		var data=[myR];
-		res.render('faculty/index', { title: 'Express', type:"dashboard",data: {faculty : data}, fId:facultyId, about:about, GetParam:req.query.fId});
+		res.render('faculty/index', { title: 'Express', type:"dashboard",data: {faculty : data}, fId:facultyId, about:about, GetParam:req.query.fId, authType:req.session.facultyId});
 		//res.send(JSON.stringify(result));
 	}
 	// console.log("Param : "+req.session.email+":"+req.session.facultyId);
