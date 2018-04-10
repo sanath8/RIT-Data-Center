@@ -166,7 +166,8 @@ function performFilterOperations(flag)
       type: 'POST',
       data: JSON.stringify(dataForSelect),
       contentType: 'application/json',
-      url: 'http://localhost:3000/v1/apis/data/'+tableName+'/',
+      //url: 'http://localhost:3000/v1/apis/data/'+tableName+'/',
+      url: '/v1/apis/data/'+tableName+'/',
       success: function(dataRecieved) {
         finalResultSet = dataRecieved;
         if(flag == 'table_changed')
