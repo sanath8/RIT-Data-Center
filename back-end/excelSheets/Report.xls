@@ -1,76 +1,23 @@
-facultyName
-AnitaKanavalli
-AnitaKanavalli
-AnitaKanavalli
-AnnapurnaP.Patil
-AnnapurnaP.Patil
-AnnapurnaP.Patil
-SeemaS
-SeemaS
-SeemaS
-JagadishS.K.
-JagadishS.K.
-JagadishS.K.
-JayalakshmiD.S
-JayalakshmiD.S
-MonicaRMundada
-MonicaRMundada
-MonicaRMundada
-SanjeethaR
-SanjeethaR
-AParkavi
-AParkavi
-VeenaGS
-VeenaGS
-JGeetha
-JGeetha
-T.NR.Kumar
-T.NR.Kumar
-T.NR.Kumar
-MamathaJadhavV
-MamathaJadhavV
-ChethanCT
-SiniAnnaAlex
-SiniAnnaAlex
-SardarVandanaSudhakar
-SardarVandanaSudhakar
-MeeraDeviAKawalgi
-MeeraDeviAKawalgi
-MalleGowdaM
-MalleGowdaM
-Dr.H.V.Divakar
-Dr.H.V.Divakar
-Dr.H.V.Divakar
-ChandrikaPrasad
-ChandrikaPrasad
-RajarajeswariS
-RajarajeswariS
-RajarajeswariS
-PramodCSunagar
-PramodCSunagar
-SowmyaBJ
-SowmyaBJ
-PradeepkumarD
-PradeepkumarD
-ChetanShetty
-ChetanShetty
-GaneshayyaIShidaganti
-GaneshayyaIShidaganti
-DarshanaANaik
-DarshanaANaik
-DarshanaANaik
-SrinidhiH
-SrinidhiH
-HanumanthaRajuR
-HanumanthaRajuR
-AparnaR
-AparnaR
-ShilpaSChaudhari
-ShilpaSChaudhari
-ShilpaSChaudhari
-RamaniS
-RamaniS
-RamaniS
-NagabhushanAM
-NagabhushanAM
-NagabhushanAM
+facultyId	facultyName	gender	address	religion	caste	category	dob	natureOfAppointment	contactNumber	emailId	password	panNumber	accountNumber	pfNumber	departmentId	slNo	chapterName	bookName	chapterAuthors	publisher	year
+1	faculty1	M	address1	religion1	caste1	category1	1987-10-23T183000.000Z	fulltime	9089543678	email1	pass1	567384322	2345464223	827487240	cse	1	chapter1	booktitle1	author1	publisher1	2008
+2	faculty2	F	address2	religion2	caste2	category3	1986-10-23T183000.000Z	fulltime	9089543689	email2	pass2	567384678	2345443523	827487256	cse	2	chapter2	booktitle2	author2	publisher2	2008
+3	faculty3	F	address3	religion3	caste3	category2	1985-10-23T183000.000Z	fulltime	9089543700	email3	pass3	567385034	2345422823	827487272	cse	3	chapter3	booktitle3	author3	publisher3	2009
+6	faculty6	F	address6	religion3	caste3	category2	1982-10-23T183000.000Z	fulltime	9089543733	email6	pass6	567386102	2345360723	827487320	cse	4	chapter4	booktitle4	author4	publisher4	2009
+3	faculty3	F	address3	religion3	caste3	category2	1985-10-23T183000.000Z	fulltime	9089543700	email3	pass3	567385034	2345422823	827487272	cse	5	chapter5	booktitle5	author5	publisher5	2009
+5	faculty5	M	address5	religion2	caste2	category3	1983-10-23T183000.000Z	fulltime	9089543722	email5	pass5	567385746	2345381423	827487304	cse	6	chapter6	booktitle6	author6	publisher6	2010
+2	faculty2	F	address2	religion2	caste2	category3	1986-10-23T183000.000Z	fulltime	9089543689	email2	pass2	567384678	2345443523	827487256	cse	7	chapter7	booktitle7	author7	publisher7	2010
+3	faculty3	F	address3	religion3	caste3	category2	1985-10-23T183000.000Z	fulltime	9089543700	email3	pass3	567385034	2345422823	827487272	cse	8	chapter8	booktitle8	author8	publisher8	2010
+2	faculty2	F	address2	religion2	caste2	category3	1986-10-23T183000.000Z	fulltime	9089543689	email2	pass2	567384678	2345443523	827487256	cse	9	chapter9	booktitle9	author9	publisher9	2011
+4	faculty4	M	address4	religion1	caste1	category1	1984-10-23T183000.000Z	fulltime	9089543711	email4	pass4	567385390	2345402123	827487288	cse	10	chapter10	booktitle10	author10	publisher10	2011
+5	faculty5	M	address5	religion2	caste2	category3	1983-10-23T183000.000Z	fulltime	9089543722	email5	pass5	567385746	2345381423	827487304	cse	11	chapter11	booktitle11	author11	publisher11	2011
+6	faculty6	F	address6	religion3	caste3	category2	1982-10-23T183000.000Z	fulltime	9089543733	email6	pass6	567386102	2345360723	827487320	cse	12	chapter12	booktitle12	author12	publisher12	2011
+4	faculty4	M	address4	religion1	caste1	category1	1984-10-23T183000.000Z	fulltime	9089543711	email4	pass4	567385390	2345402123	827487288	cse	13	chapter13	booktitle13	author13	publisher13	2012
+6	faculty6	F	address6	religion3	caste3	category2	1982-10-23T183000.000Z	fulltime	9089543733	email6	pass6	567386102	2345360723	827487320	cse	14	chapter14	booktitle14	author14	publisher14	2012
+7	faculty7	F	address7	religion1	caste1	category1	1981-10-23T183000.000Z	fulltime	9089543744	email7	pass7	567386458	2345340023	827487336	cse	15	chapter15	booktitle15	author15	publisher15	2012
+8	faculty8	M	address8	religion2	caste2	category3	1980-10-23T183000.000Z	fulltime	9089543755	email8	pass8	567386814	2345319323	827487352	cse	16	chapter16	booktitle16	author16	publisher16	2013
+4	faculty4	M	address4	religion1	caste1	category1	1984-10-23T183000.000Z	fulltime	9089543711	email4	pass4	567385390	2345402123	827487288	cse	17	chapter17	booktitle17	author17	publisher17	2013
+6	faculty6	F	address6	religion3	caste3	category2	1982-10-23T183000.000Z	fulltime	9089543733	email6	pass6	567386102	2345360723	827487320	cse	18	chapter18	booktitle18	author18	publisher18	2013
+9	faculty9	M	address9	religion3	caste3	category2	1979-10-23T183000.000Z	fulltime	9089543766	email9	pass9	567387170	2345298623	827487368	cse	19	chapter19	booktitle19	author19	publisher19	2014
+5	faculty5	M	address5	religion2	caste2	category3	1983-10-23T183000.000Z	fulltime	9089543722	email5	pass5	567385746	2345381423	827487304	cse	20	chapter20	booktitle20	author20	publisher20	2014
+11	faculty11	F	address11	religion2	caste2	category3	1977-10-23T183000.000Z	fulltime	9089543788	email11	pass11	567387882	2345257223	827487400	cse	21	chapter21	booktitle21	author21	publisher21	2014
+14	faculty14	F	address14	religion2	caste2	category3	1974-10-23T183000.000Z	fulltime	9089543821	email14	pass14	567388950	2345195123	827487448	cse	22	chapter22	booktitle22	author22	publisher22	2015
