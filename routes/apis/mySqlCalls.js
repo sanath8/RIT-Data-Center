@@ -13,11 +13,27 @@ sqlObject.prototype.runRawQuery = function(sql, callback){
 	})
 }
 sqlObject.prototype.login = function(email, pass, callback){
+	var connection = this.connection;
 	var sql= "select * \
 			from faculty \
 			where emailId=? and password=?";
 	this.connection.query(sql, [email, pass], function(err, result){
-		callback(err, result);
+		if(result.length == 0){
+			var sql = "select * \
+				from administrator_login \
+				where emailId=? and password=?";
+				console.log("hll");
+		   connection.query(sql, [email, pass], function(err,result){
+			if(err){
+				callback(err,undefined);
+				return;
+			}
+			console.log("hll");
+			callback(err,result);
+		})
+		} else{
+			callback(err, result);
+		}
 	})
 }
 

@@ -1,0 +1,9 @@
+<script>
+<% if( authType == "hod" || (GetParam && authType != "coordinator")) { %>
+    console.log("hello everyone");
+    var buttonsDisable = document.getElementsByClassName("hodDisable");
+    for(var i = 0; i< buttonsDisable.length;i++){
+        buttonsDisable[i].disabled = true;
+    }
+<%}%>
+</script>

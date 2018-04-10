@@ -44,7 +44,8 @@ router.get('/', function(req, res, next) {
 						passYear: "Pass Year",
 					}
 				},
-				GetParam:req.query.fId
+				GetParam:req.query.fId,
+				authType:req.session.facultyId
 			});
 	}
 	//sqlExecute.getWholeTable(callback,'facultyQualification', req.session.email);
