@@ -8,8 +8,21 @@ var utility = require('../utilities');
 router.get('/', function(req, res, next) {
 	if(!utility.checkSesssion(req, res))
 		return;
-	var facultyId = req.session.facultyId;
-	console.log("you just sent " + req.session.facultyId);
+	
+	var facultyId;
+	var auth = true;
+
+	if(!utility.checkGetParam(req,res)){
+		facultyId = req.session.facultyId;
+	}
+	else{
+		auth = false;
+		facultyId = req.query.fId;
+	}
+
+// //just for experimentation below code
+// 	globalvar.checkGet(req,res);
+// 	facultyId = globalvar.facultyId;
 
 	var callback=function(err, result){
 		if(err || result.length==0){
@@ -25,29 +38,31 @@ router.get('/', function(req, res, next) {
 		myR["facultyId"]=tresult["facultyId"];
 		myR["Name"]=tresult["facultyName"];
 		myR["Gender"]=tresult["gender"];
-		myR["Address"]=tresult["address"];
-		myR["religion"]=tresult["religion"];
-		myR["Caste"]=tresult["caste"];
+		if(auth == true){
+			myR["Address"]=tresult["address"];
+			myR["religion"]=tresult["religion"];
+			myR["Caste"]=tresult["caste"];
+		}
 		myR["DOB"]=tresult["dob"];
 		myR["Nature of Appointment"]=tresult["natureOfAppointment"];
 		myR["Contact No."]=tresult["contactNumber"];
 		myR["Email Id"]=tresult["emailId"];
-		myR["PAN Number"]=tresult["panNumber"];
-		myR["Account Number"]=tresult["accountNumber"];
-		myR["PF Number"]=tresult["pfNumber"];
+		if(auth == true){
+			myR["PAN Number"]=tresult["panNumber"];
+			myR["Account Number"]=tresult["accountNumber"];
+			myR["PF Number"]=tresult["pfNumber"];
+		}
 		var about = tresult["about"];
 		var data=[myR];
-		res.render('faculty/index', { title: 'Express', type:"dashboard",data: {faculty : data}, fId:facultyId, about:about});
+		res.render('faculty/index', { title: 'Express', type:"dashboard",data: {faculty : data}, fId:facultyId, about:about, GetParam:req.query.fId});
 		//res.send(JSON.stringify(result));
 	}
-	console.log("Param : "+req.session.email+":"+req.session.facultyId);
-    mysql.getFacultyInfo(req.session.facultyId, callback);
+	// console.log("Param : "+req.session.email+":"+req.session.facultyId);
+    mysql.getFacultyInfo(facultyId, callback);
 });
 
 
 router.use('/changeProfilePicture', require('./faculty-profile-pic'));
-
-router.use('/personnal-info', require('./faculty-porsonal-info'));
 
 router.use('/qualification', require('./faculty-qualification'));
 

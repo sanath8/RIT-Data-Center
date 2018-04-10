@@ -24,9 +24,13 @@
 
     loadInTable=function(resultSet, tableNumber, tableName){
         for(var i = 0 ; i<resultSet.length;i++){
-
-            __append('<tr data-toggle="modal" data-target="#myModal'+tableNumber +'" onclick="fillData(this,'+tableNumber+')" onmouseover="hoverEffect(this)" onmouseout="removeHoverEffect(this)">');
+            var path =  resultSet[i].Fid;
+            var address = "document.location.href =  '/faculty?fId="+path+"'";
+            __append('<tr onclick="' + address + '" onmouseover="hoverEffect(this)" onmouseout="removeHoverEffect(this)">');
             for(var j in resultSet[i]){
+                if(j=="Fid"){
+                    continue;
+                }
                 // console.log(j + 'hello');    
                 // console.log(resultSet[i]);            
                 __append('<td>');
@@ -62,19 +66,6 @@
             }
         }
     }
-    
-    loadInTableEditable=function(resultSet){
-        for(var i = 0 ; i<resultSet.length;i++){
-            __append("<tr>");
-            for(var j in resultSet[i]){
-                __append("<td>");
-                __append(""+resultSet[i][j]);
-                __append("</td>");
-            }
-        __append("</tr>");
-        }
-    }
-
 
 %>
 
@@ -112,7 +103,6 @@ var index = <%- JSON.stringify(index) %>
 <script>
     function hoverEffect(event){
         event.style.background = "#EEEEEE";
-        console.log("this function is a");
     }
     function removeHoverEffect(event){
         event.style.background = "white";
