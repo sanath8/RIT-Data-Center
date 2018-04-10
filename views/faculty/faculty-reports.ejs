@@ -5,19 +5,28 @@
 <form class="form-inline">
 
   <div class="form-group" id = "filters">
+
       <label for="exampleFormControlSelect0">Tables</label>
       <select class="form-control" id="exampleFormControlSelect0">
         <%loadInList(selectList1)%>
       </select>
+
       <label for="exampleFormControlSelect1">Name</label>
       <select class="form-control" id="exampleFormControlSelect1">
         <option>ALL</option>
         <%loadInList(selectList2)%>
       </select>
+
       <label for="exampleFormControlSelect2">Year</label>
       <select class="form-control" id="exampleFormControlSelect2">
         <%loadInList([{year:"ALL"}, {year:1}, {year:2}, {year:3}, {year:4}, {year:5}])%>
       </select>
+
+      <label for="from">From</label>
+        <input type="date" id="from">
+
+      <label for="to">From</label>
+        <input type="date" id="to">
 
   </div>
 
@@ -55,83 +64,95 @@
 </div>
 
 
-
-
 <% include ../partials/footer %>
 <script>
-    var columnsSelected = "";
-    var finalResultSet;
-    $("#getReport").click(function()
-    {
-        window.location.href = "/faculty/generateexcelTest/" + JSON.stringify(finalResultSet);
+
+var columnsSelected = "";
+var finalResultSet;
+$("#getReport").click(function()
+{
+    window.location.href = "/faculty/generateexcelTest/" + JSON.stringify(finalResultSet);
+});
+
+$("#filters").change(function () {
+columnsSelected = "";
+performFilterOperations('table_changed');
+});
+
+function checkboxClicked(element)
+{
+  if(columnsSelected == "")
+    columnsSelected += element.value;
+  else if(columnsSelected.split(',').indexOf(element.value) == -1)
+    columnsSelected += "," + element.value;
+  else {
+    var tempColArray = columnsSelected.split(',');
+    var duplicateIndex = tempColArray.indexOf(element.value);
+    tempColArray.splice(duplicateIndex, 1);
+    columnsSelected = tempColArray.toString();
+  }
+  console.log(columnsSelected);
+  performFilterOperations('checkbox_changed');
+};
+
+
+function performFilterOperations(flag)
+{
+
+  var tableName = $('#exampleFormControlSelect0').val();
+  var facultyName = $('#exampleFormControlSelect1').val();
+  var year = $('#exampleFormControlSelect2').val();
+  var from = $('#from').val();
+  var to = $('#to').val();
+  console.log(from);
+  //if(from != undefined || to != undefined)
+    document.getElementById("exampleFormControlSelect2").disabled=true;
+  //else
+  //  document.getElementById("exampleFormControlSelect2").disabled=false;
+
+
+
+  console.log("from" + from + "to" + to);
+
+  var facultyFilter;
+
+  if(facultyName == "ALL")
+  {
+    facultyFilter = [];
+  }
+  else
+  {
+    facultyFilter = ["facultyName = '"+ facultyName +"'"];
+  }
+  if(year == "ALL")
+  {
+    facultyFilter = facultyFilter;
+  }
+  else
+  {
+    var yearFilter =  "year >= " + (new Date().getFullYear()- year).toString() + "";
+    facultyFilter.push(yearFilter);
+  }
+  dataForSelect = {
+      'schema': columnsSelected,
+      'whereOption' : facultyFilter
+  };
+  $.ajax({
+      type: 'POST',
+      data: JSON.stringify(dataForSelect),
+      contentType: 'application/json',
+      url: 'http://localhost:3000/v1/apis/data/'+tableName+'/',
+      success: function(dataRecieved) {
+        finalResultSet = dataRecieved;
+        if(flag == 'table_changed')
+          buildColumnFilters(dataRecieved);
+        buildTable(dataRecieved);
+
+      }
     });
 
-  $("#filters").change(function () {
-    columnsSelected = "";
-    performFilterOperations('table_changed');
-  });
+}
 
-    function checkboxClicked(element)
-    {
-      if(columnsSelected == "")
-        columnsSelected += element.value;
-      else if(columnsSelected.split(',').indexOf(element.value) == -1)
-        columnsSelected += "," + element.value;
-      else {
-        var tempColArray = columnsSelected.split(',');
-        var duplicateIndex = tempColArray.indexOf(element.value);
-        tempColArray.splice(duplicateIndex, 1);
-        columnsSelected = tempColArray.toString();
-      }
-      console.log(columnsSelected);
-      performFilterOperations('checkbox_changed');
-    };
-
-
-  function performFilterOperations(flag)
-  {
-
-    var tableName = $('#exampleFormControlSelect0').val();
-    var facultyName = $('#exampleFormControlSelect1').val();
-    var year = $('#exampleFormControlSelect2').val();
-    var facultyFilter;
-
-    if(facultyName == "ALL")
-    {
-      facultyFilter = [];
-    }
-    else
-    {
-      facultyFilter = ["facultyName = '"+ facultyName +"'"];
-    }
-    if(year == "ALL")
-    {
-      facultyFilter = facultyFilter;
-    }
-    else
-    {
-      var yearFilter =  "year >= " + (new Date().getFullYear()- year).toString() + "";
-      facultyFilter.push(yearFilter);
-    }
-    dataForSelect = {
-        'schema': columnsSelected,
-        'whereOption' : facultyFilter
-    };
-  $.ajax({
-        type: 'POST',
-        data: JSON.stringify(dataForSelect),
-        contentType: 'application/json',
-        url: 'http://localhost:3000/v1/apis/data/'+tableName+'/',
-        success: function(dataRecieved) {
-          finalResultSet = dataRecieved;
-          if(flag == 'table_changed')
-            buildColumnFilters(dataRecieved);
-          buildTable(dataRecieved);
-
-        }
-      });
-
-  }
 
   function buildColumnFilters(json)
   {
@@ -192,4 +213,6 @@
     tab.html(tr);
 
   }
+
+
 </script>
