@@ -22,10 +22,10 @@
         <%loadInList([{year:"ALL"}, {year:1}, {year:2}, {year:3}, {year:4}, {year:5}])%>
       </select>
 
-      <label for="from">From</label>
+      <label for="from">From:</label>
         <input type="date" id="from">
 
-      <label for="to">From</label>
+      <label for="to">To:</label>
         <input type="date" id="to">
 
   </div>
@@ -111,12 +111,15 @@ function performFilterOperations(flag)
   var facultyName = $('#exampleFormControlSelect1').val();
   var year = $('#exampleFormControlSelect2').val();
   var from = $('#from').val();
+  var fromYear = from.split("-")[0];
   var to = $('#to').val();
+  var toYear = to.split("-")[0];
+
   console.log(from);
-  //if(from != undefined || to != undefined)
+  if(from != "" || to != "")
     document.getElementById("exampleFormControlSelect2").disabled=true;
-  //else
-  //  document.getElementById("exampleFormControlSelect2").disabled=false;
+  else
+    document.getElementById("exampleFormControlSelect2").disabled=false;
 
 
 
@@ -132,14 +135,28 @@ function performFilterOperations(flag)
   {
     facultyFilter = ["facultyName = '"+ facultyName +"'"];
   }
-  if(year == "ALL")
+  if($('#exampleFormControlSelect2').is(':enabled'))
   {
-    facultyFilter = facultyFilter;
+    if(year == "ALL")
+    {
+      facultyFilter = facultyFilter;
+    }
+    else
+    {
+      var yearFilter =  "year >= " + (new Date().getFullYear()- year).toString() + "";
+      facultyFilter.push(yearFilter);
+    }
   }
   else
   {
-    var yearFilter =  "year >= " + (new Date().getFullYear()- year).toString() + "";
-    facultyFilter.push(yearFilter);
+      if(from != "" && to != "")
+      {
+        var fromYearFilter =  "year >= " + fromYear.toString() + "";
+        var toYearFilter = "year <= " + toYear.toString() + "";
+        facultyFilter.push(fromYearFilter);
+        facultyFilter.push(toYearFilter);
+      }
+
   }
   dataForSelect = {
       'schema': columnsSelected,
