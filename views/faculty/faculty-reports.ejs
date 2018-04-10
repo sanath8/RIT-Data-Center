@@ -32,11 +32,14 @@
 
 </form>
 
-
-<form class = "form-inline">
-  <div class = "form-group" id = "columnFilter">
-  </div>
-</form>
+<div class="panel-body" runat="server" style="overflow-x: scroll;">
+    <div class="mid-width wrapItems">
+      <form class = "form-inline">
+    <div class = "form-group" id = "columnFilter">
+    </div>
+  </form>
+</div>
+</div>
 
 
 
@@ -49,11 +52,16 @@
                         <h4 class="title">Service Details</h4>
                         <p class="category">information about duration, designation etc.</p>
                     </div>
+                    <div class="panel-body" runat="server" style="overflow-x: scroll;">
+                        <div class="mid-width wrapItems">
                     <div class="card-content table-responsive">
                         <table class="table" id="tableR">
 
+
                         </table>
                     </div>
+                  </div>
+              </div>
                     <button class="btn btn-primary pull-left"  id = "getReport" style="margin:13px">Generate Excel file</button>
                     <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal1" style="margin:13px">Insert</button>
                     </a>
