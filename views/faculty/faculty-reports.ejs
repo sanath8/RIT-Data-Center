@@ -63,7 +63,16 @@
     var finalResultSet;
     $("#getReport").click(function()
     {
-        window.location.href = "/faculty/generateexcelTest/" + JSON.stringify(finalResultSet);
+        //window.location.href = "/faculty/generateexcelTest/";
+        //JSON.stringify(finalResultSet);
+        $.ajax({
+          type: "POST",
+          url: '/faculty/generateexcelTest/',
+          data: JSON.stringify(finalResultSet),
+          success: function(returnData){
+            console.log(returnData);
+          },
+        });  
     });
 
   $("#filters").change(function () {

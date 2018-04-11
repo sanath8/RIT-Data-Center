@@ -76,12 +76,13 @@ router.use('/achievements', require('./faculty-achievements'));
 
 router.use('/faculty-reports', require('./faculty-reports'));
 
-router.get('/generateexcelTest/:jsonObject',function(req,res,next){
+router.post('/generateexcelTest/',function(req,res,next){
   utility.checkSesssion(req, res);
-  console.log("this is " + req.params.jsonObject);
-  console.log(JSON.parse(req.params.jsonObject));
-  generateexcel.getExcelSheet(JSON.parse(req.params.jsonObject),"Report.xls",res)
-  //res.redirect('/faculty/reports');
+  console.log("this is " + req.body.jsonObject);
+  console.log(JSON.parse(req.body.jsonObject));
+  generateexcel.getExcelSheet(JSON.parse(req.body.jsonObject),"Report.xls",res);
+  res.redirect('/faculty/reports');
+  
 });
 
 router.get('/generateexcel/:tableNo/:index',function(req,res,next){

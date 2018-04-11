@@ -5,7 +5,7 @@
 
             __append('<tr data-toggle="modal" data-target="#myModalModular" onclick="fillDataModular(\''+columnName+'\','+i+')" onmouseover="hoverEffect(this)" onmouseout="removeHoverEffect(this)">');
             for(var j in resultSet[i]){
-                if(j=="slNo" || j=="facultyId")
+                if(j==="slNo" || j==="facultyId")
                     continue;
                 // console.log(j + 'hello');    
                 // console.log(resultSet[i]);            
@@ -87,6 +87,23 @@
 </div>
 
 
+<div class="modal fade" id="myModalInsert" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+      <div class="card">
+          <div class="card-header" data-background-color="purple" style="margin-top:-50px;">
+              <h4 class="title">Insert Row Data</h4>
+          </div>
+          <div class="card-content" id="modalCardContentInsert">
+              
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
 <script>
 var data={};
 var index={};
@@ -136,6 +153,38 @@ var index = <%- JSON.stringify(index) %>
             </form>')
         cardCont.html(str);
     }
+
+    function fillDataModularInsert(columnName, i){
+        var cardCont=$("#modalCardContentInsert");
+        var str="";
+        /*str = str + ("<form method='POST' action='/v1/apis/apiInsert/"+columnName+"'>");
+        //cardCont.append("<form method='POST' action='/v1/apis/apiUpdate/"+columnName+"'>")
+        str = str + ("<input name='url' type='hidden' value='"+index["url"]+"'>");
+        var res = data[columnName][i];
+        console.log(res);
+        console.log(index);
+        for(var j in res){
+            if(j=="slNo" || j=="facultyId"){
+                str = str + ("<input name='"+j+"' type='hidden' value='"+res[j]+"'>");
+                continue;
+            }
+            if(index[columnName])
+                var temp = index[columnName][j]
+            else
+                var temp = "Undefined";
+            str = str + ('<div class="form-group ">\
+                <label class="control-label">'+temp+'</label>\
+                <input name="'+j+'" type="text" class="form-control" value="'+res[j]+'">\
+                </div>')
+        }
+        str = str + ('<button type="submit" class="btn btn-primary pull-right">Insert</button>\
+            <button type="reset" class="btn btn-warning pull-right" data-dismiss="modal">Cancel</button>\
+            </form>')
+        */
+        
+        cardCont.html(str);
+    }
+
     
     function fillData(resultSet,tableNumber){
         var rowData = resultSet.cells;
@@ -148,11 +197,11 @@ var index = <%- JSON.stringify(index) %>
         //add("Update", tableNumber)
     }
     function updateData(buttonId, buttonName){
-        console.log(buttonId + " " + buttonName);
+        //console.log(buttonId + " " + buttonName);
         DataRep = {};
         //extract tableName from buttonId
         buttonId = buttonId.replace("Update", "");
-        console.log(buttonId);
+        //console.log(buttonId);
         var qualificationSchema = ['beUniversity', 'bePassPercentage', 'bePassYear', 'mtechUniversity', 'mtechPassPercentage', 'mtechPassYear', 'phdUniversity', 'phdAwardYear', 'phdAreaOfSpecialization', 'slNo'];
         for(var i = 1; i < 10; i++){
             DataRep[qualificationSchema[i - 1]] = document.getElementById('data' + buttonId + i).value;
