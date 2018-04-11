@@ -2,37 +2,50 @@
 <% include ../partials/faculty-sidebar %>
 <% include ../partials/faculty-navbar %>
 <% include ../partials/loadSelectList %>
+<h2>QUERY PAGE</h2>
 <form class="form-inline">
-
   <div class="form-group" id = "filters">
+    <table class="table table-bordered table-striped">
+      <tr>
+        <th>
+          <label for="exampleFormControlSelect0">Tables</label>
+          <select class="form-control" id="exampleFormControlSelect0">
+            <%loadInList(selectList1)%>
+          </select>
+        </th>
+        <th>
+          <label for="exampleFormControlSelect1">Name</label>
+          <select class="form-control" id="exampleFormControlSelect1">
+            <option>ALL</option>
+            <%loadInList(selectList2)%>
+          </select>
+        </th>
 
-      <label for="exampleFormControlSelect0">Tables</label>
-      <select class="form-control" id="exampleFormControlSelect0">
-        <%loadInList(selectList1)%>
-      </select>
+        <th>
+          <label for="exampleFormControlSelect2">Year</label>
+          <select class="form-control" id="exampleFormControlSelect2">
+            <%loadInList([{year:"ALL"}, {year:1}, {year:2}, {year:3}, {year:4}, {year:5}])%>
+          </select>
+        </th>
+        <th>
 
-      <label for="exampleFormControlSelect1">Name</label>
-      <select class="form-control" id="exampleFormControlSelect1">
-        <option>ALL</option>
-        <%loadInList(selectList2)%>
-      </select>
+          <label for="from">From:</label>
+            <input type="date" id="from">
+        </th>
+        <th>
 
-      <label for="exampleFormControlSelect2">Year</label>
-      <select class="form-control" id="exampleFormControlSelect2">
-        <%loadInList([{year:"ALL"}, {year:1}, {year:2}, {year:3}, {year:4}, {year:5}])%>
-      </select>
+          <label for="to">To:</label>
+            <input type="date" id="to">
+        </th>
 
-      <label for="from">From:</label>
-        <input type="date" id="from">
-
-      <label for="to">To:</label>
-        <input type="date" id="to">
+      </th>
+    </table>
 
   </div>
 
 </form>
 
-<div class="panel-body" runat="server" style="overflow-x: scroll;">
+<div class="panel-body" runat="server" style="overflow-x: scroll;background:#f7f9f9;">
     <div class="mid-width wrapItems">
       <form class = "form-inline">
     <div class = "form-group" id = "columnFilter">
@@ -63,7 +76,6 @@
                   </div>
               </div>
                     <button class="btn btn-primary pull-left"  id = "getReport" style="margin:13px">Generate Excel file</button>
-                    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal1" style="margin:13px">Insert</button>
                     </a>
                 </div>
             </div>
@@ -77,14 +89,23 @@
 
 var columnsSelected = "";
 var finalResultSet;
+var tableLock = 0;
 $("#getReport").click(function()
 {
     window.location.href = "/faculty/generateexcelTest/" + JSON.stringify(finalResultSet);
 });
 
-$("#filters").change(function () {
+$("#exampleFormControlSelect0").change(function () {
 columnsSelected = "";
 performFilterOperations('table_changed');
+tableLock =1;
+console.log("table change");
+});
+
+$("#filters").change(function () {
+//columnsSelected = "";
+performFilterOperations('checkbox_changed');
+console.log("form change");
 });
 
 function checkboxClicked(element)
@@ -106,6 +127,12 @@ function checkboxClicked(element)
 
 function performFilterOperations(flag)
 {
+  if(tableLock == 1)
+  {
+    tableLock = 0;
+    return;
+  }
+  console.log("Entering the function");
 
   var tableName = $('#exampleFormControlSelect0').val();
   var facultyName = $('#exampleFormControlSelect1').val();
@@ -182,6 +209,8 @@ function performFilterOperations(flag)
 
   function buildColumnFilters(json)
   {
+    if(json == "")
+      return;
     var columnsAttributes = Object.keys(json[0]);
     var tab= $('#columnFilter');
     var columnChecks = "";
@@ -191,7 +220,7 @@ function performFilterOperations(flag)
     for(var i = 0; i < columnsAttributes.length; i++)
     {
 
-         columnChecks += ("<td><div class='checkbox'><label><input type='checkbox' id = 'column"+i+"'  value='"+ columnsAttributes[i] +"' onchange='checkboxClicked(this)'>"+columnsAttributes[i]+"</label></div></td>");
+         columnChecks += ("<td class='col-md-1'><div class='checkbox'><label><input type='checkbox' id = 'column"+i+"'  value='"+ columnsAttributes[i] +"' onchange='checkboxClicked(this)'>"+columnsAttributes[i]+"</label></div></td>");
     }
     columnChecks += ("</tr>");
 
@@ -203,8 +232,9 @@ function performFilterOperations(flag)
 
   function buildTable(json)
   {
-    console.log(json);
      $("#tableR").empty();
+    if(json == "")
+      return;
     var columnsAttributes = Object.keys(json[0]);
     var tab= $('#tableR');
     var tr;
