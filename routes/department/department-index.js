@@ -14,7 +14,7 @@ router.get('/student-info', function(req, res, next) {
   res.render('department/student-info', {type:"student-info", data:{
     studentPublications: [],
     studentAchievements: []
-  }});
+  }, authType:req.session.facultyId});
 
 });
 
@@ -28,21 +28,21 @@ router.get('/infrastructure-details', function(req, res, next) {
   res.render('department/infrastructure-details', {type:"infrastructure-details", data:{
     hardware: [],
     software: []
-  }});
+  }, authType:req.session.facultyId});
 
 });
 
 router.get('/activities', function(req, res, next) {
-  res.render('department/activities', { title: 'Express', type: 'activities', data:{}
+  res.render('department/activities', { title: 'Express', type: 'activities', data:{}, authType:req.session.facultyId
 });
 });
 
 router.get('/admission-details', function(req, res, next) {
-  res.render('department/admission-details', { title: 'Express', type: 'admission-details', data:{} });
+  res.render('department/admission-details', { title: 'Express', type: 'admission-details', data:{}, authType:req.session.facultyId });
 });
 
 router.get('/bosboe', function(req, res, next) {
-  res.render('department/bosboe', { title: 'Express', type:'bosboe', data:{} });
+  res.render('department/bosboe', { title: 'Express', type:'bosboe', data:{}, authType:req.session.facultyId });
 });
 
 router.get('/:id', function(req, res, next) {
@@ -64,7 +64,7 @@ router.get('/:id', function(req, res, next) {
 			data.push(myR);
     }
     var newResult = {'faculty' : data};
-    res.render('department/index', { title: 'Express', departmentName: req.params.id, type:'index', data:newResult });
+    res.render('department/index', { title: 'Express', departmentName: req.params.id, type:'index', data:newResult, authType:req.session.facultyId });
   }
   sqlExecute.getCseFacultyInfo(callback);
 });
