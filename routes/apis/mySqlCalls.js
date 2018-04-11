@@ -373,7 +373,7 @@ sqlObject.prototype.getFourSelectList = function(callback, url1, url2, url3, url
   });
 }
 sqlObject.prototype.getTwoSelectList = function(callback, url1, tableName){
-	var sql1 = "select distinct table_name from information_schema.tables where table_schema = 'rit_data_center_fake'";
+	var sql1 = "select distinct table_name from information_schema.tables where table_schema = 'rit_data_center'";
   var sql2 = "select distinct " + url1 + " from " + tableName;
 
   var data1, data2, data3;
