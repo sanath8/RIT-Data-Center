@@ -86,12 +86,16 @@ router.get('/generateexcelTest/:jsonObject',function(req,res,next){
   //res.redirect('/faculty/reports');
 });
 
-router.get('/generateexcel/:tableNo/:index/:facultyId',function(req,res,next){
+router.get('/generateexcel/:tableNo/:index/',function(req,res,next){
   if(!utility.checkSesssion(req, res)) return;
   console.log("this is " + req.params.facultyTable);
   var map=["", "", "", "", "", "",""];
   var index = req.params.index;
-  var fid = req.params.facultyId;
+  if(req.query.faculty){
+	  var fid = req.query.faculty;
+  } else{
+	  var fid = req.session.facultyId;
+  }
 
   var tableno = parseInt(req.params.tableNo)-1;
   var callback=function(err, result){
