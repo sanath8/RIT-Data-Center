@@ -6,7 +6,7 @@ var utility = require('../utilities');
 router.get('/', function(req, res, next) {
 	if(!utility.checkSesssion(req, res)) return;
 
-	var facultyId;
+	var facultyID;
 	var auth = true;
 
 	if(!utility.checkGetParam(req,res)){
@@ -14,15 +14,17 @@ router.get('/', function(req, res, next) {
 	}
 	else{
 		auth = false;
-		facultyId = req.query.fId;
+		facultyID = req.query.fId;
 	}
-
+	//console.log("facultyId = " + facultyID);
 	var callback = function(err, result){
 		if(err)
 			throw err;
 		// var result object below tobe deleted 
 		var arr=[];
+		var facultyID = result[0]["facultyId"];
 		for(var i in result){
+			//console.log(i);
 			var temp={
 				facultyId:result[i]["facultyId"],
 				type:result[i]["degree"],
@@ -33,6 +35,7 @@ router.get('/', function(req, res, next) {
 			};
 			arr.push(temp);
 		}
+
 		res.render('faculty/qualification', {type:"qualification", data:{ faculty_qualification:arr},
 				index : { 
 					url:"/faculty/qualification",
@@ -44,7 +47,16 @@ router.get('/', function(req, res, next) {
 						passYear: "Pass Year",
 					}
 				},
-				GetParam:req.query.fId
+				GetParam:req.query.fId,
+				tableNames : ["faculty_qualification"],
+				columnSchema:[{
+					facultyId : facultyID,
+					degree : "degree", 
+					university : "university",
+					passClass :  "passClass",
+					passYear :  "passYear",
+					areaOfSpecialization :  "areaOfSpecialization"
+				}],
 			});
 	}
 	//sqlExecute.getWholeTable(callback,'facultyQualification', req.session.email);

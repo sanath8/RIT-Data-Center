@@ -132,7 +132,7 @@ var index = <%- JSON.stringify(index) %>
         str = str + ("<input name='url' type='hidden' value='"+index["url"]+"'>");
         var res = data[columnName][i];
         console.log(res);
-        console.log(index);
+        console.log(columnName);
         for(var j in res){
             if(j=="slNo" || j=="facultyId"){
                 str = str + ("<input name='"+j+"' type='hidden' value='"+res[j]+"'>");
@@ -154,34 +154,28 @@ var index = <%- JSON.stringify(index) %>
         cardCont.html(str);
     }
 
-    function fillDataModularInsert(columnName, i){
+    function fillDataModularInsert(columnName, columnSchem){
+        //columnSchem = JSON.parse(columnSchem);
         var cardCont=$("#modalCardContentInsert");
         var str="";
-        /*str = str + ("<form method='POST' action='/v1/apis/apiInsert/"+columnName+"'>");
-        //cardCont.append("<form method='POST' action='/v1/apis/apiUpdate/"+columnName+"'>")
+        str = str + ("<form method='POST' action='/v1/apis/apiInsert/"+columnName+"'>");
         str = str + ("<input name='url' type='hidden' value='"+index["url"]+"'>");
-        var res = data[columnName][i];
-        console.log(res);
-        console.log(index);
-        for(var j in res){
+        
+            //cardCont.append("<form method='POST' action='/v1/apis/apiUpdate/"+columnName+"'>")
+        console.log("columnSchem" + JSON.stringify(columnSchem));
+        for(var j in columnSchem){
             if(j=="slNo" || j=="facultyId"){
-                str = str + ("<input name='"+j+"' type='hidden' value='"+res[j]+"'>");
+                str = str + ("<input name='"+j+"' type='hidden' value = '" + columnSchem[j] +"' >");
                 continue;
             }
-            if(index[columnName])
-                var temp = index[columnName][j]
-            else
-                var temp = "Undefined";
             str = str + ('<div class="form-group ">\
-                <label class="control-label">'+temp+'</label>\
-                <input name="'+j+'" type="text" class="form-control" value="'+res[j]+'">\
+                <label class="control-label">'+j+'</label>\
+                <input name="'+j+'" type="text" class="form-control" value="">\
                 </div>')
         }
-        str = str + ('<button type="submit" class="btn btn-primary pull-right">Insert</button>\
+        str = str + ('<button type="submit" class="btn btn-primary pull-right">OK</button>\
             <button type="reset" class="btn btn-warning pull-right" data-dismiss="modal">Cancel</button>\
             </form>')
-        */
-        
         cardCont.html(str);
     }
 

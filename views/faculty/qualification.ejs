@@ -23,7 +23,7 @@
                                 <th>Area of Specialization</th>
                             </thead>
                             <tbody>
-                                <% loadInTableModular("faculty_qualification")%>
+                                <% loadInTableModular(tableNames[0])%>
                             </tbody>
                         </table>
                     </div>
@@ -38,7 +38,7 @@
                 <% if( GetParam ){%>
                 disabled = true;
                 <%}%>
-                 data-toggle="modal" data-target="#myModalInsert" style="margin:13px">Insert</button>
+                 data-toggle="modal" data-target="#myModalInsert" onclick = "fillDataModularInsert('<%=tableNames[0]%>', <%= JSON.stringify(columnSchema[0]) %>)" style="margin:13px">Insert</button>
                 </div>
             </div>
         </div>
