@@ -4,20 +4,34 @@ var finalResultSet;
 var tableLock = 0;
 $("#getReport").click(function()
 {
-    window.location.href = "/faculty/generateexcelTest/" + JSON.stringify(finalResultSet);
+
+  dataForSelect = {
+      'resultSet' : finalResultSet
+  };
+  $.ajax({
+      type: 'POST',
+      data: JSON.stringify(dataForSelect),
+      contentType: 'application/json',
+      //url: 'http://localhost:3000/v1/apis/data/'+tableName+'/',
+      url: '/faculty/getExcel',
+      success: function() {
+        console.log("done successfully");
+
+      }
+    });
+
+    //window.location.href = "/faculty/generateexcelTest/" + JSON.stringify(finalResultSet);
 });
 
 $("#exampleFormControlSelect0").change(function () {
-columnsSelected = "";
-performFilterOperations('table_changed');
-tableLock =1;
-console.log("table change");
+  columnsSelected = "";
+  performFilterOperations('table_changed');
+  tableLock =1;
 });
 
 $("#filters").change(function () {
 //columnsSelected = "";
-performFilterOperations('checkbox_changed');
-console.log("form change");
+  performFilterOperations('checkbox_changed');
 });
 
 function checkboxClicked(element)
@@ -119,65 +133,65 @@ function performFilterOperations(flag)
 }
 
 
-  function buildColumnFilters(json)
+function buildColumnFilters(json)
+{
+  if(json == "")
+    return;
+  var columnsAttributes = Object.keys(json[0]);
+  var tab= $('#columnFilter');
+  var columnChecks = "";
+  columnChecks += ("<table border = 1>");
+  columnChecks += ("<tr>");
+
+  for(var i = 0; i < columnsAttributes.length; i++)
   {
-    if(json == "")
-      return;
-    var columnsAttributes = Object.keys(json[0]);
-    var tab= $('#columnFilter');
-    var columnChecks = "";
-    columnChecks += ("<table border = 1>");
-    columnChecks += ("<tr>");
 
-    for(var i = 0; i < columnsAttributes.length; i++)
-    {
+       columnChecks += ("<td class='col-md-1'><div class='checkbox'><label><input type='checkbox' id = 'column"+i+"'  value='"+ columnsAttributes[i] +"' onchange='checkboxClicked(this)'>"+columnsAttributes[i]+"</label></div></td>");
+  }
+  columnChecks += ("</tr>");
 
-         columnChecks += ("<td class='col-md-1'><div class='checkbox'><label><input type='checkbox' id = 'column"+i+"'  value='"+ columnsAttributes[i] +"' onchange='checkboxClicked(this)'>"+columnsAttributes[i]+"</label></div></td>");
-    }
-    columnChecks += ("</tr>");
+  columnChecks += ("</table>");
 
-    columnChecks += ("</table>");
+  tab.html(columnChecks);
 
-    tab.html(columnChecks);
+}
+
+function buildTable(json)
+{
+   $("#tableR").empty();
+  if(json == "")
+    return;
+  var columnsAttributes = Object.keys(json[0]);
+  var tab= $('#tableR');
+  var tr;
+  tr = "";
+
+tr+=("<thead class='text-primary'>")
+  for(var j = 0; j < columnsAttributes.length; j++)
+  {
+    dataEntry = columnsAttributes[j];
+
+    tr+=("<th>" + dataEntry + "</th>");
 
   }
+tr+=("</thead><tbody>")
 
-  function buildTable(json)
+
+  for (var i = 0; i < json.length; i++)
   {
-     $("#tableR").empty();
-    if(json == "")
-      return;
-    var columnsAttributes = Object.keys(json[0]);
-    var tab= $('#tableR');
-    var tr;
-    tr = "";
+    tr+="<tr>"
 
-  tr+=("<thead class='text-primary'>")
     for(var j = 0; j < columnsAttributes.length; j++)
     {
-      dataEntry = columnsAttributes[j];
+      dataEntry = eval("json[i]."+columnsAttributes[j]);
 
-      tr+=("<th>" + dataEntry + "</th>");
-
-    }
-  tr+=("</thead><tbody>")
-
-
-    for (var i = 0; i < json.length; i++)
-    {
-      tr+="<tr>"
-
-      for(var j = 0; j < columnsAttributes.length; j++)
-      {
-        dataEntry = eval("json[i]."+columnsAttributes[j]);
-
-        tr+=("<td>" + dataEntry + "</td>");
-
-      }
-      tr+="</tr>"
+      tr+=("<td>" + dataEntry + "</td>");
 
     }
-    tr+=("</tbody>");
-    tab.html(tr);
+    tr+="</tr>"
 
   }
+  tr+=("</tbody>");
+  tab.html(tr);
+
+}

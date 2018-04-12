@@ -296,14 +296,7 @@ sqlObject.prototype.getWholeTable = function(callback, url, email){
 }
 
 
-  // this.connection.query(sql,function(err,results){
-  //   console.log(results);
-  //   this.connection = require('../../dbConnect').connectDB();
-  //   this.connection.query(sql1,function(err,results1){
-  //     console.log(results1);
-  //     callback(err,results,results1);
-  //   })
-  // })
+
 
 sqlObject.prototype.getTwoTables = function(callback, url1, url2){
   var sql1 = "select * from " + mappingUrl.mappingUrlTable[url1];
@@ -373,7 +366,7 @@ sqlObject.prototype.getFourSelectList = function(callback, url1, url2, url3, url
   });
 }
 sqlObject.prototype.getTwoSelectList = function(callback, url1, tableName){
-	var sql1 = "select distinct table_name from information_schema.tables where table_schema = 'rit_data_center_fake'";
+	var sql1 = "select distinct table_name from information_schema.tables where table_schema = 'rit_data_center'";
   var sql2 = "select distinct " + url1 + " from " + tableName;
 
   var data1, data2, data3;

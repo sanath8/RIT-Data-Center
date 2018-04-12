@@ -86,6 +86,18 @@ router.get('/generateexcelTest/:jsonObject',function(req,res,next){
   //res.redirect('/faculty/reports');
 });
 
+router.post('/getExcel', function(req, res, next){
+	res.setHeader('Content-Type', 'application/json');
+
+	utility.checkSesssion(req, res);
+	console.log(JSON.stringify(req.body.resultSet));
+
+		generateexcel.getExcelSheet(req.body.resultSet, "Report.xls", res);
+    //sqlExecute.getJointFacultyInfo(callBack, req.params.tableName);
+
+});
+
+
 router.get('/generateexcel/:tableNo/:index',function(req,res,next){
   if(!utility.checkSesssion(req, res)) return;
   console.log("this is " + req.params.facultyTable);
