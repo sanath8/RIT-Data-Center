@@ -1,4 +1,4 @@
 slNo	degree	university	passClass	passYear	areaOfSpecialization	facultyId
-2	BE	Gulbarga	FCD	1994	CSE	cse02
-34	MTECH	VTU	FCD	2001	CSE	cse02
-65	PhD	VTU	null	2014	CSE	cse02
+1	BE	KarnatakUniversity	FCD	1988	ECE	cse01
+33	ME	KarnatakUniversity	FCD	1995	Computernetworks	cse01
+64	PhD	BU	null	2013	Computernetworks	cse01
