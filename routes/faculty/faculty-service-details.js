@@ -41,7 +41,19 @@ router.get('/', function(req, res, next) {
 							}
 						
 					 },
-				GetParam: req.query.fId
+				GetParam: req.query.fId,
+				tableNames : ["faculty_service"],
+				columnSchema:[
+					{
+						facultyId : facultyID,
+						designation : "Designation" ,
+						qualification : "Qualification" ,
+						joiningDate : "Joining Date" ,
+						yearsOfExperience : "Years Of Exp." ,
+						promotionDate : "Promotion Date" ,
+						payScale : "Payscale" 
+					}
+				]
 				});
 
 	}

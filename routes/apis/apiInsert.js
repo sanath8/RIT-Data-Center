@@ -40,7 +40,7 @@ router.post('/:tableName', function(req, res, next){
         //     str=str+"\n"+b;
         // }
 
-        console.log("the query is : " + sql);
+        console.log("the url is : " + req.body.url);
         
         mysql.runRawQuery(sql, function(err, result){
             if(err){

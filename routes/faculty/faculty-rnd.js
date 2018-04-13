@@ -58,7 +58,40 @@ router.get('/', function(req, res, next) {
 				}
 			   
 			},
-		GetParam: req.query.fId
+		GetParam: req.query.fId,
+		tableNames:["funded_projects", "faculty_patent", "consultancy", "industrial_collaboration_mou"],
+		columnSchema:[
+				{            
+					investigatorName : "Investigator Name" ,
+					projectTitle  : "Project Title" ,
+					nameOfFundingAgent : "Name of Funded Agent" ,
+					sanctionOrderNumber : "Sanction Order Number" ,
+					projectDuration : "Project Duration" ,
+					dateSanctioned : "Date Sanctioned" ,
+					sanctionedAmount : "Sanctioned Amount"                
+				}
+			,
+				{            
+					patentTitle : "Patent Title" ,
+					applicationNumber : "Application Number" ,
+					dateOfFilingApplication : "Date of Filing Application" ,
+					publicationDate : "Publication Date"                
+				}
+			,
+				{            
+					financialYear : "Financial Year" ,
+					clientOrganization : "Client Organization" ,
+					consultancyProjectTitle : "Consultancy Project Title" ,
+					amountReceived : "Amount Received"                
+				}
+			,
+				{            
+					mouTitle : "MOU Title" ,
+					mouSignedWithIndustryOrGovt : "MOU Signed (Industry/Govt)" ,
+					mouSigningDate : "MOU Sign Date"                
+				}
+			   
+		]
 	});
 	}
 	sqlExecute.getFaultyRND(facultyId, callback);
