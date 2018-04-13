@@ -190,54 +190,7 @@ var index = <%- JSON.stringify(index) %>
             }
         //add("Update", tableNumber)
     }
-    function updateData(buttonId, buttonName){
-        //console.log(buttonId + " " + buttonName);
-        DataRep = {};
-        //extract tableName from buttonId
-        buttonId = buttonId.replace("Update", "");
-        //console.log(buttonId);
-        var qualificationSchema = ['beUniversity', 'bePassPercentage', 'bePassYear', 'mtechUniversity', 'mtechPassPercentage', 'mtechPassYear', 'phdUniversity', 'phdAwardYear', 'phdAreaOfSpecialization', 'slNo'];
-        for(var i = 1; i < 10; i++){
-            DataRep[qualificationSchema[i - 1]] = document.getElementById('data' + buttonId + i).value;
-        }
-        DataRep[qualificationSchema.slice(-1)] = document.getElementById('data' + buttonId + '0').value;//the slNo
 
-        console.log(DataRep);
-        $.ajax({
-              type: 'POST',
-              data: JSON.stringify(DataRep),
-              contentType: 'application/json',
-              url: 'http://localhost:3000/v1/apis/update/qualification/' + buttonName + '/',
-              success: function(dataRecieved) {
-                //console.log('success');
-                console.log(JSON.stringify(dataRecieved));
-              }
-        });
-        var divHiddenId = document.getElementById('data' + buttonId + 0);
-        var trId = "facultyQualificationRow" + divHiddenId.value;
-        console.log(trId);
-        dataForSelect = {
-            'schema' : qualificationSchema.slice(0, -1),
-            'whereOption' : qualificationSchema.slice(-1) + '=' + divHiddenId.value
-        };
-        trObject = document.getElementById(trId);
-        console.log(trObject);
-        $.ajax({
-              type: 'POST',
-              data: JSON.stringify(dataForSelect),
-              contentType: 'application/json',
-              url: 'http://localhost:3000/v1/apis/data/' + buttonName + '/',
-              success: function(dataRecieved) {
-                console.log('success');
-                console.log(dataRecieved[0]);// if there is integrity constraint maintained it should recieve only one result entry
-                var counter = 1;
-                //this code renders the data back to the input entries
-                
-                //end
-
-              }
-            });
-    }
     function fillDataVerticleTable(tableNumber){
         <%if(data["faculty"]){%>
             var resultSet = <%-JSON.stringify(data["faculty"])%>;
