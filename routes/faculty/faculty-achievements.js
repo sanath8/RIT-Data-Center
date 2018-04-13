@@ -92,6 +92,72 @@ router.get('/', function(req, res, next) {
 		   
 		},
 		GetParam:req.query.fId,
+		tableNames : ["faculty_workshop_fdp", "faculty_conference_symposia", "faculty_guest_lecture", "book", "book_chapter", "conference_paper", "journal_paper"],
+		columnSchema : [
+			{
+				facultyId : facultyID,
+				title : "Title" ,
+				sponsoredOrFunded : "Sponsored/Funded" ,
+				date : "Date" ,
+				noOfParticipants : "No. of Participants" ,
+				type : "Type" 
+			},
+			{
+				facultyId : facultyID,
+				eventName : "Event Name" ,
+				place : "Place" ,
+				date : "Date" ,
+				invitedOrDeputed : "Invited Or Deputed" ,
+				noOfPapersPresented : "No. Of Papers Presented" 
+			}
+		   ,
+			{            
+				facultyId:facultyID,
+				placeInvited : "Place Invited" ,
+				title : "Title" ,
+				date : "Date"               
+			}
+		   ,
+			{   
+				facultyId:facultyID,         
+				bookTitle : "Book Title" ,
+				bookAuthors : "Book Author" ,
+				bookPublisher : "Book Publisher" ,
+				year : "Year"                
+			}
+		   ,
+			{   
+				facultyId:facultyID,         
+				chapterName : "Chapter Name" ,
+				bookName : "Book Name" ,
+				chapterAuthors : "Chapter Authors" ,
+				publisher : "Publisher" ,
+				year : "Year"                
+			}
+		   ,
+			{	
+				facultyId:facultyID,
+				authors : "Authors" ,
+				title : "Title" ,
+				conferenceName : "Conference Name" ,
+				conferenceType : "Conference Type" ,
+				organizedBy : "Organized By" ,
+				year : "Year"                
+			}
+		   ,
+			{            
+				facultyId:facultyID,
+				authors : "Authors" ,
+				title : "Title" ,
+				issn : "ISSN" ,
+				journalName : "Journal Name" ,
+				journalType : "Journal Type" ,
+				volumeNumber : "Volume Number" ,
+				pageNumbers : "Page Numbbers" ,
+				year : "Year" ,
+				sjrQuartile : "SJR Quartile"               
+			}
+		],
 		authType:req.session.facultyId
 	});
 	}

@@ -12,6 +12,7 @@ sqlQueryHandler.query = "";
 
 sqlQueryHandler.fetchResults = function(columns, url, whereOptions, callBack)
 {
+  console.log("this is whereOptions" + whereOptions);
   //whereOptions is an array of strings
   try
   {
@@ -19,7 +20,9 @@ sqlQueryHandler.fetchResults = function(columns, url, whereOptions, callBack)
     //console.log("whereOptions" + whereOptions);
     for(var i = 0; i < whereOptions.length; i++)
     {
+
       sqlQueryHandler.query += " AND " + whereOptions[i];
+      console.log("this# " + whereOptions[i]);
     }
     console.log("the query is " + sqlQueryHandler.query);
     con.query(sqlQueryHandler.query,
@@ -48,6 +51,7 @@ sqlQueryHandler.updateResults = function(jsonObject, url, authority, callBack)
   //and returns the results;
   //console.log(JSON.parse(jsonObject));
   jsonObject = JSON.parse(jsonObject);
+
   try
   {
     sqlQueryHandler.query = "UPDATE " + mappingUrl.mappingUrlTable[url] + " SET " + " ";
@@ -70,7 +74,7 @@ sqlQueryHandler.updateResults = function(jsonObject, url, authority, callBack)
       console.log(jsonObject[key]);
     }
     //console.log(setString);
-    //console.log(sqlQueryHandler.query);
+    console.log(sqlQueryHandler.query);
     con.query(sqlQueryHandler.query,
       function (err, result, fields)
       {

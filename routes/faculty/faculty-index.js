@@ -78,7 +78,7 @@ router.use('/achievements', require('./faculty-achievements'));
 
 router.use('/faculty-reports', require('./faculty-reports'));
 
-router.get('/generateexcelTest/:jsonObject',function(req,res,next){
+router.post('/generateexcelTest/',function(req,res,next){
   utility.checkSesssion(req, res);
   console.log("this is " + req.params.jsonObject);
   console.log("parsing" + JSON.parse(req.params.jsonObject));
@@ -105,12 +105,18 @@ router.get('/getExcel', function(req, res, next){
 });
 
 
-router.get('/generateexcel/:tableNo/:index',function(req,res,next){
+
+router.get('/generateexcel/:tableNo/:index/',function(req,res,next){
   if(!utility.checkSesssion(req, res)) return;
   console.log("this is " + req.params.facultyTable);
   var map=["", "", "", "", "", "",""];
   var index = req.params.index;
-  var fid = req.session.facultyId;
+  if(req.query.faculty){
+	  var fid = req.query.faculty;
+  } else{
+	  var fid = req.session.facultyId;
+  }
+
   var tableno = parseInt(req.params.tableNo)-1;
   var callback=function(err, result){
 	if(index == 1 || index == 2 || index == 3){

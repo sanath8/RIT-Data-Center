@@ -1,4 +1,4 @@
 slNo	degree	university	passClass	passYear	areaOfSpecialization	facultyId
-26	BE	Gulbarga	FCD	1991	CSE	cse03
-57	MS	BITSPilani	FCD	1996	DataMining	cse03
-74	PhD	VTU	null	2014	DataMining	cse03
+1	BE	KarnatakUniversity	FCD	1988	ECE	cse01
+33	ME	KarnatakUniversity	FCD	1995	Computernetworks	cse01
+64	PhD	BU	null	2013	Computernetworks	cse01

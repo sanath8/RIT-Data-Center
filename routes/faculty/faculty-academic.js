@@ -64,7 +64,48 @@ router.get('/', function(req, res, next) {
 		      
 		},
 		GetParam: req.query.fId,
+		tableNames : ["courses_handled", "projects_handled", "faculty_research", "phd_scholar"],
+		columnSchema:[
+			{
+				facultyId : facultyID,
+				yearHandled : "yearHandled", 
+				subjectName : "subjectName",
+				ugOrPg :  "ugOrPg",
+				labHandled :  "labHandled",
+			},
+			{
+				facultyId : facultyId,
+				batch : "batch",
+				ugOrPg : "ugOrPg",
+				projectTitle : 'projectTitle',
+			},
+			{
+				slNo: "slNo",
+				guideName: "guideName",
+				researchCandidateName:"researchCandidateName",
+				usn:'usn',
+				centreName:'centreName',
+				university:'university',
+				registrationYear:'registrationYear',
+				title:'title',
+				status:'status',
+				facultyId:facultyId
+			},
+			{
+				facultyId:facultyId,
+				scholarName:'scholarName',
+				guideName:'guideName',
+				researchCentre:'researchCentre',
+				university:'university',
+				registrationYear:'registrationYear',
+				usn:'usn',
+				title:'title',
+				status:'status'
+			}
+		],
 		authType:req.session.facultyId});
+	});
+		
 	}
 	sqlExecute.getFaultyAcademics(facultyId, callback);
 });
