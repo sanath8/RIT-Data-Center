@@ -34,7 +34,7 @@
                 <% if( GetParam ){%>
                 disabled = true;
                 <%}%>
-                 data-toggle="modal" data-target="#myModalInsert" onclick = "fillDataModularInsert('<%=tableNames[0]%>', <%= JSON.stringify(columnSchema[0]) %>)" style="margin:13px">Insert</button>
+                 data-toggle="modal" data-target="#myModalInsert" <% if((typeof tableNames !== 'undefined') && (typeof columnSchema !== 'undefined')){%></button>onclick = "fillDataModularInsert('<%=tableNames[0]%>', <%= JSON.stringify(columnSchema[0]) %>)"<%} else{%><%}%> style="margin:13px">Insert</button>
                 </div>
             </div>
         </div>

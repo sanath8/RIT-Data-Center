@@ -104,7 +104,6 @@ router.get('/', function(req, res, next) {
 			}
 		], */
 		authType:req.session.facultyId});
-	});
 		
 	}
 	sqlExecute.getFaultyAcademics(facultyId, callback);
