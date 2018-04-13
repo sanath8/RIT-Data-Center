@@ -103,7 +103,9 @@ router.get('/', function(req, res, next) {
 				status:'status'
 			}
 		],
+		authType:req.session.facultyId});
 	});
+		
 	}
 	sqlExecute.getFaultyAcademics(facultyId, callback);
 });

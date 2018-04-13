@@ -8,7 +8,7 @@ var utility = require('../utilities');
 router.get('/', function(req, res, next) {
 	if(!utility.checkSesssion(req, res))
 		return;
-	
+
 	var facultyId;
 	var auth = true;
 
@@ -16,7 +16,9 @@ router.get('/', function(req, res, next) {
 		facultyId = req.session.facultyId;
 	}
 	else{
-		auth = false;
+		if(req.session.facultyId != "coordinator"){
+			auth = false;
+		}
 		facultyId = req.query.fId;
 	}
 
@@ -54,7 +56,7 @@ router.get('/', function(req, res, next) {
 		}
 		var about = tresult["about"];
 		var data=[myR];
-		res.render('faculty/index', { title: 'Express', type:"dashboard",data: {faculty : data}, fId:facultyId, about:about, GetParam:req.query.fId});
+		res.render('faculty/index', { title: 'Express', type:"dashboard",data: {faculty : data}, fId:facultyId, about:about, GetParam:req.query.fId, authType:req.session.facultyId});
 		//res.send(JSON.stringify(result));
 	}
 	// console.log("Param : "+req.session.email+":"+req.session.facultyId);
@@ -78,19 +80,23 @@ router.use('/faculty-reports', require('./faculty-reports'));
 
 router.post('/generateexcelTest/',function(req,res,next){
   utility.checkSesssion(req, res);
-  console.log("this is " + req.body.jsonObject);
-  console.log(JSON.parse(req.body.jsonObject));
-  generateexcel.getExcelSheet(JSON.parse(req.body.jsonObject),"Report.xls",res);
-  res.redirect('/faculty/reports');
-  
+  console.log("this is " + req.params.jsonObject);
+  console.log("parsing" + JSON.parse(req.params.jsonObject));
+  generateexcel.getExcelSheet(JSON.parse(req.params.jsonObject),"Report.xls",res)
+  //res.redirect('/faculty/reports');
 });
 
-router.get('/generateexcel/:tableNo/:index',function(req,res,next){
+router.get('/generateexcel/:tableNo/:index/',function(req,res,next){
   if(!utility.checkSesssion(req, res)) return;
   console.log("this is " + req.params.facultyTable);
   var map=["", "", "", "", "", "",""];
   var index = req.params.index;
-  var fid = req.session.facultyId;
+  if(req.query.faculty){
+	  var fid = req.query.faculty;
+  } else{
+	  var fid = req.session.facultyId;
+  }
+
   var tableno = parseInt(req.params.tableNo)-1;
   var callback=function(err, result){
 	if(index == 1 || index == 2 || index == 3){

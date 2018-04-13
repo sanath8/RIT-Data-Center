@@ -172,7 +172,7 @@ function adjustDataTypes(resultSet, values)
     for(var j = 0; j < resultSet.length; j++)
     {
 
-      if(eval(JSON.stringify(resultSet[j].dataType) == JSON.stringify("int")))
+      if(eval(JSON.stringify(resultSet[j].dataType) == JSON.stringify("int")&&parseInt(values[i][j])))
       {
         values[i][j] = parseInt(values[i][j]);
       }

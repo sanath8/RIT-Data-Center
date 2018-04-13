@@ -13,11 +13,27 @@ sqlObject.prototype.runRawQuery = function(sql, callback){
 	})
 }
 sqlObject.prototype.login = function(email, pass, callback){
+	var connection = this.connection;
 	var sql= "select * \
 			from faculty \
 			where emailId=? and password=?";
 	this.connection.query(sql, [email, pass], function(err, result){
-		callback(err, result);
+		if(result.length == 0){
+			var sql = "select * \
+				from administrator_login \
+				where emailId=? and password=?";
+				console.log("hll");
+		   connection.query(sql, [email, pass], function(err,result){
+			if(err){
+				callback(err,undefined);
+				return;
+			}
+			console.log("hll");
+			callback(err,result);
+		})
+		} else{
+			callback(err, result);
+		}
 	})
 }
 
@@ -357,7 +373,7 @@ sqlObject.prototype.getFourSelectList = function(callback, url1, url2, url3, url
   });
 }
 sqlObject.prototype.getTwoSelectList = function(callback, url1, tableName){
-	var sql1 = "select distinct table_name from information_schema.tables where table_schema = 'rit_data_center_fake'";
+	var sql1 = "select distinct table_name from information_schema.tables where table_schema = 'rit_data_center'";
   var sql2 = "select distinct " + url1 + " from " + tableName;
 
   var data1, data2, data3;

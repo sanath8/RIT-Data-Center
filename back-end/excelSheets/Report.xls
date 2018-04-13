@@ -1,2 +1,5 @@
-facultyName	category	contactNumber	panNumber	departmentId	chapterName
-faculty4	category1	9089543711	567385390	cse	chapter17
+address	religion	caste	category	dob	natureOfAppointment	emailId
+address9	religion3	caste3	category2	1979-10-23T183000.000Z	fulltime	email9
+address5	religion2	caste2	category3	1983-10-23T183000.000Z	fulltime	email5
+address11	religion2	caste2	category3	1977-10-23T183000.000Z	fulltime	email11
+address14	religion2	caste2	category3	1974-10-23T183000.000Z	fulltime	email14

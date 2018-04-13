@@ -27,12 +27,8 @@
                             </tbody>
                         </table>
                     </div>
-                <a href = "/faculty/generateexcel/1/2">
-                <button class="btn btn-primary pull-left" 
-                <% if( GetParam ){%>
-                disabled = true;
-                <%}%>
-                 style="margin:13px">Generate Excel file</button>
+                <a href = "/faculty/generateexcel/1/2/?faculty=<%-GetParam%>">
+                <button class="btn btn-primary pull-left hodDisable" style="margin:13px">Generate Excel file</button>
                 </a>
                 <button class="btn btn-primary pull-right" 
                 <% if( GetParam ){%>
@@ -46,6 +42,5 @@
 </div>
 
 
-
+<% include ../partials/disable-buttons %>
 <% include ../partials/footer %>
-</script>

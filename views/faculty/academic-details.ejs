@@ -26,8 +26,8 @@
                             </tbody>
                         </table>
                     </div>
-                    <a href = "/faculty/generateexcel/1/5">
-                    <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
+                    <a href = "/faculty/generateexcel/1/5/?faculty=<%-GetParam%>">
+                    <button class="btn btn-primary pull-left hodDisable" style="margin:13px">Generate Excel file</button>
                     </a>
                     <button type="submit" class="btn btn-primary pull-right" onclick = "fillDataModularInsert('<%=tableNames[0]%>', <%= JSON.stringify(columnSchema[0]) %>)" style="margin:13px">Insert</button>
                 </div>
@@ -48,8 +48,8 @@
                             </tbody>
                         </table>
                     </div>
-                    <a href = "/faculty/generateexcel/2/5">
-                    <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
+                    <a href = "/faculty/generateexcel/2/5/?faculty=<%-GetParam%>">
+                    <button class="btn btn-primary pull-left hodDisable" style="margin:13px">Generate Excel file</button>
                     </a>
                     <button type="submit" class="btn btn-primary pull-right" onclick = "fillDataModularInsert('<%=tableNames[1]%>', <%= JSON.stringify(columnSchema[1]) %>)" style="margin:13px">Insert</button>
                 </div>
@@ -75,8 +75,8 @@
                             </tbody>
                         </table>
                     </div>
-                    <a href = "/faculty/generateexcel/3/5">
-                    <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
+                    <a href = "/faculty/generateexcel/3/5/?faculty=<%-GetParam%>">
+                    <button class="btn btn-primary pull-left hodDisable" style="margin:13px">Generate Excel file</button>
                     </a>
                     <button type="submit" class="btn btn-primary pull-right" onclick = "fillDataModularInsert('<%=tableNames[2]%>', <%= JSON.stringify(columnSchema[2]) %>)" style="margin:13px">Insert</button>
                 </div>
@@ -102,8 +102,8 @@
                             </tbody>
                         </table>
                     </div>
-                    <a href = "/faculty/generateexcel/4/5">
-                    <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
+                    <a href = "/faculty/generateexcel/4/5/?faculty=<%-GetParam%>">
+                    <button class="btn btn-primary pull-left hodDisable" style="margin:13px">Generate Excel file</button>
                     </a>
                     <button type="submit" class="btn btn-primary pull-right" onclick = "fillDataModularInsert('<%=tableNames[3]%>', <%= JSON.stringify(columnSchema[3]) %>)"  style="margin:13px">Insert</button>
                 </div>
@@ -113,5 +113,5 @@
 </div>
 
 
-
+<% include ../partials/disable-buttons %>
 <% include ../partials/footer %>

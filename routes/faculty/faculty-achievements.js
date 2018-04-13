@@ -157,7 +157,8 @@ router.get('/', function(req, res, next) {
 				year : "Year" ,
 				sjrQuartile : "SJR Quartile"               
 			}
-		]
+		],
+		authType:req.session.facultyId
 	});
 	}
 	//TODO Change the Faculty Achievements Table

@@ -91,7 +91,8 @@ router.get('/', function(req, res, next) {
 					mouSigningDate : "MOU Sign Date"                
 				}
 			   
-		]
+		],
+		authType:req.session.facultyId
 	});
 	}
 	sqlExecute.getFaultyRND(facultyId, callback);

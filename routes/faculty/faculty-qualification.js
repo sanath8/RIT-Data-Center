@@ -57,6 +57,7 @@ router.get('/', function(req, res, next) {
 					passYear :  "passYear",
 					areaOfSpecialization :  "areaOfSpecialization"
 				}],
+				authType:req.session.facultyId
 			});
 	}
 	//sqlExecute.getWholeTable(callback,'facultyQualification', req.session.email);

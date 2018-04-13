@@ -53,7 +53,8 @@ router.get('/', function(req, res, next) {
 						promotionDate : "Promotion Date" ,
 						payScale : "Payscale" 
 					}
-				]
+				],
+				authType:req.session.facultyId
 				});
 
 	}

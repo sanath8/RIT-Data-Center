@@ -1,7 +1,7 @@
 const testFolder = './uploadExcel/';
 const fs = require('fs');
 var excelUploader = require('./excelExtract');
-var tableCreationOrder = ["faculty"];
+var tableCreationOrder = ["department"];
 // delete the flag code
 //var latestCommitFlag = 0;
 function addChildTables()
@@ -33,3 +33,4 @@ function addParentTables()
 }
 
 addParentTables();
+//addChildTables();

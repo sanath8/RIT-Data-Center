@@ -2,32 +2,57 @@
 <% include ../partials/faculty-sidebar %>
 <% include ../partials/faculty-navbar %>
 <% include ../partials/loadSelectList %>
+<h2>QUERY PAGE</h2>
 <form class="form-inline">
-
   <div class="form-group" id = "filters">
-      <label for="exampleFormControlSelect0">Tables</label>
-      <select class="form-control" id="exampleFormControlSelect0">
-        <%loadInList(selectList1)%>
-      </select>
-      <label for="exampleFormControlSelect1">Name</label>
-      <select class="form-control" id="exampleFormControlSelect1">
-        <option>ALL</option>
-        <%loadInList(selectList2)%>
-      </select>
-      <label for="exampleFormControlSelect2">Year</label>
-      <select class="form-control" id="exampleFormControlSelect2">
-        <%loadInList([{year:"ALL"}, {year:1}, {year:2}, {year:3}, {year:4}, {year:5}])%>
-      </select>
+    <table class="table table-bordered table-striped">
+      <tr>
+        <th>
+          <label for="exampleFormControlSelect0">Tables</label>
+          <select class="form-control" id="exampleFormControlSelect0">
+            <%loadInList(selectList1)%>
+          </select>
+        </th>
+        <th>
+          <label for="exampleFormControlSelect1">Name</label>
+          <select class="form-control" id="exampleFormControlSelect1">
+            <option>ALL</option>
+            <%loadInList(selectList2)%>
+          </select>
+        </th>
+
+        <th>
+          <label for="exampleFormControlSelect2">Year</label>
+          <select class="form-control" id="exampleFormControlSelect2">
+            <%loadInList([{year:"ALL"}, {year:1}, {year:2}, {year:3}, {year:4}, {year:5}])%>
+          </select>
+        </th>
+        <th>
+
+          <label for="from">From:</label>
+            <input type="date" id="from">
+        </th>
+        <th>
+
+          <label for="to">To:</label>
+            <input type="date" id="to">
+        </th>
+
+      </th>
+    </table>
 
   </div>
 
 </form>
 
-
-<form class = "form-inline">
-  <div class = "form-group" id = "columnFilter">
-  </div>
-</form>
+<div class="panel-body" runat="server" style="overflow-x: scroll;background:#f7f9f9;">
+    <div class="mid-width wrapItems">
+      <form class = "form-inline">
+    <div class = "form-group" id = "columnFilter">
+    </div>
+  </form>
+</div>
+</div>
 
 
 
@@ -40,165 +65,24 @@
                         <h4 class="title">Service Details</h4>
                         <p class="category">information about duration, designation etc.</p>
                     </div>
+                    <div class="panel-body" runat="server" style="overflow-x: scroll;">
+                        <div class="mid-width wrapItems">
                     <div class="card-content table-responsive">
                         <table class="table" id="tableR">
 
+
                         </table>
                     </div>
+                  </div>
+              </div>
                     <button class="btn btn-primary pull-left"  id = "getReport" style="margin:13px">Generate Excel file</button>
-                    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal1" style="margin:13px">Insert</button>
                     </a>
                 </div>
-            </div>
+            </div />
         </div>
     </div>
 </div>
 
 
-
-
 <% include ../partials/footer %>
-<script>
-    var columnsSelected = "";
-    var finalResultSet;
-    $("#getReport").click(function()
-    {
-        //window.location.href = "/faculty/generateexcelTest/";
-        //JSON.stringify(finalResultSet);
-        $.ajax({
-          type: "POST",
-          url: '/faculty/generateexcelTest/',
-          data: JSON.stringify(finalResultSet),
-          success: function(returnData){
-            console.log(returnData);
-          },
-        });  
-    });
-
-  $("#filters").change(function () {
-    columnsSelected = "";
-    performFilterOperations('table_changed');
-  });
-
-    function checkboxClicked(element)
-    {
-      if(columnsSelected == "")
-        columnsSelected += element.value;
-      else if(columnsSelected.split(',').indexOf(element.value) == -1)
-        columnsSelected += "," + element.value;
-      else {
-        var tempColArray = columnsSelected.split(',');
-        var duplicateIndex = tempColArray.indexOf(element.value);
-        tempColArray.splice(duplicateIndex, 1);
-        columnsSelected = tempColArray.toString();
-      }
-      console.log(columnsSelected);
-      performFilterOperations('checkbox_changed');
-    };
-
-
-  function performFilterOperations(flag)
-  {
-
-    var tableName = $('#exampleFormControlSelect0').val();
-    var facultyName = $('#exampleFormControlSelect1').val();
-    var year = $('#exampleFormControlSelect2').val();
-    var facultyFilter;
-
-    if(facultyName == "ALL")
-    {
-      facultyFilter = [];
-    }
-    else
-    {
-      facultyFilter = ["facultyName = '"+ facultyName +"'"];
-    }
-    if(year == "ALL")
-    {
-      facultyFilter = facultyFilter;
-    }
-    else
-    {
-      var yearFilter =  "year >= " + (new Date().getFullYear()- year).toString() + "";
-      facultyFilter.push(yearFilter);
-    }
-    dataForSelect = {
-        'schema': columnsSelected,
-        'whereOption' : facultyFilter
-    };
-  $.ajax({
-        type: 'POST',
-        data: JSON.stringify(dataForSelect),
-        contentType: 'application/json',
-        url: 'http://localhost:3000/v1/apis/data/'+tableName+'/',
-        success: function(dataRecieved) {
-          finalResultSet = dataRecieved;
-          if(flag == 'table_changed')
-            buildColumnFilters(dataRecieved);
-          buildTable(dataRecieved);
-
-        }
-      });
-
-  }
-
-  function buildColumnFilters(json)
-  {
-    var columnsAttributes = Object.keys(json[0]);
-    var tab= $('#columnFilter');
-    var columnChecks = "";
-    columnChecks += ("<table border = 1>");
-    columnChecks += ("<tr>");
-
-    for(var i = 0; i < columnsAttributes.length; i++)
-    {
-
-         columnChecks += ("<td><div class='checkbox'><label><input type='checkbox' id = 'column"+i+"'  value='"+ columnsAttributes[i] +"' onchange='checkboxClicked(this)'>"+columnsAttributes[i]+"</label></div></td>");
-    }
-    columnChecks += ("</tr>");
-
-    columnChecks += ("</table>");
-
-    tab.html(columnChecks);
-
-  }
-
-  function buildTable(json)
-  {
-    console.log(json);
-     $("#tableR").empty();
-    var columnsAttributes = Object.keys(json[0]);
-    var tab= $('#tableR');
-    var tr;
-    tr = "";
-
-  tr+=("<thead class='text-primary'>")
-    for(var j = 0; j < columnsAttributes.length; j++)
-    {
-      dataEntry = columnsAttributes[j];
-
-      tr+=("<th>" + dataEntry + "</th>");
-
-    }
-  tr+=("</thead><tbody>")
-
-
-    for (var i = 0; i < json.length; i++)
-    {
-      tr+="<tr>"
-
-      for(var j = 0; j < columnsAttributes.length; j++)
-      {
-        dataEntry = eval("json[i]."+columnsAttributes[j]);
-
-        tr+=("<td>" + dataEntry + "</td>");
-
-      }
-      tr+="</tr>"
-
-    }
-    tr+=("</tbody>");
-    tab.html(tr);
-
-  }
-</script>
+<script src="/js/queryFunctions.js"></script>
