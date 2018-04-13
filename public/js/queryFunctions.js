@@ -1,26 +1,13 @@
-
 var columnsSelected = "";
-var finalResultSet;
 var tableLock = 0;
 $("#getReport").click(function()
 {
-
-  dataForSelect = {
-      'resultSet' : finalResultSet
-  };
-  $.ajax({
-      type: 'POST',
-      data: JSON.stringify(dataForSelect),
-      contentType: 'application/json',
-      //url: 'http://localhost:3000/v1/apis/data/'+tableName+'/',
-      url: '/faculty/getExcel',
-      success: function() {
-        console.log("done successfully");
-
-      }
-    });
-
-    //window.location.href = "/faculty/generateexcelTest/" + JSON.stringify(finalResultSet);
+  performFilterOperations('report', reportCallBack);
+  function reportCallBack(finalQuery)
+  {
+    document.cookie="query = " + finalQuery;
+    window.location.href = "/faculty/getExcel/";
+  }
 });
 
 $("#exampleFormControlSelect0").change(function () {
@@ -46,19 +33,17 @@ function checkboxClicked(element)
     tempColArray.splice(duplicateIndex, 1);
     columnsSelected = tempColArray.toString();
   }
-  console.log(columnsSelected);
   performFilterOperations('checkbox_changed');
 };
 
 
-function performFilterOperations(flag)
+function performFilterOperations(flag, reportCallBack)
 {
   if(tableLock == 1)
   {
     tableLock = 0;
     return;
   }
-  console.log("Entering the function");
 
   var tableName = $('#exampleFormControlSelect0').val();
   var facultyName = $('#exampleFormControlSelect1').val();
@@ -68,7 +53,6 @@ function performFilterOperations(flag)
   var to = $('#to').val();
   var toYear = to.split("-")[0];
 
-  console.log(from);
   if(from != "" || to != "")
     document.getElementById("exampleFormControlSelect2").disabled=true;
   else
@@ -76,7 +60,6 @@ function performFilterOperations(flag)
 
 
 
-  console.log("from" + from + "to" + to);
 
   var facultyFilter;
 
@@ -115,17 +98,33 @@ function performFilterOperations(flag)
       'schema': columnsSelected,
       'whereOption' : facultyFilter
   };
+  var url;
+  if(flag == 'report')
+  {
+    url = '/v1/apis/data/'+tableName+'/report/';
+  }
+  else
+  {
+    url = '/v1/apis/data/'+tableName+'/getData/';
+  }
   $.ajax({
       type: 'POST',
       data: JSON.stringify(dataForSelect),
       contentType: 'application/json',
       //url: 'http://localhost:3000/v1/apis/data/'+tableName+'/',
-      url: '/v1/apis/data/'+tableName+'/',
+      url: url,
       success: function(dataRecieved) {
-        finalResultSet = dataRecieved;
-        if(flag == 'table_changed')
-          buildColumnFilters(dataRecieved);
-        buildTable(dataRecieved);
+        if(flag == 'report')
+        {
+            reportCallBack(dataRecieved);
+        }
+        else
+        {
+          finalResultSet = dataRecieved;
+          if(flag == 'table_changed')
+            buildColumnFilters(dataRecieved);
+          buildTable(dataRecieved);
+        }
 
       }
     });

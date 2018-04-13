@@ -86,14 +86,21 @@ router.get('/generateexcelTest/:jsonObject',function(req,res,next){
   //res.redirect('/faculty/reports');
 });
 
-router.post('/getExcel', function(req, res, next){
+router.get('/getExcel', function(req, res, next){
 	res.setHeader('Content-Type', 'application/json');
 
 	utility.checkSesssion(req, res);
-	console.log(JSON.stringify(req.body.resultSet));
+	  console.log('here')
+	    var query = req.cookies['query'];
+			console.log("Here is my query:" + query);
 
-		generateexcel.getExcelSheet(req.body.resultSet, "Report.xls", res);
-    //sqlExecute.getJointFacultyInfo(callBack, req.params.tableName);
+	    callBack = function(result){
+	        generateexcel.getExcelSheet(result, "Report.xlsx", res);
+	    }
+	    console.log(Array(req.body.whereOption));
+	    mysql.executeDirectQuery(query, callBack);
+
+	    //sqlExecute.getJointFacultyInfo(callBack, req.params.tableName);*/
 
 });
 
