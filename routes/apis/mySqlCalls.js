@@ -1,6 +1,6 @@
 var mysql = require('mysql');
 var mappingUrl = require('../../back-end/mappingUrlTable');
-
+var excelGenerator = require('../../back-end/excelGenerator.js');
 
 var sqlObject = function() {
 	this.connection = require('../../dbConnect').connectDB();
@@ -296,14 +296,7 @@ sqlObject.prototype.getWholeTable = function(callback, url, email){
 }
 
 
-  // this.connection.query(sql,function(err,results){
-  //   console.log(results);
-  //   this.connection = require('../../dbConnect').connectDB();
-  //   this.connection.query(sql1,function(err,results1){
-  //     console.log(results1);
-  //     callback(err,results,results1);
-  //   })
-  // })
+
 
 sqlObject.prototype.getTwoTables = function(callback, url1, url2){
   var sql1 = "select * from " + mappingUrl.mappingUrlTable[url1];
@@ -451,7 +444,21 @@ sqlObject.prototype.getJointFacultyInfo = function (callBack, tableName)
 
 }
 
-sqlObject.prototype.fetchResults = function(columns, url, whereOptions, callBack)
+sqlObject.prototype.executeDirectQuery = function (query, callBack)
+{
+
+	var query = query ;
+ 		this.connection.query(query, function (err, result, fields)
+	  {
+	    if (err)
+	      console.log(err);
+	    callBack(result);
+	  }
+	);
+
+}
+
+sqlObject.prototype.fetchResults = function(columns, url, whereOptions, type, callBack)
 {
   //whereOptions is an array of strings
   try
@@ -477,8 +484,10 @@ sqlObject.prototype.fetchResults = function(columns, url, whereOptions, callBack
           if (err)
             throw err;
           sqlResults = result;
-          if(callBack != false)
+          if(type == 'getData')
             callBack(sqlResults);
+					else
+					  callBack(query);
       }
     );
   }
