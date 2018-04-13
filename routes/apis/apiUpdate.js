@@ -14,6 +14,7 @@ router.post('/:tableName', function(req, res, next){
     // sqlAPI.updateResults(JSON.stringify(req.body), req.params.tableName, req.params.authority, callback);
     //var str="Apis need to integrated";
     var upd=[];
+    console.log("request body in apiUpdate : " + JSON.stringify(req.body.url));
     for(var t in req.body){
         if(t!="slNo" && t!="facultyId" && t!="url")
             upd.push(t+"='"+req.body[t]+"'");

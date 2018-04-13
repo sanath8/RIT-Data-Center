@@ -5,7 +5,7 @@
 
             __append('<tr data-toggle="modal" data-target="#myModalModular" onclick="fillDataModular(\''+columnName+'\','+i+')" onmouseover="hoverEffect(this)" onmouseout="removeHoverEffect(this)">');
             for(var j in resultSet[i]){
-                if(j=="slNo" || j=="facultyId")
+                if(j==="slNo" || j==="facultyId")
                     continue;
                 // console.log(j + 'hello');    
                 // console.log(resultSet[i]);            
@@ -22,7 +22,7 @@
         }
     }
 
-    loadInTable=function(resultSet, tableNumber){
+    loadInTable=function(resultSet, tableNumber, tableName){
         for(var i = 0 ; i<resultSet.length;i++){
             var path =  resultSet[i].Fid;
             var address = "document.location.href =  '/faculty?fId="+path+"'";
@@ -87,6 +87,23 @@
 </div>
 
 
+<div class="modal fade" id="myModalInsert" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+      <div class="card">
+          <div class="card-header" data-background-color="purple" style="margin-top:-50px;">
+              <h4 class="title">Insert Row Data</h4>
+          </div>
+          <div class="card-content" id="modalCardContentInsert">
+              
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
 <script>
 var data={};
 var index={};
@@ -115,7 +132,7 @@ var index = <%- JSON.stringify(index) %>
         str = str + ("<input name='url' type='hidden' value='"+index["url"]+"'>");
         var res = data[columnName][i];
         console.log(res);
-        console.log(index);
+        console.log(columnName);
         for(var j in res){
             if(j=="slNo" || j=="facultyId"){
                 str = str + ("<input name='"+j+"' type='hidden' value='"+res[j]+"'>");
@@ -136,14 +153,90 @@ var index = <%- JSON.stringify(index) %>
             </form>')
         cardCont.html(str);
     }
+
+    function fillDataModularInsert(columnName, columnSchem){
+        //columnSchem = JSON.parse(columnSchem);
+        var cardCont=$("#modalCardContentInsert");
+        var str="";
+        str = str + ("<form method='POST' action='/v1/apis/apiInsert/"+columnName+"'>");
+        str = str + ("<input name='url' type='hidden' value='"+index["url"]+"'>");
+        
+            //cardCont.append("<form method='POST' action='/v1/apis/apiUpdate/"+columnName+"'>")
+        console.log("columnSchem" + JSON.stringify(columnSchem));
+        for(var j in columnSchem){
+            if(j=="slNo" || j=="facultyId"){
+                str = str + ("<input name='"+j+"' type='hidden' value = '" + columnSchem[j] +"' >");
+                continue;
+            }
+            str = str + ('<div class="form-group ">\
+                <label class="control-label">'+j+'</label>\
+                <input name="'+j+'" type="text" class="form-control" value="">\
+                </div>')
+        }
+        str = str + ('<button type="submit" class="btn btn-primary pull-right">OK</button>\
+            <button type="reset" class="btn btn-warning pull-right" data-dismiss="modal">Cancel</button>\
+            </form>')
+        cardCont.html(str);
+    }
+
     
     function fillData(resultSet,tableNumber){
         var rowData = resultSet.cells;
+        console.log(rowData[1].innerHTML);
         var noOfEntries = rowData.length;
-        console.log("this is from filldata");
-            for(var i = 1;i<noOfEntries-1;i++){
-                document.getElementById('data'+tableNumber + i).value = rowData[i].innerHTML;
+            for(var i = 0;i<noOfEntries - 1;i++){
+                console.log('data'+tableNumber + i);
+                document.getElementById('data'+ tableNumber + i).value = rowData[i].innerHTML;
             }
+        //add("Update", tableNumber)
+    }
+    function updateData(buttonId, buttonName){
+        //console.log(buttonId + " " + buttonName);
+        DataRep = {};
+        //extract tableName from buttonId
+        buttonId = buttonId.replace("Update", "");
+        //console.log(buttonId);
+        var qualificationSchema = ['beUniversity', 'bePassPercentage', 'bePassYear', 'mtechUniversity', 'mtechPassPercentage', 'mtechPassYear', 'phdUniversity', 'phdAwardYear', 'phdAreaOfSpecialization', 'slNo'];
+        for(var i = 1; i < 10; i++){
+            DataRep[qualificationSchema[i - 1]] = document.getElementById('data' + buttonId + i).value;
+        }
+        DataRep[qualificationSchema.slice(-1)] = document.getElementById('data' + buttonId + '0').value;//the slNo
+
+        console.log(DataRep);
+        $.ajax({
+              type: 'POST',
+              data: JSON.stringify(DataRep),
+              contentType: 'application/json',
+              url: 'http://localhost:3000/v1/apis/update/qualification/' + buttonName + '/',
+              success: function(dataRecieved) {
+                //console.log('success');
+                console.log(JSON.stringify(dataRecieved));
+              }
+        });
+        var divHiddenId = document.getElementById('data' + buttonId + 0);
+        var trId = "facultyQualificationRow" + divHiddenId.value;
+        console.log(trId);
+        dataForSelect = {
+            'schema' : qualificationSchema.slice(0, -1),
+            'whereOption' : qualificationSchema.slice(-1) + '=' + divHiddenId.value
+        };
+        trObject = document.getElementById(trId);
+        console.log(trObject);
+        $.ajax({
+              type: 'POST',
+              data: JSON.stringify(dataForSelect),
+              contentType: 'application/json',
+              url: 'http://localhost:3000/v1/apis/data/' + buttonName + '/',
+              success: function(dataRecieved) {
+                console.log('success');
+                console.log(dataRecieved[0]);// if there is integrity constraint maintained it should recieve only one result entry
+                var counter = 1;
+                //this code renders the data back to the input entries
+                
+                //end
+
+              }
+            });
     }
     function fillDataVerticleTable(tableNumber){
         <%if(data["faculty"]){%>

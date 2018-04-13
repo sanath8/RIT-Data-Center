@@ -78,13 +78,33 @@ router.use('/achievements', require('./faculty-achievements'));
 
 router.use('/faculty-reports', require('./faculty-reports'));
 
-router.get('/generateexcelTest/:jsonObject',function(req,res,next){
+router.post('/generateexcelTest/',function(req,res,next){
   utility.checkSesssion(req, res);
   console.log("this is " + req.params.jsonObject);
   console.log("parsing" + JSON.parse(req.params.jsonObject));
   generateexcel.getExcelSheet(JSON.parse(req.params.jsonObject),"Report.xls",res)
   //res.redirect('/faculty/reports');
 });
+
+router.get('/getExcel', function(req, res, next){
+	res.setHeader('Content-Type', 'application/json');
+
+	utility.checkSesssion(req, res);
+	  console.log('here')
+	    var query = req.cookies['query'];
+			console.log("Here is my query:" + query);
+
+	    callBack = function(result){
+	        generateexcel.getExcelSheet(result, "Report.xlsx", res);
+	    }
+	    console.log(Array(req.body.whereOption));
+	    mysql.executeDirectQuery(query, callBack);
+
+	    //sqlExecute.getJointFacultyInfo(callBack, req.params.tableName);*/
+
+});
+
+
 
 router.get('/generateexcel/:tableNo/:index/',function(req,res,next){
   if(!utility.checkSesssion(req, res)) return;
