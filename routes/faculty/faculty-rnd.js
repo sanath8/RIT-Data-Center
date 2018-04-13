@@ -59,7 +59,7 @@ router.get('/', function(req, res, next) {
 			   
 			},
 		GetParam: req.query.fId,
-		tableNames:["funded_projects", "faculty_patent", "consultancy", "industrial_collaboration_mou"],
+		/* tableNames:["funded_projects", "faculty_patent", "consultancy", "industrial_collaboration_mou"],
 		columnSchema:[
 				{            
 					investigatorName : "Investigator Name" ,
@@ -91,7 +91,7 @@ router.get('/', function(req, res, next) {
 					mouSigningDate : "MOU Sign Date"                
 				}
 			   
-		],
+		], */
 		authType:req.session.facultyId
 	});
 	}

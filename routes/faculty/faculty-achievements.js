@@ -92,7 +92,7 @@ router.get('/', function(req, res, next) {
 		   
 		},
 		GetParam:req.query.fId,
-		tableNames : ["faculty_workshop_fdp", "faculty_conference_symposia", "faculty_guest_lecture", "book", "book_chapter", "conference_paper", "journal_paper"],
+		/* tableNames : ["faculty_workshop_fdp", "faculty_conference_symposia", "faculty_guest_lecture", "book", "book_chapter", "conference_paper", "journal_paper"],
 		columnSchema : [
 			{
 				facultyId : facultyID,
@@ -157,7 +157,7 @@ router.get('/', function(req, res, next) {
 				year : "Year" ,
 				sjrQuartile : "SJR Quartile"               
 			}
-		],
+		], */
 		authType:req.session.facultyId
 	});
 	}

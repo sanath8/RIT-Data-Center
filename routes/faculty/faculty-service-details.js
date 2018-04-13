@@ -42,7 +42,7 @@ router.get('/', function(req, res, next) {
 						
 					 },
 				GetParam: req.query.fId,
-				tableNames : ["faculty_service"],
+				/* tableNames : ["faculty_service"],
 				columnSchema:[
 					{
 						facultyId : facultyID,
@@ -53,7 +53,7 @@ router.get('/', function(req, res, next) {
 						promotionDate : "Promotion Date" ,
 						payScale : "Payscale" 
 					}
-				],
+				], */
 				authType:req.session.facultyId
 				});
 

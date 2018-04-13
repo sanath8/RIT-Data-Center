@@ -64,7 +64,7 @@ router.get('/', function(req, res, next) {
 		      
 		},
 		GetParam: req.query.fId,
-		tableNames : ["courses_handled", "projects_handled", "faculty_research", "phd_scholar"],
+		/* tableNames : ["courses_handled", "projects_handled", "faculty_research", "phd_scholar"],
 		columnSchema:[
 			{
 				facultyId : facultyID,
@@ -102,7 +102,7 @@ router.get('/', function(req, res, next) {
 				title:'title',
 				status:'status'
 			}
-		],
+		], */
 		authType:req.session.facultyId});
 	});
 		
