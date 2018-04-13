@@ -86,6 +86,26 @@ router.post('/generateexcelTest/',function(req,res,next){
   //res.redirect('/faculty/reports');
 });
 
+router.get('/getExcel', function(req, res, next){
+	res.setHeader('Content-Type', 'application/json');
+
+	utility.checkSesssion(req, res);
+	  console.log('here')
+	    var query = req.cookies['query'];
+			console.log("Here is my query:" + query);
+
+	    callBack = function(result){
+	        generateexcel.getExcelSheet(result, "Report.xlsx", res);
+	    }
+	    console.log(Array(req.body.whereOption));
+	    mysql.executeDirectQuery(query, callBack);
+
+	    //sqlExecute.getJointFacultyInfo(callBack, req.params.tableName);*/
+
+});
+
+
+
 router.get('/generateexcel/:tableNo/:index/',function(req,res,next){
   if(!utility.checkSesssion(req, res)) return;
   console.log("this is " + req.params.facultyTable);

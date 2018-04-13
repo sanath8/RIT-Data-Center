@@ -6,7 +6,7 @@ var app = express();
 var fileHandler = require('./fileManager');
 var excelReader = require('./excelReader');
 
-app.get('/', function(request, response)
+app.post('/', function(request, response)
 {
 
   sqlAPI.fetchResults("*", "facultyInformation", [], syncSQLfunction);

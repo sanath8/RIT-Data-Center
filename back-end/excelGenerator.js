@@ -4,7 +4,6 @@ var fileHandler = require('./fileManager');
 var dataCleaner = require('./dataCleaner');
 var excelGenerator = module.exports = {};
 
-//excelGenerator.data = "";
 
 excelGenerator.getExcelSheet = function(tableData, fileName, response)
 {
