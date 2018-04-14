@@ -187,7 +187,7 @@ tr+=("</thead><tbody>")
     {
       dataEntry = eval("json[i]."+columnsAttributes[j]);
 
-      tr+=("<td>" + dataEntry + "</td>");
+      tr+=("<td class = 'longText'>" + dataEntry + "</td>");
 
     }
     tr+="</tr>"
