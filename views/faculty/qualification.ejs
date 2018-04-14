@@ -30,7 +30,11 @@
                 <a href = "/faculty/generateexcel/1/2/?faculty=<%-GetParam%>">
                 <button class="btn btn-primary pull-left hodDisable" style="margin:13px">Generate Excel file</button>
                 </a>
-                <button class="btn btn-primary pull-right hodDisable" data-toggle="modal" data-target="#myModalInsert" style="margin:13px" <% if((typeof tableNames != 'undefined') && (typeof columnSchema != 'undefined')){%> onclick = "fillDataModularInsert('<%=tableNames[0]%>', <%= JSON.stringify(columnSchema[0]) %>)"<%} else{%><%}%>>Insert</button>
+                <button class="btn btn-primary pull-right" 
+                <% if( GetParam ){%>
+                disabled = true;
+                <%}%>
+                 data-toggle="modal" data-target="#myModalInsert" <% if((typeof tableNames !== 'undefined') && (typeof columnSchema !== 'undefined')){%></button>onclick = "fillDataModularInsert('<%=tableNames[0]%>', <%= JSON.stringify(columnSchema[0]) %>)"<%} else{%><%}%> style="margin:13px">Insert</button>
                 </div>
             </div>
         </div>
