@@ -30,7 +30,7 @@
                     <a href = "/faculty/generateexcel/1/4/?faculty=<%-GetParam%>">
                     <button class="btn btn-primary pull-left hodDisable" style="margin:13px">Generate Excel file</button>
                     </a>
-                    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal1" <% if((typeof tableNames !== 'undefined') && (typeof columnSchema !== 'undefined')){%></button>onclick = "fillDataModularInsert('<%=tableNames[0]%>', <%= JSON.stringify(columnSchema[0]) %>)"<%} else{%><%}%> style="margin:13px">Insert</button>
+                    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModalInsert" onclick = "fillDataModularInsert('faculty_workshop_fdp', <%= JSON.stringify(index.faculty_workshop_fdp) %>)" style="margin:13px">Insert</button>
                 </div>
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
@@ -54,7 +54,7 @@
                     <a href = "/faculty/generateexcel/2/4/?faculty=<%-GetParam%>">
                     <button class="btn btn-primary pull-left hodDisable" style="margin:13px">Generate Excel file</button>
                     </a>
-                    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal1" <% if((typeof tableNames !== 'undefined') && (typeof columnSchema !== 'undefined')){%></button>onclick = "fillDataModularInsert('<%=tableNames[1]%>', <%= JSON.stringify(columnSchema[1]) %>)"<%} else{%><%}%> style="margin:13px">Insert</button>
+                    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModalInsert" onclick = "fillDataModularInsert('faculty_conference_symposia', <%= JSON.stringify(index.faculty_conference_symposia) %>)" style="margin:13px">Insert</button>
                 </div>
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
@@ -76,7 +76,7 @@
                     <a href = "/faculty/generateexcel/3/4/?faculty=<%-GetParam%>">
                     <button class="btn btn-primary pull-left hodDisable" style="margin:13px">Generate Excel file</button>
                     </a>
-                    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal1" <% if((typeof tableNames !== 'undefined') && (typeof columnSchema !== 'undefined')){%></button>onclick = "fillDataModularInsert('<%=tableNames[2]%>', <%= JSON.stringify(columnSchema[2]) %>)"<%} else{%><%}%> style="margin:13px">Insert</button>
+                    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModalInsert" onclick = "fillDataModularInsert('faculty_guest_lecture', <%= JSON.stringify(index.faculty_guest_lecture) %>)" style="margin:13px">Insert</button>
                 </div>
               <h2>Book and Chapter Publications</h2>
                 <div class="card">
@@ -100,7 +100,7 @@
                     <a href = "/faculty/generateexcel/4/4/?faculty=<%-GetParam%>">
                     <button class="btn btn-primary pull-left hodDisable" style="margin:13px">Generate Excel file</button>
                     </a>
-                    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal1" <% if((typeof tableNames !== 'undefined') && (typeof columnSchema !== 'undefined')){%></button>onclick = "fillDataModularInsert('<%=tableNames[3]%>', <%= JSON.stringify(columnSchema[3]) %>)"<%} else{%><%}%> style="margin:13px">Insert</button>
+                    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModalInsert" onclick = "fillDataModularInsert('book', <%= JSON.stringify(index.book) %>)" style="margin:13px">Insert</button>
                 </div>
                 <div class="card">
                   <div class="card-header" data-background-color="purple">
@@ -124,7 +124,7 @@
                      <a href = "/faculty/generateexcel/5/3">
                     <button class="btn btn-primary pull-left hodDisable" style="margin:13px">Generate Excel file</button>
                     </a>
-                    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal1" <% if((typeof tableNames !== 'undefined') && (typeof columnSchema !== 'undefined')){%></button>onclick = "fillDataModularInsert('<%=tableNames[4]%>', <%= JSON.stringify(columnSchema[4]) %>)"<%} else{%><%}%> style="margin:13px">Insert</button>
+                    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModalInsert" onclick = "fillDataModularInsert('book_chapter', <%= JSON.stringify(index.book_chapter) %>)" style="margin:13px">Insert</button>
                 </div>
               <h2>Paper Publications</h2>
                 <div class="card">
@@ -150,7 +150,7 @@
                     <a href = "/faculty/generateexcel/6/4/?faculty=<%-GetParam%>">
                     <button class="btn btn-primary pull-left hodDisable" style="margin:13px">Generate Excel file</button>
                     </a>
-                    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal1" <% if((typeof tableNames !== 'undefined') && (typeof columnSchema !== 'undefined')){%></button>onclick = "fillDataModularInsert('<%=tableNames[5]%>', <%= JSON.stringify(columnSchema[5]) %>)"<%} else{%><%}%> style="margin:13px">Insert</button>
+                    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModalInsert" onclick = "fillDataModularInsert('conference_paper', <%= JSON.stringify(index.conference_paper) %>)" style="margin:13px">Insert</button>
               </div>
                 <div class="card">
                   <div class="card-header" data-background-color="purple">
@@ -178,7 +178,7 @@
                     <a href = "/faculty/generateexcel/7/4/?faculty=<%-GetParam%>">
                     <button class="btn btn-primary pull-left hodDisable hodDisable" style="margin:13px">Generate Excel file</button>
                     </a>
-                    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal1" <% if((typeof tableNames !== 'undefined') && (typeof columnSchema !== 'undefined')){%></button>onclick = "fillDataModularInsert('<%=tableNames[6]%>', <%= JSON.stringify(columnSchema[6]) %>)"<%} else{%><%}%> style="margin:13px">Insert</button>
+                    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModalInsert" onclick = "fillDataModularInsert('journal_paper', <%= JSON.stringify(index.journal_paper) %>)" style="margin:13px">Insert</button>
               </div>
             </div>
         </div>

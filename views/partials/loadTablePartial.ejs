@@ -154,14 +154,14 @@ var index = <%- JSON.stringify(index) %>
         cardCont.html(str);
     }
 
-    function fillDataModularInsert(columnName, columnSchem){
+    function fillDataModularInsert(tableName, columnSchem){
         //columnSchem = JSON.parse(columnSchem);
         var cardCont=$("#modalCardContentInsert");
         var str="";
-        str = str + ("<form method='POST' action='/v1/apis/apiInsert/"+columnName+"'>");
+        str = str + ("<form method='POST' action='/v1/apis/apiInsert/"+tableName+"'>");
         str = str + ("<input name='url' type='hidden' value='"+index["url"]+"'>");
         
-            //cardCont.append("<form method='POST' action='/v1/apis/apiUpdate/"+columnName+"'>")
+            //cardCont.append("<form method='POST' action='/v1/apis/apiUpdate/"+tableName+"'>")
         console.log("columnSchem" + JSON.stringify(columnSchem));
         for(var j in columnSchem){
             if(j=="slNo" || j=="facultyId"){

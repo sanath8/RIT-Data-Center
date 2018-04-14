@@ -20,11 +20,14 @@ router.get('/', function(req, res, next) {
 	var callback = function(err, data){
 		if(err)
 			throw err;
+		
+		var facultyID = req.session.facultyId;
 		res.render('faculty/rnd-details', {title : "Faculty R&D Details", type:"rnd-details", data:data,
 			index : { 
 				url:"/faculty/rnd-details",
 				funded_projects:
-				{            
+				{   
+					facultyId : facultyID,         
 					investigatorName : "Investigator Name" ,
 					projectTitle  : "Project Title" ,
 					nameOfFundingAgent : "Name of Funded Agent" ,
@@ -35,7 +38,8 @@ router.get('/', function(req, res, next) {
 				}
 			,
 			faculty_patent:
-				{            
+				{   
+					facultyId : facultyID,            
 					patentTitle : "Patent Title" ,
 					applicationNumber : "Application Number" ,
 					dateOfFilingApplication : "Date of Filing Application" ,
@@ -43,7 +47,8 @@ router.get('/', function(req, res, next) {
 				}
 			,
 			consultancy:
-				{            
+				{   
+					facultyId : facultyID,            
 					financialYear : "Financial Year" ,
 					clientOrganization : "Client Organization" ,
 					consultancyProjectTitle : "Consultancy Project Title" ,
@@ -51,7 +56,8 @@ router.get('/', function(req, res, next) {
 				}
 			,
 			industrial_collaboration_mou:
-				{            
+				{   
+					facultyId : facultyID,            
 					mouTitle : "MOU Title" ,
 					mouSignedWithIndustryOrGovt : "MOU Signed (Industry/Govt)" ,
 					mouSigningDate : "MOU Sign Date"                
