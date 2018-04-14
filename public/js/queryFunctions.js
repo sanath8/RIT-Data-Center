@@ -11,6 +11,9 @@ $("#getReport").click(function()
 });
 
 $("#exampleFormControlSelect0").change(function () {
+  document.getElementById("title").innerHTML = $('#exampleFormControlSelect0').val();
+  document.getElementById("titleDesc").innerHTML = "information about " + $('#exampleFormControlSelect0').val();
+
   columnsSelected = "";
   performFilterOperations('table_changed');
   tableLock =1;
