@@ -8,6 +8,13 @@
     <table class="table table-bordered table-striped">
       <tr>
         <th>
+          <label for="department">Department</label>
+          <select class="form-control" id="department">
+            <%loadInList([{department:"ALL"}, {department:"CSE"}, {department:"ISE"}, {department:"ECE"}, {department:"IT"}, {department:"IEM"}])%>
+          </select>
+        </th>
+        <th>
+        <th>
           <label for="exampleFormControlSelect0">Tables</label>
           <select class="form-control" id="exampleFormControlSelect0">
             <%loadInList(selectList1)%>
@@ -62,12 +69,12 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
-                        <h4 class="title">Service Details</h4>
-                        <p class="category">information about duration, designation etc.</p>
+                        <h4 class="title" id = "title"></h4>
+                        <p class="category" id = "titleDesc"></p>
                     </div>
-                    <div class="panel-body" runat="server" style="overflow-x: scroll;">
+                    <div class="panel-body" runat="server" style="overflow-x: scroll;height:500px;overflow-y: auto;" id ="card">
                         <div class="mid-width wrapItems">
-                    <div class="card-content table-responsive">
+                    <div class="card-content table-responsive" >
                         <table class="table" id="tableR">
 
 
@@ -86,3 +93,6 @@
 
 <% include ../partials/footer %>
 <script src="/js/queryFunctions.js"></script>
+<script>
+  document.getElementById("card").style.height = screen.height+"px";//"'"+screen.height+"px'";
+</script>
