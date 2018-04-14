@@ -1,0 +1,117 @@
+<% include ../partials/header %>
+<% include ../partials/admin-sidebar %>
+<% include ../partials/admin-navbar %>
+<% include ../partials/loadTablePartial %>
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+              <h2>Academic Details</h2>
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Courses Handled</h4>
+                        <p class="category">information about courses handled.</p>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <table class="table">
+                            <thead class="text-primary">
+                                <th>Year handled</th>
+                                <th>Course name</th>
+                                <th>UG / PG</th>
+                                <th>Labs Handled</th>
+                            </thead>
+                            <tbody>
+                                <% loadInTableModular("courses_handled")%>
+                            </tbody>
+                        </table>
+                    </div>
+                    <a href = "/faculty/generateexcel/1/5/?faculty=<%-GetParam%>">
+                    <button class="btn btn-primary pull-left hodDisable" style="margin:13px">Generate Excel file</button>
+                    </a>
+                    <button type="submit" class="btn btn-primary pull-right" <% if((typeof tableNames !== 'undefined') && (typeof columnSchema !== 'undefined')){%></button>onclick = "fillDataModularInsert('<%=tableNames[0]%>', <%= JSON.stringify(columnSchema[0]) %>)"<%} else{%><%}%> style="margin:13px">Insert</button>
+                </div>
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Projects Handled</h4>
+                        <p class="category">information about projects guided.</p>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <table class="table">
+                            <thead class="text-primary">
+                                <th>Batch</th>
+                                <th>UG / PG</th>
+                                <th>Project Title</th>
+                            </thead>
+                            <tbody>
+                                <% loadInTableModular("projects_handled")%>
+                            </tbody>
+                        </table>
+                    </div>
+                    <a href = "/faculty/generateexcel/2/5/?faculty=<%-GetParam%>">
+                    <button class="btn btn-primary pull-left hodDisable" style="margin:13px">Generate Excel file</button>
+                    </a>
+                    <button type="submit" class="btn btn-primary pull-right" <% if((typeof tableNames !== 'undefined') && (typeof columnSchema !== 'undefined')){%></button>onclick = "fillDataModularInsert('<%=tableNames[1]%>', <%= JSON.stringify(columnSchema[1]) %>)"<%} else{%><%}%> style="margin:13px">Insert</button>
+                </div>
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Faculty Research</h4>
+                        <p class="category">information about faculty research etc.</p>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <table class="table">
+                            <thead class="text-primary">
+                                <th>Guide Name</th>
+                                <th>Research Candidate Name</th>
+                                <th>USN</th>
+                                <th>Centre Name</th>
+                                <th>University</th>
+                                <th>Year of registration</th>
+                                <th>Title</th>
+                                <th>Status</th>
+                            </thead>
+                            <tbody>
+                                <% loadInTableModular("faculty_research")%>
+                            </tbody>
+                        </table>
+                    </div>
+                    <a href = "/faculty/generateexcel/3/5/?faculty=<%-GetParam%>">
+                    <button class="btn btn-primary pull-left hodDisable" style="margin:13px">Generate Excel file</button>
+                    </a>
+                    <button type="submit" class="btn btn-primary pull-right" <% if((typeof tableNames !== 'undefined') && (typeof columnSchema !== 'undefined')){%></button>onclick = "fillDataModularInsert('<%=tableNames[2]%>', <%= JSON.stringify(columnSchema[3]) %>)"<%} else{%><%}%> style="margin:13px">Insert</button>
+                </div>
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">PhD Scholar</h4>
+                        <p class="category">information about PhD scholars etc.</p>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <table class="table">
+                            <thead class="text-primary">
+                              <th>Research Scholar Name</th>
+                              <th>Guide Name</th>
+                              <th>Centre Name</th>
+                              <th>University</th>
+                              <th>Year of registration</th>
+                              <th>USN</th>
+                              <th>Title</th>
+                              <th>Status</th>
+                            </thead>
+                            <tbody>
+                                <% loadInTableModular("phd_scholar")%>
+                            </tbody>
+                        </table>
+                    </div>
+                    <a href = "/faculty/generateexcel/4/5/?faculty=<%-GetParam%>">
+                    <button class="btn btn-primary pull-left hodDisable" style="margin:13px">Generate Excel file</button>
+                    </a>
+                    <button type="submit" class="btn btn-primary pull-right" <% if((typeof tableNames !== 'undefined') && (typeof columnSchema !== 'undefined')){%></button>onclick = "fillDataModularInsert('<%=tableNames[3]%>', <%= JSON.stringify(columnSchema[3]) %>)"<%} else{%><%}%>  style="margin:13px">Insert</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<% include ../partials/disable-buttons %>
+<% include ../partials/footer %>
