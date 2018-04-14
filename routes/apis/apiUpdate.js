@@ -14,7 +14,7 @@ router.post('/:tableName', function(req, res, next){
     // sqlAPI.updateResults(JSON.stringify(req.body), req.params.tableName, req.params.authority, callback);
     //var str="Apis need to integrated";
     var upd=[];
-    console.log("request body in apiUpdate : " + JSON.stringify(req.body.url));
+    console.log("request body in apiUpdate : " + JSON.stringify(req.body));
     for(var t in req.body){
         if(t!="slNo" && t!="facultyId" && t!="url")
             upd.push(t+"='"+req.body[t]+"'");
@@ -22,16 +22,17 @@ router.post('/:tableName', function(req, res, next){
     if(req.body.slNo){
         var sql = "Update "+req.params.tableName+" SET ";   
         sql+=upd.join(" , ");
-        sql+=" Where slNo="+req.body.slNo;
+        sql+=" Where slNo='"+req.body.slNo + "'";
     }else if(req.body.facultyId){
         var sql = "Update "+req.params.tableName+" SET ";   
         sql+=upd.join(" , ");
-        sql+=" Where facultyId="+req.body.facultyId;
+        sql+=" Where facultyId='"+req.body.facultyId + "'";
     }
     // for(var b in req.body){
     //     str=str+"\n"+b;
     // }
 
+    console.log("the query is : " + sql);
     mysql.runRawQuery(sql, function(err, result){
         if(err){
             res.end("Error : "+err.message);

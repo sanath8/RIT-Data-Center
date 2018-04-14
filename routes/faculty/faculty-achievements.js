@@ -21,11 +21,16 @@ router.get('/', function(req, res, next) {
 	var callback = function(err, data){
 		if(err)
 			throw err;
+		
+		var facultyID = req.session.facultyId;
+		//console.log("GetParam : " + req.query.fId);
+			
 		res.render('faculty/achievements', {title : "Faculty Achievement Details",type : "achievements", data:data,
 		index : { 
 			url:"/faculty/achievements",
 			faculty_workshop_fdp:
 			   {
+				facultyId : facultyID,
 				title : "Title" ,
 				sponsoredOrFunded : "Sponsored/Funded" ,
 				date : "Date" ,
@@ -35,6 +40,7 @@ router.get('/', function(req, res, next) {
 		   ,
 		   faculty_conference_symposia:
 			   {
+				facultyId : facultyID,
 				eventName : "Event Name" ,
 				place : "Place" ,
 				date : "Date" ,
@@ -44,21 +50,24 @@ router.get('/', function(req, res, next) {
 		   ,
 		   faculty_guest_lecture:
 			   {            
+				facultyId:facultyID,
 				placeInvited : "Place Invited" ,
 				title : "Title" ,
-				date : "Date"               
+				date : "Date"                
 			   }
 		   ,
 		   book:
 			   {            
+				facultyId:facultyID,         
 				bookTitle : "Book Title" ,
 				bookAuthors : "Book Author" ,
 				bookPublisher : "Book Publisher" ,
-				year : "Year"                
+				year : "Year"                 
 			   }
 		   ,
 		   book_chapter:
 			   {            
+				facultyId:facultyID,         
 				chapterName : "Chapter Name" ,
 				bookName : "Book Name" ,
 				chapterAuthors : "Chapter Authors" ,
@@ -69,6 +78,7 @@ router.get('/', function(req, res, next) {
 		   conference_paper:
 			   {
 				
+				facultyId:facultyID,
 				authors : "Authors" ,
 				title : "Title" ,
 				conferenceName : "Conference Name" ,
@@ -78,7 +88,8 @@ router.get('/', function(req, res, next) {
 			   }
 		   ,
 		   journal_paper:
-			   {            
+			{            
+				facultyId:facultyID,
 				authors : "Authors" ,
 				title : "Title" ,
 				issn : "ISSN" ,
@@ -88,7 +99,7 @@ router.get('/', function(req, res, next) {
 				pageNumbers : "Page Numbbers" ,
 				year : "Year" ,
 				sjrQuartile : "SJR Quartile"               
-			   }
+			}
 		   
 		},
 		GetParam:req.query.fId,

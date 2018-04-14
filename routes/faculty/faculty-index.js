@@ -38,25 +38,48 @@ router.get('/', function(req, res, next) {
 		var myR={};
 		tresult=result[0];
 		myR["facultyId"]=tresult["facultyId"];
-		myR["Name"]=tresult["facultyName"];
-		myR["Gender"]=tresult["gender"];
+		myR["facultyName"]=tresult["facultyName"];
+		myR["gender"]=tresult["gender"];
 		if(auth == true){
-			myR["Address"]=tresult["address"];
+			myR["address"]=tresult["address"];
 			myR["religion"]=tresult["religion"];
-			myR["Caste"]=tresult["caste"];
+			myR["caste"]=tresult["caste"];
 		}
-		myR["DOB"]=tresult["dob"];
-		myR["Nature of Appointment"]=tresult["natureOfAppointment"];
-		myR["Contact No."]=tresult["contactNumber"];
-		myR["Email Id"]=tresult["emailId"];
+		myR["dob"]=tresult["dob"];
+		myR["natureOfAppointment"]=tresult["natureOfAppointment"];
+		myR["contactNumber"]=tresult["contactNumber"];
+		myR["emailId"]=tresult["emailId"];
 		if(auth == true){
-			myR["PAN Number"]=tresult["panNumber"];
-			myR["Account Number"]=tresult["accountNumber"];
-			myR["PF Number"]=tresult["pfNumber"];
+			myR["panNumber"]=tresult["panNumber"];
+			myR["accountNumber"]=tresult["accountNumber"];
+			myR["pfNumber"]=tresult["pfNumber"];
 		}
+		myR['about'] = tresult['about']
 		var about = tresult["about"];
 		var data=[myR];
-		res.render('faculty/index', { title: 'Express', type:"dashboard",data: {faculty : data}, fId:facultyId, about:about, GetParam:req.query.fId, authType:req.session.facultyId});
+		var facultyID = req.session.facultyId;
+		console.log("myR" + JSON.stringify(myR));
+		res.render('faculty/index', { title: 'Express', type:"dashboard",data : {faculty:data},
+			index:{
+				url:"/faculty/",
+				faculty:{
+					facultyId:facultyID,
+					facultyName:"facultyName",
+					gender:"gender",
+					address:"address",
+					religion:"religion",
+					caste:"caste",
+					dob:"dob",
+					atureOfAppointment:"Nature Of Appointment",
+					contactNumber:"Contact No.",
+					emailId:"Email Id",
+					panNumber:"PAN Number",
+					accountNumber:"Account Number",
+					pfNumber:"PF Number",
+					about : "About"
+				}
+			},	
+		data: {faculty : data}, fId:facultyId, about:about, GetParam:req.query.fId, authType:req.session.facultyId});
 		//res.send(JSON.stringify(result));
 	}
 	// console.log("Param : "+req.session.email+":"+req.session.facultyId);

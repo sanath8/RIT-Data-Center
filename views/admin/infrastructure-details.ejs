@@ -1,0 +1,59 @@
+<% include ../partials/header %>
+<% include ../partials/admin-sidebar %>
+<% include ../partials/admin-navbar %>
+<% include ../partials/loadTablePartial %>
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+              <h2>Infrastructure Details</h2>
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Hardware Details</h4>
+                        <p class="category">information about hardwares</p>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <table class="table">
+                            <thead class="text-primary">
+                                <th>Sl. No</th>
+                                <th>Name of the Lab</th>
+                                <th>Carpet Area</th>
+                                <th>Major Equipments</th>
+                                <th>Total Investment</th>
+                            </thead>
+                            <tbody>
+                                <% loadInTable(data.hardware)%>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button type="submit" class="btn btn-primary pull-right" style="margin:13px">Edit</button>
+                </div>
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Software Details</h4>
+                        <p class="category">information about softwares.</p>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <table class="table">
+                            <thead class="text-primary">
+                                <th>Sl. No</th>
+                                <th>Name of the software</th>
+                                <th>License Number</th>
+                                <th>Number of Users</th>
+                                <th>Expiry Date</th>
+                                <th>Vendor Name</th>
+                            </thead>
+                            <tbody>
+                                <% loadInTable(data.software)%>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button type="submit" class="btn btn-primary pull-right" style="margin:13px">Edit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>

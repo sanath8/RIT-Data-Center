@@ -22,6 +22,7 @@
         }
     }
 
+
     loadInTable=function(resultSet, tableNumber, tableName){
         for(var i = 0 ; i<resultSet.length;i++){
             var path =  resultSet[i].Fid;
@@ -49,6 +50,7 @@
     loadInTableVerticle=function(resultSet, tableNumber){
         for(var i = 0 ; i<resultSet.length;i++){
             for(var j in resultSet[i]){
+                if(j === 'about')continue;
                 __append('<tr onmouseover="hoverEffect(this)" onmouseout="removeHoverEffect(this)">');
                 __append('<th>');
                 if(j!=null)
@@ -131,7 +133,9 @@ var index = <%- JSON.stringify(index) %>
         //cardCont.append("<form method='POST' action='/v1/apis/apiUpdate/"+columnName+"'>")
         str = str + ("<input name='url' type='hidden' value='"+index["url"]+"'>");
         var res = data[columnName][i];
-        console.log(res);
+        console.log(JSON.stringify(Object.keys(index[columnName])));
+        console.log(JSON.stringify(Object.keys(res)));
+        
         console.log(columnName);
         for(var j in res){
             if(j=="slNo" || j=="facultyId"){
@@ -154,14 +158,48 @@ var index = <%- JSON.stringify(index) %>
         cardCont.html(str);
     }
 
-    function fillDataModularInsert(columnName, columnSchem){
+    function fillDescriptionModular(columnName, i){
+        var cardCont=$("#modalCardContent");
+        var str="";
+        str = str + ("<form method='POST' action='/v1/apis/apiUpdate/"+columnName+"'>");
+        //cardCont.append("<form method='POST' action='/v1/apis/apiUpdate/"+columnName+"'>")
+        str = str + ("<input name='url' type='hidden' value='"+index["url"]+"'>");
+        var res = data[columnName][i];
+        console.log(JSON.stringify(Object.keys(index[columnName])));
+        console.log(JSON.stringify(Object.keys(res)));
+        
+        console.log(columnName);
+        for(var j in res){
+            if(j=="slNo" || j=="facultyId"){
+                str = str + ("<input name='"+j+"' type='hidden' value='"+res[j]+"'>");
+                continue;
+            }
+            if(j != 'about')continue;
+            
+            if(index[columnName])
+                var temp = index[columnName][j]
+            else
+                var temp = "Undefined";
+            str = str + ('<div class="form-group ">\
+                <label class="control-label">'+temp+'</label>\
+                <input name="'+j+'" type="text" class="form-control" value="'+res[j]+'">\
+                </div>')
+        }
+        str = str + ('<button type="submit" class="btn btn-primary pull-right">Update</button>\
+            <button type="reset" class="btn btn-warning pull-right" data-dismiss="modal">Cancel</button>\
+            <button type="submit" formaction="/v1/apis/apiDelete/'+columnName+'" class="btn btn-danger pull-right">Delete</button>\
+            </form>')
+        cardCont.html(str);
+    }
+
+    function fillDataModularInsert(tableName, columnSchem){
         //columnSchem = JSON.parse(columnSchem);
         var cardCont=$("#modalCardContentInsert");
         var str="";
-        str = str + ("<form method='POST' action='/v1/apis/apiInsert/"+columnName+"'>");
+        str = str + ("<form method='POST' action='/v1/apis/apiInsert/"+tableName+"'>");
         str = str + ("<input name='url' type='hidden' value='"+index["url"]+"'>");
         
-            //cardCont.append("<form method='POST' action='/v1/apis/apiUpdate/"+columnName+"'>")
+            //cardCont.append("<form method='POST' action='/v1/apis/apiUpdate/"+tableName+"'>")
         console.log("columnSchem" + JSON.stringify(columnSchem));
         for(var j in columnSchem){
             if(j=="slNo" || j=="facultyId"){
@@ -176,6 +214,7 @@ var index = <%- JSON.stringify(index) %>
         str = str + ('<button type="submit" class="btn btn-primary pull-right">OK</button>\
             <button type="reset" class="btn btn-warning pull-right" data-dismiss="modal">Cancel</button>\
             </form>')
+        console.log("The card content is :" + str);
         cardCont.html(str);
     }
 
@@ -190,54 +229,7 @@ var index = <%- JSON.stringify(index) %>
             }
         //add("Update", tableNumber)
     }
-    function updateData(buttonId, buttonName){
-        //console.log(buttonId + " " + buttonName);
-        DataRep = {};
-        //extract tableName from buttonId
-        buttonId = buttonId.replace("Update", "");
-        //console.log(buttonId);
-        var qualificationSchema = ['beUniversity', 'bePassPercentage', 'bePassYear', 'mtechUniversity', 'mtechPassPercentage', 'mtechPassYear', 'phdUniversity', 'phdAwardYear', 'phdAreaOfSpecialization', 'slNo'];
-        for(var i = 1; i < 10; i++){
-            DataRep[qualificationSchema[i - 1]] = document.getElementById('data' + buttonId + i).value;
-        }
-        DataRep[qualificationSchema.slice(-1)] = document.getElementById('data' + buttonId + '0').value;//the slNo
 
-        console.log(DataRep);
-        $.ajax({
-              type: 'POST',
-              data: JSON.stringify(DataRep),
-              contentType: 'application/json',
-              url: 'http://localhost:3000/v1/apis/update/qualification/' + buttonName + '/',
-              success: function(dataRecieved) {
-                //console.log('success');
-                console.log(JSON.stringify(dataRecieved));
-              }
-        });
-        var divHiddenId = document.getElementById('data' + buttonId + 0);
-        var trId = "facultyQualificationRow" + divHiddenId.value;
-        console.log(trId);
-        dataForSelect = {
-            'schema' : qualificationSchema.slice(0, -1),
-            'whereOption' : qualificationSchema.slice(-1) + '=' + divHiddenId.value
-        };
-        trObject = document.getElementById(trId);
-        console.log(trObject);
-        $.ajax({
-              type: 'POST',
-              data: JSON.stringify(dataForSelect),
-              contentType: 'application/json',
-              url: 'http://localhost:3000/v1/apis/data/' + buttonName + '/',
-              success: function(dataRecieved) {
-                console.log('success');
-                console.log(dataRecieved[0]);// if there is integrity constraint maintained it should recieve only one result entry
-                var counter = 1;
-                //this code renders the data back to the input entries
-                
-                //end
-
-              }
-            });
-    }
     function fillDataVerticleTable(tableNumber){
         <%if(data["faculty"]){%>
             var resultSet = <%-JSON.stringify(data["faculty"])%>;

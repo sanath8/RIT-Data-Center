@@ -21,17 +21,33 @@ router.get('/', function(req, res, next) {
 		if(err)
 			throw err;
 		console.log(result);
+		var arr = [];
+		var facultyID = req.session.facultyId;
+		for(var i in result){
+			//console.log(i);
+			var temp={
+				facultyId:result[i]["facultyId"],
+				designation:result[i]["designation"],
+				qualification:result[i]["qualification"],
+				joiningDate:result[i]["joiningDate"],
+				yearsOfExperience:result[i]["yearsOfExperience"],
+				promotionDate:result[i]["promotionDate"],
+				payScale:result[i]["payScale"]
+			};
+			arr.push(temp);
+		}
 		// reportData[0] = result;
 		// res.render('faculty/service-details', {type:"service-details", resultSet:result});
 		res.render('faculty/service-details', {title : "Faculty Service Details",
 					type : "service-details",
 					data : { 
-						faculty_service:result
+						faculty_service:arr
 					},
 					index : { 
 						url:"/faculty/service-details",
 						faculty_service:
 							{
+							 facultyId : facultyID,
 							 designation : "Designation" ,
 							 qualification : "Qualification" ,
 							 joiningDate : "Joining Date" ,

@@ -1,0 +1,60 @@
+<% include ../partials/header %>
+<% include ../partials/admin-sidebar %>
+<% include ../partials/admin-navbar %>
+<% include ../partials/loadTablePartial %>
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+              <h2>Student Information</h2>
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Publication</h4>
+                        <p class="category">information about student publications.</p>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <table class="table">
+                            <thead class="text-primary">
+                                <th>Sl. No</th>
+                                <th>Authors</th>
+                                <th>Title</th>
+                                <th>Date</th>
+                                <th>Conference / Journal</th>
+                                <th>Place</th>
+                            </thead>
+                            <tbody>
+                                <% loadInTable(data.studentPublications)%>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button type="submit" class="btn btn-primary pull-right" style="margin:13px">Edit</button>
+                </div>
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Student Achievements / Awards</h4>
+                        <p class="category">information about students participating in events and winning awrds.</p>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <table class="table">
+                            <thead class="text-primary">
+                                <th>Sl. No</th>
+                                <th>Student Name</th>
+                                <th>Event Name</th>
+                                <th>Date</th>
+                                <th>Award</th>
+                                <th>Category</th>
+                            </thead>
+                            <tbody>
+                                <% loadInTable(data.studentAchievements)%>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button type="submit" class="btn btn-primary pull-right" style="margin:13px">Edit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>

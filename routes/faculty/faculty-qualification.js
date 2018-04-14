@@ -22,14 +22,14 @@ router.get('/', function(req, res, next) {
 			throw err;
 		// var result object below tobe deleted 
 		var arr=[];
-		var facultyID = result[0]["facultyId"];
+		var facultyID = req.session.facultyId;;
 		for(var i in result){
 			//console.log(i);
 			var temp={
 				facultyId:result[i]["facultyId"],
-				type:result[i]["degree"],
+				degree:result[i]["degree"],
 				university:result[i]["university"],
-				passPercentage:result[i]["passClass"],
+				passClass:result[i]["passClass"],
 				passYear:result[i]["passYear"],
 				areaOfSpecialization:result[i]["areaOfSpecialization"]
 			};
@@ -41,10 +41,12 @@ router.get('/', function(req, res, next) {
 					url:"/faculty/qualification",
        				faculty_qualification:
 					{
-						type: "Type",
-						university: "University",
-						passPercentage: "Pass Percentage",
-						passYear: "Pass Year",
+						facultyId : facultyID,
+						degree : "degree", 
+						university : "university",
+						passClass :  "passClass",
+						passYear :  "passYear",
+						areaOfSpecialization :  "areaOfSpecialization"
 					}
 				},
 				GetParam:req.query.fId,
