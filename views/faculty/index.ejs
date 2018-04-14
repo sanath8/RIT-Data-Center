@@ -22,7 +22,7 @@
                 <a href = "/faculty/generateexcel/1/1/?faculty=<%-GetParam%>">
                 <button class="btn btn-primary pull-left hodDisable" style="margin:13px">Generate Excel file</button>
                 </a>
-                <button class="btn btn-primary pull-right hodDisable" data-toggle="modal" data-target="#myModal1" style="margin:13px" onclick="fillDataVerticleTable(1)">Update</button>
+                <button class="btn btn-primary pull-right hodDisable" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataModular('faculty', 0)">Update</button>
             </div>
         </div>
         <div class="col-md-4">
@@ -41,7 +41,7 @@
                     <p class="card-content">
                     <%-about%>
                     </p>
-                    <button  data-toggle="modal" data-target="#aboutModal" style="margin:13px" class="btn btn-primary btn-round hodDisable">Edit Description</button>
+                    <button  data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick = "fillDescriptionModular('faculty', 0)" class="btn btn-primary btn-round hodDisable">Edit Description</button>
                 </div>
             </div>
         </div>
@@ -58,127 +58,7 @@
 
 
 
-<div class="modal fade" id="myModal1" role="dialog">
-<div class="modal-dialog">
 
-  <!-- Modal content-->
-  <div class="modal-content">
-  <div class="card">
-      <div class="card-header" data-background-color="purple" style="margin-top:-50px;">
-          <h4 class="title">Edit Row Data</h4>
-      </div>
-      <div class="card-content">
-            <div class="col-md-12">
-                  <div class="form-group">
-                      <label class="control-label">Name</label>
-                      <input type="text" id="data11" class="form-control">
-                  </div>
-              </div>
-              <div class="col-md-12">
-                  <div class="form-group">
-                      <label class="control-label">Gender</label>
-                      <input type="email" id="data12" class="form-control">
-                  </div>
-              </div>
-              <div class="col-md-12">
-                  <div class="form-group">
-                      <label class="control-label">Address</label>
-                      <input type="text" id="data13" class="form-control">
-                  </div>
-              </div>
-              <div class="col-md-12">
-                  <div class="form-group">
-                      <label class="control-label">Religion</label>
-                      <input type="text" id="data14" class="form-control">
-                  </div>
-              </div>
-              <div class="col-md-12">
-                  <div class="form-group">
-                      <label class="control-label">Caste</label>
-                      <input type="text" id="data15" class="form-control">
-                  </div>
-              </div>
-              <div class="col-md-12">
-                  <div class="form-group">
-                      <label class="control-label">Date of Birth</label>
-                      <input type="text" id="data16" class="form-control">
-                  </div>
-              </div>
-              <div class="col-md-12">
-                  <div class="form-group">
-                      <label class="control-label">Nature of Appointment</label>
-                      <input type="text" id="data17" class="form-control">
-                  </div>
-              </div>
-              
-              <div class="col-md-12">
-                  <div class="form-group">
-                      <label class="control-label">Contact Number</label>
-                      <input type="text" id="data18" class="form-control">
-                  </div>
-              </div>
-              
-              <div class="col-md-12">
-                  <div class="form-group">
-                      <label class="control-label">Email-Id</label>
-                      <input type="text" id="data19" class="form-control">
-                  </div>
-              </div>
-              
-              <div class="col-md-12">
-                  <div class="form-group">
-                      <label class="control-label">PAN Number</label>
-                      <input type="text" id="data110" class="form-control">
-                  </div>
-              </div>
-              
-              <div class="col-md-12">
-                  <div class="form-group">
-                      <label class="control-label">Account Number</label>
-                      <input type="text" id="data111" class="form-control">
-                  </div>
-              </div>
-              <div class="col-md-12">
-                  <div class="form-group">
-                      <label class="control-label">Pf Number</label>
-                      <input type="text" class="form-control">
-                  </div>
-              </div>
-            <button type="submit" class="btn btn-primary pull-right">Update</button>
-            <button type="submit" class="btn btn-warning pull-right">Cancel</button>
-            <button type="submit" class="btn btn-danger pull-right">Delete</button>          </form>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-
-
-
-<div class="modal fade" id="aboutModal" role="dialog">
-<div class="modal-dialog">
-
-  <!-- Modal content-->
-  <div class="modal-content">
-  <div class="card">
-      <div class="card-header" data-background-color="purple" style="margin-top:-50px;">
-          <h4 class="title">Edit Description</h4>
-      </div>
-      <div class="card-content">
-            <div class="col-md-12">
-                  <div class="form-group">
-                      <label class="control-label">Description</label>
-                      <textarea rows="4" cols="45" class="form-control"><%-about%></textarea>
-                  </div>
-              </div>
-            <button type="submit" class="btn btn-primary pull-right">Update</button>
-            <button type="submit" class="btn btn-warning pull-right">Cancel</button>
-            <button type="submit" class="btn btn-danger pull-right">Delete</button>          </form>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
 
 <% include ../partials/disable-buttons %>
 <% include ../partials/footer %>
