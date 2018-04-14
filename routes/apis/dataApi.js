@@ -15,9 +15,7 @@ router.post('/:tableName/:callBackType', function(req, res, next){
 
 });
 
-//Delete this
 
-//Delete this
 
 router.get('/:tableName/', function(req, res, next){
     var callback = function(err, result){
