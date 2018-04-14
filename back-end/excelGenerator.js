@@ -64,11 +64,15 @@ excelGenerator.setDataEntries = function(noOfRows, noOfColumns, tableData, colum
 
        if(j == noOfColumns-1)
        {
-         data += dataCleaner.specialCharacterFilter(dataEntry.toString()) + '\n';
+         //data += dataCleaner.specialCharacterFilter(dataEntry.toString()) + '\n';
+         data += dataEntry.toString() + '\n';
+
        }
         else
         {
-          data += dataCleaner.specialCharacterFilter(dataEntry.toString()) + '\t';
+          //data += dataCleaner.specialCharacterFilter(dataEntry.toString()) + '\t';
+          data += dataEntry.toString() + '\t';
+
         }
     }
    }
