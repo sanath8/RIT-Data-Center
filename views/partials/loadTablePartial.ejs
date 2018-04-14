@@ -170,11 +170,12 @@ var index = <%- JSON.stringify(index) %>
         
         console.log(columnName);
         for(var j in res){
-            if(j != 'about')continue;
             if(j=="slNo" || j=="facultyId"){
                 str = str + ("<input name='"+j+"' type='hidden' value='"+res[j]+"'>");
                 continue;
             }
+            if(j != 'about')continue;
+            
             if(index[columnName])
                 var temp = index[columnName][j]
             else

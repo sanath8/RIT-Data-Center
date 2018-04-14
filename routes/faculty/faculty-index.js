@@ -38,42 +38,44 @@ router.get('/', function(req, res, next) {
 		var myR={};
 		tresult=result[0];
 		myR["facultyId"]=tresult["facultyId"];
-		myR["Name"]=tresult["facultyName"];
-		myR["Gender"]=tresult["gender"];
+		myR["facultyName"]=tresult["facultyName"];
+		myR["gender"]=tresult["gender"];
 		if(auth == true){
-			myR["Address"]=tresult["address"];
-			myR["Religion"]=tresult["religion"];
-			myR["Caste"]=tresult["caste"];
+			myR["address"]=tresult["address"];
+			myR["religion"]=tresult["religion"];
+			myR["caste"]=tresult["caste"];
 		}
-		myR["DOB"]=tresult["dob"];
-		myR["Nature_of_Appointment"]=tresult["natureOfAppointment"];
-		myR["Contact_No"]=tresult["contactNumber"];
-		myR["Email_Id"]=tresult["emailId"];
+		myR["dob"]=tresult["dob"];
+		myR["natureOfAppointment"]=tresult["natureOfAppointment"];
+		myR["contactNumber"]=tresult["contactNumber"];
+		myR["emailId"]=tresult["emailId"];
 		if(auth == true){
-			myR["PAN_Number"]=tresult["panNumber"];
-			myR["Account_Number"]=tresult["accountNumber"];
-			myR["PF_Number"]=tresult["pfNumber"];
+			myR["panNumber"]=tresult["panNumber"];
+			myR["accountNumber"]=tresult["accountNumber"];
+			myR["pfNumber"]=tresult["pfNumber"];
 		}
 		myR['about'] = tresult['about']
 		var about = tresult["about"];
 		var data=[myR];
+		var facultyID = req.session.facultyId;
 		console.log("myR" + JSON.stringify(myR));
 		res.render('faculty/index', { title: 'Express', type:"dashboard",data : {faculty:data},
 			index:{
+				url:"/faculty/",
 				faculty:{
-					facultyId:"facultyId",
-					Name:"facultyName",
-					Gender:"gender",
-					Address:"address",
-					Religion:"religion",
-					Caste:"caste",
-					DOB:"dob",
-					Nature_Of_Appointment:"Nature Of Appointment",
-					Contact_Number:"Contact No.",
-					Email_Id:"Email Id",
-					PAN_Number:"PAN Number",
-					Account_Number:"Account Number",
-					PF_Number:"PF Number",
+					facultyId:facultyID,
+					facultyName:"facultyName",
+					gender:"gender",
+					address:"address",
+					religion:"religion",
+					caste:"caste",
+					dob:"dob",
+					atureOfAppointment:"Nature Of Appointment",
+					contactNumber:"Contact No.",
+					emailId:"Email Id",
+					panNumber:"PAN Number",
+					accountNumber:"Account Number",
+					pfNumber:"PF Number",
 					about : "About"
 				}
 			},	
