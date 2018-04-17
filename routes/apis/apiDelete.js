@@ -14,16 +14,21 @@ router.post('/:tableName', function(req, res, next){
     // sqlAPI.updateResults(JSON.stringify(req.body), req.params.tableName, req.params.authority, callback);
     //var str="Apis need to integrated";
     var upd=[];
-    
-    if(req.body.slNo){
-        var sql = "DELETE FROM "+req.params.tableName+" WHERE slNo='"+req.body.slNo + "'";   
-    }else if(req.body.facultyId){
-        var sql = "DELETE FROM "+req.params.tableName+" WHERE facultyId='"+req.body.facultyId + "'";   
+    for(var t in req.body){
+        if(t!="slNo" && t!="facultyId" && t!="url")
+            upd.push(t+"='"+req.body[t]+"'");
     }
+    var sql = "DELETE FROM "+req.params.tableName;
+    if(req.body.slNo){
+        sql += " WHERE slNo='"+req.body.slNo + "'";   
+    }else if(req.body.facultyId){
+        sql += " WHERE facultyId='"+req.body.facultyId + "'";   
+    }
+    sql += 'AND ' + upd.join(' AND ');
     // for(var b in req.body){
     //     str=str+"\n"+b;
     // }
-
+    console.log("The delete query is :" + sql);
     mysql.runRawQuery(sql, function(err, result){
         if(err){
             res.end("Error : "+err.message);

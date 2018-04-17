@@ -63,7 +63,7 @@ router.get('/', function(req, res, next) {
 			});
 	}
 	//sqlExecute.getWholeTable(callback,'facultyQualification', req.session.email);
-	sqlExecute.getFaultyQualification(facultyId, callback);
+	sqlExecute.getFaultyQualification(facultyID, callback);
 });
 
 module.exports=router;
