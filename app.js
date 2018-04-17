@@ -26,10 +26,8 @@ app.use('/', require('./routes/index'));
 app.use('/login', require('./routes/login'));
 app.use('/v1/apis', require('./routes/apis/api-index'));
 app.use('/faculty', require('./routes/faculty/faculty-index'));
-app.use('/hod', require('./routes/hod/hod-index'));
 app.use('/admin', require('./routes/admin/admin-index'));
 app.use('/department', require('./routes/department/department-index'));
-app.use('/users', require('./routes/users/users-index'));
 app.use('/institution', require('./routes/institution/institution-index'));
 
 // catch 404 and forward to error handler

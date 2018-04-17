@@ -59,6 +59,7 @@ router.get('/', function(req, res, next) {
 		var data=[myR];
 		var facultyID = req.session.facultyId;
 		console.log("myR" + JSON.stringify(myR));
+		
 		res.render('faculty/index', { title: 'Express', type:"dashboard",data : {faculty:data},
 			index:{
 				url:"/faculty/",
