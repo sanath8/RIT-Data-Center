@@ -46,7 +46,7 @@ router.get('/bosboe', function(req, res, next) {
 });
 
 router.get('/', function(req, res, next) {
-  var departmentId = req.query.id;
+  var departmentId = req.query.departmentId;
   var callback = function(err,result){
     if(err){
       throw err;

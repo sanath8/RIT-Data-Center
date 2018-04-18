@@ -29,7 +29,7 @@ router.post('/', function(req, res, next) {
                 if(myDet["departmentId"] == "college"){
                     res.redirect("/admin/");
                 } else{
-                    res.redirect("/department/" + myDet["departmentId"]);
+                    res.redirect("/department?departmentId=" + myDet["departmentId"]);
                 }
             } else{
             //TODO Perform Search on my details and find of it is in which category
