@@ -45,7 +45,8 @@ router.get('/bosboe', function(req, res, next) {
   res.render('department/bosboe', { title: 'Express', type:'bosboe', data:{}, authType:req.session.facultyId });
 });
 
-router.get('/:id', function(req, res, next) {
+router.get('/', function(req, res, next) {
+  var departmentId = req.query.id;
   var callback = function(err,result){
     if(err){
       throw err;
@@ -66,7 +67,7 @@ router.get('/:id', function(req, res, next) {
     var newResult = {'faculty' : data};
     res.render('department/index', { title: 'Express', departmentName: req.params.id, type:'index', data:newResult, authType:req.session.facultyId });
   }
-  sqlExecute.getCseFacultyInfo(callback);
+  sqlExecute.getFacultyInfo(callback,departmentId);
 });
 
 module.exports = router;

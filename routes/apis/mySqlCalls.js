@@ -275,10 +275,10 @@ sqlObject.prototype.getFaultyAchievements = function(fid, callback){
 }
 
 
-sqlObject.prototype.getCseFacultyInfo = function(callBack){
+sqlObject.prototype.getFacultyInfo = function(callBack, departmentId){
 	var sql = "select * \
 		from faculty \
-		where departmentId = 'cse'";
+		where departmentId = "+"'"+departmentId+"'";
 		this.connection.query(sql,function(err,results,fields){
 			callBack(err,results);
 		})
