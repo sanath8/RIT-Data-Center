@@ -10,9 +10,9 @@ $("#getReport").click(function()
   }
 });
 
-$("#exampleFormControlSelect0").change(function () {
-  document.getElementById("title").innerHTML = $('#exampleFormControlSelect0').val();
-  document.getElementById("titleDesc").innerHTML = "information about " + $('#exampleFormControlSelect0').val();
+$("#tableList").change(function () {
+  document.getElementById("title").innerHTML = $('#tableList').val();
+  document.getElementById("titleDesc").innerHTML = "information about " + $('#tableList').val();
 
   columnsSelected = "";
   performFilterOperations('table_changed');
@@ -48,18 +48,18 @@ function performFilterOperations(flag, reportCallBack)
     return;
   }
 
-  var tableName = $('#exampleFormControlSelect0').val();
-  var facultyName = $('#exampleFormControlSelect1').val();
-  var year = $('#exampleFormControlSelect2').val();
+  var tableName = $('#tableList').val();
+  var facultyName = $('#facultyList').val();
+  var year = $('#yearList').val();
   var from = $('#from').val();
   var fromYear = from.split("-")[0];
   var to = $('#to').val();
   var toYear = to.split("-")[0];
 
   if(from != "" || to != "")
-    document.getElementById("exampleFormControlSelect2").disabled=true;
+    document.getElementById("yearList").disabled=true;
   else
-    document.getElementById("exampleFormControlSelect2").disabled=false;
+    document.getElementById("yearList").disabled=false;
 
 
 
@@ -74,7 +74,7 @@ function performFilterOperations(flag, reportCallBack)
   {
     facultyFilter = ["facultyName = '"+ facultyName +"'"];
   }
-  if($('#exampleFormControlSelect2').is(':enabled'))
+  if($('#yearList').is(':enabled'))
   {
     if(year == "ALL")
     {
@@ -82,7 +82,7 @@ function performFilterOperations(flag, reportCallBack)
     }
     else
     {
-      var yearFilter =  "year >= " + (new Date().getFullYear()- year).toString() + "";
+      var yearFilter =  ""+ converterApi.yearTranslator(tableName)+" >= " + (new Date().getFullYear()- year).toString() + "";
       facultyFilter.push(yearFilter);
     }
   }
@@ -90,8 +90,8 @@ function performFilterOperations(flag, reportCallBack)
   {
       if(from != "" && to != "")
       {
-        var fromYearFilter =  "year >= " + fromYear.toString() + "";
-        var toYearFilter = "year <= " + toYear.toString() + "";
+        var fromYearFilter =  ""+ converterApi.yearTranslator(tableName)+" >= "  + fromYear.toString() + "";
+        var toYearFilter =  ""+ converterApi.yearTranslator(tableName)+" <= "  + toYear.toString() + "";
         facultyFilter.push(fromYearFilter);
         facultyFilter.push(toYearFilter);
       }
@@ -187,7 +187,7 @@ tr+=("</thead><tbody>")
     {
       dataEntry = eval("json[i]."+columnsAttributes[j]);
 
-      tr+=("<td>" + dataEntry + "</td>");
+      tr+=("<td class = 'longText'>" + dataEntry + "</td>");
 
     }
     tr+="</tr>"
