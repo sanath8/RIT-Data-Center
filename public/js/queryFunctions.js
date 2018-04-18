@@ -82,7 +82,7 @@ function performFilterOperations(flag, reportCallBack)
     }
     else
     {
-      var yearFilter =  "year >= " + (new Date().getFullYear()- year).toString() + "";
+      var yearFilter =  ""+ converterApi.yearTranslator(tableName)+" >= " + (new Date().getFullYear()- year).toString() + "";
       facultyFilter.push(yearFilter);
     }
   }
