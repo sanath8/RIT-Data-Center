@@ -25,7 +25,7 @@ router.post('/', function(req, res, next) {
                 console.log("Session ID : "+myDet["emailId"]);
                 req.session.email=myDet["emailId"];
                 req.session.facultyId = myDet["type"];
-                req.session.department = myDet["departmentId"];
+                req.session.departmentId = myDet["departmentId"];
                 if(myDet["departmentId"] == "college"){
                     res.redirect("/admin/");
                 } else{

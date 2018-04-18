@@ -33,20 +33,24 @@ router.get('/infrastructure-details', function(req, res, next) {
 });
 
 router.get('/activities', function(req, res, next) {
-  res.render('department/activities', { title: 'Express', type: 'activities', data:{}, authType:req.session.facultyId
+  res.render('department/activities', { departmentId: req.session.departmentId, type: 'activities', data:{}, authType:req.session.facultyId
 });
 });
 
 router.get('/admission-details', function(req, res, next) {
-  res.render('department/admission-details', { title: 'Express', type: 'admission-details', data:{}, authType:req.session.facultyId });
+  res.render('department/admission-details', { departmentId: req.session.departmentId, type: 'admission-details', data:{}, authType:req.session.facultyId });
 });
 
 router.get('/bosboe', function(req, res, next) {
-  res.render('department/bosboe', { title: 'Express', type:'bosboe', data:{}, authType:req.session.facultyId });
+  res.render('department/bosboe', { departmentId: req.session.departmentId, type:'bosboe', data:{}, authType:req.session.facultyId });
 });
 
 router.get('/', function(req, res, next) {
-  var departmentId = req.query.departmentId;
+  if(req.query.departmentId){
+    var departmentId = req.query.departmentId;
+  } else{
+    var departmentId = req.session.departmentId;
+  }
   var callback = function(err,result){
     if(err){
       throw err;
@@ -65,7 +69,7 @@ router.get('/', function(req, res, next) {
 			data.push(myR);
     }
     var newResult = {'faculty' : data};
-    res.render('department/index', { title: 'Express', departmentName: req.params.id, type:'index', data:newResult, authType:req.session.facultyId });
+    res.render('department/index', {departmentId: departmentId, type:'index', data:newResult, authType:req.session.facultyId });
   }
   sqlExecute.getDepartmentFacultyInfo(callback,departmentId);
 });
