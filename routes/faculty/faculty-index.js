@@ -58,9 +58,10 @@ router.get('/', function(req, res, next) {
 		var about = tresult["about"];
 		var data=[myR];
 		var facultyID = req.session.facultyId;
+		// var departmentId = tresult["departmentId"];
 		console.log("myR" + JSON.stringify(myR));
 		
-		res.render('faculty/index', { title: 'Express', type:"dashboard",data : {faculty:data},
+		res.render('faculty/index', { title: 'Express', type:"dashboard", data : {faculty:data},
 			index:{
 				url:"/faculty/",
 				faculty:{
@@ -79,8 +80,8 @@ router.get('/', function(req, res, next) {
 					pfNumber:"PF Number",
 					about : "About"
 				}
-			},	
-		data: {faculty : data}, fId:facultyId, about:about, GetParam:req.query.fId, authType:req.session.facultyId});
+			},
+			fId:facultyId, about:about, GetParam:req.query.fId, authType:req.session.facultyId, departmentId:req.session.departmentId});
 		//res.send(JSON.stringify(result));
 	}
 	// console.log("Param : "+req.session.email+":"+req.session.facultyId);

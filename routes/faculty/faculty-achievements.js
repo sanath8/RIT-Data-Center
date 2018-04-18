@@ -169,7 +169,8 @@ router.get('/', function(req, res, next) {
 				sjrQuartile : "SJR Quartile"               
 			}
 		], */
-		authType:req.session.facultyId
+		authType:req.session.facultyId,
+		departmentId:req.session.departmentId
 	});
 	}
 	//TODO Change the Faculty Achievements Table

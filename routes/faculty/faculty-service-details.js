@@ -70,7 +70,8 @@ router.get('/', function(req, res, next) {
 						payScale : "Payscale" 
 					}
 				], */
-				authType:req.session.facultyId
+				authType:req.session.facultyId,
+				departmentId:req.session.departmentId
 				});
 
 	}
