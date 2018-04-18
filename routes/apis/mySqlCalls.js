@@ -284,6 +284,14 @@ sqlObject.prototype.getCseFacultyInfo = function(callBack){
 		})
 }
 
+sqlObject.prototype.getDepartmentInfo = function(callback){
+	var sql = "select *\
+						from department";
+		this.connection.query(sql,function(err,results,fields){
+			callback(err,results);
+		})
+}
+
 sqlObject.prototype.getWholeTable = function(callback, url, email){
   var sql = "select * \
       from " + mappingUrl.mappingUrlTable[url]+" natural join "+this.tables.facultyInformation+"\

@@ -26,7 +26,11 @@ router.post('/', function(req, res, next) {
                 req.session.email=myDet["emailId"];
                 req.session.facultyId = myDet["type"];
                 req.session.department = myDet["departmentId"];
-                res.redirect("/department/" + myDet["departmentId"]);
+                if(myDet["departmentId"] == "college"){
+                    res.redirect("/admin/");
+                } else{
+                    res.redirect("/department/" + myDet["departmentId"]);
+                }
             } else{
             //TODO Perform Search on my details and find of it is in which category
             console.log("Session ID : "+myDet["emailId"]);
