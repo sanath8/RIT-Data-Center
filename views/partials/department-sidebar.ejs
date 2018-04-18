@@ -11,7 +11,7 @@
         class="active"
         <% } %>
         >
-            <a href="/department/cse">
+            <a href="/department?departmentId=<%=departmentId%>">
                 <i class="material-icons">dashboard</i>
                 <p>General Information</p>
             </a>
@@ -20,7 +20,8 @@
         <% if(type=="student-info"){%>
         class="active"
         <% } %>
-        >            <a href="/department/student-info">
+        >            
+            <a href="/department/student-info?departmentId=<%=departmentId%>">
                 <i class="material-icons">person</i>
                 <p>Student Information</p>
             </a>
@@ -29,7 +30,8 @@
         <% if(type=="infrastructure-details"){%>
         class="active"
         <% } %>
-        >            <a href="/department/infrastructure-details">
+        >            
+            <a href="/department/infrastructure-details?departmentId=<%=departmentId%>">
                 <i class="material-icons">content_paste</i>
                 <p>Infrastructure Details</p>
             </a>
@@ -38,7 +40,7 @@
         <% if(type=="admission-details"){%>
         class="active"
         <% } %>
-        >            <a href="/department/admission-details">
+        >            <a href="/department/admission-details?departmentId=<%=departmentId%>">
                 <i class="material-icons">library_books</i>
                 <p>Admission Details</p>
             </a>
@@ -47,7 +49,7 @@
         <% if(type=="activities"){%>
         class="active"
         <% } %>
-        >            <a href="/department/activities">
+        >            <a href="/department/activities?departmentId=<%=departmentId%>">
                 <i class="material-icons">bubble_chart</i>
                 <p>Activities</p>
             </a>
@@ -56,7 +58,7 @@
         <% if(type=="bosboe"){%>
         class="active"
         <% } %>
-        >            <a href="/department/bosboe">
+        >            <a href="/department/bosboe?departmentId=<%=departmentId%>">
                 <i class="material-icons">location_on</i>
                 <p>BOS | BOE</p>
             </a>
