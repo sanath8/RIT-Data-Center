@@ -96,7 +96,8 @@ CREATE TABLE `administrator_login` (
 INSERT INTO `administrator_login` (`emailId`, `password`, `departmentId`, `type`) VALUES
 ('hod-cse@msrit.edu', 'rit', 'cse', 'hod'),
 ('cse@msrit.edu', 'rit', 'cse', 'coordinator'),
-('principle@msrit.edu', 'rit', 'college', 'principle');
+('principle@msrit.edu', 'rit', 'college', 'principle'),
+('admin@msrit.edu', 'rit', 'college', 'admin');
 
 -- --------------------------------------------------------
 
