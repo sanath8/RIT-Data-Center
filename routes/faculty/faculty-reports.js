@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
   utility.checkSesssion(req, res);
   var callBack = function(result1, result2, result3){
 
-    res.render('faculty/faculty-reports', {type : 'faculty-report', selectList1 : result1, selectList2 : result2, GetParam: req.query.fId, authType:req.session.facultyId});
+    res.render('faculty/faculty-reports', {type : 'faculty-report', selectList1 : result1, selectList2 : result2, GetParam: req.query.fId, authType:req.session.facultyId, department:req.session.department});
 
 
   }

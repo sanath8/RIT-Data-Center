@@ -1,33 +1,73 @@
-facultyName	gender	address	religion	qualification
-Annapurna P. Pati	Female	#308, C Block Gowri Apartment, NEW BEL Road	Hindu	Ph.D
-Seema S	Female	#327, 7TH CROSS,  3RD BLOCK, HMT layout, Vidyarany	Hindu	Ph.D
-Jagadish S.K.	Male	NO.79, 9TH MAIN, 6TH CROSS, J C Nagar, Kurubara ha	Hindu	Ph.D
-Jayalakshmi D.S	Female	#325/6, "SRINIDHI", F BLOCK, Sahakara nagar	Hindu	M.SC.(Engg
-Monica R Mundada	Female	137/A1, 13th cross ASCS layout, Near RMV Hosptial,	Hindu	Ph.D
-Sanjeetha R	Female	Sri Manjunatha Swamy Nilaya, #78, 2nd cross, Vinay	Hindu	(Ph.D)
-A Parkavi	Female	C/O, C.SINGARAM, NO.124, 6TH MAIN, 3RD CROSS, IST 	Christian	(Ph.D)
-Veena GS 	Female	#48, 2nd Main, 2nd Stage, Near Aveksha Hospital, S	Hindu	(Ph.D)
-J Geetha	Female	NO-106 SLV Durga Apartments Vidyaranipura,  BANGAL	Hindu	(Ph.D)
-T.N R. Kumar	Male	#1/3(212) 3RD CROSS CHIKKANNA, Gardenns Shankarpur	Hindu	Ph.D
-Mamatha  Jadhav V	Female	#2709 11TH MAIN D BLOCK, II stage Rajajinagar Blor	Hindu	M.TECH
-Chethan C T	Male	#208 PATEL CHANNAPA'S, 1ST Main Dwaraka nagar BSK 	Hindu	B.E
-Sini Anna Alex	Female	#171, BETHEL, 1st main, AYR Layout, Shettyhalli, J	Christian	(Ph.D)
-Sardar Vandana Sudhakar	Female	#14, Venkateshwara Layout, MSR Nagar	Hindu	M.E
-Meera Devi A Kawalgi	Female	#307, Garuda Royal Apt, Sharadamba Nagar, Jalahall	Hindu	(Ph.D)
-Malle Gowda M	Male	#243/2 , II CROSS , mathikere(near univercell)	Hindu	(Ph.D)
-Dr.H.V. Divakar	Male	#105, TELECOM COLONY, behind new timberyard	Hindu	Ph.D
-Chandrika Prasad	Female	#143, I STAGE, II CROSS, B.E.M.L., Basaveshwara Na	Hindu	(Ph.D)
-Rajarajeswari S	Female	#501, SIRI RESIDENCY, I CROSS, PAPPANA LAYOUT, V.N	Hindu	(Ph.D)
-Pramod C Sunagar	Male	#18, "GURUKRUPA NILAYA" 17TH A CROSS, BNS LAYOUT, 	Hindu	(Ph.D)
-Sowmya B J	Female	829, 1ST CROSS, 4 BLOCK, HMT LAYOUT	Hindu	(Ph.D)
-Pradeep kumar D 	Male	NO 740, 9MAIN 9 BLOCK, NAGARBAVI	Hindu	(Ph.D)
-Chetan  Shetty 	Male	NO 13, B 306, 3RD FLOOR, RENAISSANCE BRINDAVAN, UT	Hindu	(Ph.D)
-Ganeshayya I Shidaganti	Male	106, MANASA BULDING, SIDDESWARA PARK, HUBLI	Hindu	(Ph.D)
-Darshana A Naik	Female	1592, 6 MAIN E BLOCK, 2ND STAGE , SHIVA KRUPA, RAJ	Hindu	(Ph.D)
-Srinidhi H	Male	NO 62, 3RD CROSS, 4TH MAIN, KIRLOSKAR COLONY, 1ST 	Hindu	(Ph.D)
-Hanumantha Raju R	Male	Sri Maruti Nilaya, 4th ward, vinayak nagar, Dodbal	Hindu	M.TECH
-Aparna R	Female	No. 13, Sastry Apartments, Gannappa Gardens, 8th C	Hindu	M.TECH
-Shilpa S Chaudhari	Female	J-21, Shriram Sadhana Apt, Gokula Mathiker, Bangal	Hindu	PhD
-Raghuram Krishnapuram	Male	null	null	PhD
-Ramani S	Male	Malleshwaram, Bangalore, 560003	Hindu	PhD
-Nagabhushan A M	Male	12_seetharamaiah lay out, Yeswanthpur, 560022	Hindu	M.Tech
+gender	address
+Female	#308, C Block Gowri Apartment, NEW BEL Road
+Female	#308, C Block Gowri Apartment, NEW BEL Road
+Female	#308, C Block Gowri Apartment, NEW BEL Road
+Female	#327, 7TH CROSS,  3RD BLOCK, HMT layout, Vidyarany
+Female	#327, 7TH CROSS,  3RD BLOCK, HMT layout, Vidyarany
+Female	#327, 7TH CROSS,  3RD BLOCK, HMT layout, Vidyarany
+Male	NO.79, 9TH MAIN, 6TH CROSS, J C Nagar, Kurubara ha
+Male	NO.79, 9TH MAIN, 6TH CROSS, J C Nagar, Kurubara ha
+Male	NO.79, 9TH MAIN, 6TH CROSS, J C Nagar, Kurubara ha
+Female	#325/6, "SRINIDHI", F BLOCK, Sahakara nagar
+Female	#325/6, "SRINIDHI", F BLOCK, Sahakara nagar
+Female	137/A1, 13th cross ASCS layout, Near RMV Hosptial,
+Female	137/A1, 13th cross ASCS layout, Near RMV Hosptial,
+Female	137/A1, 13th cross ASCS layout, Near RMV Hosptial,
+Female	Sri Manjunatha Swamy Nilaya, #78, 2nd cross, Vinay
+Female	Sri Manjunatha Swamy Nilaya, #78, 2nd cross, Vinay
+Female	C/O, C.SINGARAM, NO.124, 6TH MAIN, 3RD CROSS, IST 
+Female	C/O, C.SINGARAM, NO.124, 6TH MAIN, 3RD CROSS, IST 
+Female	#48, 2nd Main, 2nd Stage, Near Aveksha Hospital, S
+Female	#48, 2nd Main, 2nd Stage, Near Aveksha Hospital, S
+Female	NO-106 SLV Durga Apartments Vidyaranipura,  BANGAL
+Female	NO-106 SLV Durga Apartments Vidyaranipura,  BANGAL
+Male	#1/3(212) 3RD CROSS CHIKKANNA, Gardenns Shankarpur
+Male	#1/3(212) 3RD CROSS CHIKKANNA, Gardenns Shankarpur
+Male	#1/3(212) 3RD CROSS CHIKKANNA, Gardenns Shankarpur
+Female	#2709 11TH MAIN D BLOCK, II stage Rajajinagar Blor
+Female	#2709 11TH MAIN D BLOCK, II stage Rajajinagar Blor
+Male	#208 PATEL CHANNAPA'S, 1ST Main Dwaraka nagar BSK 
+Female	#171, BETHEL, 1st main, AYR Layout, Shettyhalli, J
+Female	#171, BETHEL, 1st main, AYR Layout, Shettyhalli, J
+Female	#14, Venkateshwara Layout, MSR Nagar
+Female	#14, Venkateshwara Layout, MSR Nagar
+Female	#307, Garuda Royal Apt, Sharadamba Nagar, Jalahall
+Female	#307, Garuda Royal Apt, Sharadamba Nagar, Jalahall
+Male	#243/2 , II CROSS , mathikere(near univercell)
+Male	#243/2 , II CROSS , mathikere(near univercell)
+Male	#105, TELECOM COLONY, behind new timberyard
+Male	#105, TELECOM COLONY, behind new timberyard
+Male	#105, TELECOM COLONY, behind new timberyard
+Female	#143, I STAGE, II CROSS, B.E.M.L., Basaveshwara Na
+Female	#143, I STAGE, II CROSS, B.E.M.L., Basaveshwara Na
+Female	#501, SIRI RESIDENCY, I CROSS, PAPPANA LAYOUT, V.N
+Female	#501, SIRI RESIDENCY, I CROSS, PAPPANA LAYOUT, V.N
+Female	#501, SIRI RESIDENCY, I CROSS, PAPPANA LAYOUT, V.N
+Male	#18, "GURUKRUPA NILAYA" 17TH A CROSS, BNS LAYOUT, 
+Male	#18, "GURUKRUPA NILAYA" 17TH A CROSS, BNS LAYOUT, 
+Female	829, 1ST CROSS, 4 BLOCK, HMT LAYOUT
+Female	829, 1ST CROSS, 4 BLOCK, HMT LAYOUT
+Male	NO 740, 9MAIN 9 BLOCK, NAGARBAVI
+Male	NO 740, 9MAIN 9 BLOCK, NAGARBAVI
+Male	NO 13, B 306, 3RD FLOOR, RENAISSANCE BRINDAVAN, UT
+Male	NO 13, B 306, 3RD FLOOR, RENAISSANCE BRINDAVAN, UT
+Male	106, MANASA BULDING, SIDDESWARA PARK, HUBLI
+Male	106, MANASA BULDING, SIDDESWARA PARK, HUBLI
+Female	1592, 6 MAIN E BLOCK, 2ND STAGE , SHIVA KRUPA, RAJ
+Female	1592, 6 MAIN E BLOCK, 2ND STAGE , SHIVA KRUPA, RAJ
+Female	1592, 6 MAIN E BLOCK, 2ND STAGE , SHIVA KRUPA, RAJ
+Male	NO 62, 3RD CROSS, 4TH MAIN, KIRLOSKAR COLONY, 1ST 
+Male	NO 62, 3RD CROSS, 4TH MAIN, KIRLOSKAR COLONY, 1ST 
+Male	Sri Maruti Nilaya, 4th ward, vinayak nagar, Dodbal
+Male	Sri Maruti Nilaya, 4th ward, vinayak nagar, Dodbal
+Female	No. 13, Sastry Apartments, Gannappa Gardens, 8th C
+Female	No. 13, Sastry Apartments, Gannappa Gardens, 8th C
+Female	J-21, Shriram Sadhana Apt, Gokula Mathiker, Bangal
+Female	J-21, Shriram Sadhana Apt, Gokula Mathiker, Bangal
+Female	J-21, Shriram Sadhana Apt, Gokula Mathiker, Bangal
+Male	Malleshwaram, Bangalore, 560003
+Male	Malleshwaram, Bangalore, 560003
+Male	Malleshwaram, Bangalore, 560003
+Male	12_seetharamaiah lay out, Yeswanthpur, 560022
+Male	12_seetharamaiah lay out, Yeswanthpur, 560022
+Male	12_seetharamaiah lay out, Yeswanthpur, 560022
