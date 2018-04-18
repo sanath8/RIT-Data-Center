@@ -6,7 +6,7 @@ var utility = require('../utilities');
 router.get('/', function(req, res, next) {
 	if(!utility.checkSesssion(req, res)) return;
 
-	var facultyID;
+	var facultyId;
 	var auth = true;
 
 	if(!utility.checkGetParam(req,res)){
@@ -14,18 +14,20 @@ router.get('/', function(req, res, next) {
 	}
 	else{
 		auth = false;
-		facultyID = req.query.fId;
+		facultyId = req.query.fId;s
 	}
 	//console.log("facultyId = " + facultyID);
 	var callback = function(err, result){
 		if(err)
 			throw err;
 		// var result object below tobe deleted 
+		console.log(JSON.stringify(result));
 		var arr=[];
 		var facultyID = req.session.facultyId;;
 		for(var i in result){
 			//console.log(i);
 			var temp={
+				slNo:result[i]["slNo"],
 				facultyId:result[i]["facultyId"],
 				degree:result[i]["degree"],
 				university:result[i]["university"],
@@ -64,7 +66,8 @@ router.get('/', function(req, res, next) {
 			});
 	}
 	//sqlExecute.getWholeTable(callback,'facultyQualification', req.session.email);
-	sqlExecute.getFaultyQualification(facultyID, callback);
+	console.log("Faculty ID : "+facultyId);
+	sqlExecute.getFaultyQualification(facultyId, callback);
 });
 
 module.exports=router;
