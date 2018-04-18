@@ -19,7 +19,13 @@
                     </a>
                 </li>
                   <li class="dropdown">
-                      <a href="/department/cse">
+                     <a
+                      <%if(authType == "principle" || authType == "admin"){%>
+                        href="/admin"
+                      <%}else{%>
+                        href="/department?departmentId=<%=departmentId%>"
+                      <%}%>
+                        >                        
                         <i class="material-icons hidden-lg hidden-md">store</i>
                         <p>Department</p>
                       </a>

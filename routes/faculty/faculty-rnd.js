@@ -98,7 +98,8 @@ router.get('/', function(req, res, next) {
 				}
 			   
 		], */
-		authType:req.session.facultyId
+		authType:req.session.facultyId,
+		departmentId:req.session.departmentId
 	});
 	}
 	sqlExecute.getFaultyRND(facultyId, callback);

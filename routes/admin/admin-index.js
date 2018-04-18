@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
 function callback(err,results){
   var facultyId = req.session.facultyId;
   console.log("you just sent " + facultyId);
-  res.render('admin/index', { title: 'Express', type:"index", data:results, authType:facultyId });
+  res.render('admin/index', { title: 'Express', type:"index", data:results, authType:facultyId, departmentId:req.session.departmentId });
 }
 mySqlCalls.getDepartmentInfo(callback);
 });
