@@ -26,6 +26,7 @@ router.get('/', function(req, res, next) {
 		for(var i in result){
 			//console.log(i);
 			var temp={
+				slNo:result[i]["slNo"],
 				facultyId:result[i]["facultyId"],
 				designation:result[i]["designation"],
 				qualification:result[i]["qualification"],
