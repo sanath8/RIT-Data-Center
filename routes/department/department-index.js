@@ -67,7 +67,7 @@ router.get('/', function(req, res, next) {
     var newResult = {'faculty' : data};
     res.render('department/index', { title: 'Express', departmentName: req.params.id, type:'index', data:newResult, authType:req.session.facultyId });
   }
-  sqlExecute.getFacultyInfo(callback,departmentId);
+  sqlExecute.getDepartmentFacultyInfo(callback,departmentId);
 });
 
 module.exports = router;
