@@ -2,6 +2,7 @@
 <% include ../partials/faculty-sidebar %>
 <% include ../partials/faculty-navbar %>
 <% include ../partials/loadSelectList %>
+<%console.log("***NOTE***"+authType+"***NOTE***"+department);%>
 <h2>QUERY PAGE</h2>
 <form class="form-inline">
   <div class="form-group" id = "filters">
@@ -10,27 +11,26 @@
         <th>
           <label for="department">Department</label>
           <select class="form-control" id="department">
-            <%loadInList([{department:"ALL"}, {department:"CSE"}, {department:"ISE"}, {department:"ECE"}, {department:"IT"}, {department:"IEM"}])%>
+            <%loadInList([{department:"ALL"}, {department:"cse"}, {department:"ise"}, {department:"ece"}, {department:"it"}, {department:"iem"}])%>
           </select>
         </th>
         <th>
-        <th>
-          <label for="exampleFormControlSelect0">Tables</label>
-          <select class="form-control" id="exampleFormControlSelect0">
+          <label for="tableList">Tables</label>
+          <select class="form-control" id="tableList">
             <%loadInList(selectList1)%>
           </select>
         </th>
         <th>
-          <label for="exampleFormControlSelect1">Name</label>
-          <select class="form-control" id="exampleFormControlSelect1">
+          <label for="facultyList">Name</label>
+          <select class="form-control" id="facultyList">
             <option>ALL</option>
             <%loadInList(selectList2)%>
           </select>
         </th>
 
         <th>
-          <label for="exampleFormControlSelect2">Year</label>
-          <select class="form-control" id="exampleFormControlSelect2">
+          <label for="yearList">Year</label>
+          <select class="form-control" id="yearList">
             <%loadInList([{year:"ALL"}, {year:1}, {year:2}, {year:3}, {year:4}, {year:5}])%>
           </select>
         </th>
@@ -45,7 +45,6 @@
             <input type="date" id="to">
         </th>
 
-      </th>
     </table>
 
   </div>
@@ -92,6 +91,7 @@
 
 
 <% include ../partials/footer %>
+<script src="/js/conversionDictionary.js"></script>
 <script src="/js/queryFunctions.js"></script>
 <script>
   document.getElementById("card").style.height = screen.height+"px";//"'"+screen.height+"px'";
