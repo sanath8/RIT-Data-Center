@@ -4,6 +4,9 @@ var router = express.Router();
 var sqlExecute = require('../apis/mySqlCalls');
 
 /* GET home page. */
+
+router.use('/department-reports', require('./department-reports'));
+
 router.get('/student-info', function(req, res, next) {
   if(req.query.departmentId){
     departmentId = req.query.departmentId;

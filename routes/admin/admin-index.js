@@ -17,4 +17,6 @@ router.get('/login', function(req, res, next) {
 });
 
 
+router.use('/admin-reports', require('./admin-reports'));
+
 module.exports = router;

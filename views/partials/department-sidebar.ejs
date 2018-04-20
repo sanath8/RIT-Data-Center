@@ -63,6 +63,15 @@
                 <p>BOS | BOE</p>
             </a>
         </li>
+        <li
+        <% if(type=="department-reports"){%>
+        class="active"
+        <% } %>
+        >            <a href="/department/department-reports?departmentId=<%=departmentId%>">
+                <i class="material-icons">bubble_chart</i>
+                <p>Reports</p>
+            </a>
+        </li>
         <li class="active-pro">
             <a href="upgrade.html">
                 <i class="material-icons">unarchive</i>
