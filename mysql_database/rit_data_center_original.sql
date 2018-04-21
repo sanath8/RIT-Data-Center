@@ -7,6 +7,11 @@
 -- Server version: 10.1.26-MariaDB-0+deb9u1
 -- PHP Version: 5.6.30-0+deb8u1
 
+drop Database rit_data_center;
+create Database rit_data_center;
+use rit_data_center;
+
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 

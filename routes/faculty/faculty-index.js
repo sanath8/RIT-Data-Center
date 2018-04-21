@@ -101,8 +101,6 @@ router.use('/rnd-details', require('./faculty-rnd'));
 
 router.use('/achievements', require('./faculty-achievements'));
 
-router.use('/faculty-reports', require('./faculty-reports'));
-
 router.post('/generateexcelTest/',function(req,res,next){
   utility.checkSesssion(req, res);
   console.log("this is " + req.params.jsonObject);
