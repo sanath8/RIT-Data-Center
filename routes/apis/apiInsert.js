@@ -10,46 +10,37 @@ router.post('/:tableName', function(req, res, next){
     //     res.send(result).end();;
     //     //res.send(sqlAPI.fetchResults(req.params.columnName, req.params.tableName));
     // }
-    console.log(req.body);
+    // console.log(req.body);
     // sqlAPI.updateResults(JSON.stringify(req.body), req.params.tableName, req.params.authority, callback);
     //var str="Apis need to integrated";
     var upd=[];
-    columnNameString = '';
-    var i = 0;
+    var tableKey=[];
+    console.log("request body in apiInsert : " + JSON.stringify(req.body));
     for(var t in req.body){
-        if(t === 'url')continue;
-        if(i != 0){
-            columnNameString += ", ";
+        if(t!="slNo" && t!="facultyId" && t!="url"){
+            upd.push("'"+req.body[t]+"'");
+            tableKey.push(t);
+        }else if(t=="facultyId"){
+            upd.push("'"+req.session.facultyId+"'");
+            tableKey.push(t);
         }
-        columnNameString += t;   
-        if(req.body[t]){
-            upd.push("'" + req.body[t] + "'");
-        }
-        else{
-
-            upd.push("'undefined'");
-        }
-        i++; 
     }
-    if(columnNameString.length != 0){
-        var sql = "Insert into "+req.params.tableName+"(" + columnNameString + ") values(";   
-        sql+=upd.join(" , ");
-        sql += ")";
-        //sql+=" Where slNo="+req.body.slNo;
-        // for(var b in req.body){
-        //     str=str+"\n"+b;
-        // }
+    var sql = "INSERT INTO "+req.params.tableName+"("+tableKey.join(",")+") VALUES ("+upd.join(",")+")"
+    
+    // for(var b in req.body){
+    //     str=str+"\n"+b;
+    // }
 
-        console.log("the url is : " + req.body.url);
-        
-        mysql.runRawQuery(sql, function(err, result){
-            if(err){
-                res.end("Error : "+err.message);
-                return;
-            }
-            res.redirect(req.body.url);
-        });
-    }
+    console.log("the query is : " + sql);
+    mysql.runRawQuery(sql, function(err, result){
+        if(err){
+            res.end("Error : "+err.message);
+            return;
+        }
+        res.redirect(req.body.url);
+    });
+
 });
+
 
 module.exports = router;

@@ -1,58 +1,72 @@
-<div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
+<div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-1.jpg" style="z-index:4">
 
-    <div class="logo" style=" background-color:#9C27B0">
-        <img src="/assets/img/brand.png" style="height:70px;" class="img-responsive">
-        </img>
-    </div>
-    <div class="sidebar-wrapper">
-        <ul class="nav">
-            <li class="active">
-                <a href="/faculty">
-                    <i class="material-icons">dashboard</i>
-                    <p>Dashboard</p>
-                </a>
-            </li>
-            <li>
-                <a href="./user.html">
-                    <i class="material-icons">person</i>
-                    <p>Qualification Details</p>
-                </a>
-            </li>
-            <li>
-                <a href="/faculty/service-details">
-                    <i class="material-icons">content_paste</i>
-                    <p>Service Details</p>
-                </a>
-            </li>
-            <li>
-                <a href="./typography.html">
-                    <i class="material-icons">library_books</i>
-                    <p>Achievments</p>
-                </a>
-            </li>
-            <li>
-                <a href="./icons.html">
-                    <i class="material-icons">bubble_chart</i>
-                    <p>Acedemic Details</p>
-                </a>
-            </li>
-            <li>
-                <a href="./maps.html">
-                    <i class="material-icons">location_on</i>
-                    <p>R&D</p>
-                </a>
-            </li>
-            <li id="personnallist">
-                <a href="/faculty/personnal-info">
-                    <i class="material-icons text-gray">notifications</i>
-                    <p>Update personnal info</p>
-                </a>
-            </li>
-            <li class="active-pro">
-                <a href="upgrade.html">
-                    <i class="material-icons">unarchive</i>
-                    <p>Upgrade to PRO</p>
-                </a>
-            </li>
-        </ul>
-    </div>
+<div class="logo" style=" background-color:#9C27B0">
+    <img src="/assets/img/brand.png" style="height:70px;" class="img-responsive">
+    </img>
+</div>
+<div class="sidebar-wrapper">
+    <ul class="nav">
+        <li
+        <% if(type=="index"){%>
+        class="active"
+        <% } %>
+        >
+            <a href="/admin">
+                <i class="material-icons">dashboard</i>
+                <p>General Information</p>
+            </a>
+        </li>
+        <li
+        <% if(type=="add-faculty"){%>
+        class="active"
+        <% } %>
+        >            <a href="/admin/add-faculty">
+                <i class="material-icons">person</i>
+                <p>Add Faculty</p>
+            </a>
+        </li>
+        <li
+        <% if(type=="remove-faculty"){%>
+        class="active"
+        <% } %>
+        >            <a href="/admin/remove-faculty">
+                <i class="material-icons">content_paste</i>
+                <p>Remove Faculty</p>
+            </a>
+        </li>
+        <li
+        <% if(type=="change-hod"){%>
+        class="active"
+        <% } %>
+        >            <a href="/admin/admission-details">
+                <i class="material-icons">library_books</i>
+                <p>Change HOD</p>
+            </a>
+        </li>
+        <li
+        <% if(type=="change-principle"){%>
+        class="active"
+        <% } %>
+        >            <a href="/admin/activities">
+                <i class="material-icons">bubble_chart</i>
+                <p>Change Principle</p>
+            </a>
+        </li>
+        <li
+        <% if(type=="admin-reports"){%>
+        class="active"
+        <% } %>
+        >            <a href="/admin/admin-reports">
+                <i class="material-icons">bubble_chart</i>
+                <p>Reports</p>
+            </a>
+        </li>
+ 
+        <li class="active-pro">
+            <a href="upgrade.html">
+                <i class="material-icons">unarchive</i>
+                <p>Upgrade to PRO</p>
+            </a>
+        </li>
+    </ul>
+</div>

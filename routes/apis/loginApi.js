@@ -25,13 +25,17 @@ router.post('/', function(req, res, next) {
                 console.log("Session ID : "+myDet["emailId"]);
                 req.session.email=myDet["emailId"];
                 req.session.facultyId = myDet["type"];
-                req.session.department = myDet["departmentId"];
-                res.redirect("/department/" + myDet["departmentId"]);
+                req.session.departmentId = myDet["departmentId"];
+                if(myDet["departmentId"] == "college"){
+                    res.redirect("/admin/");
+                } else{
+                    res.redirect("/department?departmentId=" + myDet["departmentId"]);
+                }
             } else{
             //TODO Perform Search on my details and find of it is in which category
             console.log("Session ID : "+myDet["emailId"]);
             req.session.email=myDet["emailId"];
-            req.session.department = myDet["departmentId"];
+            req.session.departmentId = myDet["departmentId"];
             req.session.facultyId=myDet["facultyId"];
             res.redirect("/faculty");
             }

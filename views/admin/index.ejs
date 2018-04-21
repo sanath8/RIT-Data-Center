@@ -5,44 +5,34 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header" data-background-color="purple">
-                    <h4 class="title">Edit Profile</h4>
-                    <p class="category">Complete your profile</p>
+                    <h4 class="title">Departments Information</h4>
+                    <p class="category">General Departments Information</p>
                 </div>
-                <div class="card-content">
-                    <table class="table">
+                <div class="card-content table-responsive">
+                    <table class="table" >
+                        <thead class="text-primary">
+                            <th>departmentId</th>  
+                            <th>departmentName</th>  
+                            <th>yearOfEstablishment</th>  
+                            <th>address</th>  
+                            <th>contactNumber</th>  
+                            <th>officialMailId</th>  
+                            <th>hodName</th> 
+                            <th>hodContactNumber</th>  
+                            <th>instituteName</th>     
+                        </thead>
                         <tbody>
-                        <br>
-                            <% loadInTableVerticle(data["faculty"],1) %>
+                        <%loadInTable(data)%>
                         </tbody>
                     </table>
                 </div>
-                <a href = "/faculty/generateexcel/1/1/?faculty=<%-GetParam%>">
-                <button class="btn btn-primary pull-left hodDisable" style="margin:13px">Generate Excel file</button>
+                <a href = "/faculty/generateexcel/1/1">
+                <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
                 </a>
-                <button class="btn btn-primary pull-right hodDisable" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataModular('faculty', 0)">Update</button>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card card-profile">
-                <div class="card-avatar">
-                    <a href="#pablo">
-                        <img class="img" style="position:relative;" id="profileImage" src="../assets/img/faces/<%-fId%>.jpg" onmouseover="displayInput()" onmouseout="hideInput()"/>
-                    </a>
-                </div>
-                <form action="/faculty/changeProfilePicture" method="post" id="profileForm"  enctype="multipart/form-data">
-                    <input name="avatar" onchange="checkIfInput()" type="file" class="pull-right hodDisable" id="profileImageButton" style="display:none; margin-top:-40px; position:absolute;" onmouseover="displayInput()" onmouseout="hideInput()"/>
-                </form>
-                <div class="content">
-                    <h6 class="category text-gray">designation</h6>
-                    <h4 class="card-title"><%-data["faculty"][0]["Name"]%></h4>
-                    <p class="card-content">
-                    <%-about%>
-                    </p>
-                    <button  data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick = "fillDescriptionModular('faculty', 0)" class="btn btn-primary btn-round hodDisable">Edit Description</button>
-                </div>
+                <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal1" style="margin:13px" onclick="fillDataVerticleTable(1)">Update</button>
             </div>
         </div>
     </div>
@@ -50,15 +40,4 @@
 
 
 
-
-
-
-<!--model containing form for faculty qualification below -->
-<!-- TODO == MAKE MODEL MODULAR -->
-
-
-
-
-
-<% include ../partials/disable-buttons %>
 <% include ../partials/footer %>

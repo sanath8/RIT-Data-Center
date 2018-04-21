@@ -1,5 +1,5 @@
 <script>
-<% if( authType == "hod" || (GetParam && authType != "coordinator")) { %>
+<% if( authType == "hod" || (GetParam && authType != "coordinator" && authType != "admin")) { %>
     console.log("hello everyone");
     var buttonsDisable = document.getElementsByClassName("hodDisable");
     for(var i = 0; i< buttonsDisable.length;i++){
