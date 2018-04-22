@@ -475,9 +475,7 @@ sqlObject.prototype.fetchResults = function(columns, url, whereOptions, type, ca
 				columnSelect = "*";
 		else
 				columnSelect = columns;
-    var query = "SELECT "+ columnSelect +" \
-								 FROM faculty NATURAL JOIN  " + url + "\
-								 WHERE 1=1";
+    var query = "SELECT "+ columnSelect +" FROM faculty NATURAL JOIN  " + url + " WHERE 1=1";
 		console.log(whereOptions);
     for(var i = 0; i < whereOptions.length; i++)
     {

@@ -5,8 +5,11 @@ $("#getReport").click(function()
   performFilterOperations('report', reportCallBack);
   function reportCallBack(finalQuery)
   {
+    console.log("asasdsad"+finalQuery);
     document.cookie="query = " + finalQuery;
-    window.location.href = "/faculty/getExcel/";
+    var x = document.cookie;
+    console.log("asasdsaddkjadgjagdy"+x);
+    window.location.href = "/department/getExcel/";
   }
 });
 

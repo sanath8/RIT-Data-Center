@@ -2,6 +2,10 @@ var express = require('express');
 var sqlApi = require('../../back-end/sqlAPI');
 var router = express.Router();
 var sqlExecute = require('../apis/mySqlCalls');
+//var mysql = require('../apis/mySqlCalls');
+var generateexcel = require('../../back-end/excelGenerator');
+var utility = require('../utilities');
+
 
 /* GET home page. */
 
@@ -72,6 +76,27 @@ router.get('/bosboe', function(req, res, next) {
   }
   res.render('department/bosboe', { departmentId: departmentId, type:'bosboe', data:{}, authType:req.session.facultyId });
 });
+
+router.get('/getExcel', function(req, res, next){
+	res.setHeader('Content-Type', 'application/json');
+
+	utility.checkSesssion(req, res);
+	  console.log('here')
+	    var query = req.cookies['query'];
+			console.log("Here is my query:" + query);
+
+	    callBack = function(result)
+			{
+	        generateexcel.getExcelSheet(result, "Report.xlsx", res);
+	    }
+	    console.log(Array(req.body.whereOption));
+	    sqlExecute.executeDirectQuery(query, callBack);
+
+	    //sqlExecute.getJointFacultyInfo(callBack, req.params.tableName);*/
+
+});
+
+
 
 router.get('/', function(req, res, next) {
   if(req.query.departmentId){

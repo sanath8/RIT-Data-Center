@@ -60,7 +60,7 @@ router.get('/', function(req, res, next) {
 		var facultyID = req.session.facultyId;
 		// var departmentId = tresult["departmentId"];
 		console.log("myR" + JSON.stringify(myR));
-		
+
 		res.render('faculty/index', { title: 'Express', type:"dashboard", data : {faculty:data},
 			index:{
 				url:"/faculty/",
@@ -117,7 +117,8 @@ router.get('/getExcel', function(req, res, next){
 	    var query = req.cookies['query'];
 			console.log("Here is my query:" + query);
 
-	    callBack = function(result){
+	    callBack = function(result)
+			{
 	        generateexcel.getExcelSheet(result, "Report.xlsx", res);
 	    }
 	    console.log(Array(req.body.whereOption));
