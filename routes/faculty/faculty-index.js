@@ -117,7 +117,8 @@ router.get('/getExcel', function(req, res, next){
 	    var query = req.cookies['query'];
 			console.log("Here is my query:" + query);
 
-	    callBack = function(result){
+	    callBack = function(result)
+			{
 	        generateexcel.getExcelSheet(result, "Report.xlsx", res);
 	    }
 	    console.log(Array(req.body.whereOption));
