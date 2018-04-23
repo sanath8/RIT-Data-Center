@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
 	}
 	else{
 		auth = false;
-		facultyId = req.query.fId;s
+		facultyId = req.query.fId;
 	}
 	//console.log("facultyId = " + facultyID);
 	var callback = function(err, result){
