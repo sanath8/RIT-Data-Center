@@ -87,7 +87,7 @@ router.get('/getExcel', function(req, res, next){
 
 	    callBack = function(result)
 			{
-	        generateexcel.getExcelSheet(result, "Report.xlsx", res);
+	        generateexcel.getExcelSheet(result, "Report.xls", res);
 	    }
 	    console.log(Array(req.body.whereOption));
 	    sqlExecute.executeDirectQuery(query, callBack);

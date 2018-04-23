@@ -13,6 +13,9 @@ router.post('/:tableName', function(req, res, next){
     // console.log(req.body);
     // sqlAPI.updateResults(JSON.stringify(req.body), req.params.tableName, req.params.authority, callback);
     //var str="Apis need to integrated";
+
+    
+    // console.log("this is from update api the get param" + req.body.getParam);
     var upd=[];
     console.log("request body in apiUpdate : " + JSON.stringify(req.body));
     for(var t in req.body){
@@ -38,7 +41,8 @@ router.post('/:tableName', function(req, res, next){
             res.end("Error : "+err.message);
             return;
         }
-        res.redirect(req.body.url);
+        console.log(req.body.url)
+        res.redirect(req.body.url + "fId="+req.body.getParam);
     });
 
 });
