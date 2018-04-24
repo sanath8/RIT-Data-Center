@@ -133,6 +133,7 @@ var index = <%- JSON.stringify(index) %>
         str = str + ("<form method='POST' action='/v1/apis/apiUpdate/"+columnName+"'>");
         //cardCont.append("<form method='POST' action='/v1/apis/apiUpdate/"+columnName+"'>")
         str = str + ("<input name='url' type='hidden' value='"+index["url"]+"'>");
+        str = str + ("<input name='getParam' type='hidden' value='<%=GetParam%>'>");
         var res = data[columnName][i];
         console.log(JSON.stringify(Object.keys(index[columnName])));
         console.log(JSON.stringify(Object.keys(res)));
@@ -165,6 +166,8 @@ var index = <%- JSON.stringify(index) %>
         str = str + ("<form method='POST' action='/v1/apis/apiInsert/"+columnName+"'>");
         //cardCont.append("<form method='POST' action='/v1/apis/apiUpdate/"+columnName+"'>")
         str = str + ("<input name='url' type='hidden' value='"+index["url"]+"'>");
+        str = str + ("<input name='getParam' type='hidden' value='<%=GetParam%>'>");
+
         console.log(JSON.stringify(Object.keys(index[columnName])));
         
         console.log(columnName);
@@ -194,6 +197,7 @@ var index = <%- JSON.stringify(index) %>
         str = str + ("<form method='POST' action='/v1/apis/apiUpdate/"+columnName+"'>");
         //cardCont.append("<form method='POST' action='/v1/apis/apiUpdate/"+columnName+"'>")
         str = str + ("<input name='url' type='hidden' value='"+index["url"]+"'>");
+        str = str + ("<input name='getParam' type='hidden' value='"+GetParam+"'>");
         var res = data[columnName][i];
         console.log(JSON.stringify(Object.keys(index[columnName])));
         console.log(JSON.stringify(Object.keys(res)));
