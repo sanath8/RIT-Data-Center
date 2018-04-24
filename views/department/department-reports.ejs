@@ -2,7 +2,7 @@
 <% include ../partials/department-sidebar %>
 <% include ../partials/department-navbar %>
 <% include ../partials/loadSelectList %>
-<%console.log("***NOTE***"+authType+"***NOTE***"+departmentId);%>
+
 <h2>QUERY PAGE</h2>
 <form class="form-inline">
   <div class="form-group" id = "filters">
@@ -89,7 +89,7 @@
     </div>
 </div>
 
-
+<% include ../partials/disableDropDown %>
 <% include ../partials/footer %>
 <script src="/js/conversionDictionary.js"></script>
 <script src="/js/queryFunctions.js"></script>
