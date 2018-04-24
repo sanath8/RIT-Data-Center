@@ -7,13 +7,13 @@ router.get('/', function(req, res, next) {
 function callback(err,results){
   var facultyId = req.session.facultyId;
   console.log("you just sent " + facultyId);
-  res.render('admin/index', { title: 'Express', type:"index", data:results, authType:facultyId, departmentId:req.session.departmentId });
+  res.render('admin/index', { title: 'Express', type:"index", data:results, authType:facultyId, departmentId:req.session.departmentId, GetParam:"dummy"  });
 }
 mySqlCalls.getDepartmentInfo(callback);
 });
 
 router.get('/login', function(req, res, next) {
-  res.render('admin/login', { title: 'Express', type:"login" });
+  res.render('admin/login', { title: 'Express', type:"login", GetParam:"dummy" });
 });
 
 

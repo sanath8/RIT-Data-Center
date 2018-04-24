@@ -26,7 +26,7 @@ router.get('/student-info', function(req, res, next) {
   res.render('department/student-info', { departmentId: departmentId, type:"student-info", data:{
     studentPublications: [],
     studentAchievements: []
-  }, authType:req.session.facultyId});
+  }, authType:req.session.facultyId, GetParam:req.query.departmentId });
 
 });
 
@@ -45,7 +45,7 @@ router.get('/infrastructure-details', function(req, res, next) {
   res.render('department/infrastructure-details', { departmentId: departmentId, type:"infrastructure-details", data:{
     hardware: [],
     software: []
-  }, authType:req.session.facultyId});
+  }, authType:req.session.facultyId, GetParam:req.query.departmentId });
 
 });
 
@@ -55,7 +55,7 @@ router.get('/activities', function(req, res, next) {
   } else{
     departmentId = req.session.departmentId;
   }
-  res.render('department/activities', { departmentId: departmentId, type: 'activities', data:{}, authType:req.session.facultyId
+  res.render('department/activities', { departmentId: departmentId, type: 'activities', data:{}, authType:req.session.facultyId, GetParam:req.query.departmentId 
 });
 });
 
@@ -65,7 +65,7 @@ router.get('/admission-details', function(req, res, next) {
   } else{
     departmentId = req.session.departmentId;
   }
-  res.render('department/admission-details', { departmentId: departmentId, type: 'admission-details', data:{}, authType:req.session.facultyId });
+  res.render('department/admission-details', { departmentId: departmentId, type: 'admission-details', data:{}, authType:req.session.facultyId, GetParam:req.query.departmentId  });
 });
 
 router.get('/bosboe', function(req, res, next) {
@@ -74,7 +74,7 @@ router.get('/bosboe', function(req, res, next) {
   } else{
     departmentId = req.session.departmentId;
   }
-  res.render('department/bosboe', { departmentId: departmentId, type:'bosboe', data:{}, authType:req.session.facultyId });
+  res.render('department/bosboe', { departmentId: departmentId, type:'bosboe', data:{}, authType:req.session.facultyId , GetParam:req.query.departmentId });
 });
 
 router.get('/getExcel', function(req, res, next){
@@ -122,7 +122,7 @@ router.get('/', function(req, res, next) {
 			data.push(myR);
     }
     var newResult = {'faculty' : data};
-    res.render('department/index', {departmentId: departmentId, type:'index', data:newResult, authType:req.session.facultyId });
+    res.render('department/index', {departmentId: departmentId, type:'index', data:newResult, authType:req.session.facultyId, GetParam:req.query.departmentId });
   }
   sqlExecute.getDepartmentFacultyInfo(callback,departmentId);
 });
