@@ -2,7 +2,7 @@ var express = require('express');
 var sqlApi = require('../../back-end/sqlAPI');
 var router = express.Router();
 var sqlExecute = require('../apis/mySqlCalls');
-//var mysql = require('../apis/mySqlCalls');
+var mysql = require('../apis/mySqlCalls');
 var generateexcel = require('../../back-end/excelGenerator');
 var utility = require('../utilities');
 
@@ -126,5 +126,68 @@ router.get('/', function(req, res, next) {
   }
   sqlExecute.getDepartmentFacultyInfo(callback,departmentId);
 });
+
+router.get('/generateexcel/:tableNo/:index/',function(req,res,next){
+  if(!utility.checkSesssion(req, res)) return;
+  console.log("this is " + req.params.facultyTable);
+  var map=["", "", "", "", "", "",""];
+  var index = req.params.index;
+  if(req.query.departmentId){
+	  var fid = req.query.departmentId;
+  } else{
+	  var fid = req.session.departmentId;
+  }
+
+  var tableno = parseInt(req.params.tableNo)-1;
+  var callback=function(err, result){
+	if(index == 1 || index == 2 || index == 3){
+		generateexcel.getExcelSheet(result,map[tableno] + ".xls",res);
+	} else{
+		generateexcel.getExcelSheet(result[map[tableno]],map[tableno]+ ".xls",res);
+	}
+	if(err || result.length==0){
+		console.log("It reached in error");
+		throw err;
+	}
+	}
+
+  if(index == 1){
+	mysql.getFacultyInfo(fid,callback);
+	map[0]="faculty_personal_details";
+  }
+  if(index == 2){
+	mysql.getFaultyQualification(fid,callback);
+	map[0]="faculty_qualification_details";
+  }
+  if(index == 3){
+	  map[0] = "faculty_service_details";
+	  mysql.getFacultyService(fid,callback);
+  }
+  if(index == 4){
+	  map[0] = "faculty_workshop_fdp";
+	  map[1] = "faculty_conference_symposia";
+	  map[2] = "faculty_guest_lecture";
+	  map[3] = "book";
+	  map[4] = "book_chapter";
+	  map[5] = "conference_paper";
+	  map[6] = "journal_paper";
+	  mysql.getFaultyAchievements(fid,callback);
+  }
+  if(index == 5){
+	map[0] = "courses_handled";
+	map[1] = "projects_handled";
+	map[2] = "faculty_research";
+	map[3] = "phd_scholar";
+	  mysql.getFaultyAcademics(fid,callback);
+  }
+  if(index == 6){
+	map[0] = "funded_projects";
+	map[1] = "faculty_patent";
+	map[2] = "consultancy";
+	map[3] = "industrial_collaboration_mou";
+	  mysql.getFaultyRND(fid,callback);
+  }
+});
+
 
 module.exports = router;
