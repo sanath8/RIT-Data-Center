@@ -55,7 +55,7 @@ router.get('/activities', function(req, res, next) {
   } else{
     departmentId = req.session.departmentId;
   }
-  res.render('department/activities', { departmentId: departmentId, type: 'activities', data:{}, authType:req.session.facultyId, GetParam:req.query.departmentId 
+  res.render('department/activities', { departmentId: departmentId, type: 'activities', data:{}, authType:req.session.facultyId, GetParam:req.query.departmentId
 });
 });
 
@@ -81,11 +81,11 @@ router.get('/getExcel', function(req, res, next){
 	res.setHeader('Content-Type', 'application/json');
 
 	utility.checkSesssion(req, res);
-	  console.log('here')
+	  console.log('here');
 	    var query = req.cookies['query'];
 			console.log("Here is my query:" + query);
 
-	    callBack = function(result)
+	    var callBack = function(result)
 			{
 	        generateexcel.getExcelSheet(result, "Report.xls", res);
 	    }

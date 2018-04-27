@@ -5,10 +5,8 @@ $("#getReport").click(function()
   performFilterOperations('report', reportCallBack);
   function reportCallBack(finalQuery)
   {
-    console.log("asasdsad"+finalQuery);
     document.cookie="query = " + finalQuery;
     var x = document.cookie;
-    console.log("asasdsaddkjadgjagdy"+x);
     window.location.href = "/department/getExcel/";
   }
 });
@@ -23,7 +21,6 @@ $("#tableList").change(function () {
 });
 
 $("#filters").change(function () {
-//columnsSelected = "";
   performFilterOperations('checkbox_changed');
 });
 
@@ -52,6 +49,7 @@ function performFilterOperations(flag, reportCallBack)
   }
 
   var tableName = $('#tableList').val();
+  var department = $('#department').val();
   var facultyName = $('#facultyList').val();
   var year = $('#yearList').val();
   var from = $('#from').val();
@@ -67,26 +65,37 @@ function performFilterOperations(flag, reportCallBack)
 
 
 
-  var facultyFilter;
+  var queryFilter;
+
+  if(department == "ALL")
+  {
+    queryFilter = [];
+  }
+  else
+  {
+    queryFilter = ["departmentId = '"+ department +"'"];
+  }
+
 
   if(facultyName == "ALL")
   {
-    facultyFilter = [];
+    queryFilter = queryFilter;
   }
   else
   {
     facultyFilter = ["facultyName = '"+ facultyName +"'"];
+    queryFilter.push(facultyFilter);
   }
   if($('#yearList').is(':enabled'))
   {
     if(year == "ALL")
     {
-      facultyFilter = facultyFilter;
+      queryFilter = queryFilter;
     }
     else
     {
       var yearFilter =  ""+ converterApi.yearTranslator(tableName)+" >= " + (new Date().getFullYear()- year).toString() + "";
-      facultyFilter.push(yearFilter);
+      queryFilter.push(yearFilter);
     }
   }
   else
@@ -95,14 +104,14 @@ function performFilterOperations(flag, reportCallBack)
       {
         var fromYearFilter =  ""+ converterApi.yearTranslator(tableName)+" >= "  + fromYear.toString() + "";
         var toYearFilter =  ""+ converterApi.yearTranslator(tableName)+" <= "  + toYear.toString() + "";
-        facultyFilter.push(fromYearFilter);
-        facultyFilter.push(toYearFilter);
+        queryFilter.push(fromYearFilter);
+        queryFilter.push(toYearFilter);
       }
 
   }
   dataForSelect = {
       'schema': columnsSelected,
-      'whereOption' : facultyFilter
+      'whereOption' : queryFilter
   };
   var url;
   if(flag == 'report')

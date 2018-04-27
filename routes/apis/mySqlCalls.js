@@ -466,7 +466,7 @@ sqlObject.prototype.executeDirectQuery = function (query, callBack)
 
 }
 
-sqlObject.prototype.fetchResults = function(columns, url, whereOptions, type, callBack)
+sqlObject.prototype.fetchResults = function(columns, url, whereOptions, type, facultyId, departmentId, callBack)
 {
   //whereOptions is an array of strings
   try
@@ -481,6 +481,10 @@ sqlObject.prototype.fetchResults = function(columns, url, whereOptions, type, ca
     {
       query += " AND " + whereOptions[i];
     }
+		console.log("jdjyvsd" + facultyId);
+		if(facultyId != "principal")
+			query += " AND departmentId = '" + departmentId+"'";
+
 		console.log(query);
 		console.log(whereOptions);
 
