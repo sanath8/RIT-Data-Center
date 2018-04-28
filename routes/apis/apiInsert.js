@@ -17,12 +17,15 @@ router.post('/:tableName', function(req, res, next){
     var tableKey=[];
     console.log("request body in apiInsert : " + JSON.stringify(req.body));
     for(var t in req.body){
-        if(t!="slNo" && t!="facultyId" && t!="url"){
+        if(t!="slNo" && t!="facultyId" && t!="url" && t!="getParam"){
             upd.push("'"+req.body[t]+"'");
             tableKey.push(t);
-        }else if(t=="facultyId"){
+        }else if(t=="facultyId" && !req.body.getParam){
             upd.push("'"+req.session.facultyId+"'");
-            tableKey.push(t);
+            tableKey.push("facultyId");
+        }else if(t=="getParam"){
+            upd.push("'"+req.body[t]+"'");
+            tableKey.push("facultyId");
         }
     }
     var sql = "INSERT INTO "+req.params.tableName+"("+tableKey.join(",")+") VALUES ("+upd.join(",")+")"
@@ -37,7 +40,11 @@ router.post('/:tableName', function(req, res, next){
             res.end("Error : "+err.message);
             return;
         }
-        res.redirect(req.body.url);
+        if(!req.body.getParam){
+            res.redirect(req.body.url);
+        }else{
+            res.redirect(req.body.url+"?fId="+req.body.getParam);
+        }
     });
 
 });
