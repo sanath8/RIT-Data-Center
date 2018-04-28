@@ -11,6 +11,11 @@ $("#getReport").click(function()
   }
 });
 
+$("#getSummary").click(function()
+{
+  ;
+}
+
 $("#tableList").change(function () {
   document.getElementById("title").innerHTML = $('#tableList').val();
   document.getElementById("titleDesc").innerHTML = "information about " + $('#tableList').val();
@@ -39,7 +44,17 @@ function checkboxClicked(element)
   performFilterOperations('checkbox_changed');
 };
 
-
+function checkSummaryEligibility(tableName)
+{
+  if(tableName == "journal_paper" || tableName == "conference_paper")
+  {
+    document.getElementById("getSummary").disabled = false;
+  }
+  else
+  {
+    document.getElementById("getSummary").disabled = true;
+  }
+}
 function performFilterOperations(flag, reportCallBack)
 {
   if(tableLock == 1)
@@ -57,6 +72,7 @@ function performFilterOperations(flag, reportCallBack)
   var to = $('#to').val();
   var toYear = to.split("-")[0];
 
+  checkSummaryEligibility(tableName);
   if(from != "" || to != "")
     document.getElementById("yearList").disabled=true;
   else
