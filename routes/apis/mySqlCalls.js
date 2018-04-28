@@ -374,19 +374,25 @@ sqlObject.prototype.getFourSelectList = function(callback, url1, url2, url3, url
   });
 }
 sqlObject.prototype.getTwoSelectList = function(callback, url1, tableName){
+	var sql0 = "select distinct  departmentId from department";
 	var sql1 = "select distinct table_name from information_schema.tables where table_schema = 'rit_data_center' AND table_name != 'faculty'";
   var sql2 = "select distinct " + url1 + " from " + tableName;
 
-  var data1, data2, data3;
+  var data0, data1, data2;
+	this.connection.query(sql0,function(err,results,fields){
+    data0 = results;
+  });
+
   this.connection.query(sql1,function(err,results,fields){
     data1 = results;
   });
 
   this.connection.query(sql2,function(err,results,fields){
 		data2 = results;
-		callback(data1, data2);
+		callback(data0, data1, data2);
 
   });
+
 
 }
 
