@@ -33,7 +33,7 @@
                         <li>
                             <% if(authType == "hod" || authType == "coordinator") {%>
                                 <a href="/department?departmentId=<%=departmentId%>">Profile</a>
-                            <% } else if(authType == "principle" || authType == "admin"){ %>
+                            <% } else if(authType == "principal" || authType == "admin"){ %>
                                 <a href="/admin">Profile</a>
                             <%} else {%>
                                 <a href="/faculty">Profile</a>

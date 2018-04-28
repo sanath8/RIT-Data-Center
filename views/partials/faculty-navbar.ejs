@@ -20,7 +20,7 @@
                 </li>
                   <li class="dropdown">
                      <a
-                      <%if(authType == "principle" || authType == "admin"){%>
+                      <%if(authType == "principal" || authType == "admin"){%>
                         href="/admin"
                       <%}else{%>
                         href="/department?departmentId=<%=departmentId%>"
@@ -39,7 +39,7 @@
                         <li>
                             <% if(authType == "hod" || authType == "coordinator") {%>
                                 <a href="/department?departmentId=<%=departmentId%>">Profile</a>
-                            <% } else if(authType == "principle" || authType == "admin"){ %>
+                            <% } else if(authType == "principal" || authType == "admin"){ %>
                                 <a href="/admin">Profile</a>
                             <%} else {%>
                                 <a href="/faculty">Profile</a>
@@ -52,7 +52,7 @@
                   </li>
                   <li>
                     <a style="background-color:#9C27B0; color:white;">
-                     <% if(authType!="hod" && authType!="coordinator" && authType!="principle" && authType!="admin"){%>
+                     <% if(authType!="hod" && authType!="coordinator" && authType!="principal" && authType!="admin"){%>
                         Faculty
                      <%}else{%>
                         <%=authType%>

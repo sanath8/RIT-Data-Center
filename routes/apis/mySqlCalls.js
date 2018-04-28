@@ -482,7 +482,7 @@ sqlObject.prototype.fetchResults = function(columns, url, whereOptions, type, fa
       query += " AND " + whereOptions[i];
     }
 		console.log("jdjyvsd" + facultyId);
-		if(facultyId != "principle" && facultyId != "admin")
+		if(facultyId != "principal" && facultyId != "admin")
 			query += " AND departmentId = '" + departmentId+"'";
 
 		console.log(query);
