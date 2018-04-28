@@ -42,7 +42,10 @@ router.post('/:tableName', function(req, res, next){
             return;
         }
         console.log(req.body.url)
-        res.redirect(req.body.url + "?fId="+req.body.getParam);
+        if(req.body.getParam)
+            res.redirect(req.body.url + "?fId="+req.body.getParam);
+        else
+            res.redirect(req.body.url);
     });
 
 });

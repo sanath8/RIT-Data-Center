@@ -15,7 +15,7 @@ router.post('/:tableName', function(req, res, next){
     //var str="Apis need to integrated";
     var upd=[];
     for(var t in req.body){
-        if(t!="slNo" && t!="facultyId" && t!="url")
+        if(t!="slNo" && t!="facultyId" && t!="url" && t!="getParam")
             upd.push(t+"='"+req.body[t]+"'");
     }
     var sql = "DELETE FROM "+req.params.tableName;
@@ -34,7 +34,10 @@ router.post('/:tableName', function(req, res, next){
             res.end("Error : "+err.message);
             return;
         }
-        res.redirect(req.body.url);
+        if(!req.body.getParam)
+            res.redirect(req.body.url);
+        else
+            res.redirect(req.body.url+"?fId="+req.body.getParam);
     });
 
 });
