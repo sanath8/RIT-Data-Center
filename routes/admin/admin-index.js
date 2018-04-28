@@ -1,6 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var mySqlCalls = require('../apis/mySqlCalls');
+var sqlApi = require('../../back-end/sqlAPI');
+var generateexcel = require('../../back-end/excelGenerator');
+var utility = require('../utilities');
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -29,9 +33,9 @@ router.get('/getExcel', function(req, res, next){
 	        generateexcel.getExcelSheet(result, "Report.xls", res);
 	    }
 	    console.log(Array(req.body.whereOption));
-	    sqlExecute.executeDirectQuery(query, callBack);
+	    mySqlCalls.executeDirectQuery(query, callBack);
 
-	    //sqlExecute.getJointFacultyInfo(callBack, req.params.tableName);*/
+	    //mySqlCalls.getJointFacultyInfo(callBack, req.params.tableName);*/
 
 });
 

@@ -7,7 +7,7 @@ var converter = function()
 "projects_handled" : "batch", "admissions" : "year", "department" : "yearOfEstablishment", "guest_lectures_invited" : "date", "industrial_visit" : "scheduleDate",
 "non_teaching_staff" : "dob", "other_membership" : "year", "professional_activities" : "year", "professional_body_membership" : "subscriptionYear",
 "software" : "expiryDate", "satff_achievement" : "date", "student_achievement" : "date", "student_activities" : "date", "stduent_publication" : "date",
-"institution" : "yearOfEstablishment" };
+"institution" : "yearOfEstablishment"};
 }
 converter.prototype.yearTranslator = function(tableName)
 {
