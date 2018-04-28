@@ -509,6 +509,7 @@ sqlObject.prototype.fetchResults = function(columns, url, whereOptions, type, fa
 
 }
 
+
 var object = new sqlObject();
 
 module.exports = object;

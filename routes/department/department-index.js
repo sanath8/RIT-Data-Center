@@ -2,7 +2,6 @@ var express = require('express');
 var sqlApi = require('../../back-end/sqlAPI');
 var router = express.Router();
 var sqlExecute = require('../apis/mySqlCalls');
-var mysql = require('../apis/mySqlCalls');
 var generateexcel = require('../../back-end/excelGenerator');
 var utility = require('../utilities');
 
@@ -133,9 +132,9 @@ router.get('/generateexcel/:tableNo/:index/',function(req,res,next){
   var map=["", "", "", "", "", "",""];
   var index = req.params.index;
   if(req.query.departmentId){
-	  var fid = req.query.departmentId;
+	  var dId = req.query.departmentId;
   } else{
-	  var fid = req.session.departmentId;
+	  var dId = req.session.departmentId;
   }
 
   var tableno = parseInt(req.params.tableNo)-1;
@@ -152,16 +151,16 @@ router.get('/generateexcel/:tableNo/:index/',function(req,res,next){
 	}
 
   if(index == 1){
-	mysql.getFacultyInfo(fid,callback);
-	map[0]="faculty_personal_details";
+	sqlExecute.getDepartmentFacultyInfo(callback,dId);
+	map[0]="department_faculty_details";
   }
   if(index == 2){
-	mysql.getFaultyQualification(fid,callback);
+	sqlExecute.getFaultyQualification(fid,callback);
 	map[0]="faculty_qualification_details";
   }
   if(index == 3){
 	  map[0] = "faculty_service_details";
-	  mysql.getFacultyService(fid,callback);
+	  sqlExecute.getFacultyService(fid,callback);
   }
   if(index == 4){
 	  map[0] = "faculty_workshop_fdp";
@@ -171,21 +170,21 @@ router.get('/generateexcel/:tableNo/:index/',function(req,res,next){
 	  map[4] = "book_chapter";
 	  map[5] = "conference_paper";
 	  map[6] = "journal_paper";
-	  mysql.getFaultyAchievements(fid,callback);
+	  sqlExecute.getFaultyAchievements(fid,callback);
   }
   if(index == 5){
 	map[0] = "courses_handled";
 	map[1] = "projects_handled";
 	map[2] = "faculty_research";
 	map[3] = "phd_scholar";
-	  mysql.getFaultyAcademics(fid,callback);
+	  sqlExecute.getFaultyAcademics(fid,callback);
   }
   if(index == 6){
 	map[0] = "funded_projects";
 	map[1] = "faculty_patent";
 	map[2] = "consultancy";
 	map[3] = "industrial_collaboration_mou";
-	  mysql.getFaultyRND(fid,callback);
+	  sqlExecute.getFaultyRND(fid,callback);
   }
 });
 
