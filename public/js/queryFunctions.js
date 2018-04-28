@@ -1,6 +1,6 @@
 var columnsSelected = "";
 var tableLock = 0;
-$("#getReport").click(function()
+$("#getReportDepartment").click(function()
 {
   performFilterOperations('report', reportCallBack);
   function reportCallBack(finalQuery)
@@ -8,6 +8,16 @@ $("#getReport").click(function()
     document.cookie="query = " + finalQuery;
     var x = document.cookie;
     window.location.href = "/department/getExcel/";
+  }
+});
+$("#getReportAdmin").click(function()
+{
+  performFilterOperations('report', reportCallBack);
+  function reportCallBack(finalQuery)
+  {
+    document.cookie="query = " + finalQuery;
+    var x = document.cookie;
+    window.location.href = "/admin/getExcel/";
   }
 });
 
@@ -59,11 +69,14 @@ function checkSummaryEligibility(tableName)
 }
 function performFilterOperations(flag, reportCallBack)
 {
+  console.log("querty till here");
   if(tableLock == 1)
   {
     tableLock = 0;
     return;
   }
+  console.log("querty till here !!!");
+
 
   var tableName = $('#tableList').val();
   var department = $('#department').val();
@@ -74,7 +87,7 @@ function performFilterOperations(flag, reportCallBack)
   var to = $('#to').val();
   var toYear = to.split("-")[0];
 
-//  checkSummaryEligibility(tableName);
+  checkSummaryEligibility(tableName);
   if(from != "" || to != "")
     document.getElementById("yearList").disabled=true;
   else
@@ -149,6 +162,8 @@ function performFilterOperations(flag, reportCallBack)
       success: function(dataRecieved) {
         if(flag == 'report')
         {
+          console.log("asasasasasasasasasas"+dataRecieved);
+
             reportCallBack(dataRecieved);
         }
         else

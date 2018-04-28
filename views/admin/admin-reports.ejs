@@ -10,7 +10,8 @@
         <th>
           <label for="department">Department</label>
           <select class="form-control" id="department">
-            <%loadInList(selectList0)%>
+            <%selectList0.unshift({departmentId:"ALL"});
+            loadInList(selectList0)%>
           </select>
         </th>
         <th>
@@ -80,7 +81,7 @@
                     </div>
                   </div>
               </div>
-                    <button class="btn btn-primary pull-left"  id = "getReport" style="margin:13px">Generate Excel file</button>
+                    <button class="btn btn-primary pull-left"  id = "getReportAdmin" style="margin:13px">Generate Excel file</button>
                     <button class="btn btn-primary pull-left"  id = "getSummary" style="margin:13px">Generate Summary</button>
 
                 </div>

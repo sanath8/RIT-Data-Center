@@ -1,6 +1,7 @@
 var mysql = require('mysql');
 var mappingUrl = require('../../back-end/mappingUrlTable');
 var excelGenerator = require('../../back-end/excelGenerator.js');
+var naturalJoinApi = require('./naturalJoinApi');
 
 var sqlObject = function() {
 	this.connection = require('../../dbConnect').connectDB();
@@ -472,8 +473,8 @@ sqlObject.prototype.getJointFacultyInfo = function (callBack, tableName)
 {
 
 	var query = "SELECT * \
-							 FROM "+ tableName + " \
-							 NATURAL JOIN faculty" ;
+							 FROM faculty \
+							 NATURAL JOIN "+ tableName ;
  		this.connection.query(query, function (err, result, fields)
 	  {
 	    if (err)
@@ -507,7 +508,7 @@ sqlObject.prototype.fetchResults = function(columns, url, whereOptions, type, fa
 				columnSelect = "*";
 		else
 				columnSelect = columns;
-    var query = "SELECT "+ columnSelect +" FROM faculty NATURAL JOIN  " + url + " WHERE 1=1";
+    var query = "SELECT "+ columnSelect +" FROM "+ naturalJoinApi.getJoinTable(url) + "" + url + " WHERE 1=1";
 		console.log(whereOptions);
     for(var i = 0; i < whereOptions.length; i++)
     {
