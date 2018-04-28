@@ -16,7 +16,6 @@
                     <div class="card-content table-responsive">
                         <table class="table">
                             <thead class="text-primary">
-                                <th>Sl. No</th>
                                 <th>Industry Name</th>
                                 <th>Scheduled Date</th>
                             </thead>
@@ -39,8 +38,10 @@
                             </tbody>
                         </table>
                     </div>
-                    <button type="submit" class="btn btn-primary pull-right" style="margin:13px">Edit</button>
-                </div>
+                    <a href = "department/generateexcel/1/5/?departmentId=<%-GetParam%>">
+                    <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
+                    </a>
+                <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal1" style="margin:13px" onclick="fillDataVerticleTable(1)">Update</button>                </div>
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
                         <h4 class="title">Invited Guest Lectures</h4>
@@ -49,7 +50,6 @@
                     <div class="card-content table-responsive">
                         <table class="table">
                             <thead class="text-primary">
-                                <th>Sl. No</th>
                                 <th>Name</th>
                                 <th>Expert Organization / Address</th>
                                 <th>Title</th>
@@ -84,8 +84,10 @@
                             </tbody>
                         </table>
                     </div>
-                    <button type="submit" class="btn btn-primary pull-right" style="margin:13px">Edit</button>
-                </div>
+                    <a href = "department/generateexcel/2/5/?departmentId=<%-GetParam%>">
+                    <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
+                    </a>
+                <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal1" style="margin:13px" onclick="fillDataVerticleTable(1)">Update</button>                </div>
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
                         <h4 class="title">Seminars | Workshops</h4>
@@ -94,7 +96,6 @@
                     <div class="card-content table-responsive">
                         <table class="table">
                             <thead class="text-primary">
-                                <th>Sl. No</th>
                                 <th>Start Date</th>
                                 <th>End Date</th>
                                 <th>Title</th>
@@ -129,8 +130,10 @@
                             </tbody>
                         </table>
                     </div>
-                    <button type="submit" class="btn btn-primary pull-right" style="margin:13px">Edit</button>
-                </div>
+                    <a href = "department/generateexcel/3/5/?departmentId=<%-GetParam%>">
+                    <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
+                    </a>
+                <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal1" style="margin:13px" onclick="fillDataVerticleTable(1)">Update</button>                </div>
             </div>
         </div>
     </div>

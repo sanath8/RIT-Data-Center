@@ -274,6 +274,32 @@ sqlObject.prototype.getFaultyAchievements = function(fid, callback){
 	});
 }
 
+sqlObject.prototype.getAcademicCouncil = function(callback){
+	var sql = "select * \
+		from " + this.tables.academicCouncil ;
+	this.connection.query(sql ,function(err,results,fields){
+		//console.log(results);
+		callback(err, results);
+	});
+}
+
+sqlObject.prototype.getFinanceCommittee = function(callback){
+	var sql = "select * \
+		from " + this.tables.financeCommittee ;
+	this.connection.query(sql ,function(err,results,fields){
+		//console.log(results);
+		callback(err, results);
+	});
+}
+
+sqlObject.prototype.getGoverningBody = function(callback){
+	var sql = "select * \
+		from " + this.tables.governingBody ;
+	this.connection.query(sql ,function(err,results,fields){
+		//console.log(results);
+		callback(err, results);
+	});
+}
 
 sqlObject.prototype.getDepartmentFacultyInfo = function(callback, departmentId){
 	var sql = "select * \
@@ -514,6 +540,7 @@ sqlObject.prototype.fetchResults = function(columns, url, whereOptions, type, fa
   }
 
 }
+
 
 var object = new sqlObject();
 

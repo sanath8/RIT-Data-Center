@@ -23,7 +23,7 @@ router.post('/:tableName', function(req, res, next){
         }else if(t=="facultyId" && !req.body.getParam){
             upd.push("'"+req.session.facultyId+"'");
             tableKey.push("facultyId");
-        }else if(t=="getParam"){
+        }else if(t=="getParam" && !req.body.facultyId){
             upd.push("'"+req.body[t]+"'");
             tableKey.push("facultyId");
         }
