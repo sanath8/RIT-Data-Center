@@ -4,9 +4,9 @@ logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-back-end/excelSheets
-back-end/uploadExcel
-back-end/uploadExcelTest
+back-end/excelSheets/*
+back-end/uploadExcel/*
+back-end/uploadExcelTest/*
 
 # Runtime data
 pids
