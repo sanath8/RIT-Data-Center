@@ -16,6 +16,26 @@ router.get('/login', function(req, res, next) {
   res.render('admin/login', { title: 'Express', type:"login", GetParam:"dummy" });
 });
 
+router.get('/getExcel', function(req, res, next){
+	res.setHeader('Content-Type', 'application/json');
+
+	utility.checkSesssion(req, res);
+	  console.log('here');
+	    var query = req.cookies['query'];
+			console.log("Here is my query:" + query);
+
+	    var callBack = function(result)
+			{
+	        generateexcel.getExcelSheet(result, "Report.xls", res);
+	    }
+	    console.log(Array(req.body.whereOption));
+	    sqlExecute.executeDirectQuery(query, callBack);
+
+	    //sqlExecute.getJointFacultyInfo(callBack, req.params.tableName);*/
+
+});
+
+
 
 router.use('/admin-reports', require('./admin-reports'));
 
