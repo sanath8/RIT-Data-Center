@@ -13,8 +13,10 @@ $("#getReport").click(function()
 
 $("#getSummary").click(function()
 {
-  ;
-}
+  var tableName = $('#tableList').val();
+
+
+})
 
 $("#tableList").change(function () {
   document.getElementById("title").innerHTML = $('#tableList').val();
@@ -72,7 +74,7 @@ function performFilterOperations(flag, reportCallBack)
   var to = $('#to').val();
   var toYear = to.split("-")[0];
 
-  checkSummaryEligibility(tableName);
+//  checkSummaryEligibility(tableName);
   if(from != "" || to != "")
     document.getElementById("yearList").disabled=true;
   else

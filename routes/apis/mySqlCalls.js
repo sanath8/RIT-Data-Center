@@ -472,8 +472,8 @@ sqlObject.prototype.getJointFacultyInfo = function (callBack, tableName)
 {
 
 	var query = "SELECT * \
-							 FROM faculty \
-							 NATURAL JOIN "+ tableName ;
+							 FROM "+ tableName + " \
+							 NATURAL JOIN faculty" ;
  		this.connection.query(query, function (err, result, fields)
 	  {
 	    if (err)
