@@ -468,6 +468,39 @@ sqlObject.prototype.getDataBaseTables = function(dataBase, callBack)
 	  }
 	);
 }
+sqlObject.prototype.executeSummaryQuery = function(tableName, callback){
+	var sql = "";
+	console.log("Reached here with" + tableName);
+  var columnConversions = {"conference_paper":"conferenceType", "journal_paper":"journalType"};
+
+	sql1 = "SELECT departmentId, count(*) AS counts \
+				 FROM \
+				 faculty \
+				 NATURAL JOIN " + tableName + " \
+				 WHERE "+ columnConversions[tableName] +" = 'international'\
+				 GROUP BY departmentId";
+ sql2 = "SELECT departmentId, count(*) AS counts \
+				 FROM  \
+				 faculty \
+				 NATURAL JOIN " + tableName + " \
+				 WHERE "+ columnConversions[tableName] +" = 'national'\
+				 GROUP BY departmentId";
+
+				 var data1, data2;
+				 this.connection.query(sql1,function(err,results,fields){
+					 data1 = [{departmentId:"international", counts:"counts"}]
+					 Array.prototype.push.apply(data1,results);
+			   });
+			   this.connection.query(sql2,function(err,results,fields){
+					 data2 = results;
+					 Array.prototype.push.apply(data1,[{departmentId:"national", counts:"counts"}]);
+					 Array.prototype.push.apply(data1,data2);
+					 console.log("data join :" + JSON.stringify(data1));
+					 callback(data1);
+			   });
+
+
+}
 
 sqlObject.prototype.getJointFacultyInfo = function (callBack, tableName)
 {
