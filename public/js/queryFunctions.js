@@ -21,12 +21,13 @@ $("#getReportAdmin").click(function()
   }
 });
 
-$("#getSummary").click(function()
+$("#getSummaryAdmin").click(function()
 {
   var tableName = $('#tableList').val();
+  console.log("summary of" + tableName);
+  window.location.href = "/admin/getSummary/"+tableName+"/";
+});
 
-
-})
 
 $("#tableList").change(function () {
   document.getElementById("title").innerHTML = $('#tableList').val();
@@ -40,6 +41,8 @@ $("#tableList").change(function () {
 $("#filters").change(function () {
   performFilterOperations('checkbox_changed');
 });
+
+
 
 function checkboxClicked(element)
 {
@@ -58,13 +61,36 @@ function checkboxClicked(element)
 
 function checkSummaryEligibility(tableName)
 {
-  if(tableName == "journal_paper" || tableName == "conference_paper")
+  try
   {
-    document.getElementById("getSummary").disabled = false;
+    if(tableName == "journal_paper" || tableName == "conference_paper")
+    {
+      document.getElementById("getSummaryAdmin").disabled = false;
+    }
+    else
+    {
+      document.getElementById("getSummaryAdmin").disabled = true;
+    }
   }
-  else
+  catch(err)
   {
-    document.getElementById("getSummary").disabled = true;
+    console.log("ignoring error" + err);
+  }
+
+  try
+  {
+    if(tableName == "journal_paper" || tableName == "conference_paper")
+    {
+      document.getElementById("getSummaryDepartment").disabled = false;
+    }
+    else
+    {
+      document.getElementById("getSummaryDepartment").disabled = true;
+    }
+  }
+  catch(err)
+  {
+    console.log("ignoring error" + err);
   }
 }
 function performFilterOperations(flag, reportCallBack)

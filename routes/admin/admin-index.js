@@ -38,6 +38,22 @@ router.get('/getExcel', function(req, res, next){
 	    //mySqlCalls.getJointFacultyInfo(callBack, req.params.tableName);*/
 
 });
+router.get('/getSummary/:tableName', function(req, res, next){
+	res.setHeader('Content-Type', 'application/json');
+	utility.checkSesssion(req, res);
+  console.log('here');
+  var tableName = req.params.tableName;
+
+
+    var callBack = function(result)
+		{
+        generateexcel.getExcelSheet(result, "Report.xls", res);
+    }
+    mySqlCalls.executeSummaryQuery(tableName, callBack);
+
+	    //sqlExecute.getJointFacultyInfo(callBack, req.params.tableName);*/
+
+});
 
 
 
