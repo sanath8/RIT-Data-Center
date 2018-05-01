@@ -38,10 +38,11 @@ router.get('/getExcel', function(req, res, next){
 	    //mySqlCalls.getJointFacultyInfo(callBack, req.params.tableName);*/
 
 });
-router.get('/getSummary/:tableName', function(req, res, next){
+router.get('/getSummary/:tableName/:from/:to/:departmentId', function(req, res, next){
 	res.setHeader('Content-Type', 'application/json');
 	utility.checkSesssion(req, res);
   console.log('here');
+  console.log("years"+ req.params.from+" "+req.params.to);
   var tableName = req.params.tableName;
 
 
@@ -49,7 +50,7 @@ router.get('/getSummary/:tableName', function(req, res, next){
 		{
         generateexcel.getExcelSheet(result, "Report.xls", res);
     }
-    mySqlCalls.executeSummaryQuery(tableName, callBack);
+    mySqlCalls.executeSummaryQuery(tableName, req.params.from, req.params.to,req.params.departmentId, callBack);
 
 	    //sqlExecute.getJointFacultyInfo(callBack, req.params.tableName);*/
 

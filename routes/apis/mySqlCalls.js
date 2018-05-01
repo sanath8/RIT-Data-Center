@@ -468,24 +468,37 @@ sqlObject.prototype.getDataBaseTables = function(dataBase, callBack)
 	  }
 	);
 }
-sqlObject.prototype.executeSummaryQuery = function(tableName, callback){
+sqlObject.prototype.executeSummaryQuery = function(tableName, from, to, departmentId, callback){
 	var sql = "";
 	console.log("Reached here with" + tableName);
   var columnConversions = {"conference_paper":"conferenceType", "journal_paper":"journalType"};
+	var filterHelper = "";
+	if(from != "-1")
+	{
+		filterHelper += " AND " + from;
+	}
+	if(to != "-1")
+	{
+		filterHelper += " AND " + to;
+	}
+	if(departmentId != "ALL")
+	{
+		filterHelper += " AND departmentId = '" + departmentId + "'";
+	}
 
 	sql1 = "SELECT departmentId, count(*) AS counts \
 				 FROM \
 				 faculty \
 				 NATURAL JOIN " + tableName + " \
-				 WHERE "+ columnConversions[tableName] +" = 'international'\
+				 WHERE "+ columnConversions[tableName] +" = 'international' " + filterHelper + "\
 				 GROUP BY departmentId";
  sql2 = "SELECT departmentId, count(*) AS counts \
 				 FROM  \
 				 faculty \
 				 NATURAL JOIN " + tableName + " \
-				 WHERE "+ columnConversions[tableName] +" = 'national'\
+				 WHERE "+ columnConversions[tableName] +" = 'national' " + filterHelper + "\
 				 GROUP BY departmentId";
-
+				 console.log("sql1" + sql1 + "sql2" + sql2);
 				 var data1, data2;
 				 this.connection.query(sql1,function(err,results,fields){
 					 data1 = [{departmentId:"international", counts:"counts"}]

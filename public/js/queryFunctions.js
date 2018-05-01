@@ -23,9 +23,53 @@ $("#getReportAdmin").click(function()
 
 $("#getSummaryAdmin").click(function()
 {
+
   var tableName = $('#tableList').val();
+  var department = $('#department').val();
+  var year = $('#yearList').val();
+  var from = $('#from').val();
+  var fromYear = from.split("-")[0];
+  var to = $('#to').val();
+  var toYear = to.split("-")[0];
+  var resFromYear="-1";
+  var resToYear="-1";
+
+  checkSummaryEligibility(tableName);
+  if(from != "" || to != "")
+    document.getElementById("yearList").disabled=true;
+  else
+    document.getElementById("yearList").disabled=false;
+
+
+
+
+  var queryFilter;
+
+
+  if($('#yearList').is(':enabled'))
+  {
+    if(year == "ALL")
+    {
+      resFromYear = "-1";
+      resToYear = "-1";
+    }
+    else
+    {
+      resFromYear  =  ""+ converterApi.yearTranslator(tableName)+" >= " + (new Date().getFullYear()- year).toString() + "";
+    }
+  }
+  else
+  {
+      if(from != "" && to != "")
+      {
+        resFromYear =  ""+ converterApi.yearTranslator(tableName)+" >= "  + fromYear.toString() + "";
+        resToYear =  ""+ converterApi.yearTranslator(tableName)+" <= "  + toYear.toString() + "";
+      }
+
+  }
+
   console.log("summary of" + tableName);
-  window.location.href = "/admin/getSummary/"+tableName+"/";
+  window.location.href = "/admin/getSummary/"+tableName+"/"+resFromYear+"/"+resToYear+"/"+department+"/";
 });
 
 
