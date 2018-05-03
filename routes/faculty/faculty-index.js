@@ -40,6 +40,7 @@ router.get('/', function(req, res, next) {
 		myR["facultyId"]=tresult["facultyId"];
 		myR["facultyName"]=tresult["facultyName"];
 		myR["gender"]=tresult["gender"];
+		myR["designation"]=tresult["designation"];
 		if(auth == true){
 			myR["address"]=tresult["address"];
 			myR["religion"]=tresult["religion"];
