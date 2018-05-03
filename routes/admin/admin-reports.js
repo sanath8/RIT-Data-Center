@@ -10,7 +10,6 @@ router.get('/', function(req, res, next) {
     res.render('admin/admin-reports', {type : 'admin-reports', selectList0 : result0, selectList1 : result1, selectList2 : result2, GetParam: req.query.fId, authType:req.session.facultyId, departmentId:req.session.departmentId, GetParam:"dummy" });
   }
   sqlExecute.getTwoSelectList(callBack,'facultyName', 'faculty');
-  //sqlExecute.getDataBaseTables('rit_data_center', callBack);
 
 });
 
