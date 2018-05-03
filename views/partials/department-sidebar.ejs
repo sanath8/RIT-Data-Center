@@ -58,7 +58,8 @@
         <% if(type=="bosboe"){%>
         class="active"
         <% } %>
-        >            <a href="/department/bosboe?departmentId=<%=departmentId%>">
+        >            
+            <a href="/department/bosboe?departmentId=<%=departmentId%>">
                 <i class="material-icons">location_on</i>
                 <p>BOS | BOE</p>
             </a>
@@ -74,11 +75,14 @@
         </li>
         <li class="active-pro" style="margin-bottom:7%; text-transform: uppercase;">
             <a style="background-color:#9C27B0; color:white;">
-                <% if(authType!="hod" && authType!="coordinator" && authType!="principal" && authType!="admin"){%>
-                Faculty
-                <%}else{%>
-                <%=authType%>
-                <%}%>
+                <i class="material-icons">person</i>
+                <p>
+                    <% if(authType!="hod" && authType!="coordinator" && authType!="principal" && authType!="admin"){%>
+                    Faculty
+                    <%}else{%>
+                    <%=authType%>
+                    <%}%>
+                </p>
             </a>
         </li>
     </ul>
