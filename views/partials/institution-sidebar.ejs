@@ -46,6 +46,15 @@
                 <p>Academic</p>
             </a>
         </li>
+        <li class="active-pro" style="margin-bottom:7%; text-transform: uppercase;">
+            <a style="background-color:#9C27B0; color:white;">
+                <% if(authType!="hod" && authType!="coordinator" && authType!="principal" && authType!="admin"){%>
+                Faculty
+                <%}else{%>
+                <%=authType%>
+                <%}%>
+            </a>
+        </li>
   
     </ul>
 </div>

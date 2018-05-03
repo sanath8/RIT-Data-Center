@@ -102,10 +102,13 @@
                 <p>R&D</p>
             </a>
         </li>
-        <li class="active-pro">
-            <a href="upgrade.html">
-                <i class="material-icons">unarchive</i>
-                <p>Upgrade to PRO</p>
+        <li class="active-pro" style="margin-bottom:7%; text-transform: uppercase;">
+            <a style="background-color:#9C27B0; color:white;">
+                <% if(authType!="hod" && authType!="coordinator" && authType!="principal" && authType!="admin"){%>
+                Faculty
+                <%}else{%>
+                <%=authType%>
+                <%}%>
             </a>
         </li>
     </ul>
