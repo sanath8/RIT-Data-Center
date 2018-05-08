@@ -81,7 +81,7 @@ excelGenerator.setDataEntries = function(noOfRows, noOfColumns, tableData, colum
 }
 excelGenerator.writeIntoFile = function(structuredData, excelFileName, response)
 {
-
+  var excelFileName = "file_" + new Date().getTime() + ".xlsx";
   fs.writeFile(__dirname+ '/excelSheets/' + excelFileName, structuredData, (err) => {
     console.log(excelFileName+ 'excel filesss created');
 
