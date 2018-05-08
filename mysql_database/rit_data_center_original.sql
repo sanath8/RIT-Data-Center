@@ -31,6 +31,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `academic_council`
 --
 
+
 CREATE TABLE `academic_council` (
   `slNo` int(11) NOT NULL,
   `category` varchar(50) NOT NULL,
@@ -171,6 +172,16 @@ CREATE TABLE `conference_paper` (
   `facultyId` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `conference_paper`
+--
+
+INSERT INTO `conference_paper` (`slNo`, `authors`, `title`, `conferenceName`, `conferenceType`, `organizedBy`, `year`, `facultyId`) VALUES
+(1, 'abc, def, ghi', 'aaasssdffgh', 'qwerty', 'international', 'dfd', '1997', 'cse12'),
+(2, 'fdgifn', 'jgghhk', 'ghhhtykn', 'national', 'qwerty', '2015', 'cse07'),
+(3, 'dsgsgd', 'jikhkhi', 'jnknkn', 'national', 'jbjk', '3456', 'cse01'),
+(4, 'hbhjvjhvjh', 'gchgchgch', 'vhgvhgv', 'national', 'msrit', '1998', 'ise01');
+
 -- --------------------------------------------------------
 
 --
@@ -224,7 +235,8 @@ CREATE TABLE `department` (
 --
 
 INSERT INTO `department` (`departmentId`, `departmentName`, `yearOfEstablishment`, `address`, `contactNumber`, `officialMailId`, `hodName`, `hodContactNumber`, `instituteName`) VALUES
-('cse', 'Computer Science & Engineering', '1984', 'division of electrical sciences block, 1st floor', '080-23600822/23606939', 'hod-cse@msrit.edu', 'Dr. Anita Kanavalli', '080-23600822/23606939', 'Ramaiah Institute of Technology');
+('cse', 'Computer Science & Engineering', '1984', 'division of electrical sciences block, 1st floor', '080-23600822/23606939', 'hod-cse@msrit.edu', 'Dr. Anita Kanavalli', '080-23600822/23606939', 'Ramaiah Institute of Technology'),
+('ise', 'information science and engineering', '1997', 'abc', '9008174383', 'ise@msrit.edu', '9008174383', '123', 'Ramaiah Institute of Technology');
 
 -- --------------------------------------------------------
 
@@ -262,7 +274,7 @@ INSERT INTO `faculty` (`facultyId`, `facultyName`, `gender`, `address`, `religio
 ('cse02', 'Annapurna P. Patil', 'Female', '#308, C Block Gowri Apartment, NEW BEL Road', 'Hindu', 'Veershaiva Jang', 'GM 371J', '1972-10-10', 'Regular', '9945409177', 'annapurnap2@msrit.edu', 'rit', 'AIMPP9079L', '141201010013904', 'KN/BN/8146/0852', 'Dr. Annapurna P. Patil is working as a Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include Wireless Networks, Artificial Intelligence, Protocol Engineering, Cloud Computing and IOT, Data Structures and Analysis of Algorithms.', 'PROFESSOR', 'cse'),
 ('cse03', 'Seema S', 'Female', '#327, 7TH CROSS,  3RD BLOCK, HMT layout, Vidyarany', 'Hindu', 'Marathi', 'GM', '1970-06-29', 'Regular', '9901688004', 'seemas@msrit.edu', 'rit', 'ARJPS9571N', '141201010010588', 'KN/BN/8146/0779', 'Dr. S. Seema is working as a Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include databases, data mining and big data, computer graphics, bioinformatics and data analytics.', 'PROFESSOR', 'cse'),
 ('cse04', 'Jagadish S.K.', 'Male', 'NO.79, 9TH MAIN, 6TH CROSS, J C Nagar, Kurubara ha', 'Hindu', 'Lingayath', 'GM', '1977-07-19', 'Regular', '9844413643', 'jagadish.k@msrit.edu', 'rit', 'AHRPK8437B', '141201010015421', 'KN/BN/8146/0942', 'Dr. Jagadish S. Kallimani is working as an Associate Professor in Computer Science Department of Ramaiah Institute of Technology. His areas of interest include artificial intelligence, natural language processing, information retrieval, information extraction, and statistical machine learning.', 'ASSOCIATE PROFESSOR', 'cse'),
-('cse05', 'Jayalakshmi D.S', 'Female', '#325/6, \"SRINIDHI\", F BLOCK, Sahakara nagar', 'Hindu', 'Bramhin', 'GM', '1967-04-21', 'Regular', '8197820657', 'jayalakshmids@msrit.edu', 'rit', 'AHGPD5509A', '141201010018116', 'KN/BN/8146/0984', 'Jayalakshmi D. S. is working as an Associate Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include cloud computing, big data, computer graphics.', 'ASSOCIATE PROFESSOR', 'cse'),
+('cse05', 'Jayalakshmi D.S', 'Female', '#325/6, "SRINIDHI", F BLOCK, Sahakara nagar', 'Hindu', 'Bramhin', 'GM', '1967-04-21', 'Regular', '8197820657', 'jayalakshmids@msrit.edu', 'rit', 'AHGPD5509A', '141201010018116', 'KN/BN/8146/0984', 'Jayalakshmi D. S. is working as an Associate Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include cloud computing, big data, computer graphics.', 'ASSOCIATE PROFESSOR', 'cse'),
 ('cse06', 'Monica R Mundada', 'Female', '137/A1, 13th cross ASCS layout, Near RMV Hosptial,', 'Hindu', 'Marwadi', 'GM', '1974-09-15', 'Regular', '9008365087', 'monica@msrit.edu', 'rit', 'AIWPM8762H', '141201010015521', 'KN/BN/8146/0924', 'Dr. Monica R. Mundada is working as an Associate Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include theory of computation, wireless sensor networks, computer networks, data communications, and IOT.', 'ASSOCIATE PROFESSOR', 'cse'),
 ('cse07', 'Sanjeetha R', 'Female', 'Sri Manjunatha Swamy Nilaya, #78, 2nd cross, Vinay', 'Hindu', 'vokkaliga', 'vokkaliga', '1980-10-16', 'Regular', '9986406819', 'sanjeetha.r@msrit.edu', 'rit', 'BTYPS2093H', '141201011000968', 'KN/BN/8146/1102', 'Sanjeetha R. is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include software defined networks, computer networks, data communications, operating systems, and database systems.', 'ASST PROFESSOR', 'cse'),
 ('cse08', 'A Parkavi', 'Female', 'C/O, C.SINGARAM, NO.124, 6TH MAIN, 3RD CROSS, IST ', 'Christian', 'Pallan', 'SC', '1979-05-05', 'Regular', '9902524685', 'parkavi.a@msrit.edu', 'rit', 'APHPP4199M', '141201011000983', 'KN/BN/8146/1097', 'Parkavi A. is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include data mining, educational data mining, social network analysis, compiler design and educational technology.', 'ASST PROFESSOR', 'cse'),
@@ -270,7 +282,7 @@ INSERT INTO `faculty` (`facultyId`, `facultyName`, `gender`, `address`, `religio
 ('cse10', 'J Geetha', 'Female', 'NO-106 SLV Durga Apartments Vidyaranipura,  BANGAL', 'Hindu', 'reddy', 'GM', '1979-07-16', 'Regular', '9916912573', 'geetha@msrit.edu', 'rit', 'ALDPG4963E', '141201011001787', 'KN/BN/8146/1161', 'Geetha J. is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include cloud computing, big data, semantic web, graph theory and web designing.', 'ASST PROFESSOR', 'cse'),
 ('cse11', 'T.N R. Kumar', 'Male', '#1/3(212) 3RD CROSS CHIKKANNA, Gardenns Shankarpur', 'Hindu', 'Bramhin', 'Other', '1967-06-19', 'Regular', '9844636865', 'tnrkumar@msrit.edu', 'rit', 'AHWPR2220G', '141201011002750', 'KN/BN/8146/1174', 'Dr. T.N.R.Kumar is working as an Associate Professor in Computer Science Department of Ramaiah Institute of Technology. His areas of interest include image processing, software engineering and computer networks.', 'ASST PROFESSOR', 'cse'),
 ('cse12', 'Mamatha  Jadhav V', 'Female', '#2709 11TH MAIN D BLOCK, II stage Rajajinagar Blor', 'Hindu', 'Marathi', 'Other', '1973-10-22', 'Regular', '9844094962', 'mamsdalvi@msrit.edu', 'rit', 'AKDPJ5187A', '141201011011032', 'KN/BN/8146/1263', 'Mamatha Jadhav V. is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include computer networks, database management systems and data mining.', 'ASST PROFESSOR', 'cse'),
-('cse13', 'Chethan C T', 'Male', '#208 PATEL CHANNAPA\'S, 1ST Main Dwaraka nagar BSK ', 'Hindu', 'Gowda', '3A', '1985-10-28', 'Regular', '9449035534', 'ctchethan@msrit.edu', 'rit', 'AIDPC7398G', '141201011004919', 'KN/BN/8146/1299', 'Mr. Chethan is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. His areas of interest include analytics, entrepreneurship, incubation, consultancy, and industry association.', 'ASST PROFESSOR', 'cse'),
+('cse13', 'Chethan C T', 'Male', '#208 PATEL CHANNAPA''S, 1ST Main Dwaraka nagar BSK ', 'Hindu', 'Gowda', '3A', '1985-10-28', 'Regular', '9449035534', 'ctchethan@msrit.edu', 'rit', 'AIDPC7398G', '141201011004919', 'KN/BN/8146/1299', 'Mr. Chethan is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. His areas of interest include analytics, entrepreneurship, incubation, consultancy, and industry association.', 'ASST PROFESSOR', 'cse'),
 ('cse14', 'Sini Anna Alex', 'Female', '#171, BETHEL, 1st main, AYR Layout, Shettyhalli, J', 'Christian', 'Orthodox', 'GM', '1983-02-24', 'Regular', '9845437091', 'sinialex@msrit.edu', 'rit', 'CDKPS5458K', '141201011005688', 'KN/BN/8146/1322', 'Mrs. Sini Anna Alex is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include, ubiquitous computing, compiler design, mobile and wireless sensor networks, distributed, database systems and algorithm analysis.', 'ASST PROFESSOR', 'cse'),
 ('cse15', 'Sardar Vandana Sudhakar', 'Female', '#14, Venkateshwara Layout, MSR Nagar', 'Hindu', 'Mahar', 'SC', '1979-05-19', 'Regular', '9886878953', 'vandana.s@msrit.edu', 'rit', 'BCBPS9768K', '141201011007877', 'KN/BN/8146/1398', 'Vandana Sudhakar Sardar is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include information retrieval and machine learning.', 'ASST PROFESSOR', 'cse'),
 ('cse16', 'Meera Devi A Kawalgi', 'Female', '#307, Garuda Royal Apt, Sharadamba Nagar, Jalahall', 'Hindu', 'Lingayath', 'GM', '1984-09-13', 'Regular', '8792068734', 'meera_ak@msrit.edu', 'rit', 'AWCPP1652M', '141201011007888', 'KN/BN/8146/1400', 'Meeradevi A. K. is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include Computer Networks, Information Security, Data Communications, WSN & IoT.', 'ASST PROFESSOR', 'cse'),
@@ -278,7 +290,7 @@ INSERT INTO `faculty` (`facultyId`, `facultyName`, `gender`, `address`, `religio
 ('cse18', 'Dr.H.V. Divakar', 'Male', '#105, TELECOM COLONY, behind new timberyard', 'Hindu', 'Bramhin', 'Other', '1965-07-03', 'Regular', '9980315974', 'divakar.h@msrit.edu', 'rit', 'AAYPD4812D', '141201011009452', 'KN/BN/8146/1453', 'Dr. Divakar Harekal is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. His areas of interest include software engineering, embedded system design and cloud computing.', 'ASST PROFESSOR', 'cse'),
 ('cse19', 'Chandrika Prasad', 'Female', '#143, I STAGE, II CROSS, B.E.M.L., Basaveshwara Na', 'Hindu', 'Bramhin', 'Other', '1980-05-28', 'Regular', '9845053122', 'chandrika@msrit.edu', 'rit', 'AHZPC9945N', '141201011009473', 'KN/BN/8146/1454', 'Chandrika Prasad is working as an assistant professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include operating system and are teaching computer organization and UNIX system programming.', 'ASST PROFESSOR', 'cse'),
 ('cse20', 'Rajarajeswari S', 'Female', '#501, SIRI RESIDENCY, I CROSS, PAPPANA LAYOUT, V.N', 'Hindu', 'Vanniya Kula Ks', 'OBC', '1975-08-02', 'Regular', '9886958079', 'raji@msrit.edu', 'rit', 'ANFPR9711D', '141201011009606', 'KN/BN/8146/1467', 'S. Rajarajeswari is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include cloud computing, big data and data sciences, artificial intelligence, data mining and image processing.', 'ASST PROFESSOR', 'cse'),
-('cse21', 'Pramod C Sunagar', 'Male', '#18, \"GURUKRUPA NILAYA\" 17TH A CROSS, BNS LAYOUT, ', 'Hindu', 'Ambiger', 'CAT - I', '1984-12-16', 'Regular', '9886358659', 'pramods@msrit.edu', 'rit', 'BPVPS0308L', '141201011013869', 'KN/BN/8146/1552', 'Mr. Pramod Sunagar is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. His areas of interest include data analytics algorithms, android development, java & j2ee and data structures.', 'ASST PROFESSOR', 'cse'),
+('cse21', 'Pramod C Sunagar', 'Male', '#18, "GURUKRUPA NILAYA" 17TH A CROSS, BNS LAYOUT, ', 'Hindu', 'Ambiger', 'CAT - I', '1984-12-16', 'Regular', '9886358659', 'pramods@msrit.edu', 'rit', 'BPVPS0308L', '141201011013869', 'KN/BN/8146/1552', 'Mr. Pramod Sunagar is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. His areas of interest include data analytics algorithms, android development, java & j2ee and data structures.', 'ASST PROFESSOR', 'cse'),
 ('cse22', 'Sowmya B J', 'Female', '829, 1ST CROSS, 4 BLOCK, HMT LAYOUT', 'Hindu', 'Lingayath', '3BG', '1986-11-30', 'Regular', '9886733368', 'sowmyabj@msrit.edu', 'rit', 'CJRPS4964D', '141201011015419', 'KN/BN/8146/4801', 'Sowmya B. J. is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include software engineering, computer organization, computer security and data analytics.', 'ASST PROFESSOR', 'cse'),
 ('cse23', 'Pradeep kumar D ', 'Male', 'NO 740, 9MAIN 9 BLOCK, NAGARBAVI', 'Hindu', 'Gowda', 'OBC', '1985-09-27', 'Regular', '9886715235', 'pradeepkumard@msrit.edu', 'rit', 'BCOPD2999E', '141201011017395', 'KN/BN/8146/5011', 'Mr. Pradeep Kumar D. is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. His areas of interest include data mining, data sciences, big data, machine learning and internet of things.', 'ASST PROFESSOR', 'cse'),
 ('cse24', 'Chetan  Shetty ', 'Male', 'NO 13, B 306, 3RD FLOOR, RENAISSANCE BRINDAVAN, UT', 'Hindu', 'Bunts', 'GM', '1986-02-24', 'Regular', '9686575665', 'chetanshetty@msrit.edu', 'rit', 'CPFPS0001H', '141201011008572', 'KN/BN/8146/5014', 'Chetan Shetty is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. His areas of interest include data analytics and teach design and analysis of algorithms, software engineering and computer security.', 'ASST PROFESSOR', 'cse'),
@@ -290,7 +302,8 @@ INSERT INTO `faculty` (`facultyId`, `facultyName`, `gender`, `address`, `religio
 ('cse30', 'Shilpa S Chaudhari', 'Female', 'J-21, Shriram Sadhana Apt, Gokula Mathiker, Bangal', 'Hindu', 'Leva Patidhar', 'GM', '1976-10-29', 'Regular', '9886054151', 'shilpasc29@msrit.edu', 'rit', 'AEJPC6125R', '141201010018835', 'KN/BN/8146/D010', 'Dr. Shilpa Chaudhari is working as Associate Professor at department of CSE, MSRIT, Bangalore at present. She has been a technology educator and corporate trainer since 1999. Her   areas of  research and teaching include network security, RTOS, computational intelligence, wireless networks, embedded', 'Associate Professor', 'cse'),
 ('cse31', 'Raghuram Krishnapuram', 'Male', 'null', 'null', 'null', 'null', '1956-02-13', 'null', 'null', 'raghuk@msrit.edu', 'rit', 'AGIPK4840L', 'null', 'null', 'null', 'PROFESSOR, R&D Head', 'cse'),
 ('cse32', 'Ramani S', 'Male', 'Malleshwaram, Bangalore, 560003', 'Hindu', 'Bramhin', 'GM', '1954-04-17', 'Regular', '9343457890', 'ramanis@msrit.edu', 'rit', 'ABVPS3193C', 'null', 'null', 'Dr. S. Ramani is working as a professor in Computer Science Department of Ramaiah Institute of Technology. His areas of interest include software architecture, e-governance, networking, and information security.', 'PROFESSOR', 'cse'),
-('cse33', 'Nagabhushan A M', 'Male', '12_seetharamaiah lay out, Yeswanthpur, 560022', 'Hindu', 'Lingayath', 'GM', '1963-07-13', 'Visiting', '9844864526', 'bhushan@msrit.edu', 'rit', 'AAIPN8611J', 'null', 'null', 'Bhushan A. Matad is working as an Associate Professor in Computer Science Department of Ramaiah Institute of Technology. His areas of interest include future work skills, and start-up software engineering.', 'Associate Professor', 'cse');
+('cse33', 'Nagabhushan A M', 'Male', '12_seetharamaiah lay out, Yeswanthpur, 560022', 'Hindu', 'Lingayath', 'GM', '1963-07-13', 'Visiting', '9844864526', 'bhushan@msrit.edu', 'rit', 'AAIPN8611J', 'null', 'null', 'Bhushan A. Matad is working as an Associate Professor in Computer Science Department of Ramaiah Institute of Technology. His areas of interest include future work skills, and start-up software engineering.', 'Associate Professor', 'cse'),
+('ise01', 'Mydhili ', 'female', 'nodcds', 'kjhkk', 'jnkjnkjn', 'nknkjn', '2018-04-04', 'jjij', '9008174383', 'my@gmail.com', '123', 'nnmkjbb', 'kjnkjn', 'kjnkjn', 'kjnkjnkjn', 'nkjkjnkjn', 'ise');
 
 -- --------------------------------------------------------
 
@@ -548,6 +561,13 @@ CREATE TABLE `faculty_workshop_fdp` (
   `facultyId` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `faculty_workshop_fdp`
+--
+
+INSERT INTO `faculty_workshop_fdp` (`slNo`, `title`, `sponsoredOrFunded`, `date`, `noOfParticipants`, `type`, `facultyId`) VALUES
+(1, 'abc', 'fgh', '0000-00-00', 123, 'interntion', 'cse01');
+
 -- --------------------------------------------------------
 
 --
@@ -750,7 +770,7 @@ CREATE TABLE `institution` (
 --
 
 INSERT INTO `institution` (`instituteName`, `yearOfEstablishment`, `address`, `contactNumber`, `websiteUrl`, `officialMailId`, `headOfTheInstitution`, `headContactNumber`) VALUES
-('Ramaiah Institute of Technology', '1962', 'MSR College Road, MSR Nagar, MSRIT Post, Bengaluru, Karnataka 560054', '\"+9180-23606939', 'msrit.edu', 'admn@msrit.edu', 'NVR Naidu', '\"+9180-23600822');
+('Ramaiah Institute of Technology', '1962', 'MSR College Road, MSR Nagar, MSRIT Post, Bengaluru, Karnataka 560054', '"+9180-23606939', 'msrit.edu', 'admn@msrit.edu', 'NVR Naidu', '"+9180-23600822');
 
 -- --------------------------------------------------------
 
@@ -1345,7 +1365,7 @@ ALTER TABLE `book_chapter`
 -- AUTO_INCREMENT for table `conference_paper`
 --
 ALTER TABLE `conference_paper`
-  MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `consultancy`
 --
@@ -1390,7 +1410,7 @@ ALTER TABLE `faculty_service`
 -- AUTO_INCREMENT for table `faculty_workshop_fdp`
 --
 ALTER TABLE `faculty_workshop_fdp`
-  MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `finance`
 --
