@@ -22,14 +22,14 @@
                                 <th>Labs Handled</th>
                             </thead>
                             <tbody>
-                                <% loadInTableModular("courses_handled")%>
+                                <% loadInTableModular("courses_handled", updatePermission)%>
                             </tbody>
                         </table>
                     </div>
                     <a href = "/faculty/generateexcel/1/5/?faculty=<%-GetParam%>">
                     <button class="btn btn-primary pull-left hodDisable" style="margin:13px">Generate Excel file</button>
                     </a>
-                    <button type="submit" class="btn btn-primary pull-right hodDisable" data-toggle="modal" data-target="#myModalModular" onclick = "fillDataModularInsert('courses_handled')" style="margin:13px">Insert</button>
+                    <button type="submit" class="btn btn-primary pull-right  insertButton" data-toggle="modal" data-target="#myModalModular" onclick = "fillDataModularInsert('courses_handled')" style="margin:13px">Insert</button>
                 </div>
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
@@ -44,14 +44,14 @@
                                 <th>Project Title</th>
                             </thead>
                             <tbody>
-                                <% loadInTableModular("projects_handled")%>
+                                <% loadInTableModular("projects_handled", updatePermission)%>
                             </tbody>
                         </table>
                     </div>
                     <a href = "/faculty/generateexcel/2/5/?faculty=<%-GetParam%>">
                     <button class="btn btn-primary pull-left hodDisable" style="margin:13px">Generate Excel file</button>
                     </a>
-                    <button type="submit" class="btn btn-primary pull-right hodDisable" data-toggle="modal" data-target="#myModalModular" onclick = "fillDataModularInsert('projects_handled')" style="margin:13px">Insert</button>
+                    <button type="submit" class="btn btn-primary pull-right  insertButton" data-toggle="modal" data-target="#myModalModular" onclick = "fillDataModularInsert('projects_handled')" style="margin:13px">Insert</button>
                 </div>
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
@@ -71,14 +71,14 @@
                                 <th>Status</th>
                             </thead>
                             <tbody>
-                                <% loadInTableModular("faculty_research")%>
+                                <% loadInTableModular("faculty_research", updatePermission)%>
                             </tbody>
                         </table>
                     </div>
                     <a href = "/faculty/generateexcel/3/5/?faculty=<%-GetParam%>">
                     <button class="btn btn-primary pull-left hodDisable" style="margin:13px">Generate Excel file</button>
                     </a>
-                    <button type="submit" class="btn btn-primary pull-right hodDisable" data-toggle="modal" data-target="#myModalModular" onclick = "fillDataModularInsert('faculty_research')" style="margin:13px">Insert</button>
+                    <button type="submit" class="btn btn-primary pull-right  insertButton" data-toggle="modal" data-target="#myModalModular" onclick = "fillDataModularInsert('faculty_research')" style="margin:13px">Insert</button>
                 </div>
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
@@ -98,14 +98,14 @@
                               <th>Status</th>
                             </thead>
                             <tbody>
-                                <% loadInTableModular("phd_scholar")%>
+                                <% loadInTableModular("phd_scholar", updatePermission)%>
                             </tbody>
                         </table>
                     </div>
                     <a href = "/faculty/generateexcel/4/5/?faculty=<%-GetParam%>">
                     <button class="btn btn-primary pull-left hodDisable" style="margin:13px">Generate Excel file</button>
                     </a>
-                    <button type="submit" class="btn btn-primary pull-right hodDisable" data-toggle="modal" data-target="#myModalModular" onclick = "fillDataModularInsert('phd_scholar')"  style="margin:13px">Insert</button>
+                    <button type="submit" class="btn btn-primary pull-right  insertButton" data-toggle="modal" data-target="#myModalModular" onclick = "fillDataModularInsert('phd_scholar')"  style="margin:13px">Insert</button>
                 </div>
             </div>
         </div>

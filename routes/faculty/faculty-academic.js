@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var sqlExecute = require('../apis/mySqlCalls');
 var utility = require('../utilities');
+var facultyPermissions = require('./faculty-permissions.js');
 
 router.get('/', function(req, res, next) {
 	if(!utility.checkSesssion(req, res)) return;
@@ -113,7 +114,10 @@ router.get('/', function(req, res, next) {
 			}
 		], */
 		authType:req.session.facultyId,
-		departmentId:req.session.departmentId});
+		departmentId:req.session.departmentId,
+		insertPermission:facultyPermissions.insertPermission,
+			updatePermission:facultyPermissions.updatePermission
+	});
 		
 	}
 	sqlExecute.getFaultyAcademics(facultyId, callback);

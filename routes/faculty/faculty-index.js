@@ -3,7 +3,7 @@ var router = express.Router();
 var mysql = require('../apis/mySqlCalls');
 var generateexcel = require('../../back-end/excelGenerator');
 var utility = require('../utilities');
-
+var facultyPermissions = require('./faculty-permissions.js');
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	if(!utility.checkSesssion(req, res))
@@ -61,21 +61,7 @@ router.get('/', function(req, res, next) {
 		var facultyID = req.session.facultyId;
 		// var departmentId = tresult["departmentId"];
 		console.log("myR" + JSON.stringify(myR));
-		var updatePermission = {
-			hod:false,
-			principal:false,
-			coordinator:true,
-			faculty:true,
-			admin:true
-		}
-
-		var insertPermission = {
-			hod:false,
-			principal:false,
-			coordinator:true,
-			faculty:true,
-			admin:true
-		}
+		
 		res.render('faculty/index', { title: 'Express', type:"dashboard", data : {faculty:data},
 			index:{
 				url:"/faculty/",
@@ -97,8 +83,8 @@ router.get('/', function(req, res, next) {
 				}
 			},
 			fId:facultyId, about:about, GetParam:req.query.fId, authType:req.session.facultyId, departmentId:req.session.departmentId,
-			insertPermission:insertPermission,
-			updatePermission:updatePermission
+			insertPermission:facultyPermissions.insertPermission,
+			updatePermission:facultyPermissions.updatePermission
 		});
 		//res.send(JSON.stringify(result));
 	}

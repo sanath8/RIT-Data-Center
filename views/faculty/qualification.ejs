@@ -23,14 +23,14 @@
                                 <th>Area of Specialization</th>
                             </thead>
                             <tbody>
-                                <% loadInTableModular('faculty_qualification')%>
+                                <% loadInTableModular('faculty_qualification', updatePermission)%>
                             </tbody>
                         </table>
                     </div>
                 <a href = "/faculty/generateexcel/1/2/?faculty=<%-GetParam%>">
                 <button class="btn btn-primary pull-left hodDisable" style="margin:13px">Generate Excel file</button>
                 </a>
-                <button class="btn btn-primary pull-right hodDisable" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick = "fillDataModularInsert('faculty_qualification')" >Insert</button>
+                <button class="btn btn-primary pull-right  insertButton" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick = "fillDataModularInsert('faculty_qualification')" >Insert</button>
                 </div>
             </div>
         </div>
