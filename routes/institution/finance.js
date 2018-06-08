@@ -29,11 +29,29 @@ router.get('/', function(req, res, next) {
 		var data = {
 			finance_committee: data
 		}
+		var updatePermission = {
+			hod:false,
+			principal:false,
+			coordinator:false,
+			faculty:false,
+			admin:true
+		}
+		
+		var insertPermission = {
+			hod:false,
+			principal:false,
+			coordinator:false,
+			faculty:false,
+			admin:true
+		}
+
 		res.render('institution/finance', {title : "Finance Committee", type:"finance", data:data,
         
         GetParam: req.query.deptId,
 
-        authType:req.session.departmentId
+		authType:req.session.facultyId,
+		 updatePermission:updatePermission,
+		 insertPermission:insertPermission
         });
 		
 	}

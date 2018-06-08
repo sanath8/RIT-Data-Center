@@ -61,7 +61,21 @@ router.get('/', function(req, res, next) {
 		var facultyID = req.session.facultyId;
 		// var departmentId = tresult["departmentId"];
 		console.log("myR" + JSON.stringify(myR));
+		var updatePermission = {
+			hod:false,
+			principal:false,
+			coordinator:true,
+			faculty:true,
+			admin:true
+		}
 
+		var insertPermission = {
+			hod:false,
+			principal:false,
+			coordinator:true,
+			faculty:true,
+			admin:true
+		}
 		res.render('faculty/index', { title: 'Express', type:"dashboard", data : {faculty:data},
 			index:{
 				url:"/faculty/",
@@ -82,7 +96,10 @@ router.get('/', function(req, res, next) {
 					about : "About"
 				}
 			},
-			fId:facultyId, about:about, GetParam:req.query.fId, authType:req.session.facultyId, departmentId:req.session.departmentId});
+			fId:facultyId, about:about, GetParam:req.query.fId, authType:req.session.facultyId, departmentId:req.session.departmentId,
+			insertPermission:insertPermission,
+			updatePermission:updatePermission
+		});
 		//res.send(JSON.stringify(result));
 	}
 	// console.log("Param : "+req.session.email+":"+req.session.facultyId);

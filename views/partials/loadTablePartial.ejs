@@ -1,9 +1,13 @@
 <%
-    loadInTableModular=function(columnName){
+    loadInTableModular=function(columnName, permission){
         var resultSet=data[columnName];
         for(var i = 0 ; i<resultSet.length;i++){
-
-            __append('<tr data-toggle="modal" data-target="#myModalModular" onclick="fillDataModular(\''+columnName+'\','+i+')" onmouseover="hoverEffect(this)" onmouseout="removeHoverEffect(this)">');
+            if(permission[authType] === true){
+                __append('<tr data-toggle="modal" data-target="#myModalModular" onclick="fillDataModular(\''+columnName+'\','+i+')" onmouseover="hoverEffect(this)" onmouseout="removeHoverEffect(this)">');
+            }
+            else{
+                __append('<tr>');
+            }
             for(var j in resultSet[i]){
                 if(j==="slNo" || j==="facultyId")
                     continue;

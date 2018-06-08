@@ -1,23 +1,18 @@
 <script>
+    var insertPermission = <%-JSON.stringify(insertPermission)%>
+    var authType = <%-JSON.stringify(authType)%>
+    if(authType != 'principal' && authType != 'coordinator' && authType != 'hod'){
+        authType = 'faculty';
+    }
     console.log("hello everyone");
-    var hodbuttonsDisable = document.getElementsByClassName("hodDisable");
-    for(var i = 0; i< hodbuttonsDisable.length;i++){
-        hodbuttonsDisable[i].disabled = true;
-    }
-
-    var facultybuttonsDisable = document.getElementsByClassName("facultyDisable");
-    for(var i = 0; i< facultybuttonsDisable.length;i++){
-        facultybuttonsDisable[i].disabled = true;
-    }
-
-    var principalbuttonsDisable = document.getElementsByClassName("principalDisable");
-    for(var i = 0; i< principalbuttonsDisable.length;i++){
-        principalbuttonsDisable[i].disabled = true;
-    }
-
-    var coordinatorbuttonsDisable = document.getElementsByClassName("coordinatorDisable");
-    for(var i = 0; i< coordinatorbuttonsDisable.length;i++){
-        coordinatorbuttonsDisable[i].disabled = true;
+    console.log("insertPermission authType " + insertPermission[authType] + " " + authType);
+    var buttonsDisable = document.getElementsByClassName("insertButton");
+    for(var i = 0; i< buttonsDisable.length;i++){
+        if(insertPermission[authType] === false){
+            buttonsDisable[i].disabled = true;
+            console.log("disabling button " + insertPermission[authType] + " " + authType);
+        }
+            
     }
 
 

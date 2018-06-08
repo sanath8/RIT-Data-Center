@@ -28,13 +28,29 @@ router.get('/', function(req, res, next) {
 		var data = {
 			academic_council: data
 		}
+		var updatePermission = {
+			hod:false,
+			principal:false,
+			coordinator:false,
+			faculty:false,
+			admin:true
+		}
+		var insertPermission = {
+			hod:false,
+			principal:false,
+			coordinator:false,
+			faculty:false,
+			admin:true
+		}
 		console.log(JSON.stringify(data));
 		console.log("Here is academics page of institution facultyId " + req.session.facultyID);
 		res.render('institution/academic', {title : "Academic Council Details", type:"academic", data:data,
         
         GetParam: req.query.deptId,
 
-        authType:req.session.facultyID
+		authType:req.session.facultyId,
+		updatePermission:updatePermission,
+		insertPermission:insertPermission
         });
 		
 	}

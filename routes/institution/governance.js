@@ -29,11 +29,30 @@ router.get('/', function(req, res, next) {
 		var data = {
 			governing_body: data
 		}
+		var updatePermission = {
+			hod:false,
+			principal:false,
+			coordinator:false,
+			faculty:false,
+			admin:true
+		}
+
+		var insertPermission = {
+			hod:false,
+			principal:false,
+			coordinator:false,
+			faculty:false,
+			admin:true
+		}
+
+		console.log("in governance page of institution facultyID " + req.session.facultyId);
 		res.render('institution/governance', {title : "Governing Body Details", type:"governance", data:data,
         
         GetParam: req.query.deptId,
 
-        authType:req.session.departmentId
+		authType:req.session.facultyId,
+		 updatePermission:updatePermission,
+		 insertPermission:insertPermission
         });
 		
 	}
