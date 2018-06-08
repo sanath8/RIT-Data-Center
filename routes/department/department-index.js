@@ -95,6 +95,24 @@ router.get('/getExcel', function(req, res, next){
 
 });
 
+router.get('/getSummary/:tableName/:from/:to/:departmentId/:type', function(req, res, next){
+	res.setHeader('Content-Type', 'application/json');
+	utility.checkSesssion(req, res);
+  console.log('here');
+  console.log("years"+ req.params.from+" "+req.params.to);
+  var tableName = req.params.tableName;
+
+
+    var callBack = function(result)
+		{
+        generateexcel.getExcelSheet(result, "Report.xls", res);
+    }
+    sqlExecute.executeSummaryQuery(tableName, req.params.from, req.params.to,req.params.departmentId, req.params.type, callBack);
+
+	    //sqlExecute.getJointFacultyInfo(callBack, req.params.tableName);*/
+
+});
+
 
 
 router.get('/', function(req, res, next) {

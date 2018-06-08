@@ -38,7 +38,7 @@ router.get('/getExcel', function(req, res, next){
 	    //mySqlCalls.getJointFacultyInfo(callBack, req.params.tableName);*/
 
 });
-router.get('/getSummary/:tableName/:from/:to/:departmentId', function(req, res, next){
+router.get('/getSummary/:tableName/:from/:to/:departmentId/:type', function(req, res, next){
 	res.setHeader('Content-Type', 'application/json');
 	utility.checkSesssion(req, res);
   console.log('here');
@@ -50,7 +50,7 @@ router.get('/getSummary/:tableName/:from/:to/:departmentId', function(req, res, 
 		{
         generateexcel.getExcelSheet(result, "Report.xls", res);
     }
-    mySqlCalls.executeSummaryQuery(tableName, req.params.from, req.params.to,req.params.departmentId, callBack);
+    mySqlCalls.executeSummaryQuery(tableName, req.params.from, req.params.to,req.params.departmentId, req.params.type, callBack);
 
 	    //sqlExecute.getJointFacultyInfo(callBack, req.params.tableName);*/
 
