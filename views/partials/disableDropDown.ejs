@@ -1,5 +1,5 @@
 <script>
-<% if( authType != "principal") {  console.log("principal"  +  authType);
+<% if( authType != "principal" && authType != "admin") {  console.log("principal"  +  authType);
  %>
   document.getElementById("department").disabled=true;
 <%}%>

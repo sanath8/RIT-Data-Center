@@ -21,7 +21,15 @@ $("#getReportAdmin").click(function()
   }
 });
 
-$("#getSummaryAdmin").click(function()
+$("#getSummaryAdmin").click(function(){
+    filteredSummaryReport("admin");
+});
+
+$("#getSummaryDepartment").click(function(){
+    filteredSummaryReport("department");
+});
+
+function filteredSummaryReport(type)
 {
 
   var tableName = $('#tableList').val();
@@ -62,15 +70,21 @@ $("#getSummaryAdmin").click(function()
   {
       if(from != "" && to != "")
       {
-        resFromYear =  ""+ converterApi.yearTranslator(tableName)+" >= "  + fromYear.toString() + "";
-        resToYear =  ""+ converterApi.yearTranslator(tableName)+" <= "  + toYear.toString() + "";
+        //resFromYear =  ""+ converterApi.yearTranslator(tableName)+" >= "  + fromYear.toString() + "";
+        //resToYear =  ""+ converterApi.yearTranslator(tableName)+" <= "  + toYear.toString() + "";
+        resFromYear =  ""+ converterApi.yearTranslator(tableName)+" >= '"  + from.toString() + "'";
+        resToYear =  ""+ converterApi.yearTranslator(tableName)+" <= '"  + to.toString() + "'";
       }
 
   }
 
   console.log("summary of" + tableName);
-  window.location.href = "/admin/getSummary/"+tableName+"/"+resFromYear+"/"+resToYear+"/"+department+"/";
-});
+  if(type == "admin")
+    window.location.href = "/admin/getSummary/"+tableName+"/"+resFromYear+"/"+resToYear+"/"+department+"/"+type+"/";
+  else
+    window.location.href = "/department/getSummary/"+tableName+"/"+resFromYear+"/"+resToYear+"/"+department+"/"+type+"/";
+
+}
 
 
 $("#tableList").change(function () {
@@ -203,8 +217,10 @@ function performFilterOperations(flag, reportCallBack)
   {
       if(from != "" && to != "")
       {
-        var fromYearFilter =  ""+ converterApi.yearTranslator(tableName)+" >= "  + fromYear.toString() + "";
-        var toYearFilter =  ""+ converterApi.yearTranslator(tableName)+" <= "  + toYear.toString() + "";
+        //var fromYearFilter =  ""+ converterApi.yearTranslator(tableName)+" >= "  + fromYear.toString() + "";
+        //var toYearFilter =  ""+ converterApi.yearTranslator(tableName)+" <= "  + toYear.toString() + "";
+        var fromYearFilter =  ""+ converterApi.yearTranslator(tableName)+" >= '"  + from.toString() + "'";
+        var toYearFilter =  ""+ converterApi.yearTranslator(tableName)+" <= '"  + to.toString() + "'";
         queryFilter.push(fromYearFilter);
         queryFilter.push(toYearFilter);
       }
