@@ -7,6 +7,8 @@ var excelGenerator = module.exports = {};
 
 excelGenerator.getExcelSheet = function(tableData, fileName, response)
 {
+  //console.log("structured data" + JSON.stringify(tableData));
+
   var data = "";
  try{
         data = "";
@@ -64,14 +66,14 @@ excelGenerator.setDataEntries = function(noOfRows, noOfColumns, tableData, colum
 
        if(j == noOfColumns-1)
        {
-         //data += dataCleaner.specialCharacterFilter(dataEntry.toString()) + '\n';
-         data += dataEntry.toString() + '\n';
+         data += dataCleaner.specialCharacterFilter(dataEntry.toString()) + '\n';
+         //data += dataEntry.toString() + '\n';
 
        }
         else
         {
-          //data += dataCleaner.specialCharacterFilter(dataEntry.toString()) + '\t';
-          data += dataEntry.toString() + '\t';
+          data += dataCleaner.specialCharacterFilter(dataEntry.toString()) + '\t';
+          //data += dataEntry.toString() + '\t';
 
         }
     }
@@ -81,7 +83,7 @@ excelGenerator.setDataEntries = function(noOfRows, noOfColumns, tableData, colum
 }
 excelGenerator.writeIntoFile = function(structuredData, excelFileName, response)
 {
-  var excelFileName = "file_" + new Date().getTime() + ".xlsx";
+  var excelFileName = "file_" + new Date().getTime() + ".xls";
   fs.writeFile(__dirname+ '/excelSheets/' + excelFileName, structuredData, (err) => {
     console.log(excelFileName+ 'excel filesss created');
 

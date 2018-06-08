@@ -50,7 +50,7 @@ dataCleaner.dataToLowerCase = function(excelData, columnsAttributes)
 dataCleaner.specialCharacterFilter = function(dataEntry)
 {
 
-   var filteredString = dataEntry.replace(/[^\w\,\.\/-]/g, '');
+   var filteredString = dataEntry.replace(/[\r\n]/g, '');
    return filteredString;
 }
 
