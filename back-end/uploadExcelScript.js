@@ -1,7 +1,7 @@
 const testFolder = './uploadExcel/';
 const fs = require('fs');
 var excelUploader = require('./excelExtract');
-var tableCreationOrder = ["institution", "department", "faculty","academic_council", "administrator_login", "faculty_qualification", "faculty_patent", "faculty_research","faculty_service","finance","governing_body"];
+var tableCreationOrder = ["faculty_workshop_fdp"];
 
 // delete the flag code
 //var latestCommitFlag = 0;
@@ -39,5 +39,5 @@ function addParentTables()
   }
 }
 
-//addParentTables();
-addChildTables();
+addParentTables();
+//addChildTables();

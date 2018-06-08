@@ -468,10 +468,13 @@ sqlObject.prototype.getDataBaseTables = function(dataBase, callBack)
 	  }
 	);
 }
-sqlObject.prototype.executeSummaryQuery = function(tableName, from, to, departmentId, callback){
+sqlObject.prototype.executeSummaryQuery = function(tableName, from, to, departmentId, type, callback){
 	var sql = "";
 	console.log("Reached here with" + tableName);
   var columnConversions = {"conference_paper":"conferenceType", "journal_paper":"journalType"};
+	var typeConversions = {"department":"facultyId", "admin":"departmentId"};
+	var selectConversions = {"department":"facultyName", "admin":"departmentId"};
+
 	var filterHelper = "";
 	if(from != "-1")
 	{
@@ -486,28 +489,39 @@ sqlObject.prototype.executeSummaryQuery = function(tableName, from, to, departme
 		filterHelper += " AND departmentId = '" + departmentId + "'";
 	}
 
-	sql1 = "SELECT departmentId, count(*) AS counts \
+	sql1 = "SELECT "+ selectConversions[type] +", count(*) AS counts \
 				 FROM \
 				 faculty \
 				 NATURAL JOIN " + tableName + " \
 				 WHERE "+ columnConversions[tableName] +" = 'international' " + filterHelper + "\
-				 GROUP BY departmentId";
- sql2 = "SELECT departmentId, count(*) AS counts \
+				 GROUP BY " + typeConversions[type];
+ sql2 = "SELECT "+ selectConversions[type] +", count(*) AS counts \
 				 FROM  \
 				 faculty \
 				 NATURAL JOIN " + tableName + " \
 				 WHERE "+ columnConversions[tableName] +" = 'national' " + filterHelper + "\
-				 GROUP BY departmentId";
+				 GROUP BY " + typeConversions[type];
 				 console.log("sql1" + sql1 + "sql2" + sql2);
 				 var data1, data2;
 				 this.connection.query(sql1,function(err,results,fields){
-					 data1 = [{departmentId:"international", counts:"counts"}]
+					 if(type == "admin")
+					 	data1 = [{departmentId:"international", counts:""}]
+					else
+						data1 = [{facultyName:"international", counts:""}]
+
 					 Array.prototype.push.apply(data1,results);
 			   });
 			   this.connection.query(sql2,function(err,results,fields){
 					 data2 = results;
-					 Array.prototype.push.apply(data1,[{departmentId:"national", counts:"counts"}]);
+					 if(type == "admin")
+					 {
+					 Array.prototype.push.apply(data1,[{departmentId:"national", counts:""}]);
 					 Array.prototype.push.apply(data1,data2);
+				 	}
+						else {
+							Array.prototype.push.apply(data1,[{facultyName:"national", counts:""}]);
+							Array.prototype.push.apply(data1,data2);
+						}
 					 console.log("data join :" + JSON.stringify(data1));
 					 callback(data1);
 			   });
