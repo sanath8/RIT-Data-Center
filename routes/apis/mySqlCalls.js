@@ -494,38 +494,100 @@ sqlObject.prototype.executeSummaryQuery = function(tableName, from, to, departme
 				 faculty \
 				 NATURAL JOIN " + tableName + " \
 				 WHERE "+ columnConversions[tableName] +" = 'international' " + filterHelper + "\
-				 GROUP BY " + typeConversions[type];
+				 GROUP BY " + typeConversions[type] + "\
+				 ORDER BY " + selectConversions[type];
  sql2 = "SELECT "+ selectConversions[type] +", count(*) AS counts \
 				 FROM  \
 				 faculty \
 				 NATURAL JOIN " + tableName + " \
 				 WHERE "+ columnConversions[tableName] +" = 'national' " + filterHelper + "\
-				 GROUP BY " + typeConversions[type];
+				 GROUP BY " + typeConversions[type] + "\
+				 ORDER BY " + selectConversions[type];
 				 console.log("sql1" + sql1 + "sql2" + sql2);
-				 var data1, data2;
+				 var data1, data2, format;
+				 /*if(type == "admin")
+					format = [{"departmentId":"Department ID", "international":"International", "national":"National"}];
+				else
+					format = [{"facultyName":"Faculty name", "international":"International", "national":"National"}];*/
 				 this.connection.query(sql1,function(err,results,fields){
-					 if(type == "admin")
-					 	data1 = [{departmentId:"international", counts:""}]
-					else
-						data1 = [{facultyName:"international", counts:""}]
-
-					 Array.prototype.push.apply(data1,results);
+					 data1 = results;
 			   });
 			   this.connection.query(sql2,function(err,results,fields){
 					 data2 = results;
-					 if(type == "admin")
-					 {
-					 Array.prototype.push.apply(data1,[{departmentId:"national", counts:""}]);
-					 Array.prototype.push.apply(data1,data2);
-				 	}
-						else {
-							Array.prototype.push.apply(data1,[{facultyName:"national", counts:""}]);
-							Array.prototype.push.apply(data1,data2);
-						}
 					 console.log("data join :" + JSON.stringify(data1));
-					 callback(data1);
+					 var formatedData = formatSummary(data1, data2, selectConversions[type]);
+					 //console.log("formatting finished" + JSON.stringify(formatedData));
+					 callback(formatedData);
 			   });
 
+
+}
+
+function formatSummary(international, national, compared) //modification needed in this function, faculty id to be used instead of name 
+{
+	console.log(" data1 " + JSON.stringify(international) + " data " + JSON.stringify(national));
+	internationalPointer = 0;
+	nationalPointer = 0;
+	lenInternational = international.length;
+	lenNational = national.length;
+	formatedSummary = [];
+	var temp = {};
+	while ((internationalPointer < lenInternational) && (nationalPointer < lenNational))
+	{
+		var temp = {};
+
+		console.log(international[internationalPointer][compared] +"   "+ national[nationalPointer][compared]+"\n");
+		if(international[internationalPointer][compared] > national[nationalPointer][compared])
+		{
+			temp[compared] = national[nationalPointer][compared];
+			temp["international"] = 0;
+			temp["national"] = national[nationalPointer]["counts"];
+			nationalPointer++;
+		}
+		else if (international[internationalPointer][compared] < national[nationalPointer][compared])
+		{
+			temp[compared] = international[internationalPointer][compared];
+			temp["international"] = international[internationalPointer]["counts"];
+			temp["national"] = 0;
+			internationalPointer++;
+		}
+		else
+		{
+			temp[compared] = international[internationalPointer][compared];
+			temp["international"] = international[internationalPointer]["counts"];
+			temp["national"] = national[nationalPointer]["counts"];
+			internationalPointer++;
+			nationalPointer++;
+		}
+		formatedSummary.push(temp);
+	}
+
+	while (internationalPointer < lenInternational)
+	{
+		var temp = {};
+
+		temp[compared] = international[internationalPointer][compared];
+		temp["international"] = international[internationalPointer]["counts"];
+		temp["national"] = 0;
+		internationalPointer++;
+		formatedSummary.push(temp);
+
+
+	}
+
+	while (nationalPointer < lenNational)
+	{
+		var temp = {};
+
+		temp[compared] = national[nationalPointer][compared];
+		temp["international"] = 0;
+		temp["national"] = national[nationalPointer]["counts"];
+		nationalPointer++;
+		formatedSummary.push(temp);
+
+	}
+
+	return formatedSummary;
 
 }
 
