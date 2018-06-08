@@ -22,14 +22,14 @@
                             <th>emailId</th>
                         </thead>
                         <tbody>
-                        <%loadInTable(data.faculty)%>
+                        <%loadInTable(data.departmentGeneralInfo)%>
                         </tbody>
                     </table>
                 </div>
                     <a href = "department/generateexcel/1/1/?departmentId=<%-GetParam%>">
                     <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
                     </a>
-                <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal1" style="margin:13px" onclick="fillDataVerticleTable(1)">Update</button>
+                <button class="btn btn-primary pull-right " data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataModular('departmentGeneralInfo', 0)">Update</button>
             </div>
         </div>
     </div>

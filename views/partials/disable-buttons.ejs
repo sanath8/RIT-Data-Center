@@ -1,11 +1,24 @@
 <script>
-<% if( authType == "hod" || (GetParam && authType != "coordinator" && authType != "admin")) { %>
     console.log("hello everyone");
-    var buttonsDisable = document.getElementsByClassName("hodDisable");
-    for(var i = 0; i< buttonsDisable.length;i++){
-        buttonsDisable[i].disabled = true;
+    var hodbuttonsDisable = document.getElementsByClassName("hodDisable");
+    for(var i = 0; i< hodbuttonsDisable.length;i++){
+        hodbuttonsDisable[i].disabled = true;
     }
-<%}%>
+
+    var facultybuttonsDisable = document.getElementsByClassName("facultyDisable");
+    for(var i = 0; i< facultybuttonsDisable.length;i++){
+        facultybuttonsDisable[i].disabled = true;
+    }
+
+    var principalbuttonsDisable = document.getElementsByClassName("principalDisable");
+    for(var i = 0; i< principalbuttonsDisable.length;i++){
+        principalbuttonsDisable[i].disabled = true;
+    }
+
+    var coordinatorbuttonsDisable = document.getElementsByClassName("coordinatorDisable");
+    for(var i = 0; i< coordinatorbuttonsDisable.length;i++){
+        coordinatorbuttonsDisable[i].disabled = true;
+    }
 
 
 </script>

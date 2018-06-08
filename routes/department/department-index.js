@@ -121,7 +121,19 @@ router.get('/', function(req, res, next) {
 			data.push(myR);
     }
     var newResult = {'faculty' : data};
-    res.render('department/index', {departmentId: departmentId, type:'index', data:newResult, authType:req.session.facultyId, GetParam:req.query.departmentId });
+    res.render('department/index', {departmentId: departmentId, type:'index', data:{departmentGeneralInfo:newResult['faculty']},
+    index:{
+      url:"/faculty/",
+      departmentGeneralInfo:{
+        facultyName:"facultyName",
+        gender:"gender",
+        address:"address",
+        atureOfAppointment:"Nature Of Appointment",
+        contactNumber:"Contact No.",
+        emailId:"Email Id"
+      }
+    },
+    authType:req.session.facultyId, GetParam:req.query.departmentId });
   }
   sqlExecute.getDepartmentFacultyInfo(callback,departmentId);
 });

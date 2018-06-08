@@ -29,11 +29,12 @@ router.get('/', function(req, res, next) {
 			academic_council: data
 		}
 		console.log(JSON.stringify(data));
+		console.log("Here is academics page of institution facultyId " + req.session.facultyID);
 		res.render('institution/academic', {title : "Academic Council Details", type:"academic", data:data,
         
         GetParam: req.query.deptId,
 
-        authType:req.session.departmentId
+        authType:req.session.facultyID
         });
 		
 	}
