@@ -1,5 +1,7 @@
 var columnsSelected = "";
 var tableLock = 0;
+console.log("The date now : " +new Date());
+
 $("#getReportDepartment").click(function()
 {
   performFilterOperations('report', reportCallBack);
@@ -28,6 +30,25 @@ $("#getSummaryAdmin").click(function(){
 $("#getSummaryDepartment").click(function(){
     filteredSummaryReport("department");
 });
+
+function getFormatedDate(subYear)
+{
+  var today = new Date();
+  today.setYear(today.getFullYear() - subYear);
+  var dd = today.getDate();
+  var mm = today.getMonth()+1; //January is 0!
+
+  var yyyy = today.getFullYear();
+  if(dd<10){
+      dd='0'+dd;
+  }
+  if(mm<10){
+      mm='0'+mm;
+  }
+  var reqYear = yyyy+'-'+mm+'-'+dd;
+  return reqYear;
+
+}
 
 function filteredSummaryReport(type)
 {
@@ -63,7 +84,7 @@ function filteredSummaryReport(type)
     }
     else
     {
-      resFromYear  =  ""+ converterApi.yearTranslator(tableName)+" >= " + (new Date().getFullYear()- year).toString() + "";
+      resFromYear  =  ""+ converterApi.yearTranslator(tableName)+" >= '" + (getFormatedDate(year)).toString() + "'";
     }
   }
   else
@@ -209,7 +230,7 @@ function performFilterOperations(flag, reportCallBack)
     }
     else
     {
-      var yearFilter =  ""+ converterApi.yearTranslator(tableName)+" >= " + (new Date().getFullYear()- year).toString() + "";
+      var yearFilter =  ""+ converterApi.yearTranslator(tableName)+" >= '" + (getFormatedDate(year)).toString() + "'";
       queryFilter.push(yearFilter);
     }
   }
