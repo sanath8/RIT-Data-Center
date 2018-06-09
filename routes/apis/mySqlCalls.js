@@ -349,6 +349,46 @@ sqlObject.prototype.getInfrastructureDetails = function(callback, departmentId){
 	})
 }
 
+sqlObject.prototype.getBosBoeDetails = function(callback, departmentId){
+	var sql = "select *\
+						 from professional_activities\
+						 where departmentId =?";
+	
+	var conn = this.connection;
+  var data = {};
+	this.connection.query(sql, [departmentId], function(error, result){
+		if(error){
+			callback(error, undefined);
+			return;
+		}
+		data["professional_activities"] = result;
+
+		var sql = "select *\
+							 from other_membership\
+							 where departmentId =?";
+	
+		conn.query(sql, [departmentId], function(error, result){
+			if(error){
+				callback(error, undefined);
+				return;
+			}
+			data["other_membership"] = result;
+			var sql = "select *\
+			from professional_body_membership\
+			where departmentId =?";
+			conn.query(sql, [departmentId], function(error, result){
+				if(error){
+					callback(error, undefined);
+					return;
+				}
+				data["professional_body_membership"] = result;
+			callback(undefined, data);
+		})
+	})
+	})
+}
+
+
 sqlObject.prototype.getAdmissionDetails = function(callback, departmentId){
 	var sql = "select *\
 						 from admissions\

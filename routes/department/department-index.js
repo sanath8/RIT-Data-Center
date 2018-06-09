@@ -218,12 +218,54 @@ router.get('/bosboe', function(req, res, next) {
 
   var callback = function(error, result){
     console.log(result);
-    res.render('department/bosboe', { departmentId: departmentId, type:'bosboe', data:{}, authType:req.session.facultyId , GetParam:req.query.departmentId,
+    var professionalActivities = [];
+    var professional = result.professional_activities;
+    for(var i=0;i<professional.length;i++){
+      var singleEntry = {
+        slNo: professional[i].slNo,
+        facultyName: professional[i].facultyId,
+        board: professional[i].board,
+        college: professional[i].college,
+        externalOrInternal: professional[i].externalOrInternal,
+        year: professional[i].year
+      }
+      professionalActivities.push(singleEntry);
+    }
+
+    var otherMembership = [];
+    var other = result.other_membership;
+    for(var i=0;i<other.length;i++){
+      var singleEntry = {
+        slNo: other[i].slNo,
+        facultyName: other[i].facultyName,
+        contributionType: other[i].contributionType,
+        year: other[i].year,
+        internalOrExternal: other[i].internalOrExternal
+      }
+      otherMembership.push(singleEntry);
+    }
+
+    var professionalbodyMembership = [];
+    var profess = result.professional_body_membership;
+    for(var i=0;i<profess.length;i++){
+      var singleEntry = {
+        slNo: profess[i].slNo,
+        facultyName: profess[i].facultyName,
+        professionalBodyName: profess[i].professionalBodyName,
+        membershipType: profess[i].membershipType,
+        subscriptionYear: profess[i].subscriptionYear
+      }
+      professionalbodyMembership.push(singleEntry);
+    }
+
+    res.render('department/bosboe', { departmentId: departmentId, type:'bosboe',
+    data:{professional_activities:professionalActivities, other_membership: otherMembership, professional_body_membership: professionalbodyMembership},
+    authType:req.session.facultyId , GetParam:req.query.departmentId,
     insertPermission:departmentPermissions.insertPermission,
     updatePermission:departmentPermissions.updatePermission });
   }
 
-  sqlExecute.getAdmissionDetails(callback, departmentId);
+  sqlExecute.getBosBoeDetails(callback, departmentId);
 });
 
 router.get('/getExcel', function(req, res, next){
@@ -353,18 +395,16 @@ router.get('/generateexcel/:tableNo/:index/',function(req,res,next){
 	  sqlExecute.getAdmissionDetails(callback,dId);
   }
   if(index == 5){
-	map[0] = "courses_handled";
-	map[1] = "projects_handled";
-	map[2] = "faculty_research";
-	map[3] = "phd_scholar";
-	  sqlExecute.getFaultyAcademics(fid,callback);
+	map[0] = "industrial_visit";
+	map[1] = "guest_lectures_invited";
+	map[2] = "seminar_workshop";
+	  sqlExecute.getDepartmentActivities(callback, dId);
   }
   if(index == 6){
-	map[0] = "funded_projects";
-	map[1] = "faculty_patent";
-	map[2] = "consultancy";
-	map[3] = "industrial_collaboration_mou";
-	  sqlExecute.getFaultyRND(fid,callback);
+	map[0] = "professional_activities";
+	map[1] = "professional_body_membership";
+	map[2] = "other_membership";
+	  sqlExecute.getBosBoeDetails(callback, dId);
   }
 });
 
