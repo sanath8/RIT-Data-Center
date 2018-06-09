@@ -219,7 +219,7 @@ router.get('/generateexcel/:tableNo/:index/',function(req,res,next){
 
   var tableno = parseInt(req.params.tableNo)-1;
   var callback=function(err, result){
-	if(index == 1 || index == 2 || index == 3){
+	if(index == 1){
 		generateexcel.getExcelSheet(result,map[tableno] + ".xls",res);
 	} else{
 		generateexcel.getExcelSheet(result[map[tableno]],map[tableno]+ ".xls",res);
@@ -235,9 +235,11 @@ router.get('/generateexcel/:tableNo/:index/',function(req,res,next){
 	map[0]="department_faculty_details";
   }
   if(index == 2){
-	sqlExecute.getFaultyQualification(fid,callback);
-	map[0]="faculty_qualification_details";
-  }
+	sqlExecute.getStudentInformation(callback,dId);
+  map[0]="student_achievement";
+  map[1]= "student_activities";
+  map[2]= "student_publication";
+}
   if(index == 3){
 	  map[0] = "faculty_service_details";
 	  sqlExecute.getFacultyService(fid,callback);
