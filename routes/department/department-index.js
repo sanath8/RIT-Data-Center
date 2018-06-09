@@ -132,9 +132,38 @@ router.get('/admission-details', function(req, res, next) {
   } else{
     departmentId = req.session.departmentId;
   }
-  res.render('department/admission-details', { departmentId: departmentId, type: 'admission-details', data:{}, authType:req.session.facultyId, GetParam:req.query.departmentId,
-  insertPermission:departmentPermissions.insertPermission,
-  updatePermission:departmentPermissions.updatePermission  });
+
+
+
+  var callback = function(error, result){
+    console.log(result);
+    var admission = []
+    var admissionSpcific = result.admissions;
+    for(var i=0; i<admissionSpcific.length; i++){
+      var singleEntry = {
+        year: admissionSpcific[i].year,
+        noOfUgStudents: admissionSpcific[i].noOfUgStudents,
+        noOfPgStudents: admissionSpcific[i].noOfPgStudents,
+        noOfPgStudentsWithGateScore: admissionSpcific[i].noOfPgStudentsWithGateScore,
+        ugCet: admissionSpcific[i].ugCet,
+        ugComedK: admissionSpcific[i].ugComedK,
+        pgCet: admissionSpcific[i].pgCet,
+        pgComedK: admissionSpcific[i].pgComedK,
+        lateralEntry: admissionSpcific[i].lateralEntry,
+        fullTimePhd: admissionSpcific[i].fullTimePhd,
+        partTimePhd: admissionSpcific[i].partTimePhd,
+        mscByResearch: admissionSpcific[i].mscByResearch
+       }
+       admission.push(singleEntry);
+    }
+    res.render('department/admission-details', { departmentId: departmentId, type: 'admission-details',
+      data:{admission: admission},
+      authType:req.session.facultyId, GetParam:req.query.departmentId,
+      insertPermission:departmentPermissions.insertPermission,
+      updatePermission:departmentPermissions.updatePermission  });
+    }
+
+  sqlExecute.getAdmissionDetails(callback, departmentId);
 });
 
 router.get('/bosboe', function(req, res, next) {
@@ -143,9 +172,15 @@ router.get('/bosboe', function(req, res, next) {
   } else{
     departmentId = req.session.departmentId;
   }
-  res.render('department/bosboe', { departmentId: departmentId, type:'bosboe', data:{}, authType:req.session.facultyId , GetParam:req.query.departmentId,
-  insertPermission:departmentPermissions.insertPermission,
-  updatePermission:departmentPermissions.updatePermission });
+
+  var callback = function(error, result){
+    console.log(result);
+    res.render('department/bosboe', { departmentId: departmentId, type:'bosboe', data:{}, authType:req.session.facultyId , GetParam:req.query.departmentId,
+    insertPermission:departmentPermissions.insertPermission,
+    updatePermission:departmentPermissions.updatePermission });
+  }
+
+  sqlExecute.getAdmissionDetails(callback, departmentId);
 });
 
 router.get('/getExcel', function(req, res, next){
@@ -266,8 +301,9 @@ router.get('/generateexcel/:tableNo/:index/',function(req,res,next){
   map[2]= "student_publication";
 }
   if(index == 3){
-	  map[0] = "faculty_service_details";
-	  sqlExecute.getFacultyService(fid,callback);
+    map[0] = "hardware";
+    map[1] = "software";
+	  sqlExecute.getInfrastructureDetails(callback,dId);
   }
   if(index == 4){
 	  map[0] = "faculty_workshop_fdp";

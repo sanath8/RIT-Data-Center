@@ -348,6 +348,21 @@ sqlObject.prototype.getInfrastructureDetails = function(callback, departmentId){
 	})
 }
 
+sqlObject.prototype.getAdmissionDetails = function(callback, departmentId){
+	var sql = "select *\
+						 from admissions\
+						 where departmentId = ?;"
+	var data = {}
+	this.connection.query(sql, [departmentId], function(error, result){
+		if(error){
+			callback(error, undefined);
+			return;
+		}
+		data["admissions"] = result;
+		callback(undefined, data);
+	})
+}
+
 sqlObject.prototype.getStudentInformation = function(callback, departmentId){
 	var sql = "select *\
 						from student_achievement\
