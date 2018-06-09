@@ -1,7 +1,7 @@
 const testFolder = './uploadExcel/';
 const fs = require('fs');
 var excelUploader = require('./excelExtract');
-var tableCreationOrder = ["faculty_workshop_fdp"];
+var tableCreationOrder = ["conference_paper"];
 
 // delete the flag code
 //var latestCommitFlag = 0;
