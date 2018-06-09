@@ -319,6 +319,34 @@ sqlObject.prototype.getDepartmentInfo = function(callback){
 		})
 }
 
+sqlObject.prototype.getInfrastructureDetails = function(callback, departmentId){
+	var sql = "select *\
+						 from hardware\
+						 where departmentId =?";
+	
+	var conn = this.connection;
+  var data = {};
+	this.connection.query(sql, [departmentId], function(error, result){
+		if(error){
+			callback(error, undefined);
+			return;
+		}
+		data["hardware"] = result;
+
+		var sql = "select *\
+							 from software\
+							 where departmentId =?";
+	
+		conn.query(sql, [departmentId], function(error, result){
+			if(error){
+				callback(error, undefined);
+				return;
+			}
+			data["software"] = result;
+			callback(undefined, data);
+		})
+	})
+}
 
 sqlObject.prototype.getStudentInformation = function(callback, departmentId){
 	var sql = "select *\

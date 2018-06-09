@@ -74,19 +74,44 @@ router.get('/infrastructure-details', function(req, res, next) {
   } else{
     departmentId = req.session.departmentId;
   }
-  // var callback = function(err, result1, result2){
-  //   if(err)
-  //     throw err;
-  //   res.render('department/infrastructure-details', {type:"infrastructure-details", resultSet1:result1, resultSet2:result2});
-  // }
-  // sqlExecute.getTwoTables(callback, 'hardware', 'software');
-  res.render('department/infrastructure-details', { departmentId: departmentId, type:"infrastructure-details", data:{
-    hardware: [],
-    software: []
-  }, authType:req.session.facultyId, GetParam:req.query.departmentId,
-  insertPermission:departmentPermissions.insertPermission,
-  updatePermission:departmentPermissions.updatePermission });
+  var callback = function(err, result){
+    if(err)
+      throw err;
 
+      var hardware = [];
+      var hardwareTemp = result.hardware;
+      for(var i=0; i<hardwareTemp.length; i++){
+        var entry = {
+          slNo: hardwareTemp[i].slNo,
+          labName: hardwareTemp[i].labName,
+          carpetArea: hardwareTemp[i].carpetArea,
+          majorEquipments: hardwareTemp[i].majorEquipments,
+          totalInvestment: hardwareTemp[i].totalInvestment
+        }
+        hardware.push(entry);
+      }
+
+      var software = [];
+      var softwareTemp = result.software;
+      for(var i=0; i<softwareTemp.length; i++){
+        var entry = {
+          slNo: softwareTemp[i].slNo,
+          softwareName: softwareTemp[i].softwareName,
+          licenseNumber: softwareTemp[i].licenseNumber,
+          noOfUsers: softwareTemp[i].noOfUsers,
+          expiryDate: softwareTemp[i].expiryDate,
+          vendorName: softwareTemp[i].vendorName
+        }
+        software.push(entry);
+      }
+
+      console.log(result);
+      res.render('department/infrastructure-details', { departmentId: departmentId, type:"infrastructure-details",
+      data:{"hardware":hardware,"software":software}, authType:req.session.facultyId, GetParam:req.query.departmentId,
+      insertPermission:departmentPermissions.insertPermission,
+      updatePermission:departmentPermissions.updatePermission });
+   }
+  sqlExecute.getInfrastructureDetails(callback, departmentId);
 });
 
 router.get('/activities', function(req, res, next) {
