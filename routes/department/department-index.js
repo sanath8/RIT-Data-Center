@@ -17,20 +17,55 @@ router.get('/student-info', function(req, res, next) {
   } else{
     departmentId = req.session.departmentId;
   }
-  // var callback = function(err, result){
-  //   if(err)
-  //     throw err;
-  //   res.render('department/student-info', {type:"student-info", data:{}});
-  // }
-  // sqlExecute.getTwoTables(callback, 'studentPublications', 'studentAchievements');
-  res.render('department/student-info', { departmentId: departmentId, type:"student-info", data:{
-    studentPublications: [],
-    studentAchievements: []
-  }, authType:req.session.facultyId, GetParam:req.query.departmentId,
-    insertPermission:departmentPermissions.insertPermission,
-    updatePermission:departmentPermissions.updatePermission
-  });
-
+  var callback = function(err, result){
+    if(err)
+      throw err;
+      var studentAchievement = [];
+      var studentAchieve = result.student_achievement;
+      for(var i=0; i<studentAchieve.length; i++){
+        var individualEntry = {
+          studentName: studentAchieve[i].studentName,
+          eventName: studentAchieve[i].eventName,
+          date: studentAchieve[i].date,
+          award: studentAchieve[i].award,
+          category: studentAchieve[i].category };
+        studentAchievement.push(individualEntry);
+      } 
+      var studentActivites = [];
+      var studentActivity = result.student_activities;
+      for(var i=0; i<studentActivity.length; i++){
+        var individualEntry = {
+          studentName: studentActivity[i].studentName,
+          eventName: studentActivity[i].eventName,
+          date: studentActivity[i].date,
+          industryOrOrganization: studentActivity[i].industryOrOrganization,
+          category: studentActivity[i].category
+         };
+         studentActivites.push(individualEntry);
+      }
+      var studentPublication = [];
+      var studentpublic = result.student_publication;
+      for(var i=0; i<studentpublic.length; i++){
+        var individualEntry = {
+          authors: studentpublic[i].authors,
+          title: studentpublic[i].title,
+          date: studentpublic[i].date,
+          conferenceOrJournal: studentpublic[i].conferenceOrJournal,
+          place: studentpublic[i].place
+        };
+        studentPublication.push(individualEntry);
+      }
+      console.log(studentAchievement);
+      console.log(studentPublication);
+      console.log(studentActivites);
+      res.render('department/student-info', { departmentId: departmentId, type:"student-info",
+       data:{student_activities:studentActivites,student_achievement:studentAchievement,student_publication:studentPublication},
+       authType:req.session.facultyId, GetParam:req.query.departmentId,
+        insertPermission:departmentPermissions.insertPermission,
+        updatePermission:departmentPermissions.updatePermission
+      });
+  }
+  sqlExecute.getStudentInformation(callback, departmentId);
 });
 
 router.get('/infrastructure-details', function(req, res, next) {

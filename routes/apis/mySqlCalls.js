@@ -319,6 +319,48 @@ sqlObject.prototype.getDepartmentInfo = function(callback){
 		})
 }
 
+
+sqlObject.prototype.getStudentInformation = function(callback, departmentId){
+	var sql = "select *\
+						from student_achievement\
+						where departmentId = ?;"
+	
+	var data = {};
+	var con = this.connection;
+
+	this.connection.query(sql,[departmentId], function(error, result){
+		if(error){
+			callback(error, undefined);
+			return;
+		}
+		data["student_achievement"] = result;
+
+		var sql = "select *\
+							from student_activities\
+							where departmentId =?"
+		con.query(sql, [departmentId], function(error, result){
+			if(error){
+				callback(error, undefined);
+				return;
+			}
+			data["student_activities"] = result;
+
+			var sql = "select *\
+								from student_publication\
+								where departmentId = ?"
+
+			con.query(sql, [departmentId], function(error, result){
+				if(error){
+					callback(error, undefined);
+					return;
+				}
+				data["student_publication"] = result;
+				callback(undefined, data);
+			})		
+		})
+	})
+}
+
 sqlObject.prototype.getWholeTable = function(callback, url, email){
   var sql = "select * \
       from " + mappingUrl.mappingUrlTable[url]+" natural join "+this.tables.facultyInformation+"\
