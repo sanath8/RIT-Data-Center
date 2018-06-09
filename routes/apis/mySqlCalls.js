@@ -319,6 +319,7 @@ sqlObject.prototype.getDepartmentInfo = function(callback){
 		})
 }
 
+
 sqlObject.prototype.getInfrastructureDetails = function(callback, departmentId){
 	var sql = "select *\
 						 from hardware\
@@ -360,6 +361,48 @@ sqlObject.prototype.getAdmissionDetails = function(callback, departmentId){
 		}
 		data["admissions"] = result;
 		callback(undefined, data);
+	})
+}
+
+
+sqlObject.prototype.getDepartmentActivities = function(callback, departmentId){
+	var sql = "select *\
+						from industrial_visit\
+						where departmentId = ?;"
+	
+	var data = {};
+	var con = this.connection;
+
+	this.connection.query(sql,[departmentId], function(error, result){
+		if(error){
+			callback(error, undefined);
+			return;
+		}
+		data["industrial_visit"] = result;
+
+		var sql = "select *\
+							from guest_lectures_invited\
+							where departmentId =?"
+		con.query(sql, [departmentId], function(error, result){
+			if(error){
+				callback(error, undefined);
+				return;
+			}
+			data["guest_lectures_invited"] = result;
+
+			var sql = "select *\
+								from seminar_workshop\
+								where departmentId = ?"
+
+			con.query(sql, [departmentId], function(error, result){
+				if(error){
+					callback(error, undefined);
+					return;
+				}
+				data["seminar_workshop"] = result;
+				callback(undefined, data);
+			})		
+		})
 	})
 }
 

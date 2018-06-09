@@ -120,10 +120,53 @@ router.get('/activities', function(req, res, next) {
   } else{
     departmentId = req.session.departmentId;
   }
-  res.render('department/activities', { departmentId: departmentId, type: 'activities', data:{}, authType:req.session.facultyId, GetParam:req.query.departmentId,
-  insertPermission:departmentPermissions.insertPermission,
-  updatePermission:departmentPermissions.updatePermission
-});
+
+  var callback = function(error, result){
+    console.log(result);
+
+    var industrialVisit = [];
+    var industrial = result.industrial_visit;
+    for(var i=0;i<industrial.length;i++){
+      var singleEntry = {
+       industryName: industrial[i].industryName,
+       scheduleDate: industrial[i].scheduleDate,
+      }
+      industrialVisit.push(singleEntry);
+    }
+
+    var invitedGuestLectures = [];
+    var invited = result.guest_lectures_invited;
+    for(var i=0;i<invited.length;i++){
+      var singleEntry = {
+        guestName: invited[i].guestName,
+        expertOrganisationOrAddress: invited[i].expertOrganisationOrAddress,
+        title: invited[i].title,
+        areaOfSpecialization: invited[i].areaOfSpecialization,
+        date: invited[i].date
+      }
+      invitedGuestLectures.push(singleEntry);
+    }
+
+    var seminarWorkshop = [];
+    var seminar = result.seminar_workshop;
+    for(var i=0;i<seminar.length;i++){
+      var singleEntry = {
+        startDate: seminar[i].startDate,
+        endDate: seminar[i].endDate,
+        title: seminar[i].title,
+        event: seminar[i].event,
+        broadArea: seminar[i].broadArea
+      }
+      seminarWorkshop.push(singleEntry);
+    }
+      res.render('department/activities', { departmentId: departmentId, type: 'activities',
+      data:{industrial_visit:industrialVisit, guest_lectures_invited:invitedGuestLectures, seminar_workshop:seminarWorkshop},
+      authType:req.session.facultyId, GetParam:req.query.departmentId,
+      insertPermission:departmentPermissions.insertPermission,
+      updatePermission:departmentPermissions.updatePermission
+  });
+  }
+  sqlExecute.getDepartmentActivities(callback, departmentId);
 });
 
 router.get('/admission-details', function(req, res, next) {
@@ -306,14 +349,8 @@ router.get('/generateexcel/:tableNo/:index/',function(req,res,next){
 	  sqlExecute.getInfrastructureDetails(callback,dId);
   }
   if(index == 4){
-	  map[0] = "faculty_workshop_fdp";
-	  map[1] = "faculty_conference_symposia";
-	  map[2] = "faculty_guest_lecture";
-	  map[3] = "book";
-	  map[4] = "book_chapter";
-	  map[5] = "conference_paper";
-	  map[6] = "journal_paper";
-	  sqlExecute.getFaultyAchievements(fid,callback);
+	  map[0] = "admissions";
+	  sqlExecute.getAdmissionDetails(callback,dId);
   }
   if(index == 5){
 	map[0] = "courses_handled";

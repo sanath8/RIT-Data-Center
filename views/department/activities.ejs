@@ -20,21 +20,7 @@
                                 <th>Scheduled Date</th>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>2010</td>
-                                    <td>Oud-Turnhout</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>2013</td>
-                                    <td>Sinaai-Waas</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>2012</td>
-                                    <td>Baileux</td>
-                                </tr>
+                                <% loadInTable(data.industrial_visit)%>
                             </tbody>
                         </table>
                     </div>
@@ -57,30 +43,7 @@
                                 <th>Date of the Lecture</th>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>2010</td>
-                                    <td>Oud-Turnhout</td>
-                                    <td>Niger</td>
-                                    <td class="text-primary">$36,738</td>
-                                    <td>UG</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>2013</td>
-                                    <td>Sinaai-Waas</td>
-                                    <td>Netherlands</td>
-                                    <td class="text-primary">$23,789</td>
-                                    <td>UG</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>2012</td>
-                                    <td>Baileux</td>
-                                    <td>Curaçao</td>
-                                    <td class="text-primary">$56,142</td>
-                                    <td>PG</td>
-                                </tr>
+                                <% loadInTable(data.guest_lectures_invited)%>
                             </tbody>
                         </table>
                     </div>
@@ -103,30 +66,7 @@
                                 <th>Broad Area</th>
                             </thead>
                             <tbody>
-                              <tr>
-                                  <td>1</td>
-                                  <td>2010</td>
-                                  <td>Oud-Turnhout</td>
-                                  <td>Niger</td>
-                                  <td class="text-primary">$36,738</td>
-                                  <td>UG</td>
-                              </tr>
-                              <tr>
-                                  <td>2</td>
-                                  <td>2013</td>
-                                  <td>Sinaai-Waas</td>
-                                  <td>Netherlands</td>
-                                  <td class="text-primary">$23,789</td>
-                                  <td>UG</td>
-                              </tr>
-                              <tr>
-                                  <td>3</td>
-                                  <td>2012</td>
-                                  <td>Baileux</td>
-                                  <td>Curaçao</td>
-                                  <td class="text-primary">$56,142</td>
-                                  <td>PG</td>
-                              </tr>
+                                <% loadInTable(data.seminar_workshop)%>
                             </tbody>
                         </table>
                     </div>
