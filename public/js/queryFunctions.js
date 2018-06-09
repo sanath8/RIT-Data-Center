@@ -203,7 +203,7 @@ function performFilterOperations(flag, reportCallBack)
 
   var queryFilter;
 
-  if(department == "ALL")
+  if(department == "ALL" || ["academic_council", "governing_body", "finance"].indexOf(tableName) != -1)
   {
     queryFilter = [];
   }
