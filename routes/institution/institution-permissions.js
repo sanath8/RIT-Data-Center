@@ -1,20 +1,20 @@
 var updatePermission = {
-    hod:true,
+    hod:false,
     principal:false,
     coordinator:false,
-    faculty:true,
+    faculty:false,
     admin:true
 }
 
 var insertPermission = {
-    hod:true,
+    hod:false,
     principal:false,
     coordinator:false,
-    faculty:true,
+    faculty:false,
     admin:true
 }
 
 module.exports = {
-    updatePermission:updatePermission,
-    insertPermission:insertPermission
+    insertPermission:insertPermission,
+    updatePermission:updatePermission
 }

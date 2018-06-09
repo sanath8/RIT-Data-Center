@@ -2,7 +2,7 @@ var updatePermission = {
     hod:true,
     principal:false,
     coordinator:false,
-    faculty:true,
+    faculty:false,
     admin:true
 }
 
@@ -10,7 +10,7 @@ var insertPermission = {
     hod:true,
     principal:false,
     coordinator:false,
-    faculty:true,
+    faculty:false,
     admin:true
 }
 

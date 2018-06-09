@@ -3,6 +3,8 @@ var router = express.Router();
 var sqlExecute = require('../apis/mySqlCalls');
 var utility = require('../utilities');
 
+var institutionPermissions = require('./institution-permissions');
+
 router.get('/', function(req, res, next) {
 	if(!utility.checkSesssion(req, res)) return;
 
@@ -29,21 +31,6 @@ router.get('/', function(req, res, next) {
 		var data = {
 			governing_body: data
 		}
-		var updatePermission = {
-			hod:false,
-			principal:false,
-			coordinator:false,
-			faculty:false,
-			admin:true
-		}
-
-		var insertPermission = {
-			hod:false,
-			principal:false,
-			coordinator:false,
-			faculty:false,
-			admin:true
-		}
 
 		console.log("in governance page of institution facultyID " + req.session.facultyId);
 		res.render('institution/governance', {title : "Governing Body Details", type:"governance", data:data,
@@ -51,8 +38,7 @@ router.get('/', function(req, res, next) {
         GetParam: req.query.deptId,
 
 		authType:req.session.facultyId,
-		 updatePermission:updatePermission,
-		 insertPermission:insertPermission
+		updatePermission:institutionPermissions.updatePermission, insertPermission:institutionPermissions.insertPermission
         });
 		
 	}
