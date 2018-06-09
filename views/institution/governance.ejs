@@ -22,15 +22,16 @@
                                 <th>Status</th>
                             </thead>
                             <tbody>
-                                <% loadInTableModular("governing_body")%>
+                                <% loadInTableModular("governing_body", updatePermission)%>
                             </tbody>
                         </table>
                     </div>
-                    <button type="submit" class="btn btn-primary pull-right" style="margin:13px">Edit</button>
+                    <button type="submit" class="btn btn-primary pull-right insertButton" style="margin:13px">Insert</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+<% include ../partials/disable-buttons %>
 <% include ../partials/footer %>

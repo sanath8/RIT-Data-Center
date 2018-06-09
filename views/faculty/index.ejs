@@ -22,7 +22,7 @@
                 <a href = "/faculty/generateexcel/1/1/?faculty=<%-GetParam%>">
                 <button class="btn btn-primary pull-left hodDisable" style="margin:13px">Generate Excel file</button>
                 </a>
-                <button class="btn btn-primary pull-right hodDisable" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataModular('faculty', 0)">Update</button>
+                <button class="btn btn-primary pull-right  insertButton" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataModular('faculty', 0)">Update</button>
             </div>
         </div>
         <div class="col-md-4">
@@ -36,12 +36,12 @@
                     <input name="avatar" onchange="checkIfInput()" type="file" class="pull-right hodDisable" id="profileImageButton" style="display:none; margin-top:-40px; position:absolute;" onmouseover="displayInput()" onmouseout="hideInput()"/>
                 </form>
                 <div class="content">
-                    <h6 class="category text-gray">designation</h6>
+                    <h6 class="category text-gray"><%-data["faculty"][0]["designation"]%></h6>
                     <h4 class="card-title"><%-data["faculty"][0]["Name"]%></h4>
                     <p class="card-content">
                     <%-about%>
                     </p>
-                    <button  data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick = "fillDescriptionModular('faculty', 0)" class="btn btn-primary btn-round hodDisable">Edit Description</button>
+                    <button  data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick = "fillDescriptionModular('faculty', 0)" class="btn btn-primary btn-round  insertButton">Edit Description</button>
                 </div>
             </div>
         </div>

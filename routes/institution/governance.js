@@ -3,6 +3,8 @@ var router = express.Router();
 var sqlExecute = require('../apis/mySqlCalls');
 var utility = require('../utilities');
 
+var institutionPermissions = require('./institution-permissions');
+
 router.get('/', function(req, res, next) {
 	if(!utility.checkSesssion(req, res)) return;
 
@@ -29,11 +31,14 @@ router.get('/', function(req, res, next) {
 		var data = {
 			governing_body: data
 		}
+
+		console.log("in governance page of institution facultyID " + req.session.facultyId);
 		res.render('institution/governance', {title : "Governing Body Details", type:"governance", data:data,
         
         GetParam: req.query.deptId,
 
-        authType:req.session.departmentId
+		authType:req.session.facultyId,
+		updatePermission:institutionPermissions.updatePermission, insertPermission:institutionPermissions.insertPermission
         });
 		
 	}

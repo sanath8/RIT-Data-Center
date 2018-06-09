@@ -1,11 +1,19 @@
 <script>
-<% if( authType == "hod" || (GetParam && authType != "coordinator" && authType != "admin")) { %>
-    console.log("hello everyone");
-    var buttonsDisable = document.getElementsByClassName("hodDisable");
-    for(var i = 0; i< buttonsDisable.length;i++){
-        buttonsDisable[i].disabled = true;
+    var insertPermission = <%-JSON.stringify(insertPermission)%>
+    var authType = <%-JSON.stringify(authType)%>
+    if(authType != 'principal' && authType != 'coordinator' && authType != 'hod'){
+        authType = 'faculty';
     }
-<%}%>
+    console.log("hello everyone");
+    console.log("insertPermission authType " + insertPermission[authType] + " " + authType);
+    var buttonsDisable = document.getElementsByClassName("insertButton");
+    for(var i = 0; i< buttonsDisable.length;i++){
+        if(insertPermission[authType] === false){
+            buttonsDisable[i].disabled = true;
+            console.log("disabling button " + insertPermission[authType] + " " + authType);
+        }
+            
+    }
 
 
 </script>

@@ -3,7 +3,7 @@ var router = express.Router();
 var mysql = require('../apis/mySqlCalls');
 var generateexcel = require('../../back-end/excelGenerator');
 var utility = require('../utilities');
-
+var facultyPermissions = require('./faculty-permissions.js');
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	if(!utility.checkSesssion(req, res))
@@ -40,6 +40,7 @@ router.get('/', function(req, res, next) {
 		myR["facultyId"]=tresult["facultyId"];
 		myR["facultyName"]=tresult["facultyName"];
 		myR["gender"]=tresult["gender"];
+		myR["designation"]=tresult["designation"];
 		if(auth == true){
 			myR["address"]=tresult["address"];
 			myR["religion"]=tresult["religion"];
@@ -60,7 +61,7 @@ router.get('/', function(req, res, next) {
 		var facultyID = req.session.facultyId;
 		// var departmentId = tresult["departmentId"];
 		console.log("myR" + JSON.stringify(myR));
-
+		
 		res.render('faculty/index', { title: 'Express', type:"dashboard", data : {faculty:data},
 			index:{
 				url:"/faculty/",
@@ -81,7 +82,10 @@ router.get('/', function(req, res, next) {
 					about : "About"
 				}
 			},
-			fId:facultyId, about:about, GetParam:req.query.fId, authType:req.session.facultyId, departmentId:req.session.departmentId});
+			fId:facultyId, about:about, GetParam:req.query.fId, authType:req.session.facultyId, departmentId:req.session.departmentId,
+			insertPermission:facultyPermissions.insertPermission,
+			updatePermission:facultyPermissions.updatePermission
+		});
 		//res.send(JSON.stringify(result));
 	}
 	// console.log("Param : "+req.session.email+":"+req.session.facultyId);

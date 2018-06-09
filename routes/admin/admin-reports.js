@@ -7,7 +7,16 @@ router.get('/', function(req, res, next) {
   utility.checkSesssion(req, res);
   var callBack = function(result0, result1, result2, result3){
 
-    res.render('admin/admin-reports', {type : 'admin-reports', selectList0 : result0, selectList1 : result1, selectList2 : result2, GetParam: req.query.fId, authType:req.session.facultyId, departmentId:req.session.departmentId, GetParam:"dummy" });
+    var res1 = []
+
+    for(var i=2;i<result1.length; i++){
+      res1.push(result1[i]);
+    }
+    res1.push(result1[0]);
+
+    console.log("result of tables ::");
+    console.log(res1);
+    res.render('admin/admin-reports', {type : 'admin-reports', selectList0 : result0, selectList1 : res1, selectList2 : result2, GetParam: req.query.fId, authType:req.session.facultyId, departmentId:req.session.departmentId, GetParam:"dummy" });
   }
   sqlExecute.getTwoSelectList(callBack,'facultyName', 'faculty');
 

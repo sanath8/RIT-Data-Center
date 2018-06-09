@@ -5,6 +5,7 @@ var sqlExecute = require('../apis/mySqlCalls');
 var generateexcel = require('../../back-end/excelGenerator');
 var utility = require('../utilities');
 
+var departmentPermissions = require('./department-permissions');
 
 /* GET home page. */
 
@@ -25,7 +26,10 @@ router.get('/student-info', function(req, res, next) {
   res.render('department/student-info', { departmentId: departmentId, type:"student-info", data:{
     studentPublications: [],
     studentAchievements: []
-  }, authType:req.session.facultyId, GetParam:req.query.departmentId });
+  }, authType:req.session.facultyId, GetParam:req.query.departmentId,
+    insertPermission:departmentPermissions.insertPermission,
+    updatePermission:departmentPermissions.updatePermission
+  });
 
 });
 
@@ -44,7 +48,9 @@ router.get('/infrastructure-details', function(req, res, next) {
   res.render('department/infrastructure-details', { departmentId: departmentId, type:"infrastructure-details", data:{
     hardware: [],
     software: []
-  }, authType:req.session.facultyId, GetParam:req.query.departmentId });
+  }, authType:req.session.facultyId, GetParam:req.query.departmentId,
+  insertPermission:departmentPermissions.insertPermission,
+  updatePermission:departmentPermissions.updatePermission });
 
 });
 
@@ -54,7 +60,9 @@ router.get('/activities', function(req, res, next) {
   } else{
     departmentId = req.session.departmentId;
   }
-  res.render('department/activities', { departmentId: departmentId, type: 'activities', data:{}, authType:req.session.facultyId, GetParam:req.query.departmentId
+  res.render('department/activities', { departmentId: departmentId, type: 'activities', data:{}, authType:req.session.facultyId, GetParam:req.query.departmentId,
+  insertPermission:departmentPermissions.insertPermission,
+  updatePermission:departmentPermissions.updatePermission
 });
 });
 
@@ -64,7 +72,9 @@ router.get('/admission-details', function(req, res, next) {
   } else{
     departmentId = req.session.departmentId;
   }
-  res.render('department/admission-details', { departmentId: departmentId, type: 'admission-details', data:{}, authType:req.session.facultyId, GetParam:req.query.departmentId  });
+  res.render('department/admission-details', { departmentId: departmentId, type: 'admission-details', data:{}, authType:req.session.facultyId, GetParam:req.query.departmentId,
+  insertPermission:departmentPermissions.insertPermission,
+  updatePermission:departmentPermissions.updatePermission  });
 });
 
 router.get('/bosboe', function(req, res, next) {
@@ -73,7 +83,9 @@ router.get('/bosboe', function(req, res, next) {
   } else{
     departmentId = req.session.departmentId;
   }
-  res.render('department/bosboe', { departmentId: departmentId, type:'bosboe', data:{}, authType:req.session.facultyId , GetParam:req.query.departmentId });
+  res.render('department/bosboe', { departmentId: departmentId, type:'bosboe', data:{}, authType:req.session.facultyId , GetParam:req.query.departmentId,
+  insertPermission:departmentPermissions.insertPermission,
+  updatePermission:departmentPermissions.updatePermission });
 });
 
 router.get('/getExcel', function(req, res, next){
@@ -139,7 +151,22 @@ router.get('/', function(req, res, next) {
 			data.push(myR);
     }
     var newResult = {'faculty' : data};
-    res.render('department/index', {departmentId: departmentId, type:'index', data:newResult, authType:req.session.facultyId, GetParam:req.query.departmentId });
+    res.render('department/index', {departmentId: departmentId, type:'index', data:{departmentGeneralInfo:newResult['faculty']},
+    index:{
+      url:"/faculty/",
+      departmentGeneralInfo:{
+        facultyName:"facultyName",
+        gender:"gender",
+        address:"address",
+        atureOfAppointment:"Nature Of Appointment",
+        contactNumber:"Contact No.",
+        emailId:"Email Id"
+      }
+    },
+    authType:req.session.facultyId, GetParam:req.query.departmentId,
+    insertPermission:departmentPermissions.insertPermission,
+    updatePermission:departmentPermissions.updatePermission
+  });
   }
   sqlExecute.getDepartmentFacultyInfo(callback,departmentId);
 });
