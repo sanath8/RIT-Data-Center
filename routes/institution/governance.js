@@ -73,7 +73,6 @@ router.get('/', function(req, res, next) {
 			instituteName:data2
 		}
 		});
-		
 	}
 	sqlExecute.getGoverningBody(callback);
 });

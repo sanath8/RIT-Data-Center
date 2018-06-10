@@ -16,14 +16,13 @@
                     <div class="card-content table-responsive">
                         <table class="table">
                             <thead class="text-primary">
-                                <th>Sl. No</th>
                                 <th>Name of the Lab</th>
                                 <th>Carpet Area</th>
                                 <th>Major Equipments</th>
                                 <th>Total Investment</th>
                             </thead>
                             <tbody>
-                                <% loadInTable(data.hardware)%>
+                                <% loadInTableModular('hardware', updatePermission)%>
                             </tbody>
                         </table>
                     </div>
@@ -39,7 +38,6 @@
                     <div class="card-content table-responsive">
                         <table class="table">
                             <thead class="text-primary">
-                                <th>Sl. No</th>
                                 <th>Name of the software</th>
                                 <th>License Number</th>
                                 <th>Number of Users</th>

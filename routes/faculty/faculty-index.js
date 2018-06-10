@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
 		facultyId = req.session.facultyId;
 	}
 	else{
-		if(req.session.facultyId != "coordinator" && req.session.facultyId != "admin"){
+		if(req.session.facultyId != "admin" && req.session.facultyId != "principal"){
 			auth = false;
 		}
 		facultyId = req.query.fId;
