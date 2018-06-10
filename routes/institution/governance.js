@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var sqlExecute = require('../apis/mySqlCalls');
 var utility = require('../utilities');
-
+var generateexcel = require('../../back-end/excelGenerator');
 var institutionPermissions = require('./institution-permissions');
 
 router.get('/', function(req, res, next) {
@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
 	// 	departmentId = req.query.fId;
 	// }
 	// to remove when department session is used
-	departmentId = "cse";
+	departmentId = req.session.departmentId;
 
 	var callback = function(err, data){
 		if(err)
@@ -34,16 +34,27 @@ router.get('/', function(req, res, next) {
 
 		console.log("in governance page of institution facultyID " + req.session.facultyId);
 		res.render('institution/governance', {title : "Governing Body Details", type:"governance", data:data,
-        
+
         GetParam: req.query.deptId,
 
 		authType:req.session.facultyId,
 		updatePermission:institutionPermissions.updatePermission, insertPermission:institutionPermissions.insertPermission
         });
-		
+
 	}
 	sqlExecute.getGoverningBody(callback);
 });
+
+router.get('/generateexcel/:tableName',function(req,res,next)
+{
+  var callBack = function(result)
+  {
+      generateexcel.getExcelSheet(result, "Report.xls", res);
+  }
+  console.log(Array(req.body.whereOption));
+  sqlExecute.executeDirectQuery("select * from " + req.params.tableName, callBack);
+});
+
 
 
 module.exports=router;

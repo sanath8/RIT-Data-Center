@@ -7,8 +7,8 @@ var naturalJoinApi = function()
 "projects_handled" : "faculty NATURAL JOIN ", "admissions" : "", "department" : "", "guest_lectures_invited" : "department NATURAL JOIN ", "industrial_visit" : "department NATURAL JOIN ",
 "non_teaching_staff" : "department NATURAL JOIN ", "other_membership" : "department NATURAL JOIN ", "professional_activities" : "department NATURAL JOIN ", "professional_body_membership" : "department NATURAL JOIN ",
 "software" : "department NATURAL JOIN ", "staff_achievement" : "non_teaching_staff NATURAL JOIN ", "student_achievement" : "department NATURAL JOIN ", "student_activities" : "department NATURAL JOIN ", "stduent_publication" : "department NATURAL JOIN ",
-"institution" : "","hardware" : "department NATURAL JOIN ", "faculty_service" : "faculty NATURAL JOIN ", "staff_service" : "non_teaching_staff NATURAL JOIN ", "seminar_workshop" : "department NATURAL JOIN ", "scholarship":"", "governing_body":"", "administrator_login":"", "academic_council" : ""
-, "finance":"", "student_publication": "department NATURAL JOIN ", "faculty" : ""};
+"institution" : "","hardware" : "department NATURAL JOIN ", "faculty_service" : "faculty NATURAL JOIN ", "staff_service" : "non_teaching_staff NATURAL JOIN ", "seminar_workshop" : "department NATURAL JOIN ", "scholarship":"", "governing_body":"", "administrator_login":"",
+"academic_council" : "", "finance":"", "student_publication": "department NATURAL JOIN ", "faculty" : ""};
 }
 naturalJoinApi.prototype.getJoinTable = function(tableName)
 {
