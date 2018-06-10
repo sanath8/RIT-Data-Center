@@ -31,13 +31,14 @@ router.get('/', function(req, res, next) {
 		var data = {
 			governing_body: data
 		}
-
-		console.log("in governance page of institution facultyID " + req.session.facultyId);
+		var authType = req.session.facultyId;
+		console.log("in governance page of institution facultyID " + req.session.facultyId + " " + authType);
+		
 		res.render('institution/governance', {title : "Governing Body Details", type:"governance", data:data,
         
         GetParam: req.query.deptId,
 
-		authType:req.session.facultyId,
+		authType:authType,
 		updatePermission:institutionPermissions.updatePermission, insertPermission:institutionPermissions.insertPermission
         });
 		
