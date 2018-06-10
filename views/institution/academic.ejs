@@ -15,17 +15,20 @@
                     <div class="card-content table-responsive">
                         <table class="table">
                             <thead class="text-primary">
-                                <th>Sl. No</th>
+                                <th>Designation</th>
                                 <th>Name</th>
-                                <th>Category</th>
-                                <th>Address</th>
-                                <th>Status</th>
+                                <th>Department</th>
+                                <th>Type</th>
+                                <th>Place</th>
                             </thead>
                             <tbody>
                                 <% loadInTableModular("academic_council", updatePermission)%>
                             </tbody>
                         </table>
                     </div>
+                    <a href = "/institution/academic/generateexcel/academic_council">
+                    <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
+                    </a>
                     <button type="submit" class="btn btn-primary pull-right insertButton" style="margin:13px">Insert</button>
                 </div>
             </div>

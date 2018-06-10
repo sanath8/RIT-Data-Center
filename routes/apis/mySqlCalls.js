@@ -324,7 +324,7 @@ sqlObject.prototype.getInfrastructureDetails = function(callback, departmentId){
 	var sql = "select *\
 						 from hardware\
 						 where departmentId =?";
-	
+
 	var conn = this.connection;
   var data = {};
 	this.connection.query(sql, [departmentId], function(error, result){
@@ -337,7 +337,7 @@ sqlObject.prototype.getInfrastructureDetails = function(callback, departmentId){
 		var sql = "select *\
 							 from software\
 							 where departmentId =?";
-	
+
 		conn.query(sql, [departmentId], function(error, result){
 			if(error){
 				callback(error, undefined);
@@ -353,7 +353,7 @@ sqlObject.prototype.getBosBoeDetails = function(callback, departmentId){
 	var sql = "select *\
 						 from professional_activities\
 						 where departmentId =?";
-	
+
 	var conn = this.connection;
   var data = {};
 	this.connection.query(sql, [departmentId], function(error, result){
@@ -366,7 +366,7 @@ sqlObject.prototype.getBosBoeDetails = function(callback, departmentId){
 		var sql = "select *\
 							 from other_membership\
 							 where departmentId =?";
-	
+
 		conn.query(sql, [departmentId], function(error, result){
 			if(error){
 				callback(error, undefined);
@@ -409,7 +409,7 @@ sqlObject.prototype.getDepartmentActivities = function(callback, departmentId){
 	var sql = "select *\
 						from industrial_visit\
 						where departmentId = ?;"
-	
+
 	var data = {};
 	var con = this.connection;
 
@@ -441,7 +441,7 @@ sqlObject.prototype.getDepartmentActivities = function(callback, departmentId){
 				}
 				data["seminar_workshop"] = result;
 				callback(undefined, data);
-			})		
+			})
 		})
 	})
 }
@@ -450,7 +450,7 @@ sqlObject.prototype.getStudentInformation = function(callback, departmentId){
 	var sql = "select *\
 						from student_achievement\
 						where departmentId = ?;"
-	
+
 	var data = {};
 	var con = this.connection;
 
@@ -482,7 +482,7 @@ sqlObject.prototype.getStudentInformation = function(callback, departmentId){
 				}
 				data["student_publication"] = result;
 				callback(undefined, data);
-			})		
+			})
 		})
 	})
 }
@@ -568,11 +568,23 @@ sqlObject.prototype.getFourSelectList = function(callback, url1, url2, url3, url
     callback(err, data1, data2, data3, results);
   });
 }
-sqlObject.prototype.getTwoSelectList = function(callback, url1, tableName){
+sqlObject.prototype.getTwoSelectList = function(callback, url1, tableName, depId){
 	var sql0 = "select distinct  departmentId from department";
-	var sql1 = "select distinct table_name from information_schema.tables where table_schema = 'rit_data_center' AND table_name != 'faculty'";
-  var sql2 = "select distinct " + url1 + " from " + tableName;
-
+	var sql1 = "";
+	var sql2 = "";
+	sql1 = "select distinct table_name from information_schema.tables where table_schema = 'rit_data_center'\
+	AND table_name != 'academic_council' AND table_name != 'finance' AND table_name != 'governing_body'\
+	AND table_name != 'institution' AND table_name != 'department' AND table_name != 'administrator_login'\
+	AND table_name != 'scholarship'";
+	if(depId != 'none')
+	{
+		sql2 = "select distinct " + url1 + " from " + tableName + " WHERE departmentId = '"+ depId +"'";
+	}
+	else
+	{
+		sql2 = "select distinct " + url1 + " from " + tableName;
+	}
+	console.log("name filter speaking : " + sql2);
   var data0, data1, data2;
 	this.connection.query(sql0,function(err,results,fields){
     data0 = results;
@@ -691,7 +703,7 @@ sqlObject.prototype.executeSummaryQuery = function(tableName, from, to, departme
 
 }
 
-function formatSummary(international, national, compared) //modification needed in this function, faculty id to be used instead of name 
+function formatSummary(international, national, compared) //modification needed in this function, faculty id to be used instead of name
 {
 	console.log(" data1 " + JSON.stringify(international) + " data " + JSON.stringify(national));
 	internationalPointer = 0;

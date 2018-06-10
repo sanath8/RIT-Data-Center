@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var sqlExecute = require('../apis/mySqlCalls');
 var utility = require('../utilities');
-
+var generateexcel = require('../../back-end/excelGenerator');
 var institutionPermissions = require('./institution-permissions');
 
 router.get('/', function(req, res, next) {
@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
 	// 	departmentId = req.query.fId;
 	// }
 	// to remove when department session is used
-	departmentId = "cse";
+	departmentId = req.session.departmentId;
 
 	var callback = function(err, data){
 		if(err)
@@ -31,18 +31,29 @@ router.get('/', function(req, res, next) {
 		var data = {
 			finance_committee: data
 		}
-		
+
 		res.render('institution/finance', {title : "Finance Committee", type:"finance", data:data,
-        
+
         GetParam: req.query.deptId,
 
 		authType:req.session.facultyId,
 		updatePermission:institutionPermissions.updatePermission, insertPermission:institutionPermissions.insertPermission
         });
-		
+
 	}
 	sqlExecute.getFinanceCommittee(callback);
 });
+
+router.get('/generateexcel/:tableName',function(req,res,next)
+{
+  var callBack = function(result)
+  {
+      generateexcel.getExcelSheet(result, "Report.xls", res);
+  }
+  console.log(Array(req.body.whereOption));
+  sqlExecute.executeDirectQuery("select * from " + req.params.tableName, callBack);
+});
+
 
 
 module.exports=router;
