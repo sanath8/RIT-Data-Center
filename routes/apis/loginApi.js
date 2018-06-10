@@ -26,6 +26,11 @@ router.post('/', function(req, res, next) {
                 req.session.email=myDet["emailId"];
                 req.session.facultyId = myDet["type"];
                 req.session.departmentId = myDet["departmentId"];
+                console.log("the facultyid is " + req.session.facultyId);
+            if(req.session.facultyId === 'principle'){
+                req.session.facultyId = 'principal';
+            }
+            console.log("the facultyid is " + req.session.facultyId);
                 if(myDet["departmentId"] == "college"){
                     res.redirect("/admin/");
                 } else{
@@ -37,9 +42,14 @@ router.post('/', function(req, res, next) {
             req.session.email=myDet["emailId"];
             req.session.departmentId = myDet["departmentId"];
             req.session.facultyId=myDet["facultyId"];
+            console.log("the facultyid is " + req.session.facultyId);
+            if(req.session.facultyId === 'principle'){
+                req.session.facultyId = 'principal';
+            }
+            console.log("the facultyid is " + req.session.facultyId);
             res.redirect("/faculty");
             }
-
+            
         }
     }
     mysql.login(email, pass, callback);
