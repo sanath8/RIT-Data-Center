@@ -276,20 +276,36 @@ sqlObject.prototype.getFaultyAchievements = function(fid, callback){
 }
 
 sqlObject.prototype.getAcademicCouncil = function(callback){
-	var sql = "select * \
+	var sql1 = "select * \
 		from " + this.tables.academicCouncil ;
-	this.connection.query(sql ,function(err,results,fields){
+		var sql2 = "select instituteName \
+		from institution";
+		var queryObject = this.connection;
+	queryObject.query(sql1 ,function(err1,results1,fields1){
 		//console.log(results);
-		callback(err, results);
-	});
+		queryObject.query(sql2 ,function(err2,results2,fields2){
+			//console.log(results);
+			
+			callback(err1, err2, results1, results2);
+		});	
+	
+});
 }
 
 sqlObject.prototype.getFinanceCommittee = function(callback){
-	var sql = "select * \
+	var sql1 = "select * \
 		from " + this.tables.financeCommittee ;
-	this.connection.query(sql ,function(err,results,fields){
+		var sql2 = "select instituteName \
+		from institution";
+		var queryObject = this.connection;
+	queryObject.query(sql1 ,function(err1,results1,fields1){
 		//console.log(results);
-		callback(err, results);
+		queryObject.query(sql2 ,function(err2,results2,fields2){
+			//console.log(results);
+			
+			callback(err1, err2, results1, results2);
+		});	
+		
 	});
 }
 

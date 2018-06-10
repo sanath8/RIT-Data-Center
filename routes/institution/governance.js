@@ -43,7 +43,7 @@ router.get('/', function(req, res, next) {
         GetParam: req.query.deptId,
 		index : { 
 			url:"/institution/governance",
-			   governing_body:
+			governing_body:
 			{
 				facultyId : facultyID,
 				slNo : "Sl. No", 
@@ -54,6 +54,19 @@ router.get('/', function(req, res, next) {
 				instituteName:'institution Name'
 			}
 		},
+		hiddenFields:{
+			governing_body:
+			{
+				facultyId : true,
+				slNo : false, 
+				name : false,
+				category :  false,
+				address :  false,
+				status :  false,
+				instituteName:true
+			}
+		},
+
 		authType:authType,
 		updatePermission:institutionPermissions.updatePermission, insertPermission:institutionPermissions.insertPermission,
 		additional_data:{

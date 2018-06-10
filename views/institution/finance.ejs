@@ -22,11 +22,11 @@
                                 <th>Status</th>
                             </thead>
                             <tbody>
-                                <% loadInTableModular("finance_committee", updatePermission)%>
+                                <% loadInTableModular("finance", updatePermission)%>
                             </tbody>
                         </table>
                     </div>
-                    <button type="submit" class="btn btn-primary pull-right insertButton" style="margin:13px">Insert</button>
+                    <button type="submit" class="btn btn-primary pull-right insertButton" style="margin:13px" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick = "fillDataModularInsert('finance')">Insert</button>
                 </div>
             </div>
         </div>

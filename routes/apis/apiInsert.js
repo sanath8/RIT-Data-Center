@@ -21,7 +21,9 @@ router.post('/:tableName', function(req, res, next){
             upd.push("'"+req.body[t]+"'");
             tableKey.push(t);
         }else if(t=="facultyId" && !req.body.getParam){
-            if(req.session.facultyId === 'admin')continue;
+            if(req.session.facultyId === 'admin'){
+                continue;
+            }
             upd.push("'"+req.session.facultyId+"'");
             tableKey.push("facultyId");
         }else if(t=="getParam" && !req.body.facultyId){
