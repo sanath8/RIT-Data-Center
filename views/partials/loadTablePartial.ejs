@@ -18,8 +18,8 @@
             for(var j in resultSet[i]){
                 if(j==="slNo" || j==="facultyId")
                     continue;
-                // console.log(j + 'hello');    
-                // console.log(resultSet[i]);            
+                // console.log(j + 'hello');
+                // console.log(resultSet[i]);
                 __append('<td>');
                 if(resultSet[i][j]!=null)
                     __append(''+resultSet[i][j] +'');
@@ -47,7 +47,7 @@
             for(var j in resultSet[i]){
                 if(j=="Fid"){
                     continue;
-                }       
+                }
                 __append('<td>');
                 if(resultSet[i][j]!=null)
                     __append(''+resultSet[i][j] +'');
@@ -69,7 +69,7 @@
                     __append(''+j +'');
                 else
                     __append("-");
-                __append('</th>');        
+                __append('</th>');
                 __append('<td>');
                 if(resultSet[i][j]!=null)
                     __append(''+resultSet[i][j] +'');
@@ -93,7 +93,7 @@
           <h4 class="title">Edit Row Data</h4>
       </div>
       <div class="card-content" id="modalCardContent">
-          
+
       </div>
     </div>
   </div>
@@ -103,7 +103,7 @@
 
 <div class="modal fade" id="myModalInsert" role="dialog">
     <div class="modal-dialog">
-    
+
       <!-- Modal content-->
       <div class="modal-content">
       <div class="card">
@@ -111,7 +111,7 @@
               <h4 class="title">Insert Row Data</h4>
           </div>
           <div class="card-content" id="modalCardContentInsert">
-              
+
           </div>
         </div>
       </div>
@@ -148,7 +148,7 @@ var index = <%- JSON.stringify(index) %>
         var res = data[columnName][i];
         console.log(JSON.stringify(Object.keys(index[columnName])));
         console.log(JSON.stringify(Object.keys(res)));
-        
+
         console.log(columnName);
         for(var j in res){
             if(j=="slNo" || j=="facultyId"){
@@ -172,6 +172,7 @@ var index = <%- JSON.stringify(index) %>
     }
 
     function fillDataModularInsert(columnName){
+      console.log("Insert model poped up");
         var cardCont=$("#modalCardContent");
         var str="";
         str = str + ("<form method='POST' action='/v1/apis/apiInsert/"+columnName+"'>");
@@ -180,7 +181,7 @@ var index = <%- JSON.stringify(index) %>
         str = str + ("<input name='getParam' type='hidden' value='<%=GetParam%>'>");
 
         console.log(JSON.stringify(Object.keys(index[columnName])));
-        
+
         console.log(columnName);
         for(var j in index[columnName]){
             if(j=="slNo" || j=="facultyId"){
@@ -212,7 +213,7 @@ var index = <%- JSON.stringify(index) %>
         var res = data[columnName][i];
         console.log(JSON.stringify(Object.keys(index[columnName])));
         console.log(JSON.stringify(Object.keys(res)));
-        
+
         console.log(columnName);
         for(var j in res){
             if(j=="slNo" || j=="facultyId"){
@@ -220,7 +221,7 @@ var index = <%- JSON.stringify(index) %>
                 continue;
             }
             if(j != 'about')continue;
-            
+
             if(index[columnName])
                 var temp = index[columnName][j]
             else
@@ -237,7 +238,7 @@ var index = <%- JSON.stringify(index) %>
         cardCont.html(str);
     }
 
-    
+
     function fillData(resultSet,tableNumber){
         var rowData = resultSet.cells;
         console.log(rowData[1].innerHTML);
@@ -282,4 +283,3 @@ var index = <%- JSON.stringify(index) %>
         }
     }
 </script>
-
