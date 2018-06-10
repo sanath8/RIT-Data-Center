@@ -23,11 +23,11 @@
                                 <th>Category</th>
                             </thead>
                             <tbody>
-                                <% loadInTable(data.studentAchievements)%>
+                                <% loadInTable(data.student_achievement)%>
                             </tbody>
                         </table>
                     </div>
-                    <a href = "department/generateexcel/1/2/?departmentId=<%-GetParam%>">
+                    <a href = "/department/generateexcel/1/2/?departmentId=<%-GetParam%>">
                     <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
                     </a>
                 <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal1" style="margin:13px" onclick="fillDataVerticleTable(1)">Update</button>                </div>
@@ -46,12 +46,14 @@
                                 <th>Category</th>
                             </thead>
                             <tbody>
-                                <% loadInTable(data.studentPublications)%>
+                                <% loadInTable(data.student_activities)%>
                             </tbody>
                         </table>
                     </div>
-                    <button type="submit" class="btn btn-primary pull-right" style="margin:13px">Edit</button>
-                </div>
+                   <a href = "/department/generateexcel/2/2/?departmentId=<%-GetParam%>">
+                    <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
+                    </a>
+                <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal1" style="margin:13px" onclick="fillDataVerticleTable(1)">Update</button>                </div>
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
                         <h4 class="title">Student Publications</h4>
@@ -67,11 +69,11 @@
                                 <th>Place</th>
                             </thead>
                             <tbody>
-                                <% loadInTable(data.studentPublications)%>
+                                <% loadInTable(data.student_publication)%>
                             </tbody>
                         </table>
                     </div>
-                    <a href = "department/generateexcel/2/2/?departmentId=<%-GetParam%>">
+                    <a href = "/department/generateexcel/3/2/?departmentId=<%-GetParam%>">
                     <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
                     </a>
                 <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal1" style="margin:13px" onclick="fillDataVerticleTable(1)">Update</button>                </div>

@@ -39,52 +39,11 @@
                             </tr>
                           </thead>
                             <tbody>
-                              <tr>
-                                  <td>1</td>
-                                  <td>2010</td>
-                                  <td>Oud-Turnhout</td>
-                                  <td>Niger</td>
-                                  <td class="text-primary">$36,738</td>
-                                  <td>UG</td>
-                                  <td>Sinaai-Waas</td>
-                                  <td>Netherlands</td>
-                                  <td>2010</td>
-                                  <td>Oud-Turnhout</td>
-                                  <td>Niger</td>
-                                  <td>Sinaai-Waas</td>
-                              </tr>
-                              <tr>
-                                  <td>2</td>
-                                  <td>2013</td>
-                                  <td>Sinaai-Waas</td>
-                                  <td>Netherlands</td>
-                                  <td class="text-primary">$23,789</td>
-                                  <td>UG</td>
-                                  <td>Sinaai-Waas</td>
-                                  <td>Netherlands</td>
-                                  <td>Netherlands</td>
-                                  <td>2010</td>
-                                  <td>Oud-Turnhout</td>
-                                  <td>Niger</td>
-                              </tr>
-                              <tr>
-                                  <td>3</td>
-                                  <td>2012</td>
-                                  <td>Baileux</td>
-                                  <td>Curaçao</td>
-                                  <td class="text-primary">$56,142</td>
-                                  <td>PG</td>
-                                  <td>Sinaai-Waas</td>
-                                  <td>Netherlands</td>
-                                  <td>2012</td>
-                                  <td>Baileux</td>
-                                  <td>Curaçao</td>
-                                  <td>Sinaai-Waas</td>
-                              </tr>
+                              <% loadInTable(data.admission) %>
                             </tbody>
                         </table>
                     </div>
-                    <a href = "department/generateexcel/1/4/?departmentId=<%-GetParam%>">
+                    <a href = "/department/generateexcel/1/4/?departmentId=<%-GetParam%>">
                     <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
                     </a>
                 <button class="btn btn-primary pull-right facultyDisable hodDisable principalDisable " data-toggle="modal" data-target="#myModal1" style="margin:13px" onclick="fillDataVerticleTable(1)">Insert</button>                </div>
