@@ -222,8 +222,7 @@ router.get('/bosboe', function(req, res, next) {
     var professional = result.professional_activities;
     for(var i=0;i<professional.length;i++){
       var singleEntry = {
-        slNo: professional[i].slNo,
-        facultyName: professional[i].facultyId,
+        facultyName: professional[i].facultyName,
         board: professional[i].board,
         college: professional[i].college,
         externalOrInternal: professional[i].externalOrInternal,
@@ -236,7 +235,6 @@ router.get('/bosboe', function(req, res, next) {
     var other = result.other_membership;
     for(var i=0;i<other.length;i++){
       var singleEntry = {
-        slNo: other[i].slNo,
         facultyName: other[i].facultyName,
         contributionType: other[i].contributionType,
         year: other[i].year,
@@ -249,7 +247,6 @@ router.get('/bosboe', function(req, res, next) {
     var profess = result.professional_body_membership;
     for(var i=0;i<profess.length;i++){
       var singleEntry = {
-        slNo: profess[i].slNo,
         facultyName: profess[i].facultyName,
         professionalBodyName: profess[i].professionalBodyName,
         membershipType: profess[i].membershipType,
