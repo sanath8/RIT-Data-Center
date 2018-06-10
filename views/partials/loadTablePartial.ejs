@@ -1,8 +1,15 @@
 <%
     loadInTableModular=function(columnName, permission){
         var resultSet=data[columnName];
+        if(authType != 'principal' && authType != 'coordinator' && authType != 'hod'){
+            authType = 'faculty';
+        }
         for(var i = 0 ; i<resultSet.length;i++){
-            if(permission[authType] === true){
+            console.log("from loadtablePartial " + authType + " " + permission[authType] + " " + GetParam);
+            if(typeof(GetParam) != 'undefined' && authType === 'faculty'){
+                __append('<tr>');
+            }
+            else if(permission[authType] === true){
                 __append('<tr data-toggle="modal" data-target="#myModalModular" onclick="fillDataModular(\''+columnName+'\','+i+')" onmouseover="hoverEffect(this)" onmouseout="removeHoverEffect(this)">');
             }
             else{
