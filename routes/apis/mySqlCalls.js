@@ -319,6 +319,174 @@ sqlObject.prototype.getDepartmentInfo = function(callback){
 		})
 }
 
+
+sqlObject.prototype.getInfrastructureDetails = function(callback, departmentId){
+	var sql = "select *\
+						 from hardware\
+						 where departmentId =?";
+	
+	var conn = this.connection;
+  var data = {};
+	this.connection.query(sql, [departmentId], function(error, result){
+		if(error){
+			callback(error, undefined);
+			return;
+		}
+		data["hardware"] = result;
+
+		var sql = "select *\
+							 from software\
+							 where departmentId =?";
+	
+		conn.query(sql, [departmentId], function(error, result){
+			if(error){
+				callback(error, undefined);
+				return;
+			}
+			data["software"] = result;
+			callback(undefined, data);
+		})
+	})
+}
+
+sqlObject.prototype.getBosBoeDetails = function(callback, departmentId){
+	var sql = "select *\
+						 from professional_activities\
+						 where departmentId =?";
+	
+	var conn = this.connection;
+  var data = {};
+	this.connection.query(sql, [departmentId], function(error, result){
+		if(error){
+			callback(error, undefined);
+			return;
+		}
+		data["professional_activities"] = result;
+
+		var sql = "select *\
+							 from other_membership\
+							 where departmentId =?";
+	
+		conn.query(sql, [departmentId], function(error, result){
+			if(error){
+				callback(error, undefined);
+				return;
+			}
+			data["other_membership"] = result;
+			var sql = "select *\
+			from professional_body_membership\
+			where departmentId =?";
+			conn.query(sql, [departmentId], function(error, result){
+				if(error){
+					callback(error, undefined);
+					return;
+				}
+				data["professional_body_membership"] = result;
+			callback(undefined, data);
+		})
+	})
+	})
+}
+
+
+sqlObject.prototype.getAdmissionDetails = function(callback, departmentId){
+	var sql = "select *\
+						 from admissions\
+						 where departmentId = ?;"
+	var data = {}
+	this.connection.query(sql, [departmentId], function(error, result){
+		if(error){
+			callback(error, undefined);
+			return;
+		}
+		data["admissions"] = result;
+		callback(undefined, data);
+	})
+}
+
+
+sqlObject.prototype.getDepartmentActivities = function(callback, departmentId){
+	var sql = "select *\
+						from industrial_visit\
+						where departmentId = ?;"
+	
+	var data = {};
+	var con = this.connection;
+
+	this.connection.query(sql,[departmentId], function(error, result){
+		if(error){
+			callback(error, undefined);
+			return;
+		}
+		data["industrial_visit"] = result;
+
+		var sql = "select *\
+							from guest_lectures_invited\
+							where departmentId =?"
+		con.query(sql, [departmentId], function(error, result){
+			if(error){
+				callback(error, undefined);
+				return;
+			}
+			data["guest_lectures_invited"] = result;
+
+			var sql = "select *\
+								from seminar_workshop\
+								where departmentId = ?"
+
+			con.query(sql, [departmentId], function(error, result){
+				if(error){
+					callback(error, undefined);
+					return;
+				}
+				data["seminar_workshop"] = result;
+				callback(undefined, data);
+			})		
+		})
+	})
+}
+
+sqlObject.prototype.getStudentInformation = function(callback, departmentId){
+	var sql = "select *\
+						from student_achievement\
+						where departmentId = ?;"
+	
+	var data = {};
+	var con = this.connection;
+
+	this.connection.query(sql,[departmentId], function(error, result){
+		if(error){
+			callback(error, undefined);
+			return;
+		}
+		data["student_achievement"] = result;
+
+		var sql = "select *\
+							from student_activities\
+							where departmentId =?"
+		con.query(sql, [departmentId], function(error, result){
+			if(error){
+				callback(error, undefined);
+				return;
+			}
+			data["student_activities"] = result;
+
+			var sql = "select *\
+								from student_publication\
+								where departmentId = ?"
+
+			con.query(sql, [departmentId], function(error, result){
+				if(error){
+					callback(error, undefined);
+					return;
+				}
+				data["student_publication"] = result;
+				callback(undefined, data);
+			})		
+		})
+	})
+}
+
 sqlObject.prototype.getWholeTable = function(callback, url, email){
   var sql = "select * \
       from " + mappingUrl.mappingUrlTable[url]+" natural join "+this.tables.facultyInformation+"\

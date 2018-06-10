@@ -24,34 +24,11 @@
                                 <th>Year</th>
                             </thead>
                             <tbody>
-                              <tr>
-                                  <td>1</td>
-                                  <td>2010</td>
-                                  <td>Oud-Turnhout</td>
-                                  <td>Niger</td>
-                                  <td class="text-primary">$36,738</td>
-                                  <td>UG</td>
-                              </tr>
-                              <tr>
-                                  <td>2</td>
-                                  <td>2013</td>
-                                  <td>Sinaai-Waas</td>
-                                  <td>Netherlands</td>
-                                  <td class="text-primary">$23,789</td>
-                                  <td>UG</td>
-                              </tr>
-                              <tr>
-                                  <td>3</td>
-                                  <td>2012</td>
-                                  <td>Baileux</td>
-                                  <td>Curaçao</td>
-                                  <td class="text-primary">$56,142</td>
-                                  <td>PG</td>
-                              </tr>
+                                <%loadInTable(data.professional_activities)%>
                             </tbody>
                         </table>
                     </div>
-                    <a href = "department/generateexcel/1/6/?departmentId=<%-GetParam%>">
+                    <a href = "/department/generateexcel/1/6/?departmentId=<%-GetParam%>">
                     <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
                     </a>
                 <button class="btn btn-primary pull-right insertButton" data-toggle="modal" data-target="#myModal1" style="margin:13px" onclick="fillDataVerticleTable(1)">Update</button>                </div>
@@ -70,31 +47,11 @@
                                 <th>Year of Subscription</th>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>2010</td>
-                                    <td>Oud-Turnhout</td>
-                                    <td>Niger</td>
-                                    <td>UG</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>2013</td>
-                                    <td>Sinaai-Waas</td>
-                                    <td>Netherlands</td>
-                                    <td>UG</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>2012</td>
-                                    <td>Baileux</td>
-                                    <td>Curaçao</td>
-                                    <td>PG</td>
-                                </tr>
+                                <%loadInTable(data.professional_body_membership)%>
                             </tbody>
                         </table>
                     </div>
-                    <a href = "department/generateexcel/2/6/?departmentId=<%-GetParam%>">
+                    <a href = "/department/generateexcel/2/6/?departmentId=<%-GetParam%>">
                     <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
                     </a>
                 <button class="btn btn-primary pull-right insertButton" data-toggle="modal" data-target="#myModal1" style="margin:13px" onclick="fillDataVerticleTable(1)">Update</button>                </div>
@@ -113,11 +70,11 @@
                                 <th>External / Internal</th>
                             </thead>
                             <tbody>
-                                <%loadInTableModular('departmentGeneralInfo', updatePermission)%>
+                                <%loadInTable(data.other_membership)%>
                             </tbody>
                         </table>
                     </div>
-                    <a href = "department/generateexcel/3/6/?departmentId=<%-GetParam%>">
+                    <a href = "/department/generateexcel/3/6/?departmentId=<%-GetParam%>">
                     <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
                     </a>
                 <button class="btn btn-primary pull-right insertButton" data-toggle="modal" data-target="#myModal1" style="margin:13px" onclick="fillDataVerticleTable(1)">Update</button>                </div>
