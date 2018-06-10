@@ -21,26 +21,45 @@ router.get('/', function(req, res, next) {
 	// to remove when department session is used
 	departmentId = "cse";
 
-	var callback = function(err, data){
-		if(err)
-			throw err;
-		//var departmentID = req.session.departmentId;
+	var callback = function(err1, err2, data1, data2){
+		if(err1)
+			throw err1;
+		if(err2)
+			throw err2;
+			//var departmentID = req.session.departmentId;
 		//console.log("GetParam : " + req.session.departmentId);
 		//console.log("department id : " + departmentID);
 		//console.log(JSON.stringify(data));
-		var data = {
-			governing_body: data
+		var data1 = {
+			governing_body: data1
 		}
 		var authType = req.session.facultyId;
 		console.log("in governance page of institution facultyID " + req.session.facultyId + " " + authType);
-		
-		res.render('institution/governance', {title : "Governing Body Details", type:"governance", data:data,
+		console.log(JSON.stringify(data2) + "instituteNames");
+		var facultyID = req.session.facultyId;;
+
+		res.render('institution/governance', {title : "Governing Body Details", type:"governance", data:data1,
         
         GetParam: req.query.deptId,
-
+		index : { 
+			url:"/institution/governance",
+			   governing_body:
+			{
+				facultyId : facultyID,
+				slNo : "Sl. No", 
+				name : "Name",
+				category :  "Category",
+				address :  "Address",
+				status :  "Status",
+				instituteName:'institution Name'
+			}
+		},
 		authType:authType,
-		updatePermission:institutionPermissions.updatePermission, insertPermission:institutionPermissions.insertPermission
-        });
+		updatePermission:institutionPermissions.updatePermission, insertPermission:institutionPermissions.insertPermission,
+		additional_data:{
+			instituteName:data2
+		}
+		});
 		
 	}
 	sqlExecute.getGoverningBody(callback);

@@ -1,7 +1,7 @@
 <%
     loadInTableModular=function(columnName, permission){
         var resultSet=data[columnName];
-        if(authType != 'principal' && authType != 'coordinator' && authType != 'hod'){
+        if(authType != 'principal' && authType != 'coordinator' && authType != 'hod' && authType != 'admin'){
             authType = 'faculty';
         }
         for(var i = 0 ; i<resultSet.length;i++){
@@ -121,11 +121,16 @@
 <script>
 var data={};
 var index={};
+var additional_data = {};
 <% if(locals.data){%>
 var data = <%- JSON.stringify(data) %>
 <%}%>
 <% if(locals.index){%>
 var index = <%- JSON.stringify(index) %>
+<%}%>
+
+<% if(locals.additional_data){%>
+var additional_data = <%- JSON.stringify(additional_data) %>
 <%}%>
 </script>
 
@@ -149,17 +154,18 @@ var index = <%- JSON.stringify(index) %>
         console.log(JSON.stringify(Object.keys(index[columnName])));
         console.log(JSON.stringify(Object.keys(res)));
         
-        console.log(columnName);
         for(var j in res){
             if(j=="slNo" || j=="facultyId"){
                 str = str + ("<input name='"+j+"' type='hidden' value='"+res[j]+"'>");
                 continue;
             }
-            if(index[columnName])
+            if(index[columnName]){
                 var temp = index[columnName][j]
-            else
+            }
+            else{
                 var temp = "Undefined";
-            str = str + ('<div class="form-group ">\
+            }   
+                str = str + ('<div class="form-group ">\
                 <label class="control-label">'+temp+'</label>\
                 <input name="'+j+'" type="text" class="form-control" value="'+res[j]+'">\
                 </div>')
@@ -182,6 +188,8 @@ var index = <%- JSON.stringify(index) %>
         console.log(JSON.stringify(Object.keys(index[columnName])));
         
         console.log(columnName);
+        console.log(JSON.stringify(additional_data) + " " + columnName + " ");
+        
         for(var j in index[columnName]){
             if(j=="slNo" || j=="facultyId"){
                 str = str + ("<input name='"+j+"' type='hidden' value='null'>");
@@ -191,6 +199,17 @@ var index = <%- JSON.stringify(index) %>
                 var temp = index[columnName][j]
             else
                 var temp = "Undefined";
+
+            if(additional_data[j]){
+                optionsList = '';
+                console.log("additional data is " + additional_data[columnName]);
+                str = str + ('<label for="inputState">' + columnName + '</label>\
+      <select id="inputState"' + i + ' class="form-control">\
+        <option selected>Choose...</option>\
+        <option>...</option>\
+      </select>')
+            }
+            else    
             str = str + ('<div class="form-group ">\
                 <label class="control-label">'+temp+'</label>\
                 <input name="'+j+'" type="text" class="form-control" ">\
