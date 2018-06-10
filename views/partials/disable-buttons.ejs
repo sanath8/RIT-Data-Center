@@ -2,8 +2,8 @@
     <% console.log("fetching authType" + authType)%>
     var insertPermission = <%-JSON.stringify(insertPermission)%>
     var authType = <%-JSON.stringify(authType)%>
-    var GetParam = <%-JSON.stringify(GetParam)%>
-    
+    //var GetParam = <%-JSON.stringify(GetParam)%>
+
     console.log("getparam : " + GetParam + " facultyId : " + authType);
     if(authType != 'principal' && authType != 'coordinator' && authType != 'hod' && authType != 'admin'){
         authType = 'faculty';
@@ -19,7 +19,7 @@
             buttonsDisable[i].disabled = true;
             console.log("disabling button " + insertPermission[authType] + " " + authType);
         }
-            
+
     }
 
 

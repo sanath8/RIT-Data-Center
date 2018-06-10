@@ -55,7 +55,7 @@
             for(var j in resultSet[i]){
                 if(j=="Fid"){
                     continue;
-                }       
+                }
                 __append('<td>');
                 if(resultSet[i][j]!=null)
                     __append(''+resultSet[i][j] +'');
@@ -77,7 +77,7 @@
                     __append(''+j +'');
                 else
                     __append("-");
-                __append('</th>');        
+                __append('</th>');
                 __append('<td>');
                 if(resultSet[i][j]!=null)
                     __append(''+resultSet[i][j] +'');
@@ -101,7 +101,7 @@
           <h4 class="title">Edit Row Data</h4>
       </div>
       <div class="card-content" id="modalCardContent">
-          
+
       </div>
     </div>
   </div>
@@ -111,7 +111,7 @@
 
 <div class="modal fade" id="myModalInsert" role="dialog">
     <div class="modal-dialog">
-    
+
       <!-- Modal content-->
       <div class="modal-content">
       <div class="card">
@@ -119,7 +119,7 @@
               <h4 class="title">Insert Row Data</h4>
           </div>
           <div class="card-content" id="modalCardContentInsert">
-              
+
           </div>
         </div>
       </div>
@@ -161,7 +161,12 @@ var additional_data = <%- JSON.stringify(additional_data) %>
         var res = data[columnName][i];
         console.log(JSON.stringify(Object.keys(index[columnName])));
         console.log(JSON.stringify(Object.keys(res)));
+<<<<<<< HEAD
         
+=======
+
+        console.log(columnName);
+>>>>>>> master
         for(var j in res){
             if(j=="slNo" || j=="facultyId"){
                 str = str + ("<input name='"+j+"' type='hidden' value='"+res[j]+"'>");
@@ -186,6 +191,7 @@ var additional_data = <%- JSON.stringify(additional_data) %>
     }
 
     function fillDataModularInsert(columnName){
+      console.log("Insert model poped up");
         var cardCont=$("#modalCardContent");
         var str="";
         str = str + ("<form method='POST' action='/v1/apis/apiInsert/"+columnName+"'>");
@@ -194,7 +200,7 @@ var additional_data = <%- JSON.stringify(additional_data) %>
         str = str + ("<input name='getParam' type='hidden' value='<%=GetParam%>'>");
 
         console.log(JSON.stringify(Object.keys(index[columnName])));
-        
+
         console.log(columnName);
         console.log(JSON.stringify(additional_data) + " " + columnName + " ");
         
@@ -242,7 +248,7 @@ var additional_data = <%- JSON.stringify(additional_data) %>
         var res = data[columnName][i];
         console.log(JSON.stringify(Object.keys(index[columnName])));
         console.log(JSON.stringify(Object.keys(res)));
-        
+
         console.log(columnName);
         for(var j in res){
             if(j=="slNo" || j=="facultyId"){
@@ -250,7 +256,7 @@ var additional_data = <%- JSON.stringify(additional_data) %>
                 continue;
             }
             if(j != 'about')continue;
-            
+
             if(index[columnName])
                 var temp = index[columnName][j]
             else
@@ -267,7 +273,7 @@ var additional_data = <%- JSON.stringify(additional_data) %>
         cardCont.html(str);
     }
 
-    
+
     function fillData(resultSet,tableNumber){
         var rowData = resultSet.cells;
         console.log(rowData[1].innerHTML);
@@ -312,4 +318,3 @@ var additional_data = <%- JSON.stringify(additional_data) %>
         }
     }
 </script>
-
