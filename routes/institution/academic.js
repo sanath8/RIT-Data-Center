@@ -2,9 +2,8 @@ var express = require('express');
 var router = express.Router();
 var sqlExecute = require('../apis/mySqlCalls');
 var utility = require('../utilities');
-
 var institutionPermissions = require('./institution-permissions');
-
+var generateexcel = require('../../back-end/excelGenerator');
 router.get('/', function(req, res, next) {
 	if(!utility.checkSesssion(req, res)) return;
 
@@ -38,7 +37,7 @@ router.get('/', function(req, res, next) {
 		console.log(JSON.stringify(data));
 		console.log("Here is academics page of institution facultyId " + req.session.facultyID);
 		res.render('institution/academic', {title : "Academic Council Details", type:"academic", data:data,
-        
+
         GetParam: req.query.deptId,
 
 		authType:req.session.facultyId,
@@ -76,6 +75,20 @@ router.get('/', function(req, res, next) {
 	}
 	sqlExecute.getAcademicCouncil(callback);
 });
+router.get('/generateexcel/:tableName',function(req,res,next)
+{
+  var callBack = function(result)
+  {
+      generateexcel.getExcelSheet(result, "Report.xls", res);
+  }
+  console.log(Array(req.body.whereOption));
+  sqlExecute.executeDirectQuery("select * from " + req.params.tableName, callBack);
+});
+
+/*router.get('/generateexcel/:tableName',function(req,res,next){
+{
+
+}*/
 
 
 module.exports=router;

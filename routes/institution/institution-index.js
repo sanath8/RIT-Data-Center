@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
+
 var institutionPermissions = require('./institution-permissions');
 
 /* GET home page. */
@@ -23,5 +24,7 @@ router.get('/',function(req,res,next){
 router.use('/academic', require('./academic'));
 router.use('/finance', require('./finance'));
 router.use('/governance', require('./governance'));
+
+
 
 module.exports = router;

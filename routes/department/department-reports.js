@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 
     res.render('department/department-reports', {type : 'department-reports', selectList0 : result0, selectList1 : result1, selectList2 : result2, GetParam: req.query.fId, authType:req.session.facultyId, departmentId:req.session.departmentId, GetParam:req.query.departmentId });
   }
-  sqlExecute.getTwoSelectList(callBack,'facultyName', 'faculty');
+  sqlExecute.getTwoSelectList(callBack,'facultyName', 'faculty', req.query.departmentId);
 
 });
 
