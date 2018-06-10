@@ -1,6 +1,9 @@
 var columnsSelected = "";
 var tableLock = 0;
-console.log("The date now : " +new Date());
+var facultyLevelTables =["book","book_chapter","conference_paper","consultancy",
+"courses_handled","faculty_conference_symposia","faculty_guest_lecture","faculty_patent",
+"faculty_qualification","faculty_research","faculty_service","faculty_workshop_fdp","funded_projects",
+"industrial_collaboraion_mou","journal_paper","phd_scholar","projects_handled"]; //tables that contain faculty-ID
 
 $("#getReportDepartment").click(function()
 {
@@ -30,6 +33,23 @@ $("#getSummaryAdmin").click(function(){
 $("#getSummaryDepartment").click(function(){
     filteredSummaryReport("department");
 });
+
+function setFacultyNamesFilter(tableName)
+{
+  if(facultyLevelTables.indexOf(tableName) == -1)
+  {
+    document.getElementById("facultyList").value = "ALL";
+    document.getElementById("facultyList").disabled = true;
+
+    console.log("after disabling" +$('#facultyList').val());
+  }
+  else
+  {
+    document.getElementById("facultyList").disabled = false;
+  }
+
+
+}
 
 function getFormatedDate(subYear)
 {
@@ -184,6 +204,7 @@ function performFilterOperations(flag, reportCallBack)
 
 
   var tableName = $('#tableList').val();
+  setFacultyNamesFilter(tableName);
   var department = $('#department').val();
   var facultyName = $('#facultyList').val();
   var year = $('#yearList').val();
