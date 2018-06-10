@@ -1,6 +1,9 @@
 <script>
     var insertPermission = <%-JSON.stringify(insertPermission)%>
     var authType = <%-JSON.stringify(authType)%>
+    var GetParam = <%-JSON.stringify(GetParam)%>
+    
+    console.log("getparam : " + GetParam + " facultyId : " + authType);
     if(authType != 'principal' && authType != 'coordinator' && authType != 'hod'){
         authType = 'faculty';
     }
@@ -8,7 +11,10 @@
     console.log("insertPermission authType " + insertPermission[authType] + " " + authType);
     var buttonsDisable = document.getElementsByClassName("insertButton");
     for(var i = 0; i< buttonsDisable.length;i++){
-        if(insertPermission[authType] === false){
+        if(typeof(GetParam) != 'undefined' && authType === 'faculty'){
+            buttonsDisable[i].disabled = true;
+        }
+        else if(insertPermission[authType] === false){
             buttonsDisable[i].disabled = true;
             console.log("disabling button " + insertPermission[authType] + " " + authType);
         }
