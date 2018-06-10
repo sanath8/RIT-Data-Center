@@ -402,7 +402,9 @@ sqlObject.prototype.getFourSelectList = function(callback, url1, url2, url3, url
 }
 sqlObject.prototype.getTwoSelectList = function(callback, url1, tableName){
 	var sql0 = "select distinct  departmentId from department";
-	var sql1 = "select distinct table_name from information_schema.tables where table_schema = 'rit_data_center' AND table_name != 'faculty'";
+	var sql1 = "select distinct table_name from information_schema.tables where table_schema = 'rit_data_center'\
+	AND table_name != 'academic_council' AND table_name != 'finance' AND table_name != 'governing_body'\
+	 AND table_name != 'institution' AND table_name != 'department' AND table_name != 'administrator_login'";
   var sql2 = "select distinct " + url1 + " from " + tableName;
 
   var data0, data1, data2;
@@ -523,7 +525,7 @@ sqlObject.prototype.executeSummaryQuery = function(tableName, from, to, departme
 
 }
 
-function formatSummary(international, national, compared) //modification needed in this function, faculty id to be used instead of name 
+function formatSummary(international, national, compared) //modification needed in this function, faculty id to be used instead of name
 {
 	console.log(" data1 " + JSON.stringify(international) + " data " + JSON.stringify(national));
 	internationalPointer = 0;
