@@ -161,12 +161,8 @@ var additional_data = <%- JSON.stringify(additional_data) %>
         var res = data[columnName][i];
         console.log(JSON.stringify(Object.keys(index[columnName])));
         console.log(JSON.stringify(Object.keys(res)));
-<<<<<<< HEAD
-        
-=======
 
         console.log(columnName);
->>>>>>> master
         for(var j in res){
             if(j=="slNo" || j=="facultyId"){
                 str = str + ("<input name='"+j+"' type='hidden' value='"+res[j]+"'>");
