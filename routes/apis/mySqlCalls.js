@@ -285,10 +285,10 @@ sqlObject.prototype.getAcademicCouncil = function(callback){
 		//console.log(results);
 		queryObject.query(sql2 ,function(err2,results2,fields2){
 			//console.log(results);
-			
+
 			callback(err1, err2, results1, results2);
-		});	
-	
+		});
+
 });
 }
 
@@ -302,10 +302,10 @@ sqlObject.prototype.getFinanceCommittee = function(callback){
 		//console.log(results);
 		queryObject.query(sql2 ,function(err2,results2,fields2){
 			//console.log(results);
-			
+
 			callback(err1, err2, results1, results2);
-		});	
-		
+		});
+
 	});
 }
 
@@ -319,10 +319,10 @@ sqlObject.prototype.getGoverningBody = function(callback){
 		//console.log(results);
 		queryObject.query(sql2 ,function(err2,results2,fields2){
 			//console.log(results);
-			
+
 			callback(err1, err2, results1, results2);
-		});	
-		
+		});
+
 	});
 }
 
@@ -677,7 +677,7 @@ sqlObject.prototype.executeSummaryQuery = function(tableName, from, to, departme
 	console.log("Reached here with" + tableName);
   var columnConversions = {"conference_paper":"conferenceType", "journal_paper":"journalType"};
 	var typeConversions = {"department":"facultyId", "admin":"departmentId"};
-	var selectConversions = {"department":"facultyName", "admin":"departmentId"};
+	var selectConversions = {"department":"facultyId, facultyName", "admin":"departmentId"};
 
 	var filterHelper = "";
 	if(from != "-1")
@@ -699,14 +699,14 @@ sqlObject.prototype.executeSummaryQuery = function(tableName, from, to, departme
 				 NATURAL JOIN " + tableName + " \
 				 WHERE "+ columnConversions[tableName] +" = 'international' " + filterHelper + "\
 				 GROUP BY " + typeConversions[type] + "\
-				 ORDER BY " + selectConversions[type];
+				 ORDER BY " + typeConversions[type];
  sql2 = "SELECT "+ selectConversions[type] +", count(*) AS counts \
 				 FROM  \
 				 faculty \
 				 NATURAL JOIN " + tableName + " \
 				 WHERE "+ columnConversions[tableName] +" = 'national' " + filterHelper + "\
 				 GROUP BY " + typeConversions[type] + "\
-				 ORDER BY " + selectConversions[type];
+				 ORDER BY " + typeConversions[type];
 				 console.log("sql1" + sql1 + "sql2" + sql2);
 				 var data1, data2, format;
 				 /*if(type == "admin")
@@ -719,7 +719,7 @@ sqlObject.prototype.executeSummaryQuery = function(tableName, from, to, departme
 			   this.connection.query(sql2,function(err,results,fields){
 					 data2 = results;
 					 console.log("data join :" + JSON.stringify(data1));
-					 var formatedData = formatSummary(data1, data2, selectConversions[type]);
+					 var formatedData = formatSummary(data1, data2, typeConversions[type]);
 					 //console.log("formatting finished" + JSON.stringify(formatedData));
 					 callback(formatedData);
 			   });
@@ -744,6 +744,10 @@ function formatSummary(international, national, compared) //modification needed 
 		if(international[internationalPointer][compared] > national[nationalPointer][compared])
 		{
 			temp[compared] = national[nationalPointer][compared];
+			if(compared == "facultyId") //check whether faculty wise information is asked.
+			{
+				temp["facultyName"] = national[nationalPointer]["facultyName"];
+			}
 			temp["international"] = 0;
 			temp["national"] = national[nationalPointer]["counts"];
 			nationalPointer++;
@@ -751,6 +755,10 @@ function formatSummary(international, national, compared) //modification needed 
 		else if (international[internationalPointer][compared] < national[nationalPointer][compared])
 		{
 			temp[compared] = international[internationalPointer][compared];
+			if(compared == "facultyId")
+			{
+				temp["facultyName"] = international[internationalPointer]["facultyName"];
+			}
 			temp["international"] = international[internationalPointer]["counts"];
 			temp["national"] = 0;
 			internationalPointer++;
@@ -758,6 +766,10 @@ function formatSummary(international, national, compared) //modification needed 
 		else
 		{
 			temp[compared] = international[internationalPointer][compared];
+			if(compared == "facultyId")
+			{
+				temp["facultyName"] = national[nationalPointer]["facultyName"];
+			}
 			temp["international"] = international[internationalPointer]["counts"];
 			temp["national"] = national[nationalPointer]["counts"];
 			internationalPointer++;
@@ -771,6 +783,10 @@ function formatSummary(international, national, compared) //modification needed 
 		var temp = {};
 
 		temp[compared] = international[internationalPointer][compared];
+		if(compared == "facultyId")
+		{
+			temp["facultyName"] = international[internationalPointer]["facultyName"];
+		}
 		temp["international"] = international[internationalPointer]["counts"];
 		temp["national"] = 0;
 		internationalPointer++;
@@ -784,6 +800,10 @@ function formatSummary(international, national, compared) //modification needed 
 		var temp = {};
 
 		temp[compared] = national[nationalPointer][compared];
+		if(compared == "facultyId")
+		{
+			temp["facultyName"] = national[nationalPointer]["facultyName"];
+		}
 		temp["international"] = 0;
 		temp["national"] = national[nationalPointer]["counts"];
 		nationalPointer++;
