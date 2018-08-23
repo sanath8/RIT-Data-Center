@@ -20,17 +20,34 @@ router.post('/:tableName', function(req, res, next){
         if(t!="slNo" && t!="facultyId" && t!="url" && t!="getParam"){
             upd.push("'"+req.body[t]+"'");
             tableKey.push(t);
-        }else if(t=="facultyId" && !req.body.getParam){
+        }else if(t=="facultyId"){
+            console.log("req.session.facultyId = " + req.session.facultyId);
             if(req.session.facultyId === 'admin'){
-                continue;
+                if(req.body.url.indexOf('institution') != -1){
+                    //if the institution page is accessed from admin level, dont include facultyId
+                    continue;
+                }
+                else if(req.body.url.indexOf('faculty') != -1){
+                    //if the faculty page is accessed from admin level, include the facultyId
+                    upd.push("'"+req.body.getParam+"'");
+                    tableKey.push("facultyId");
+                }
             }
-            upd.push("'"+req.session.facultyId+"'");
-            tableKey.push("facultyId");
-        }else if(t=="getParam" && !req.body.facultyId){
+            else if(req.session.facultyId === 'hod'){
+                //this logic is for hod level
+                upd.push("'"+req.body.getParam+"'");
+                tableKey.push("facultyId");
+            }
+            else {
+                //this logic is for faculty level
+                upd.push("'"+req.session.facultyId+"'");
+                tableKey.push("facultyId");
+            }
+        }/* else if(t=="getParam" && !req.body.facultyId){
             
             upd.push("'"+req.body[t]+"'");
             tableKey.push("facultyId");
-        }
+        } */
     }
     var sql = "INSERT INTO "+req.params.tableName+"("+tableKey.join(",")+") VALUES ("+upd.join(",")+")"
     
