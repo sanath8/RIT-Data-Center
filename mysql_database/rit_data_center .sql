@@ -1,18 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb4
+-- version 4.7.9
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Apr 19, 2018 at 03:02 AM
--- Server version: 10.1.26-MariaDB-0+deb9u1
--- PHP Version: 5.6.30-0+deb8u1
-
-drop Database rit_data_center;
-create Database rit_data_center;
-use rit_data_center;
-
+-- Host: 127.0.0.1
+-- Generation Time: Aug 24, 2018 at 12:51 PM
+-- Server version: 10.1.30-MariaDB
+-- PHP Version: 7.2.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -30,8 +27,7 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `academic_council`
 --
-
-
+CREATE DATABASE rit_data_center
 CREATE TABLE `academic_council` (
   `slNo` int(11) NOT NULL,
   `category` varchar(50) NOT NULL,
@@ -139,6 +135,15 @@ CREATE TABLE `book` (
   `facultyId` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `book`
+--
+
+INSERT INTO `book` (`slNo`, `bookTitle`, `bookAuthors`, `bookPublisher`, `year`, `facultyId`) VALUES
+(1, 'Data Mining - Principles and Applications', 'Dr. Jagadish S Kallimani', 'Elsevier and Fillip Learning', '2012', 'cse04'),
+(2, 'Stastical Programming', 'Chetan Shetty, Sowmya B J', 'null', '2017', 'cse13'),
+(3, 'Stastical Programming', 'Sowmya B J, Chetan Shetty', 'null', '2017', 'cse22');
+
 -- --------------------------------------------------------
 
 --
@@ -154,6 +159,34 @@ CREATE TABLE `book_chapter` (
   `year` varchar(20) NOT NULL,
   `facultyId` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `book_chapter`
+--
+
+INSERT INTO `book_chapter` (`slNo`, `chapterName`, `bookName`, `chapterAuthors`, `publisher`, `year`, `facultyId`) VALUES
+(1, '“Driving Big Data with Hadoop Technologies”,Cloud Infrastructures', 'null', 'Srinidhi H', 'null', '2012', 'cse27'),
+(2, 'SABR: Secure Authentication-Based Routing in Large Scale Wireless Sensor Network', 'null', 'Dr. Anita Kanavalli', 'null', '2015', 'cse01'),
+(3, 'Data Intensive Cloud Computing', 'null', 'Jayalakshmi D S', 'null', '2015', 'cse05'),
+(4, '“Ubiquitous Computing for Cyber-Physical Systems', 'null', 'Srinidhi H', 'null', 'null', 'cse27'),
+(5, 'A Viability Analysis of an Economical Private Cloud Storage Solution Powered by Raspberry Pi in the ', 'null', 'Srinidhi H', 'null', 'null', 'cse27'),
+(6, 'GPU Implementation of Friend Recommendation System using CUDA for Social Networking Services', 'null', 'Srinidhi H', 'null', 'null', 'cse27'),
+(7, 'Performance Analysis of Airplane Health Surveillance System', 'null', 'Dr. Seema S', 'Springer Nature Singapore  Ltd', '2017', 'cse03'),
+(8, 'Computing and Network Sustainability', 'null', 'Sanjeetha. R', 'IoT-Enabled Integrated Intelligence System', '2017', 'cse07'),
+(9, 'Kannada Handwritten Word Conversion to Electronic Textual Format Using HMM Model', 'null', 'Veena G S', 'null', '2016', 'cse09'),
+(10, 'Lecture Notes in Networks and Systems', 'null', 'Veena G S', 'Springer Singapore', '2018', 'cse09'),
+(11, 'Limitations of Conscious Machines', 'null', 'Dr. Jagadish S Kallimani', 'null', '2017', 'cse04'),
+(12, '“Driving Big Data with Hadoop Technologies”,Cloud Infrastructures', 'null', 'Srinidhi H', 'null', '2012', 'ise01'),
+(13, 'SABR: Secure Authentication-Based Routing in Large Scale Wireless Sensor Network', 'null', 'Dr. Anita Kanavalli', 'null', '2015', 'ise02'),
+(14, 'Data Intensive Cloud Computing', 'null', 'Jayalakshmi D S', 'null', '2015', 'ece01'),
+(15, '“Ubiquitous Computing for Cyber-Physical Systems', 'null', 'Srinidhi H', 'null', 'null', 'ece02'),
+(16, 'A Viability Analysis of an Economical Private Cloud Storage Solution Powered by Raspberry Pi in the ', 'null', 'Srinidhi H', 'null', 'null', 'me01'),
+(17, 'GPU Implementation of Friend Recommendation System using CUDA for Social Networking Services', 'null', 'Srinidhi H', 'null', 'null', 'cv01'),
+(18, 'Performance Analysis of Airplane Health Surveillance System', 'null', 'Dr. Seema S', 'Springer Nature Singapore  Ltd', '2017', 'iem01'),
+(19, 'Computing and Network Sustainability', 'null', 'Sanjeetha. R', 'IoT-Enabled Integrated Intelligence System', '2017', 'iem02'),
+(20, 'Kannada Handwritten Word Conversion to Electronic Textual Format Using HMM Model', 'null', 'Veena G S', 'null', '2016', 'ise02'),
+(21, 'Lecture Notes in Networks and Systems', 'null', 'Veena G S', 'Springer Singapore', '2018', 'iem02'),
+(22, 'Limitations of Conscious Machines', 'null', 'Dr. Jagadish S Kallimani', 'null', '2017', 'ece02');
 
 -- --------------------------------------------------------
 
@@ -177,10 +210,70 @@ CREATE TABLE `conference_paper` (
 --
 
 INSERT INTO `conference_paper` (`slNo`, `authors`, `title`, `conferenceName`, `conferenceType`, `organizedBy`, `year`, `facultyId`) VALUES
-(1, 'abc, def, ghi', 'aaasssdffgh', 'qwerty', 'international', 'dfd', '1997', 'cse12'),
-(2, 'fdgifn', 'jgghhk', 'ghhhtykn', 'national', 'qwerty', '2015', 'cse07'),
-(3, 'dsgsgd', 'jikhkhi', 'jnknkn', 'national', 'jbjk', '3456', 'cse01'),
-(4, 'hbhjvjhvjh', 'gchgchgch', 'vhgvhgv', 'national', 'msrit', '1998', 'ise01');
+(1, 'Dr. Anita Kanavalli', 'International Conference  on Image and Signal processing', 'null', 'international', 'Society of Information Processing and UVCE Bangalore', '2013', 'cse01'),
+(2, 'Jayalakshmi D S', ' 2nd International Conference on Advances in Cloud Computing    (ACC -2013)', 'null', 'international', 'CSI, Bangalore', '2013', 'cse05'),
+(3, 'J Geetha', '2nd International Conference on Advances in Cloud Computing –CSI Bangalore Chapter & CSI Division -5', 'null', 'international', 'NIMHANS convention Centre, Bangalore.', '2013', 'cse10'),
+(4, 'Sini Anna Alex', 'IEEE CONNECT 2014', 'null', 'national', 'IISC,Bangalore', '2014', 'cse14'),
+(5, 'Sini Anna Alex', 'SAP Faculty Day', 'null', 'national', 'SAP Labs Bangalore', '2014', 'cse14'),
+(6, 'Sini Anna Alex', 'LDRA Academic Seminar - Providing Expertise for a Safer Tomorrow', 'null', 'national', 'null', '2014', 'cse14'),
+(7, 'Vandana S Sardar', 'International Conference On Emerging Computation and Information Technologies ( ICECIT 2013)', 'null', 'international', 'SIT, Tumkur', '2013', 'cse15'),
+(8, 'Divakar Harekal', 'Nokia Confluence February', 'null', 'national', 'National Institute of Design  ,Bangalore', '2013', 'cse18'),
+(9, 'S.Rajarajeswari', 'International Conference ICHCI Aug2013', 'null', 'international', 'null', '2013', 'cse20'),
+(10, 'S.Rajarajeswari', 'International conference on Emerging Computation and Information Technologies (ICECIT – 2013)', 'null', 'international', 'SIT Tumkur', '2013', 'cse20'),
+(11, 'Ganeshayya Shidaganti', 'International Conference on Advances in Computing, Communications and Informatics (ICACCI-2013)', 'null', 'international', 'null', '2013', 'cse25'),
+(12, 'Dr. Anita Kanavalli', 'International Multi Conference on Information Processing', 'null', 'international', 'UVCE Bangalore', '2014', 'cse01'),
+(13, 'Dr. Anita Kanavalli', 'International Conference I4C', 'null', 'international', 'MSRIT', '2014', 'cse01'),
+(14, 'Dr Annapurna P Patil', '5th IEEE International Advance Computing Conference.', 'null', 'international', 'BMSCE, Bangalore', '2015', 'cse02'),
+(15, 'Dr Annapurna P Patil', 'International Conference on Circuits, Control, Communication and Computing.', 'null', 'international', 'MSRIT, Bangalore-54', '2014', 'cse02'),
+(16, 'Jayalakshmi D S', '2014 IEEE Cloud Computing for Emerging Markets (CCEM) Conference', 'null', 'national', 'null', '2014', 'cse05'),
+(17, 'Dr.Monica R Mundada', 'I4C2014- International Conference on Circuits, Communication, Control and Computing', 'null', 'international', 'MSRIT', '2014', 'cse06'),
+(18, 'Parkavi.A', 'IEEE T4E conference', 'null', 'national', 'Amritha University, Kerala', '2014', 'cse08'),
+(19, 'Mamatha V', ' 3 day IEEE International Conference on Smart Sensors and Systems', 'Evaluation of Modified PLS Regression Method to Fill the  Missing Values in Training Dataset', 'international', 'MSRIT, Bangalore', '2015', 'cse12'),
+(20, 'Sini Anna Alex', 'T4E 2014- Technology for education, 6th IEEE Conference on Technology for Education 2014', 'null', 'national', 'Amrita University', '2014', 'cse14'),
+(21, 'Divakar Harekal', '7th National Conference at SJB Institute of Technology Bangalore', 'Knowledge and Defect Management Approaches to Software Industries', 'national', 'SJBT Bangalore', '2015', 'cse18'),
+(22, 'S.Rajarajeswari', 'International Conference on Circuits, Control, Communication and Computing,', 'null', 'international', 'MSRIT, Bangalore', '2014', 'cse20'),
+(23, 'S.Rajarajeswari', '2nd International Conference on engineering Technology and Science. ICETS’15', 'null', 'international', 'Muthayammal College of Engineering, Rasipuram', '2015', 'cse20'),
+(24, 'Pramod Sunagar', 'International conference on Circuits, Communication , Control and Computations - I4C2014', 'null', 'international', 'MSRIT', '2014', 'cse21'),
+(25, 'Ganeshayya Shidaganti', 'International Conference on Circuits,Communication,Control and Computing(I4C 2014)', 'null', 'international', 'MSRIT', '2014', 'cse25'),
+(26, 'Srinidhi H', '8th India Software Engineering Conference', 'null', 'national', 'null', '2015', 'cse27'),
+(27, 'Ganeshayya Shidaganti', '10th Annual Conference of KSTA 2018', 'null', 'national', 'Reva University', '2018', 'cse25'),
+(28, 'Ganeshayya Shidaganti', '5th IEEE International Conference', 'MOOCS,Innovations  and Technology in Education-MITE2017', 'international', 'BMS College of Engineering ', '2017', 'cse25'),
+(29, 'Dr. Anita Kanavalli', 'Wireless and Optical Communications Networks (WOCN), 2015 Twelfth International Conference', 'Intelligent Transportation System based on the Principles of Service-Oriented Architecture ', 'international', 'null', '2015', 'cse01'),
+(30, 'Dr. Anita Kanavalli', 'at ICICSE-2018: 6th- International Conference on Innovations in Computer Science & Engineering, 17-1', 'Assessment Framework Modeling Tool Using Location Aware Computing for Agriculture Pasteurization and', 'international', 'Computer Society of India (CSI)', '2018', 'cse01'),
+(31, 'Dr. Anita Kanavalli', 'International Journal of Innovations & Advancement in Computer Science', 'A Vehicular Apprehension Scheme in Wireless Networks', 'international', 'null', '2017', 'cse01'),
+(32, 'Dr. Anita Kanavalli', 'International Conference On New Trends In Engineering &amp; Technology\r\n', 'Detection of DDoS attacks on Controller and its Mitigation at Switch and Host Level in Software Defi', 'national', 'GRT college, Chennai', '2018', 'cse01'),
+(33, 'Dr. Anita Kanavalli', 'International Conference  on Image and Signal processing', 'null', 'international', 'Society of Information Processing and UVCE Bangalore', '2013', 'ise01'),
+(34, 'Jayalakshmi D S', ' 2nd International Conference on Advances in Cloud Computing    (ACC -2013)', 'null', 'international', 'CSI, Bangalore', '2013', 'ise02'),
+(35, 'J Geetha', '2nd International Conference on Advances in Cloud Computing –CSI Bangalore Chapter & CSI Division -5', 'null', 'international', 'NIMHANS convention Centre, Bangalore.', '2013', 'ise03'),
+(36, 'Sini Anna Alex', 'IEEE CONNECT 2014', 'null', 'national', 'IISC,Bangalore', '2014', 'ise04'),
+(37, 'Sini Anna Alex', 'SAP Faculty Day', 'null', 'national', 'SAP Labs Bangalore', '2014', 'ece01'),
+(38, 'Sini Anna Alex', 'LDRA Academic Seminar - Providing Expertise for a Safer Tomorrow', 'null', 'national', 'null', '2014', 'ece02'),
+(39, 'Vandana S Sardar', 'International Conference On Emerging Computation and Information Technologies ( ICECIT 2013)', 'null', 'international', 'SIT, Tumkur', '2013', 'ece03'),
+(40, 'Divakar Harekal', 'Nokia Confluence February', 'null', 'national', 'National Institute of Design  ,Bangalore', '2013', 'ece04'),
+(41, 'S.Rajarajeswari', 'International Conference ICHCI Aug2013', 'null', 'international', 'null', '2013', 'me01'),
+(42, 'S.Rajarajeswari', 'International conference on Emerging Computation and Information Technologies (ICECIT – 2013)', 'null', 'international', 'SIT Tumkur', '2013', 'me02'),
+(43, 'Ganeshayya Shidaganti', 'International Conference on Advances in Computing, Communications and Informatics (ICACCI-2013)', 'null', 'international', 'null', '2013', 'me03'),
+(44, 'Dr. Anita Kanavalli', 'International Multi Conference on Information Processing', 'null', 'international', 'UVCE Bangalore', '2014', 'me04'),
+(45, 'Dr. Anita Kanavalli', 'International Conference I4C', 'null', 'international', 'MSRIT', '2014', 'cv01'),
+(46, 'Dr Annapurna P Patil', '5th IEEE International Advance Computing Conference.', 'null', 'international', 'BMSCE, Bangalore', '2015', 'cv02'),
+(47, 'Dr Annapurna P Patil', 'International Conference on Circuits, Control, Communication and Computing.', 'null', 'international', 'MSRIT, Bangalore-54', '2014', 'cv03'),
+(48, 'Jayalakshmi D S', '2014 IEEE Cloud Computing for Emerging Markets (CCEM) Conference', 'null', 'national', 'null', '2014', 'cv04'),
+(49, 'Dr.Monica R Mundada', 'I4C2014- International Conference on Circuits, Communication, Control and Computing', 'null', 'international', 'MSRIT', '2014', 'iem01'),
+(50, 'Parkavi.A', 'IEEE T4E conference', 'null', 'national', 'Amritha University, Kerala', '2014', 'iem02'),
+(51, 'Mamatha V', ' 3 day IEEE International Conference on Smart Sensors and Systems', 'Evaluation of Modified PLS Regression Method to Fill the  Missing Values in Training Dataset', 'international', 'MSRIT, Bangalore', '2015', 'iem03'),
+(52, 'Sini Anna Alex', 'T4E 2014- Technology for education, 6th IEEE Conference on Technology for Education 2014', 'null', 'national', 'Amrita University', '2014', 'iem04'),
+(53, 'Divakar Harekal', '7th National Conference at SJB Institute of Technology Bangalore', 'Knowledge and Defect Management Approaches to Software Industries', 'national', 'SJBT Bangalore', '2015', 'ise01'),
+(54, 'S.Rajarajeswari', 'International Conference on Circuits, Control, Communication and Computing,', 'null', 'international', 'MSRIT, Bangalore', '2014', 'ise02'),
+(55, 'S.Rajarajeswari', '2nd International Conference on engineering Technology and Science. ICETS’15', 'null', 'international', 'Muthayammal College of Engineering, Rasipuram', '2015', 'cv01'),
+(56, 'Pramod Sunagar', 'International conference on Circuits, Communication , Control and Computations - I4C2014', 'null', 'international', 'MSRIT', '2014', 'cv02'),
+(57, 'Ganeshayya Shidaganti', 'International Conference on Circuits,Communication,Control and Computing(I4C 2014)', 'null', 'international', 'MSRIT', '2014', 'ece01'),
+(58, 'Srinidhi H', '8th India Software Engineering Conference', 'null', 'national', 'null', '2015', 'ece02'),
+(59, 'Ganeshayya Shidaganti', '10th Annual Conference of KSTA 2018', 'null', 'national', 'Reva University', '2018', 'iem01'),
+(60, 'Ganeshayya Shidaganti', '5th IEEE International Conference', 'MOOCS,Innovations  and Technology in Education-MITE2017', 'international', 'BMS College of Engineering ', '2017', 'iem02'),
+(61, 'Dr. Anita Kanavalli', 'Wireless and Optical Communications Networks (WOCN), 2015 Twelfth International Conference', 'Intelligent Transportation System based on the Principles of Service-Oriented Architecture ', 'international', 'null', '2015', 'me01'),
+(62, 'Dr. Anita Kanavalli', 'at ICICSE-2018: 6th- International Conference on Innovations in Computer Science & Engineering, 17-1', 'Assessment Framework Modeling Tool Using Location Aware Computing for Agriculture Pasteurization and', 'international', 'Computer Society of India (CSI)', '2018', 'me02'),
+(63, 'Dr. Anita Kanavalli', 'International Journal of Innovations & Advancement in Computer Science', 'A Vehicular Apprehension Scheme in Wireless Networks', 'international', 'null', '2017', 'ise03'),
+(64, 'Dr. Anita Kanavalli', 'International Conference On New Trends In Engineering &amp; Technology\r\n', 'Detection of DDoS attacks on Controller and its Mitigation at Switch and Host Level in Software Defi', 'national', 'GRT college, Chennai', '2018', 'ece03');
 
 -- --------------------------------------------------------
 
@@ -235,8 +328,12 @@ CREATE TABLE `department` (
 --
 
 INSERT INTO `department` (`departmentId`, `departmentName`, `yearOfEstablishment`, `address`, `contactNumber`, `officialMailId`, `hodName`, `hodContactNumber`, `instituteName`) VALUES
-('cse', 'Computer Science & Engineering', '1984', 'division of electrical sciences block, 1st floor', '080-23600822/23606939', 'hod-cse@msrit.edu', 'Dr. Anita Kanavalli', '080-23600822/23606939', 'Ramaiah Institute of Technology'),
-('ise', 'information science and engineering', '1997', 'abc', '9008174383', 'ise@msrit.edu', '9008174383', '123', 'Ramaiah Institute of Technology');
+('cse', 'Computer Science & Engineering', '1984', 'division of electrical sciences block, 1st floor', '080-23600822/23606939', 'hod-cse@msrit.edu', 'Dr. Anita Kanavalli', '9845899681\r\n', 'Ramaiah Institute of Technology'),
+('cv', 'Civil Engineering', '1971', 'engineering sciences block', '080-23600822/23606939', 'hod-cv@msrit.edu', 'Dr. C G Puttappa', '9844290938', 'Ramaiah Institute of Technology'),
+('ece', 'Electronics and Communication Engineering', '1975', 'division of electrical sciences block, 3rd floor', '080-23600822/23606939', 'hod_ec@msrit.edu', 'Dr. S Sethu Selvi', '9481183798', 'Ramaiah Institute of Technology'),
+('iem', 'Industrial Engineering & Management', '1979', 'engineering sciences block', '080-23600822/23606939', 'hod_im@msrit.edu', 'Dr. G. S. Prakash', '9448226933', 'Ramaiah Institute of Technology'),
+('ise', 'Information Science & Engineering', '1992', 'division of electrical sciences block, 2nd floor', '080-23600822/23606939', 'hod_is@msrit.edu', 'DR. VIJAYA KUMAR B. P.', '9980634134', 'Ramaiah Institute of Technology'),
+('me', 'Mechanical Engineering', '1962', 'engineering sciences block', '080-23600822/23606939', 'hod-me@msrit.edu', 'Dr. Raji George', '9845318047', 'Ramaiah Institute of Technology');
 
 -- --------------------------------------------------------
 
@@ -270,11 +367,11 @@ CREATE TABLE `faculty` (
 --
 
 INSERT INTO `faculty` (`facultyId`, `facultyName`, `gender`, `address`, `religion`, `caste`, `category`, `dob`, `natureOfAppointment`, `contactNumber`, `emailId`, `password`, `panNumber`, `accountNumber`, `pfNumber`, `about`, `designation`, `departmentId`) VALUES
-('cse01', 'Anita Kanavalli', 'Female', 'NO 25 ANASWARA 1ST MAIN, 2nd cross MSR Ngar', 'Christian', 'Protestant', 'GM', '1967-04-04', 'Regular', '9845899681', 'anithak@msrit.edu', 'rit', 'AKOPK7232J', '141201010012262', 'KN/BN/8146/0754', 'Dr. Anita Kanavalli is working as the Head of Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include Adhoc networks, high performance computing and microprocessors.', 'PROFESSOR', 'cse'),
+('cse01', 'Anita Kanavalli', 'Female', 'NO 25 ANASWARA 1ST MAIN, 2nd cross MSR Ngar', 'Christian', 'Protestant', 'GM', '1967-04-02', 'Regular', '9845899681', 'anithak@msrit.edu', 'rit', 'AKOPK7232J', '141201010012262', 'KN/BN/8146/0754', 'Dr. Anita Kanavalli is working as the Head of Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include Adhoc networks, high performance computing and microprocessors.', 'PROFESSOR', 'cse'),
 ('cse02', 'Annapurna P. Patil', 'Female', '#308, C Block Gowri Apartment, NEW BEL Road', 'Hindu', 'Veershaiva Jang', 'GM 371J', '1972-10-10', 'Regular', '9945409177', 'annapurnap2@msrit.edu', 'rit', 'AIMPP9079L', '141201010013904', 'KN/BN/8146/0852', 'Dr. Annapurna P. Patil is working as a Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include Wireless Networks, Artificial Intelligence, Protocol Engineering, Cloud Computing and IOT, Data Structures and Analysis of Algorithms.', 'PROFESSOR', 'cse'),
 ('cse03', 'Seema S', 'Female', '#327, 7TH CROSS,  3RD BLOCK, HMT layout, Vidyarany', 'Hindu', 'Marathi', 'GM', '1970-06-29', 'Regular', '9901688004', 'seemas@msrit.edu', 'rit', 'ARJPS9571N', '141201010010588', 'KN/BN/8146/0779', 'Dr. S. Seema is working as a Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include databases, data mining and big data, computer graphics, bioinformatics and data analytics.', 'PROFESSOR', 'cse'),
 ('cse04', 'Jagadish S.K.', 'Male', 'NO.79, 9TH MAIN, 6TH CROSS, J C Nagar, Kurubara ha', 'Hindu', 'Lingayath', 'GM', '1977-07-19', 'Regular', '9844413643', 'jagadish.k@msrit.edu', 'rit', 'AHRPK8437B', '141201010015421', 'KN/BN/8146/0942', 'Dr. Jagadish S. Kallimani is working as an Associate Professor in Computer Science Department of Ramaiah Institute of Technology. His areas of interest include artificial intelligence, natural language processing, information retrieval, information extraction, and statistical machine learning.', 'ASSOCIATE PROFESSOR', 'cse'),
-('cse05', 'Jayalakshmi D.S', 'Female', '#325/6, "SRINIDHI", F BLOCK, Sahakara nagar', 'Hindu', 'Bramhin', 'GM', '1967-04-21', 'Regular', '8197820657', 'jayalakshmids@msrit.edu', 'rit', 'AHGPD5509A', '141201010018116', 'KN/BN/8146/0984', 'Jayalakshmi D. S. is working as an Associate Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include cloud computing, big data, computer graphics.', 'ASSOCIATE PROFESSOR', 'cse'),
+('cse05', 'Jayalakshmi D.S', 'Female', '#325/6, \"SRINIDHI\", F BLOCK, Sahakara nagar', 'Hindu', 'Bramhin', 'GM', '1967-04-21', 'Regular', '8197820657', 'jayalakshmids@msrit.edu', 'rit', 'AHGPD5509A', '141201010018116', 'KN/BN/8146/0984', 'Jayalakshmi D. S. is working as an Associate Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include cloud computing, big data, computer graphics.', 'ASSOCIATE PROFESSOR', 'cse'),
 ('cse06', 'Monica R Mundada', 'Female', '137/A1, 13th cross ASCS layout, Near RMV Hosptial,', 'Hindu', 'Marwadi', 'GM', '1974-09-15', 'Regular', '9008365087', 'monica@msrit.edu', 'rit', 'AIWPM8762H', '141201010015521', 'KN/BN/8146/0924', 'Dr. Monica R. Mundada is working as an Associate Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include theory of computation, wireless sensor networks, computer networks, data communications, and IOT.', 'ASSOCIATE PROFESSOR', 'cse'),
 ('cse07', 'Sanjeetha R', 'Female', 'Sri Manjunatha Swamy Nilaya, #78, 2nd cross, Vinay', 'Hindu', 'vokkaliga', 'vokkaliga', '1980-10-16', 'Regular', '9986406819', 'sanjeetha.r@msrit.edu', 'rit', 'BTYPS2093H', '141201011000968', 'KN/BN/8146/1102', 'Sanjeetha R. is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include software defined networks, computer networks, data communications, operating systems, and database systems.', 'ASST PROFESSOR', 'cse'),
 ('cse08', 'A Parkavi', 'Female', 'C/O, C.SINGARAM, NO.124, 6TH MAIN, 3RD CROSS, IST ', 'Christian', 'Pallan', 'SC', '1979-05-05', 'Regular', '9902524685', 'parkavi.a@msrit.edu', 'rit', 'APHPP4199M', '141201011000983', 'KN/BN/8146/1097', 'Parkavi A. is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include data mining, educational data mining, social network analysis, compiler design and educational technology.', 'ASST PROFESSOR', 'cse'),
@@ -282,7 +379,7 @@ INSERT INTO `faculty` (`facultyId`, `facultyName`, `gender`, `address`, `religio
 ('cse10', 'J Geetha', 'Female', 'NO-106 SLV Durga Apartments Vidyaranipura,  BANGAL', 'Hindu', 'reddy', 'GM', '1979-07-16', 'Regular', '9916912573', 'geetha@msrit.edu', 'rit', 'ALDPG4963E', '141201011001787', 'KN/BN/8146/1161', 'Geetha J. is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include cloud computing, big data, semantic web, graph theory and web designing.', 'ASST PROFESSOR', 'cse'),
 ('cse11', 'T.N R. Kumar', 'Male', '#1/3(212) 3RD CROSS CHIKKANNA, Gardenns Shankarpur', 'Hindu', 'Bramhin', 'Other', '1967-06-19', 'Regular', '9844636865', 'tnrkumar@msrit.edu', 'rit', 'AHWPR2220G', '141201011002750', 'KN/BN/8146/1174', 'Dr. T.N.R.Kumar is working as an Associate Professor in Computer Science Department of Ramaiah Institute of Technology. His areas of interest include image processing, software engineering and computer networks.', 'ASST PROFESSOR', 'cse'),
 ('cse12', 'Mamatha  Jadhav V', 'Female', '#2709 11TH MAIN D BLOCK, II stage Rajajinagar Blor', 'Hindu', 'Marathi', 'Other', '1973-10-22', 'Regular', '9844094962', 'mamsdalvi@msrit.edu', 'rit', 'AKDPJ5187A', '141201011011032', 'KN/BN/8146/1263', 'Mamatha Jadhav V. is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include computer networks, database management systems and data mining.', 'ASST PROFESSOR', 'cse'),
-('cse13', 'Chethan C T', 'Male', '#208 PATEL CHANNAPA''S, 1ST Main Dwaraka nagar BSK ', 'Hindu', 'Gowda', '3A', '1985-10-28', 'Regular', '9449035534', 'ctchethan@msrit.edu', 'rit', 'AIDPC7398G', '141201011004919', 'KN/BN/8146/1299', 'Mr. Chethan is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. His areas of interest include analytics, entrepreneurship, incubation, consultancy, and industry association.', 'ASST PROFESSOR', 'cse'),
+('cse13', 'Chethan C T', 'Male', '#208 PATEL CHANNAPA\'S, 1ST Main Dwaraka nagar BSK ', 'Hindu', 'Gowda', '3A', '1985-10-28', 'Regular', '9449035534', 'ctchethan@msrit.edu', 'rit', 'AIDPC7398G', '141201011004919', 'KN/BN/8146/1299', 'Mr. Chethan is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. His areas of interest include analytics, entrepreneurship, incubation, consultancy, and industry association.', 'ASST PROFESSOR', 'cse'),
 ('cse14', 'Sini Anna Alex', 'Female', '#171, BETHEL, 1st main, AYR Layout, Shettyhalli, J', 'Christian', 'Orthodox', 'GM', '1983-02-24', 'Regular', '9845437091', 'sinialex@msrit.edu', 'rit', 'CDKPS5458K', '141201011005688', 'KN/BN/8146/1322', 'Mrs. Sini Anna Alex is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include, ubiquitous computing, compiler design, mobile and wireless sensor networks, distributed, database systems and algorithm analysis.', 'ASST PROFESSOR', 'cse'),
 ('cse15', 'Sardar Vandana Sudhakar', 'Female', '#14, Venkateshwara Layout, MSR Nagar', 'Hindu', 'Mahar', 'SC', '1979-05-19', 'Regular', '9886878953', 'vandana.s@msrit.edu', 'rit', 'BCBPS9768K', '141201011007877', 'KN/BN/8146/1398', 'Vandana Sudhakar Sardar is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include information retrieval and machine learning.', 'ASST PROFESSOR', 'cse'),
 ('cse16', 'Meera Devi A Kawalgi', 'Female', '#307, Garuda Royal Apt, Sharadamba Nagar, Jalahall', 'Hindu', 'Lingayath', 'GM', '1984-09-13', 'Regular', '8792068734', 'meera_ak@msrit.edu', 'rit', 'AWCPP1652M', '141201011007888', 'KN/BN/8146/1400', 'Meeradevi A. K. is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include Computer Networks, Information Security, Data Communications, WSN & IoT.', 'ASST PROFESSOR', 'cse'),
@@ -290,7 +387,7 @@ INSERT INTO `faculty` (`facultyId`, `facultyName`, `gender`, `address`, `religio
 ('cse18', 'Dr.H.V. Divakar', 'Male', '#105, TELECOM COLONY, behind new timberyard', 'Hindu', 'Bramhin', 'Other', '1965-07-03', 'Regular', '9980315974', 'divakar.h@msrit.edu', 'rit', 'AAYPD4812D', '141201011009452', 'KN/BN/8146/1453', 'Dr. Divakar Harekal is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. His areas of interest include software engineering, embedded system design and cloud computing.', 'ASST PROFESSOR', 'cse'),
 ('cse19', 'Chandrika Prasad', 'Female', '#143, I STAGE, II CROSS, B.E.M.L., Basaveshwara Na', 'Hindu', 'Bramhin', 'Other', '1980-05-28', 'Regular', '9845053122', 'chandrika@msrit.edu', 'rit', 'AHZPC9945N', '141201011009473', 'KN/BN/8146/1454', 'Chandrika Prasad is working as an assistant professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include operating system and are teaching computer organization and UNIX system programming.', 'ASST PROFESSOR', 'cse'),
 ('cse20', 'Rajarajeswari S', 'Female', '#501, SIRI RESIDENCY, I CROSS, PAPPANA LAYOUT, V.N', 'Hindu', 'Vanniya Kula Ks', 'OBC', '1975-08-02', 'Regular', '9886958079', 'raji@msrit.edu', 'rit', 'ANFPR9711D', '141201011009606', 'KN/BN/8146/1467', 'S. Rajarajeswari is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include cloud computing, big data and data sciences, artificial intelligence, data mining and image processing.', 'ASST PROFESSOR', 'cse'),
-('cse21', 'Pramod C Sunagar', 'Male', '#18, "GURUKRUPA NILAYA" 17TH A CROSS, BNS LAYOUT, ', 'Hindu', 'Ambiger', 'CAT - I', '1984-12-16', 'Regular', '9886358659', 'pramods@msrit.edu', 'rit', 'BPVPS0308L', '141201011013869', 'KN/BN/8146/1552', 'Mr. Pramod Sunagar is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. His areas of interest include data analytics algorithms, android development, java & j2ee and data structures.', 'ASST PROFESSOR', 'cse'),
+('cse21', 'Pramod C Sunagar', 'Male', '#18, \"GURUKRUPA NILAYA\" 17TH A CROSS, BNS LAYOUT, ', 'Hindu', 'Ambiger', 'CAT - I', '1984-12-16', 'Regular', '9886358659', 'pramods@msrit.edu', 'rit', 'BPVPS0308L', '141201011013869', 'KN/BN/8146/1552', 'Mr. Pramod Sunagar is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. His areas of interest include data analytics algorithms, android development, java & j2ee and data structures.', 'ASST PROFESSOR', 'cse'),
 ('cse22', 'Sowmya B J', 'Female', '829, 1ST CROSS, 4 BLOCK, HMT LAYOUT', 'Hindu', 'Lingayath', '3BG', '1986-11-30', 'Regular', '9886733368', 'sowmyabj@msrit.edu', 'rit', 'CJRPS4964D', '141201011015419', 'KN/BN/8146/4801', 'Sowmya B. J. is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include software engineering, computer organization, computer security and data analytics.', 'ASST PROFESSOR', 'cse'),
 ('cse23', 'Pradeep kumar D ', 'Male', 'NO 740, 9MAIN 9 BLOCK, NAGARBAVI', 'Hindu', 'Gowda', 'OBC', '1985-09-27', 'Regular', '9886715235', 'pradeepkumard@msrit.edu', 'rit', 'BCOPD2999E', '141201011017395', 'KN/BN/8146/5011', 'Mr. Pradeep Kumar D. is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. His areas of interest include data mining, data sciences, big data, machine learning and internet of things.', 'ASST PROFESSOR', 'cse'),
 ('cse24', 'Chetan  Shetty ', 'Male', 'NO 13, B 306, 3RD FLOOR, RENAISSANCE BRINDAVAN, UT', 'Hindu', 'Bunts', 'GM', '1986-02-24', 'Regular', '9686575665', 'chetanshetty@msrit.edu', 'rit', 'CPFPS0001H', '141201011008572', 'KN/BN/8146/5014', 'Chetan Shetty is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. His areas of interest include data analytics and teach design and analysis of algorithms, software engineering and computer security.', 'ASST PROFESSOR', 'cse'),
@@ -303,7 +400,26 @@ INSERT INTO `faculty` (`facultyId`, `facultyName`, `gender`, `address`, `religio
 ('cse31', 'Raghuram Krishnapuram', 'Male', 'null', 'null', 'null', 'null', '1956-02-13', 'null', 'null', 'raghuk@msrit.edu', 'rit', 'AGIPK4840L', 'null', 'null', 'null', 'PROFESSOR, R&D Head', 'cse'),
 ('cse32', 'Ramani S', 'Male', 'Malleshwaram, Bangalore, 560003', 'Hindu', 'Bramhin', 'GM', '1954-04-17', 'Regular', '9343457890', 'ramanis@msrit.edu', 'rit', 'ABVPS3193C', 'null', 'null', 'Dr. S. Ramani is working as a professor in Computer Science Department of Ramaiah Institute of Technology. His areas of interest include software architecture, e-governance, networking, and information security.', 'PROFESSOR', 'cse'),
 ('cse33', 'Nagabhushan A M', 'Male', '12_seetharamaiah lay out, Yeswanthpur, 560022', 'Hindu', 'Lingayath', 'GM', '1963-07-13', 'Visiting', '9844864526', 'bhushan@msrit.edu', 'rit', 'AAIPN8611J', 'null', 'null', 'Bhushan A. Matad is working as an Associate Professor in Computer Science Department of Ramaiah Institute of Technology. His areas of interest include future work skills, and start-up software engineering.', 'Associate Professor', 'cse'),
-('ise01', 'Mydhili ', 'female', 'nodcds', 'kjhkk', 'jnkjnkjn', 'nknkjn', '2018-04-04', 'jjij', '9008174383', 'my@gmail.com', '123', 'nnmkjbb', 'kjnkjn', 'kjnkjn', 'kjnkjnkjn', 'nkjkjnkjn', 'ise');
+('cv01', 'Dr. C G Puttappa', 'Male', 'null', 'null', 'null', 'null', '0000-00-00', 'Regular', '9844290938', 'puttappacg@gmail.com', 'rit', 'null', 'null', 'null', 'Dr. C G Puttappa is working as Head Of The Department & Controller Of Examination in civil engineering department of MSRIT. His areas of interests are highway engineering, utilization of waste materials for roads, characterization of waste materials, economic analysis of roads using waste materials ', 'PROFESSOR', 'cv'),
+('cv02', 'Dr. Raja Gopal Reddy Chintakunta', 'Male', 'null', 'null', 'null', 'null', '0000-00-00', 'Regular', '8147525949', 'crgreddycivil@msrit.edu', 'rit', 'null', 'null', 'null', 'Dr. Raja Gopal Reddy Chintakunta is working as a professor in civil engineering department of MSRIT. His areas of interests are surface water hydrology, ground water hydrology, water resource systems, optimization methods, and hydraulics.', 'PROFESSOR', 'cv'),
+('cv03', 'Dr. Srikanth M. Naik', 'Male', 'null', 'null', 'null', 'null', '0000-00-00', 'Regular', '9845879101', 'srikanth_naik@yahoo.com', 'rit', 'null', 'null', 'null', 'Dr. Srikanth M. Naik is working as a professor in civil engineering department of MSRIT. His areas of interests are highway engineering, utilization of waste materials for roads, characterization of waste materials, economic analysis of roads using waste materials and traffic engineering.', 'PROFESSOR', 'cv'),
+('cv04', 'Jagadeesha Kumar B. G.', 'Male', 'null', 'null', 'null', 'null', '0000-00-00', 'Regular', '9448594300', 'bgjagadish@msrit.edu', 'rit', 'null', 'null', 'null', 'Mr. Jagadeesha Kumar B. G. is working as an associate professor in civil engineering department of MSRIT. His areas of interests are sustainability in civil engineering, green building technology, environmental engineering, modern methods of surveying using total station and GPS.', 'Assistant Professor', 'cv'),
+('ece01', 'Dr. S. Sethu Selvi', 'Female', 'null', 'null', 'null', 'null', '0000-00-00', 'Regular', '9481183798', 'hod_ec@msrit.edu', 'rit', 'null', 'null', 'null', 'Dr. S. Sethu Selvi is working as the Professor & Head of the Electronics and Communication Department of MSRIT. Her subjects of interests are signal processing, image processing and digital communication.', 'PROFESSOR', 'ece'),
+('ece02', 'Dr. Rama Murthy T.V', 'Male', 'null', 'null', 'null', 'null', '0000-00-00', 'Regular', '9886385321', 'tvramamurthy@msrit.edu', 'rit', 'null', 'null', 'null', 'Dr. Rama Murthy T.V, is working as a Professor (Emeritus) in the department of Electronics and Communication of MSRIT. His subjects of interest are Aerospace Electronics and Systems, Signal processing fault detection and reconfiguration of safety critical systems', 'PROFESSOR', 'ece'),
+('ece03', 'K. Indira', 'Female', 'null', 'null', 'null', 'null', '0000-00-00', 'Regular', '9449446302', 'indira@msrit.edu', 'rit', 'null', 'null', 'null', 'Dr. K. Indira is working as a Professor in the Electronics and Communication Department of MSRIT. Her subjects of interests are signal processing, image processing, neural networks, speech processing, and fuzzy logic.', 'PROFESSOR', 'ece'),
+('ece04', 'Maya V Karki', 'Female', 'null', 'null', 'null', 'null', '0000-00-00', 'Regular', '9481203137', 'mayavkarki@msrit.edu', 'rit', 'null', 'null', 'null', 'Dr. Maya V. Karki is working as a Professor in the Electronics and Communication Department of MSRIT. Her subjects of interests are image and signal processing, video analytics, machine learning, neural network and multimedia communication.', 'PROFESSOR', 'ece'),
+('iem01', 'Dr. G. S. Prakash', 'Male', 'null', 'null', 'null', 'null', '0000-00-00', 'Regular', '9448226933', 'prakash5636@yahoo.com', 'rit', 'null', 'null', 'null', 'Dr. G. S. Prakash is serving as a professor & Head in Industrial Engineering and Management dept. of MSRIT. His subjects of interests are operations research, quality assurance & reliability; computer integrated manufacturing, automation in manufacture and data base management system.', 'PROFESSOR', 'iem'),
+('iem02', 'Dr. N.V.R. Naidu', 'Male', 'null', 'null', 'null', 'null', '0000-00-00', 'Regular', '9886844934', 'nvrnaidu@gmail.com', 'rit', 'null', 'null', 'null', 'Dr. N.V.R. Naidu is serving as the Principal of M. S. Ramaiah Institute of Technology. His subjects of interests are operations research, quality and reliability engineering, applied probability and statistics, industrial engineering and quantitative techniques.', 'PROFESSOR', 'iem'),
+('iem03', 'A. Balakrishna', 'Male', 'null', 'null', 'null', 'null', '0000-00-00', 'Regular', '8550880084', 'balki004@gmail.com', 'rit', 'null', 'null', 'null', 'Mr. A. Balakrishna is serving as an associate professor in Industrial Engineering and Management dept. of MSRIT. His subjects of interests are production engineering, robotics, operations research, mechanics of materials and design of machine elements.', 'Associate Professor', 'iem'),
+('iem04', 'S. Appaiah', 'Male', 'null', 'null', 'null', 'null', '0000-00-00', 'Regular', '9845149773', 'appaiahs@yahoo.com', 'rit', 'null', 'null', 'null', 'S. Appaiah is serving as an associate professor in Industrial Engineering and Management dept. of MSRIT. His subjects of interests are production engineering, management subjects, engineering economy, fluid mechanics and operations research.', 'Associate Professor', 'iem'),
+('ise01', 'Dr. Vijaya Kumar B P', 'Male', 'null', 'null', 'null', 'null', '0000-00-00', 'Regular', '9980634134', 'hod_is@msrit.edu', 'rit', 'null', 'null', 'null', 'VIJAY KUMAR B. P. Received the Ph. D degree in Electrical Communication Engg.,Department from Indian Institute of Science (IISc), Bangalore in 2003, M.Tech degree in Computer Science and Technology from the University of Roorkee (Presently Indian Institute of Technology, IITR), with honors in 1992 a', 'PROFESSOR', 'ise'),
+('ise02', 'Dr. Lingaraju G. M.', 'Male', 'null', 'null', 'null', 'null', '0000-00-00', 'Regular', '9448127558', 'gmlraju@msrit.edu', 'rit', 'null', 'null', 'null', 'Dr. Lingaraju G. M. is a Ph.D. degree holder and is serving as a professor in IS&E department of MSRIT.He is interested in subjects related to computer graphics and virtual reality.', 'PROFESSOR', 'ise'),
+('ise03', 'Dr. Mydhili K. Nair', 'Female', 'null', 'null', 'null', 'null', '0000-00-00', 'Regular', '9880092392', 'mydhili.nair@msrit.edu', 'rit', 'null', 'null', 'null', 'Dr. Mydhili K. Nair is a Ph.D. degree holder and is serving as a professor in IS&E department of MSRIT. She is interested in subjects related to IoT & WSN.', 'PROFESSOR', 'ise'),
+('ise04', 'Rajaram M. Gowda', 'Male', 'null', 'null', 'null', 'null', '0000-00-00', 'Regular', '9986152854', 'rajgowda@msrit.edu', 'rit', 'null', 'null', 'null', 'Prof. Rajaram M Gowda has a blend of Industrial and Academic experience. He has worked in the areas of Design and Development of Advanced Light Helicopter(DHRUV) and was deputed to Eurocopters(Germany) in 1986 from HDB(HAL). He has worked on INSAT, SROSS, IRS satellite series for Department of Space', 'Associate Professor', 'ise'),
+('me01', 'Dr. Raji George', 'Male', 'null', 'null', 'null', 'null', '0000-00-00', 'Regular', '9845318047', 'rgeorgemsrit@rediffmail.com', 'rit', 'null', 'null', 'null', 'Dr. Raji George is a Professor and Head in the Mechanical Engineering Department of RIT. His areas of interests include subjects like Nano Technology, Mechanics of Materials, design and Finite element methods', 'PROFESSOR', 'me'),
+('me02', 'Dr. N. D. Prasanna', 'Male', 'null', 'null', 'null', 'null', '0000-00-00', 'Regular', '9900864304', 'nd.prasanna47@gmail.com', 'rit', 'null', 'null', 'null', 'Dr. N. D. Prasanna is a Professor in the Mechanical Engineering Department of RIT. His areas of interests include subjects like Production and Characterization of ADI', 'PROFESSOR', 'me'),
+('me03', 'Dr. P. Dinesh', 'Male', 'null', 'null', 'null', 'null', '0000-00-00', 'Regular', '9242259629', 'pdineshmech@msrit.edu', 'rit', 'null', 'null', 'null', 'Dr. P. Dinesh is a Professor in the Mechanical Engineering Department of RIT. His areas of interests include subjects like Machine Design, Finite Element Method, Manufacture Engineering, Material Characterization and Vibration.', 'PROFESSOR', 'me'),
+('me04', 'Dr. Putta Bore Gowda B.', 'Male', 'null', 'null', 'null', 'null', '0000-00-00', 'Regular', '9611649803', 'pbgowda@msrit.edu', 'rit', 'null', 'null', 'null', 'Dr. Putta Bore Gowda B. is a Professor in the Mechanical Engineering Department of RIT. His areas of interests include subjects like Thermal Engineering, Solar Energy', 'PROFESSOR', 'me');
 
 -- --------------------------------------------------------
 
@@ -321,6 +437,48 @@ CREATE TABLE `faculty_conference_symposia` (
   `facultyId` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `faculty_conference_symposia`
+--
+
+INSERT INTO `faculty_conference_symposia` (`slNo`, `eventName`, `place`, `date`, `invitedOrDeputed`, `noOfPapersPresented`, `facultyId`) VALUES
+(1, 'Driving Big Data with Hadoop Technologies', 'Dept of MCA, MSRIT', '2014-08-21', 'null', 0, 'cse27'),
+(2, 'IEEE Event on Software Engineering in Industry', 'RVCE, Bengaluru', '2016-01-23', 'null', 0, 'cse27'),
+(3, 'Staff development program on Desktop and cloud based office utilities', 'Dept of CSE, MSRIT', '2017-01-19', 'null', 0, 'cse27'),
+(4, 'Advances and Research challenges in the Applications of Artificial Intelligence in Gaming, Medical I', 'Dept of CSE, MSRIT', '2016-07-18', 'null', 0, 'cse27'),
+(5, 'One of the resource person in “Advances and Research Challenges in the Applications of Artificial In', 'MSRIT, Bangalore.', '2016-07-18', 'null', 0, 'cse07'),
+(6, 'The 1st International Workshop on Recommendation systems supported Teaching and Learning Environment', 'IIT Bombay, India', '2016-11-28', 'null', 0, 'cse08'),
+(7, '“Educational data mining using R and Python” , The 8th IEEE International Conference on Technology f', 'Indian Institute of Technology, Bombay, Mumbai', '2016-12-02', 'null', 0, 'cse08'),
+(8, 'Delivered Expert talk and shown demo to MTech students  “Data lake and Data Analytics “', 'RV college of Engineering, Bangalore', '2016-12-19', 'null', 0, 'cse08'),
+(9, 'IoT& Cyber Security using Watson &Bluemix“', 'MSRIT, Bangalore.', '2017-01-09', 'null', 0, 'cse08'),
+(10, 'Best practices in Outcome Based Education- case study based approach', 'RYMCE, Ballari College of engineering', '2017-08-11', 'null', 0, 'cse02'),
+(11, 'Tutorial conduction on Recommendation systems using Data mining techniques for Educational Domain in', 'Reva University,Bangalore', '2017-08-17', 'null', 0, 'cse08'),
+(12, 'Driving Big Data with Hadoop Technologies', 'Dept of MCA, MSRIT', '2014-08-22', 'null', 0, 'cse27'),
+(13, 'Staff development program on Desktop and cloud based office utilities', 'Dept of CSE, MSRIT', '2017-01-20', 'null', 0, 'cse27'),
+(14, 'Advances and Research challenges in the Applications of Artificial Intelligence in Gaming, Medical I', 'Dept of CSE, MSRIT', '2016-07-19', 'null', 0, 'cse27'),
+(15, 'The 1st International Workshop on Recommendation systems supported Teaching and Learning Environment', 'IIT Bombay, India', '2016-11-29', 'null', 0, 'cse08'),
+(16, '“Educational data mining using R and Python” , The 8th IEEE International Conference on Technology f', 'Indian Institute of Technology, Bombay, Mumbai', '2016-12-03', 'null', 0, 'cse08'),
+(17, 'IoT& Cyber Security using Watson &Bluemix“', 'MSRIT, Bangalore.', '2017-01-10', 'null', 0, 'cse08'),
+(18, 'Tutorial conduction on Recommendation systems using Data mining techniques for Educational Domain in', 'Reva University,Bangalore', '2017-08-18', 'null', 0, 'cse08'),
+(19, 'Driving Big Data with Hadoop Technologies', 'Dept of MCA, MSRIT', '2014-08-21', 'null', 0, 'ise01'),
+(20, 'IEEE Event on Software Engineering in Industry', 'RVCE, Bengaluru', '2016-01-23', 'null', 0, 'ise02'),
+(21, 'Staff development program on Desktop and cloud based office utilities', 'Dept of CSE, MSRIT', '2017-01-19', 'null', 0, 'ise03'),
+(22, 'Advances and Research challenges in the Applications of Artificial Intelligence in Gaming, Medical I', 'Dept of CSE, MSRIT', '2016-07-18', 'null', 0, 'ise04'),
+(23, 'One of the resource person in “Advances and Research Challenges in the Applications of Artificial In', 'MSRIT, Bangalore.', '2016-07-18', 'null', 0, 'ece01'),
+(24, 'The 1st International Workshop on Recommendation systems supported Teaching and Learning Environment', 'IIT Bombay, India', '2016-11-28', 'null', 0, 'ece02'),
+(25, '“Educational data mining using R and Python” , The 8th IEEE International Conference on Technology f', 'Indian Institute of Technology, Bombay, Mumbai', '2016-12-02', 'null', 0, 'ece03'),
+(26, 'Delivered Expert talk and shown demo to MTech students  “Data lake and Data Analytics “', 'RV college of Engineering, Bangalore', '2016-12-19', 'null', 0, 'ece04'),
+(27, 'IoT& Cyber Security using Watson &Bluemix“', 'MSRIT, Bangalore.', '2017-01-09', 'null', 0, 'me01'),
+(28, 'Best practices in Outcome Based Education- case study based approach', 'RYMCE, Ballari College of engineering', '2017-08-11', 'null', 0, 'me02'),
+(29, 'Tutorial conduction on Recommendation systems using Data mining techniques for Educational Domain in', 'Reva University,Bangalore', '2017-08-17', 'null', 0, 'me03'),
+(30, 'Driving Big Data with Hadoop Technologies', 'Dept of MCA, MSRIT', '2014-08-22', 'null', 0, 'me04'),
+(31, 'Staff development program on Desktop and cloud based office utilities', 'Dept of CSE, MSRIT', '2017-01-20', 'null', 0, 'cv01'),
+(32, 'Advances and Research challenges in the Applications of Artificial Intelligence in Gaming, Medical I', 'Dept of CSE, MSRIT', '2016-07-19', 'null', 0, 'cv02'),
+(33, 'The 1st International Workshop on Recommendation systems supported Teaching and Learning Environment', 'IIT Bombay, India', '2016-11-29', 'null', 0, 'cv03'),
+(34, '“Educational data mining using R and Python” , The 8th IEEE International Conference on Technology f', 'Indian Institute of Technology, Bombay, Mumbai', '2016-12-03', 'null', 0, 'cv04'),
+(35, 'IoT& Cyber Security using Watson &Bluemix“', 'MSRIT, Bangalore.', '2017-01-10', 'null', 0, 'iem01'),
+(36, 'Tutorial conduction on Recommendation systems using Data mining techniques for Educational Domain in', 'Reva University,Bangalore', '2017-08-18', 'null', 0, 'iem02');
+
 -- --------------------------------------------------------
 
 --
@@ -334,6 +492,94 @@ CREATE TABLE `faculty_guest_lecture` (
   `date` date NOT NULL,
   `facultyId` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `faculty_guest_lecture`
+--
+
+INSERT INTO `faculty_guest_lecture` (`slNo`, `placeInvited`, `title`, `date`, `facultyId`) VALUES
+(1, 'RIT, Bangalore', 'Vocational Course on “Advanced Java Programming”', '2013-01-07', 'cse21'),
+(2, 'MSRIT Bangalore', 'Python Programming  for 5 weeks', '2013-01-07', 'cse10'),
+(3, 'MSRIT', 'Takeaways of T4E IEEE conference, OBE national seminar to CSE Department Teaching Faculties', '2015-01-01', 'cse08'),
+(4, 'PMU, Thanjavur', 'TCP/IP in for MCA students', '2015-01-05', 'cse08'),
+(5, 'RIT, Bangalore', 'Vocational Course on “Java Programming”', '2014-01-07', 'cse21'),
+(6, 'MSRIT Bangalore', 'Python Programming  for 5 weeks', '2014-01-07', 'cse10'),
+(7, 'IEEE RVCE Software Engineering Chapter', 'Talk  on “Agile Methodology”,  ', '2016-01-01', 'cse02'),
+(8, 'First National   Conference/Workshop on Enhancing Information Technology Education (EITE), NIT Goa.', 'Talk on “Artificial Intelligence and Cognitive Computing: The next Big Revolution in Information Tec', '2016-01-01', 'cse02'),
+(9, 'RIT, Bangalore', 'Vocational Course on “Android Application Development”', '2015-01-07', 'cse21'),
+(10, 'Dept of CSE, MSRIT', 'Python Programming (Vocational course)', '2015-01-06', 'cse27'),
+(11, 'Dept of CSE, MSRIT', 'Web Application development (Vocational course)', '2015-01-06', 'cse27'),
+(12, 'BMSIT, Bengaluru', 'Setting up CUDA', '2016-01-01', 'cse27'),
+(13, 'MSRIT Bangalore', 'Python Programming  and Advanced Java Programming', '2015-01-07', 'cse10'),
+(14, 'MSRIT Bangalore', 'Advanced Java Programming', '2015-01-07', 'cse20'),
+(15, 'Conference on recent trends in 4G/5G wireless mobile communication: Dept. of EC, MSRIT', 'Talk on\" Protocol Engineering: From Specification, to Design to Implementation \".', '2016-01-07', 'cse02'),
+(16, 'RIT, Bangalore', 'Internet of Things', '2016-01-10', 'cse28'),
+(17, 'RIT, Bangalore', 'Python Programming', '2017-01-07', 'cse28'),
+(18, 'AIET, Moodbidri', 'Python Programming', '2016-01-08', 'cse28'),
+(19, 'RIT, Bangalore', 'Desktop and cloud based utilities', '2017-01-01', 'cse28'),
+(20, 'RIT, Bangalore', 'Internet of Things', '2017-01-05', 'cse28'),
+(21, 'RIT, Bangalore', 'Vocational Course on “Android Application Development”', '2017-01-07', 'cse21'),
+(22, 'RIT, Bangalore', 'Desktop and cloud based utilities', '2017-01-01', 'cse21'),
+(23, 'RIT, Bangalore', 'Advances and Research Challenges in the Applications of Artificial Intelligence in Gaming, Medical I', '2017-01-07', 'cse21'),
+(24, 'Alva’s Institute of of Engineering and Technology, Moodbidri', 'Python Programming', '2016-01-08', 'cse27'),
+(25, 'MSRIT,  Bangalore', 'Advanced Java Programming for 5 weeks', '2016-01-07', 'cse10'),
+(26, 'MSRIT', 'Three Days SDP on “Desktop and Cloud Based Office Utilities”', '2017-01-01', 'cse25'),
+(27, 'R V College of Engineering, Bangalore', ' IEEE CS Chapter expert talk on Data Lake', '2016-01-12', 'cse03'),
+(28, 'RIT, Bangalore', 'Advances and Research Challenges in the Applications of Artificial Intelligence in Gaming, Medical I', '2016-01-07', 'cse14'),
+(29, 'MSRIT,Bangalore', 'Web application', '2016-01-07', 'cse29'),
+(30, 'Dept of CSE, MSRIT', 'Python Programming (Vocational course)', '2017-01-07', 'cse27'),
+(31, 'MSRIT,  Bangalore', 'Advanced Java Programming for 5 weeks', '2017-01-07', 'cse10'),
+(32, 'Conference on “Challenges and Opportunities in Industry 4.0: Manufacturing and operations in smart f', 'Fundamentals of Internet of Things (IoT)', '2017-01-07', 'cse02'),
+(33, 'ACM Women in Research (ISDB-ACM-WIR 2018) SAIT, Indore, MP, India.', 'Applying Machine Learning techniques for Big Data Analytics', '2018-01-01', 'cse02'),
+(34, 'MSRIT,Bangalore', 'Data Science course , Vocational Course', '2017-01-07', 'cse08'),
+(35, 'MSRIT,Bangalore', 'Web application', '2017-01-07', 'cse29'),
+(36, 'MSRIT,Bangalore', 'Data Science course , Vocational Course', '2017-01-07', 'cse24'),
+(37, 'RIT, Bangalore', 'Vocational Course on “Android Application Development”', '2017-01-07', 'cse23'),
+(38, 'RIT, Bangalore', 'Web application', '2017-01-07', 'cse25'),
+(39, 'null', 'Python Programming', '2017-01-11', 'cse28'),
+(40, 'CMRIT, Bangalore', 'FDP on “Wireless Networks and IoT”', '2018-01-01', 'cse30'),
+(41, 'MSRIT, Bangalore', 'Web application', '2016-01-07', 'cse29'),
+(42, 'RIT, Bangalore', 'Vocational Course on “Advanced Java Programming”', '2013-01-07', 'ise01'),
+(43, 'MSRIT Bangalore', 'Python Programming  for 5 weeks', '2013-01-07', 'me03'),
+(44, 'MSRIT', 'Takeaways of T4E IEEE conference, OBE national seminar to CSE Department Teaching Faculties', '2015-01-01', 'iem02'),
+(45, 'PMU, Thanjavur', 'TCP/IP in for MCA students', '2015-01-05', 'me01'),
+(46, 'RIT, Bangalore', 'Vocational Course on “Java Programming”', '2014-01-07', 'me02'),
+(47, 'MSRIT Bangalore', 'Python Programming  for 5 weeks', '2014-01-07', 'cv03'),
+(48, 'IEEE RVCE Software Engineering Chapter', 'Talk  on “Agile Methodology”,  ', '2016-01-01', 'me04'),
+(49, 'First National   Conference/Workshop on Enhancing Information Technology Education (EITE), NIT Goa.', 'Talk on “Artificial Intelligence and Cognitive Computing: The next Big Revolution in Information Tec', '2016-01-01', 'me02'),
+(50, 'RIT, Bangalore', 'Vocational Course on “Android Application Development”', '2015-01-07', 'cv02'),
+(51, 'Dept of CSE, MSRIT', 'Python Programming (Vocational course)', '2015-01-06', 'ise03'),
+(52, 'Dept of CSE, MSRIT', 'Web Application development (Vocational course)', '2015-01-06', 'ise04'),
+(53, 'BMSIT, Bengaluru', 'Setting up CUDA', '2016-01-01', 'cv03'),
+(54, 'MSRIT Bangalore', 'Python Programming  and Advanced Java Programming', '2015-01-07', 'cv04'),
+(55, 'MSRIT Bangalore', 'Advanced Java Programming', '2015-01-07', 'ece01'),
+(56, 'Conference on recent trends in 4G/5G wireless mobile communication: Dept. of EC, MSRIT', 'Talk on\" Protocol Engineering: From Specification, to Design to Implementation \".', '2016-01-07', 'ece02'),
+(57, 'RIT, Bangalore', 'Internet of Things', '2016-01-10', 'ece03'),
+(58, 'RIT, Bangalore', 'Python Programming', '2017-01-07', 'cv01'),
+(59, 'AIET, Moodbidri', 'Python Programming', '2016-01-08', 'ise01'),
+(60, 'RIT, Bangalore', 'Desktop and cloud based utilities', '2017-01-01', 'ise03'),
+(61, 'RIT, Bangalore', 'Internet of Things', '2017-01-05', 'ise04'),
+(62, 'RIT, Bangalore', 'Vocational Course on “Android Application Development”', '2017-01-07', 'ise02'),
+(63, 'RIT, Bangalore', 'Desktop and cloud based utilities', '2017-01-01', 'me01'),
+(64, 'RIT, Bangalore', 'Advances and Research Challenges in the Applications of Artificial Intelligence in Gaming, Medical I', '2017-01-07', 'me03'),
+(65, 'Alva’s Institute of of Engineering and Technology, Moodbidri', 'Python Programming', '2016-01-08', 'me04'),
+(66, 'MSRIT,  Bangalore', 'Advanced Java Programming for 5 weeks', '2016-01-07', 'ise03'),
+(67, 'MSRIT', 'Three Days SDP on “Desktop and Cloud Based Office Utilities”', '2017-01-01', 'ise02'),
+(68, 'R V College of Engineering, Bangalore', ' IEEE CS Chapter expert talk on Data Lake', '2016-01-12', 'ece02'),
+(69, 'RIT, Bangalore', 'Advances and Research Challenges in the Applications of Artificial Intelligence in Gaming, Medical I', '2016-01-07', 'ece04'),
+(70, 'MSRIT,Bangalore', 'Web application', '2016-01-07', 'ece01'),
+(71, 'Dept of CSE, MSRIT', 'Python Programming (Vocational course)', '2017-01-07', 'ece03'),
+(72, 'MSRIT,  Bangalore', 'Advanced Java Programming for 5 weeks', '2017-01-07', 'iem01'),
+(73, 'Conference on “Challenges and Opportunities in Industry 4.0: Manufacturing and operations in smart f', 'Fundamentals of Internet of Things (IoT)', '2017-01-07', 'iem02'),
+(74, 'ACM Women in Research (ISDB-ACM-WIR 2018) SAIT, Indore, MP, India.', 'Applying Machine Learning techniques for Big Data Analytics', '2018-01-01', 'iem04'),
+(75, 'MSRIT,Bangalore', 'Data Science course , Vocational Course', '2017-01-07', 'iem03'),
+(76, 'MSRIT,Bangalore', 'Web application', '2017-01-07', 'iem02'),
+(77, 'MSRIT,Bangalore', 'Data Science course , Vocational Course', '2017-01-07', 'iem04'),
+(78, 'RIT, Bangalore', 'Vocational Course on “Android Application Development”', '2017-01-07', 'iem03'),
+(79, 'RIT, Bangalore', 'Web application', '2017-01-07', 'iem01'),
+(80, 'null', 'Python Programming', '2017-01-11', 'cv02'),
+(81, 'CMRIT, Bangalore', 'FDP on “Wireless Networks and IoT”', '2018-01-01', 'cv04'),
+(82, 'MSRIT, Bangalore', 'Web application', '2016-01-07', 'cv01');
 
 -- --------------------------------------------------------
 
@@ -511,7 +757,7 @@ CREATE TABLE `faculty_service` (
 --
 
 INSERT INTO `faculty_service` (`slNo`, `designation`, `qualification`, `joiningDate`, `yearsOfExperience`, `promotionDate`, `payScale`, `facultyId`) VALUES
-(1, 'PROFESSOR', 'Ph.D', '1995-03-17', 27, '0000-00-00', '6th Pay', 'cse01'),
+(1, 'PROFESSOR', 'Ph.D', '1995-03-14', 2, '0000-00-00', '6th Pay', 'cse01'),
 (2, 'PROFESSOR', 'Ph.D', '1998-04-16', 24, '0001-00-00', '6th Pay', 'cse02'),
 (3, 'PROFESSOR', 'Ph.D', '1995-10-31', 24, '0002-00-00', '6th Pay', 'cse03'),
 (4, 'ASSOCIATE PROFESSOR', 'Ph.D', '1999-12-17', 17, '0003-00-00', '6th Pay', 'cse04'),
@@ -566,7 +812,92 @@ CREATE TABLE `faculty_workshop_fdp` (
 --
 
 INSERT INTO `faculty_workshop_fdp` (`slNo`, `title`, `sponsoredOrFunded`, `date`, `noOfParticipants`, `type`, `facultyId`) VALUES
-(1, 'abc', 'fgh', '0000-00-00', 123, 'interntion', 'cse01');
+(1, 'Workshop on Maple Soft An Introduction', 'null', '2017-09-15', 1, 'null', 'cse01'),
+(2, 'Cyber-Physical Systems Symposium (CyPhySS)', 'null', '2017-07-19', 1, 'null', 'cse05'),
+(3, 'Distributed and cognitive technologies, business and security', 'null', '2017-07-24', 1, 'null', 'cse05'),
+(4, 'Cloud Computing With Amazon Web Services', 'null', '2017-07-31', 1, 'null', 'cse05'),
+(5, 'Distributed and cognitive technologies, business and security', 'null', '2017-07-24', 1, 'null', 'cse06'),
+(6, 'Distributed and cognitive technologies, business and security', 'null', '2017-07-24', 1, 'null', 'cse14'),
+(7, 'Distributed and cognitive technologies, business and security', 'null', '2017-07-24', 1, 'null', 'cse19'),
+(8, 'Machine learning techniques and advances for cognitive computing', 'null', '2017-07-31', 1, 'null', 'cse19'),
+(9, 'AWS educate', 'null', '2017-07-31', 1, 'null', 'cse13'),
+(10, 'Distributed and cognitive technologies, business and security', 'null', '2017-07-24', 1, 'null', 'cse13'),
+(11, 'Entrepreneurship Educator Program from Wadhwani Foundation', 'null', '2017-11-23', 1, 'null', 'cse13'),
+(12, 'Teaching techniques and Learning management System using ICT tools', 'null', '2018-01-16', 1, 'null', 'cse26'),
+(13, 'Workshop on “Research Methodology” ', 'null', '2017-07-17', 1, 'null', 'cse26'),
+(14, 'Workshop on “Role of Statistics in Scientific Research”', 'null', '2018-01-04', 1, 'null', 'cse26'),
+(15, 'Cyber-Physical Systems Symposium (CyPhySS)', 'null', '2017-07-19', 1, 'null', 'cse29'),
+(16, 'Distributed and Cognitive Technologies, Business and Security', 'null', '2017-07-24', 1, 'null', 'cse29'),
+(17, 'Cloud Computing With Amazon Web Services', 'null', '2017-07-31', 1, 'null', 'cse29'),
+(18, 'Android developer fundamentals faculty training ', 'null', '2017-12-18', 1, 'null', 'cse23'),
+(19, 'Teaching techniques and Management systems using ICT tools', 'null', '2018-01-16', 1, 'null', 'cse23'),
+(20, 'One week FDP on “Cloud based IOT Programming” ', 'null', '2018-01-16', 1, 'null', 'cse25'),
+(21, 'Cyber-Physical Systems Symposium', 'null', '2017-07-19', 1, 'null', 'cse25'),
+(22, 'One Week FDP on “Cloud Computing with AWS”', 'null', '2018-02-15', 1, 'null', 'cse25'),
+(23, 'oneM2M Developers Tutorial ', 'null', '2013-08-22', 1, 'null', 'cse25'),
+(24, 'International Conference on Advances in Computing, Communications and Informatics (ICACCI-2013)', 'null', '2013-08-22', 1, 'null', 'cse25'),
+(25, 'AWS Educate ', 'null', '2017-07-31', 1, 'null', 'cse18'),
+(26, 'Machine learning techniques and advances for cognitive computing ', 'null', '2017-07-31', 1, 'null', 'cse18'),
+(27, 'Distributed and cognitive Technologies , Business and security ', 'null', '2017-07-24', 1, 'null', 'cse18'),
+(28, 'AWS educate', 'null', '2017-07-31', 1, 'null', 'cse17'),
+(29, 'Distributed and cognitive technologies, business and security', 'null', '2017-07-24', 1, 'null', 'cse17'),
+(30, 'FDP on Distributed and cognitive technologies business and security” ', 'null', '2017-07-24', 1, 'null', 'cse06'),
+(31, 'FDP on Distributed and cognitive technologies business and security” ', 'null', '2017-07-24', 1, 'null', 'cse12'),
+(32, 'Workshop on ”Computational machine learning and artificial intelligence”', 'null', '2018-01-18', 1, 'null', 'cse12'),
+(33, 'FDP on Distributed and cognitive technologies business and security” ', 'null', '2017-07-24', 1, 'null', 'cse27'),
+(34, 'One week workshop on “Distributed and cognitive Technologies, Business and Security', 'null', '2017-07-24', 1, 'null', 'cse15'),
+(35, 'Four days course on “  Social and Information. Networks Analysis: Problems, Models and Machine Learn', 'null', '2018-12-11', 1, 'null', 'cse15'),
+(36, 'Two Day National Seminar on” Empowering Indian Society Towards Cashles Economy”', 'null', '2017-11-24', 1, 'null', 'cse09'),
+(37, 'Two Day Workshop on “ Research to Impact” ', 'null', '2017-11-13', 1, 'null', 'cse09'),
+(38, 'National Workshop on “ Popularisation of Remote Sensing Based Maps and Geospatial Information”', 'null', '2017-08-11', 1, 'null', 'cse09'),
+(39, 'Workshop on Cloud Computing with Amazon web services', 'null', '2005-07-31', 1, 'null', 'cse04'),
+(40, 'Machine Learning Techniques and Advances for cognitive Learning', 'null', '2017-07-31', 1, 'null', 'cse22'),
+(41, 'Social and Information Networks Analysis: Problems, Models and Machine Learning Methods”', 'null', '2017-12-11', 1, 'null', 'cse15'),
+(42, 'workshop on Distributed and Cognitive technologies, Business and Security ', 'null', '2017-07-24', 1, 'null', 'cse03'),
+(43, 'Machine learning techniques and advances for cognitive computing', 'null', '2017-07-31', 1, 'null', 'cse19'),
+(44, 'Workshop on Maple Soft An Introduction', 'null', '2017-09-15', 1, 'null', 'ise01'),
+(45, 'Cyber-Physical Systems Symposium (CyPhySS)', 'null', '2017-07-19', 1, 'null', 'ise02'),
+(46, 'Distributed and cognitive technologies, business and security', 'null', '2017-07-24', 1, 'null', 'ise03'),
+(47, 'Cloud Computing With Amazon Web Services', 'null', '2017-07-31', 1, 'null', 'ise04'),
+(48, 'Distributed and cognitive technologies, business and security', 'null', '2017-07-24', 1, 'null', 'ece01'),
+(49, 'Distributed and cognitive technologies, business and security', 'null', '2017-07-24', 1, 'null', 'ece02'),
+(50, 'Distributed and cognitive technologies, business and security', 'null', '2017-07-24', 1, 'null', 'ece03'),
+(51, 'Machine learning techniques and advances for cognitive computing', 'null', '2017-07-31', 1, 'null', 'ece04'),
+(52, 'AWS educate', 'null', '2017-07-31', 1, 'null', 'me01'),
+(53, 'Distributed and cognitive technologies, business and security', 'null', '2017-07-24', 1, 'null', 'me02'),
+(54, 'Entrepreneurship Educator Program from Wadhwani Foundation', 'null', '2017-11-23', 1, 'null', 'me03'),
+(55, 'Teaching techniques and Learning management System using ICT tools', 'null', '2018-01-16', 1, 'null', 'me04'),
+(56, 'Workshop on “Research Methodology” ', 'null', '2017-07-17', 1, 'null', 'cv01'),
+(57, 'Workshop on “Role of Statistics in Scientific Research”', 'null', '2018-01-04', 1, 'null', 'cv02'),
+(58, 'Cyber-Physical Systems Symposium (CyPhySS)', 'null', '2017-07-19', 1, 'null', 'cv03'),
+(59, 'Distributed and Cognitive Technologies, Business and Security', 'null', '2017-07-24', 1, 'null', 'cv04'),
+(60, 'Cloud Computing With Amazon Web Services', 'null', '2017-07-31', 1, 'null', 'iem01'),
+(61, 'Android developer fundamentals faculty training ', 'null', '2017-12-18', 1, 'null', 'iem02'),
+(62, 'Teaching techniques and Management systems using ICT tools', 'null', '2018-01-16', 1, 'null', 'iem03'),
+(63, 'One week FDP on “Cloud based IOT Programming” ', 'null', '2018-01-16', 1, 'null', 'iem04'),
+(64, 'Cyber-Physical Systems Symposium', 'null', '2017-07-19', 1, 'null', 'ise01'),
+(65, 'One Week FDP on “Cloud Computing with AWS”', 'null', '2018-02-15', 1, 'null', 'ise02'),
+(66, 'oneM2M Developers Tutorial ', 'null', '2013-08-22', 1, 'null', 'ise03'),
+(67, 'International Conference on Advances in Computing, Communications and Informatics (ICACCI-2013)', 'null', '2013-08-22', 1, 'null', 'ise04'),
+(68, 'AWS Educate ', 'null', '2017-07-31', 1, 'null', 'ece01'),
+(69, 'Machine learning techniques and advances for cognitive computing ', 'null', '2017-07-31', 1, 'null', 'ece02'),
+(70, 'Distributed and cognitive Technologies , Business and security ', 'null', '2017-07-24', 1, 'null', 'ece03'),
+(71, 'AWS educate', 'null', '2017-07-31', 1, 'null', 'ece04'),
+(72, 'Distributed and cognitive technologies, business and security', 'null', '2017-07-24', 1, 'null', 'me01'),
+(73, 'FDP on Distributed and cognitive technologies business and security” ', 'null', '2017-07-24', 1, 'null', 'me02'),
+(74, 'FDP on Distributed and cognitive technologies business and security” ', 'null', '2017-07-24', 1, 'null', 'me03'),
+(75, 'Workshop on ”Computational machine learning and artificial intelligence”', 'null', '2018-01-18', 1, 'null', 'me04'),
+(76, 'FDP on Distributed and cognitive technologies business and security” ', 'null', '2017-07-24', 1, 'null', 'iem01'),
+(77, 'One week workshop on “Distributed and cognitive Technologies, Business and Security', 'null', '2017-07-24', 1, 'null', 'iem02'),
+(78, 'Four days course on “  Social and Information. Networks Analysis: Problems, Models and Machine Learn', 'null', '2018-12-11', 1, 'null', 'iem03'),
+(79, 'Two Day National Seminar on” Empowering Indian Society Towards Cashles Economy”', 'null', '2017-11-24', 1, 'null', 'iem04'),
+(80, 'Two Day Workshop on “ Research to Impact” ', 'null', '2017-11-13', 1, 'null', 'ise01'),
+(81, 'National Workshop on “ Popularisation of Remote Sensing Based Maps and Geospatial Information”', 'null', '2017-08-11', 1, 'null', 'ece01'),
+(82, 'Workshop on Cloud Computing with Amazon web services', 'null', '2005-07-31', 1, 'null', 'iem02'),
+(83, 'Machine Learning Techniques and Advances for cognitive Learning', 'null', '2017-07-31', 1, 'null', 'iem01'),
+(84, 'Social and Information Networks Analysis: Problems, Models and Machine Learning Methods”', 'null', '2017-12-11', 1, 'null', 'cv01'),
+(85, 'workshop on Distributed and Cognitive technologies, Business and Security ', 'null', '2017-07-24', 1, 'null', 'ece02'),
+(86, 'Machine learning techniques and advances for cognitive computing', 'null', '2017-07-31', 1, 'null', 'ise02');
 
 -- --------------------------------------------------------
 
@@ -770,7 +1101,7 @@ CREATE TABLE `institution` (
 --
 
 INSERT INTO `institution` (`instituteName`, `yearOfEstablishment`, `address`, `contactNumber`, `websiteUrl`, `officialMailId`, `headOfTheInstitution`, `headContactNumber`) VALUES
-('Ramaiah Institute of Technology', '1962', 'MSR College Road, MSR Nagar, MSRIT Post, Bengaluru, Karnataka 560054', '"+9180-23606939', 'msrit.edu', 'admn@msrit.edu', 'NVR Naidu', '"+9180-23600822');
+('Ramaiah Institute of Technology', '1962', 'MSR College Road, MSR Nagar, MSRIT Post, Bengaluru, Karnataka 560054', '\"+9180-23606939', 'msrit.edu', 'admn@msrit.edu', 'NVR Naidu', '\"+9180-23600822');
 
 -- --------------------------------------------------------
 
@@ -791,6 +1122,116 @@ CREATE TABLE `journal_paper` (
   `sjrQuartile` varchar(10) NOT NULL,
   `facultyId` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `journal_paper`
+--
+
+INSERT INTO `journal_paper` (`slNo`, `authors`, `title`, `issn`, `journalName`, `journalType`, `volumeNumber`, `pageNumbers`, `year`, `sjrQuartile`, `facultyId`) VALUES
+(1, 'H.R. Roopashree, A. Kanavalli', 'Joint Algorithm for Energy-Conservation and Secure Key Generation in Wireless Sensor Network', '0973-4562', 'International Journal of Applied Engineering Research ', 'International', 11, 2250, '2015', 'null', 'cse01'),
+(2, ' Jagadish S Kallimani, KG Srinivasa, B Eswara Reddy', 'Statistical and analytical study of guided abstractive text summarization.', '0011-3891', 'Journal Current Science', 'null', 110, 0, '2016', 'null', 'cse04'),
+(3, 'Rashmi Ranjana T P,  Jayalakshmi D.S., and R. Srinivasan', 'On Replication Strategies for Data Intensive Cloud Applications', '0975-9646', 'International Journal of Computer Science and Information Technologies(IJCSIT) ', 'International', 0, 2479, '2015', 'null', 'cse05'),
+(4, 'Vinay Kumar N, Chandan G S,Sudershan Rai N, Ganesh Prasad Bhagwat,Monica R Mundada ', 'Smart Crop Monitoring Using Cooja Network Simulator', '1087-1090', 'IJAER journal', 'null', 70, 0, '2015', 'null', 'cse06'),
+(5, 'Parkavi.A, Dr.N.Vetrivelan ', 'A Flipped Selection: Strategic Approach for Project', 'null', 'International Journal of Applied Engineering Research', 'International', 10, 0, '2015', 'null', 'cse08'),
+(6, 'Geetha J, Uday Bhaskar, PChenna Reddy\r\n', 'Data Local Reduce Task Scheduling', 'null', 'Procedia Computer science', 'null', 0, 598, '2016', 'null', 'cse10'),
+(7, 'T.N.R.Kumar', 'A Real Time Approach for Indian Road Analysis using Image Processing and Computer Vision', 'null', 'International organization of Scientific Research Journal of Computer Engineering', 'International', 17, 1, '2015', 'null', 'cse11'),
+(8, 'Madhusudan G  T.N.R.Kumar', 'MINIMUM ENERGY CONSUMPTION IN ROUTING OF MOBILE AD HOC NETWORK', 'null', 'IRACST – International Journal of Computer Networks and Wireless Communications', 'International', 6, 0, '2016', 'null', 'cse11'),
+(9, 'Vinay Shankar and Mallegowda  M', 'Time Evolving Rating Prediction with Privacy Preserving and Defending Sybil Attack in Online Service', 'null', 'International Imperial Journal of Interdisciplinary Research (IJIR IS)', 'International', 2, 0, '2016', 'null', 'cse17'),
+(10, 'S.Rajarajeswari, K.Somasundaram ', 'Data Cleansing using Probabilistic classification for prediction of heart disease', '0973-4562', 'International Journal of Applied Engineering Research', 'International', 10, 0, '2015', 'null', 'cse20'),
+(11, 'S.Rajarajeswari, K. Somasundaram', 'Data confidentiality and privacy in cloud computing', '0974-5645', 'SCI Indian Journal of Science and Technology', 'National', 9, 0, '2016', 'null', 'cse20'),
+(12, ' S.Rajarajeswari,  Tulasi srinivas', 'Empirical Analysis of Location Based Service Approaches to Preserve Privacy: A Cloud Computing Appro', '0973-4562', 'International Journal of Applied Engineering Research', 'International', 10, 0, '2015', 'null', 'cse20'),
+(13, 'S.Rajarajeswari, K.Somasundaram ', 'Data Cleansing using Automated Extraction Tools', '1995-0772', 'Advances in Natural and Applied Sciences', 'null', 10, 68, '2016', 'null', 'cse20'),
+(14, 'Swamy L N,Sukruth Gowda M A, Rajesh S M, HanumanthaRaju R', 'Improving Social Networks for P2p Content and Context Based File Sharing In Mobile Ubiquitous Comput', 'null', 'International -Journal of Engineering Trends and Technology (IJETT)', 'International', 30, 0, '2015', 'null', 'cse28'),
+(15, 'Sanjeetha.R, Monisha.B, Anita Kanavalli', 'Prevention of DdoS Attacks in SDN by Using Virtual IP Addresses', '2230-9659', 'Journal of Advances in Science and Technology', 'null', 12, 1, '2016', 'null', 'cse01'),
+(16, 'Roopashree H.R. and Anita Kanavalli', 'Behavior analysis of STREE, SABR and SARDS under different simulation environments :A Case Study', 'null', 'International Journal Of Engineering And Computer Science (IJECS)', 'International', 6, 20033, '2017', 'null', 'cse01'),
+(17, 'Sini Anna Alex and Dr. Anita Kanavalli', 'CONTEXT AWARE TEACHING AID CEM FOR LEARNING COMPILER DESIGN CONCEPT FOR STUDENTS WITH LEARNING DISAB', '2320-5407', 'International Journal of Advanced Research (IJAR)', 'International', 0, 0, '2017', 'null', 'cse01'),
+(18, 'Archana M Kanthi, Annapurna P Patil', 'Analytics on Command Center Data in Healthcare Systems: A Case Study Implemented using Apache, Hadoo', '2320-9801', 'IJIRCCE', 'International', 4, 13674, '2016', 'null', 'cse02'),
+(19, 'Rachana N B, K G Srinivasa, S Seema', 'Airplane Health Surveillance System: A Framework', 'null', 'International Journal of Aviation Systems, Operations and Training', 'International', 3, 11, '2016', 'null', 'cse03'),
+(20, 'Shantveer, Jagadish S Kallimani', 'A Study on Dynamic Multilevel Priority Packet Scheduling Scheme for WSNs', '2278-2540', 'International Journal of Latest Technology in Engineering, Management & Applied Science', 'International', 5, 58, '2016', 'null', 'cse04'),
+(21, 'Meera Devi, Monica R Mundada', 'Real Time Monitoring of Environmental Parameters in Precision Agriculture using Wireless Sensor Netw', 'null', 'International Journal of Information and Communication Technology Research', 'International', 6, 0, '2016', 'null', 'cse06'),
+(22, 'Sanjeetha.R, Monisha.B, Anita Kanavalli', 'Prevention of DdoS Attacks in SDN by Using Virtual IP Addresses', '2230-9659', 'Journal of Advances in Science and Technology', 'null', 12, 1, '2016', 'null', 'cse07'),
+(23, 'Madhusudan G  T.N.R.Kumar   ', 'Simulation of Mobile Backbone Network', 'null', 'International Journal of Computer Networks and Communications Security', 'International', 4, 213, '2016', 'null', 'cse11'),
+(24, 'Madhusudan G  T.N.R.Kumar', 'MODRP: Multipath on-Demand Routing Protocol for MANET', 'null', 'International Journal of Wireless Communications and Networking Technologies', 'International', 5, 0, '2016', 'null', 'cse11'),
+(25, 'Madhusudhan G  T N R Kumar', 'Performance Analysis of MANET Protocols for DTN', 'null', 'International Journal of Latest Trends in Engineering and Technology (IJLTET)', 'International', 7, 0, '2016', 'null', 'cse11'),
+(26, 'Sini Anna Alex and Dr. Anita Kanavalli', 'CONTEXT AWARE TEACHING AID CEM FOR LEARNING COMPILER DESIGN CONCEPT FOR STUDENTS WITH LEARNING DISAB', '2320-5407', 'International Journal of Advanced Research (IJAR)', 'International', 0, 0, '2017', 'null', 'cse14'),
+(27, 'Meera Devi, Monica R Mundada', 'Real Time Monitoring of Environmental Parameters in Precision Agriculture using Wireless Sensor Netw', 'null', 'International Journal of Information and Communication Technology Research', 'International', 6, 0, '2016', 'null', 'cse16'),
+(28, 'Banerjee Shekhar, and Divakar Harekal', 'Vehicle Control in Vehicle to Infrastructure (V2I) Environment', 'null', 'International Journal of Computer Applications', 'International', 168, 0, '2017', 'null', 'cse18'),
+(29, 'S.Rajarajeswari, K. Somasundaram', 'Data Cleansing Framework for Heart Disease Data Set in Cloud Environment', '1943-023X', 'SJR Journal of Advanced Research in Dynamical and Control Systems', 'null', 9, 0, '2017', 'null', 'cse20'),
+(30, 'Shruthi B, Pramod Sunagar', 'Multi-Authentication for File Access in Cloud Storage with DNA Crypto System', '2454-1362', ' International Journal Imperial Journal of Interdisciplinary Research (IJIR)', 'International', 3, 0, '2017', 'null', 'cse21'),
+(31, 'Sowmya B J, Chetan, Pradeep, K.G.Srinivasa', 'Efficient Image Denoising for Effective Digitization using Image Processing Techniques and Neural Ne', 'null', 'IJAEC ', 'International', 7, 77, '2016', 'null', 'cse22'),
+(32, 'Sowmya B J, Chetan, Pradeep, K.G.Srinivasa', 'Efficient Image Denoising for Effective Digitization using Image Processing Techniques and Neural Ne', 'null', 'IJAEC ', 'International', 7, 77, '2016', 'null', 'cse23'),
+(33, 'Srinivasa, K. G., Hegde, G., Mishra, K., Siddiqui, M. N., Kumar, A., & Kumar, Pradeep', 'Microsense: Sensor Framework for IoT System-on-Chip', 'null', 'International Journal of Handheld Computing Research (IJHCR)', 'International', 7, 38, '2016', 'null', 'cse23'),
+(34, 'Sowmya B J, Chetan, Pradeep, K.G.Srinivasa', 'Efficient Image Denoising for Effective Digitization using Image Processing Techniques and Neural Ne', 'null', 'IJAEC ', 'International', 7, 77, '2016', 'null', 'cse24'),
+(35, 'Shilpa Shashikant Chaudhari, Rajashekhar C. Biradar\r\n', 'Resource prediction-based routing using agents in mobile ad hoc networks\r\n\r\n\r\n', 'null', 'Int. J. Communication Networks and Distributed Systems\r\n\r\n', 'International', 0, 0, 'null', 'null', 'cse30'),
+(36, 'Srinidhi Hiriyannaiah, G.M. Siddesh, P. Anoop, K.G. Srinivasa', 'Semi-structured data analysis and visualisation using NoSQL', 'null', 'International Journal of Big Data Intelligence', 'International', 0, 0, '2018', 'null', 'cse27'),
+(37, 'Sanjeetha R., Akshar Prasanna, Pradeep Kumar D., Anita Kanavalli', 'Mitigation of Controller induced DDoS Attack on Primary Server in High Traffic Scenarios of Software', 'null', 'International Journal of Pure and Applied Mathematics', 'International', 0, 0, '2018', 'null', 'cse23'),
+(38, 'Shruthi B R, Pramod C SUNAGAR', 'Multi-Authentication for File Access in Cloud Storage with DNA Crypto System', '2454-1362', 'Imperial Journal of Interdisciplinary Research', 'null', 3, 0, '2017', 'null', 'cse21'),
+(39, 'Pramod Sunagar, Pradeep Kumar, Mallegowda M, Dr. Anita Kanavalli', 'A Vehicular Apprehension Scheme in Wireless Networks', '2347-8616', 'International Journal of Innovations & Advancement in Computer Science', 'International', 0, 0, '2017', 'null', 'cse21'),
+(40, 'Shishir Mathew, Mamatha Jadav V,', 'SE2R2: Secure Energy Efficient and Reliable Routing Protocol in Presence of Phishing Attacks for WSN', '2395-0056', 'International Research Journal of Engineering and Technology (IRJET)', 'International', 4, 0, '2017', 'null', 'cse12'),
+(41, 'Varunashree N  T N R Kumar', 'Identification and classification of brain tumor MRI images with feature extraction using DWT and pr', 'null', 'Springer Nature Journal', 'null', 5, 0, '2018', 'null', 'cse11'),
+(42, 'Geetha J, Uday Bhaskar, P Chenna Reddy\r\n', 'New Hadoop Scheduler Framework', '0973-4562', 'International Journal of Applied Engineering Research\r\n\r\n', 'International', 12, 15152, '2017', 'null', 'cse10'),
+(43, 'Geetha J, Uday Bhaskar, P Chenna Reddy', 'An Analytical Approach for Optimizing the Performance of Hadoop Map Reduce over RoCE\r\n\r\n', 'null', 'IGI Global Special Issue : IoT, Fog and Cloud Computing Towards Building Intelligent Systems\r\n\r\n', 'null', 10, 0, '2018', 'null', 'cse10'),
+(44, 'Parkavi.A, Dr.K.Lakshmi, Dr.K.G.Srinivasa', 'Predicting effective course conduction strategy using Datamining techniques', 'null', 'Educational research and reviews, Academic Journals', 'null', 12, 1188, '2017', 'null', 'cse08'),
+(45, 'Sanjeetha R., Akshar Prasanna, Pradeep Kumar D., Anita Kanavalli', 'Mitigation of Controller induced DDoS Attack on Primary Server in High Traffic Scenarios of Software', 'null', 'International Journal of Pure and Applied Mathematics', 'International', 0, 0, '2018', 'null', 'cse07'),
+(46, 'Sanjeetha, R., Shikhar Srivastava, Rishab Pokharna, Syed Shafiq, and Anita Kanavalli', 'Mitigation of DDoS attack instigated by compromised switches on SDN controller by analyzing the flow', 'null', 'International Journal of Engineering and Technology (UAE)', 'International', 7, 46, '2018', 'null', 'cse07'),
+(47, 'Jayalakshmi D S,  R Srinivasan', 'A Greedy File Merging Algorithm for Handling Small Files in HDFS', 'null', 'International Journal of Pure and Applied mathematics', 'International', 0, 0, 'null', 'null', 'cse05'),
+(48, 'Jayalakshmi D S,  R Srinivasan', 'An Analytical Model for HDFS Replication Pipeline based on Queuing Theory', 'null', 'International Journal of Applied Engineering Research', 'International', 12, 15158, '2017', 'null', 'cse05'),
+(49, 'N.M. Annigeri, S. Shetty, A.P. Patil', 'Analysing the supervised learning methods for prediction of healthcare data in cloud environment: A ', '2347-2693', 'International Journal of Computer Sciences and Engineering', 'International', 6, 447, '2018', 'null', 'cse02'),
+(50, 'Shashikala Gudimani, Koushik S, Dr Annapurna P. Patil', 'SLA Based Brokerage for Multicloud Migration', '2347-8616', 'International Journal of Innovations & Advancement in Computer Science IJIACS', 'International', 6, 128, '2017', 'null', 'cse02'),
+(51, 'Sanjeetha R., Akshar Prasanna, Pradeep Kumar D., Anita Kanavalli', 'Mitigation of Controller induced DDoS Attack on Primary Server in High Traffic Scenarios of Software', 'null', 'International Journal of Pure and Applied Mathematics', 'International', 0, 0, '2018', 'null', 'cse01'),
+(52, 'Sanjeetha, R., Shikhar Srivastava, Rishab Pokharna, Syed Shafiq, and Anita Kanavalli', 'Mitigation of DDoS attack instigated by compromised switches on SDN controller by analyzing the flow', 'null', 'International Journal of Engineering and Technology (UAE)', 'International', 7, 46, '2018', 'null', 'cse01'),
+(53, 'H.R. Roopashree, A. Kanavalli', 'Joint Algorithm for Energy-Conservation and Secure Key Generation in Wireless Sensor Network', '0973-4562', 'International Journal of Applied Engineering Research ', 'International', 11, 2250, '2015', 'null', 'ise01'),
+(54, ' Jagadish S Kallimani, KG Srinivasa, B Eswara Reddy', 'Statistical and analytical study of guided abstractive text summarization.', '0011-3891', 'Journal Current Science', 'null', 110, 0, '2016', 'null', 'ise02'),
+(55, 'Rashmi Ranjana T P,  Jayalakshmi D.S., and R. Srinivasan', 'On Replication Strategies for Data Intensive Cloud Applications', '0975-9646', 'International Journal of Computer Science and Information Technologies(IJCSIT) ', 'International', 0, 2479, '2015', 'null', 'ise03'),
+(56, 'Vinay Kumar N, Chandan G S,Sudershan Rai N, Ganesh Prasad Bhagwat,Monica R Mundada ', 'Smart Crop Monitoring Using Cooja Network Simulator', '1087-1090', 'IJAER journal', 'null', 70, 0, '2015', 'null', 'ise04'),
+(57, 'Parkavi.A, Dr.N.Vetrivelan ', 'A Flipped Selection: Strategic Approach for Project', 'null', 'International Journal of Applied Engineering Research', 'International', 10, 0, '2015', 'null', 'ece01'),
+(58, 'Geetha J, Uday Bhaskar, PChenna Reddy\r\n', 'Data Local Reduce Task Scheduling', 'null', 'Procedia Computer science', 'null', 0, 598, '2016', 'null', 'ece02'),
+(59, 'T.N.R.Kumar', 'A Real Time Approach for Indian Road Analysis using Image Processing and Computer Vision', 'null', 'International organization of Scientific Research Journal of Computer Engineering', 'International', 17, 1, '2015', 'null', 'ece03'),
+(60, 'Madhusudan G  T.N.R.Kumar', 'MINIMUM ENERGY CONSUMPTION IN ROUTING OF MOBILE AD HOC NETWORK', 'null', 'IRACST – International Journal of Computer Networks and Wireless Communications', 'International', 6, 0, '2016', 'null', 'ece04'),
+(61, 'Vinay Shankar and Mallegowda  M', 'Time Evolving Rating Prediction with Privacy Preserving and Defending Sybil Attack in Online Service', 'null', 'International Imperial Journal of Interdisciplinary Research (IJIR IS)', 'International', 2, 0, '2016', 'null', 'me01'),
+(62, 'S.Rajarajeswari, K.Somasundaram ', 'Data Cleansing using Probabilistic classification for prediction of heart disease', '0973-4562', 'International Journal of Applied Engineering Research', 'International', 10, 0, '2015', 'null', 'me02'),
+(63, 'S.Rajarajeswari, K. Somasundaram', 'Data confidentiality and privacy in cloud computing', '0974-5645', 'SCI Indian Journal of Science and Technology', 'National', 9, 0, '2016', 'null', 'me03'),
+(64, ' S.Rajarajeswari,  Tulasi srinivas', 'Empirical Analysis of Location Based Service Approaches to Preserve Privacy: A Cloud Computing Appro', '0973-4562', 'International Journal of Applied Engineering Research', 'International', 10, 0, '2015', 'null', 'me04'),
+(65, 'S.Rajarajeswari, K.Somasundaram ', 'Data Cleansing using Automated Extraction Tools', '1995-0772', 'Advances in Natural and Applied Sciences', 'null', 10, 68, '2016', 'null', 'cv01'),
+(66, 'Swamy L N,Sukruth Gowda M A, Rajesh S M, HanumanthaRaju R', 'Improving Social Networks for P2p Content and Context Based File Sharing In Mobile Ubiquitous Comput', 'null', 'International -Journal of Engineering Trends and Technology (IJETT)', 'International', 30, 0, '2015', 'null', 'cv02'),
+(67, 'Sanjeetha.R, Monisha.B, Anita Kanavalli', 'Prevention of DdoS Attacks in SDN by Using Virtual IP Addresses', '2230-9659', 'Journal of Advances in Science and Technology', 'null', 12, 1, '2016', 'null', 'cv03'),
+(68, 'Roopashree H.R. and Anita Kanavalli', 'Behavior analysis of STREE, SABR and SARDS under different simulation environments :A Case Study', 'null', 'International Journal Of Engineering And Computer Science (IJECS)', 'International', 6, 20033, '2017', 'null', 'cv04'),
+(69, 'Sini Anna Alex and Dr. Anita Kanavalli', 'CONTEXT AWARE TEACHING AID CEM FOR LEARNING COMPILER DESIGN CONCEPT FOR STUDENTS WITH LEARNING DISAB', '2320-5407', 'International Journal of Advanced Research (IJAR)', 'International', 0, 0, '2017', 'null', 'iem01'),
+(70, 'Archana M Kanthi, Annapurna P Patil', 'Analytics on Command Center Data in Healthcare Systems: A Case Study Implemented using Apache, Hadoo', '2320-9801', 'IJIRCCE', 'International', 4, 13674, '2016', 'null', 'iem02'),
+(71, 'Rachana N B, K G Srinivasa, S Seema', 'Airplane Health Surveillance System: A Framework', 'null', 'International Journal of Aviation Systems, Operations and Training', 'International', 3, 11, '2016', 'null', 'iem03'),
+(72, 'Shantveer, Jagadish S Kallimani', 'A Study on Dynamic Multilevel Priority Packet Scheduling Scheme for WSNs', '2278-2540', 'International Journal of Latest Technology in Engineering, Management & Applied Science', 'International', 5, 58, '2016', 'null', 'iem04'),
+(73, 'Meera Devi, Monica R Mundada', 'Real Time Monitoring of Environmental Parameters in Precision Agriculture using Wireless Sensor Netw', 'null', 'International Journal of Information and Communication Technology Research', 'International', 6, 0, '2016', 'null', 'ise01'),
+(74, 'Sanjeetha.R, Monisha.B, Anita Kanavalli', 'Prevention of DdoS Attacks in SDN by Using Virtual IP Addresses', '2230-9659', 'Journal of Advances in Science and Technology', 'null', 12, 1, '2016', 'null', 'ise02'),
+(75, 'Madhusudan G  T.N.R.Kumar   ', 'Simulation of Mobile Backbone Network', 'null', 'International Journal of Computer Networks and Communications Security', 'International', 4, 213, '2016', 'null', 'ise03'),
+(76, 'Madhusudan G  T.N.R.Kumar', 'MODRP: Multipath on-Demand Routing Protocol for MANET', 'null', 'International Journal of Wireless Communications and Networking Technologies', 'International', 5, 0, '2016', 'null', 'ise04'),
+(77, 'Madhusudhan G  T N R Kumar', 'Performance Analysis of MANET Protocols for DTN', 'null', 'International Journal of Latest Trends in Engineering and Technology (IJLTET)', 'International', 7, 0, '2016', 'null', 'ece01'),
+(78, 'Sini Anna Alex and Dr. Anita Kanavalli', 'CONTEXT AWARE TEACHING AID CEM FOR LEARNING COMPILER DESIGN CONCEPT FOR STUDENTS WITH LEARNING DISAB', '2320-5407', 'International Journal of Advanced Research (IJAR)', 'International', 0, 0, '2017', 'null', 'ece02'),
+(79, 'Meera Devi, Monica R Mundada', 'Real Time Monitoring of Environmental Parameters in Precision Agriculture using Wireless Sensor Netw', 'null', 'International Journal of Information and Communication Technology Research', 'International', 6, 0, '2016', 'null', 'ece03'),
+(80, 'Banerjee Shekhar, and Divakar Harekal', 'Vehicle Control in Vehicle to Infrastructure (V2I) Environment', 'null', 'International Journal of Computer Applications', 'International', 168, 0, '2017', 'null', 'ece04'),
+(81, 'S.Rajarajeswari, K. Somasundaram', 'Data Cleansing Framework for Heart Disease Data Set in Cloud Environment', '1943-023X', 'SJR Journal of Advanced Research in Dynamical and Control Systems', 'null', 9, 0, '2017', 'null', 'me01'),
+(82, 'Shruthi B, Pramod Sunagar', 'Multi-Authentication for File Access in Cloud Storage with DNA Crypto System', '2454-1362', ' International Journal Imperial Journal of Interdisciplinary Research (IJIR)', 'International', 3, 0, '2017', 'null', 'me02'),
+(83, 'Sowmya B J, Chetan, Pradeep, K.G.Srinivasa', 'Efficient Image Denoising for Effective Digitization using Image Processing Techniques and Neural Ne', 'null', 'IJAEC ', 'International', 7, 77, '2016', 'null', 'me03'),
+(84, 'Sowmya B J, Chetan, Pradeep, K.G.Srinivasa', 'Efficient Image Denoising for Effective Digitization using Image Processing Techniques and Neural Ne', 'null', 'IJAEC ', 'International', 7, 77, '2016', 'null', 'me04'),
+(85, 'Srinivasa, K. G., Hegde, G., Mishra, K., Siddiqui, M. N., Kumar, A., & Kumar, Pradeep', 'Microsense: Sensor Framework for IoT System-on-Chip', 'null', 'International Journal of Handheld Computing Research (IJHCR)', 'International', 7, 38, '2016', 'null', 'iem01'),
+(86, 'Sowmya B J, Chetan, Pradeep, K.G.Srinivasa', 'Efficient Image Denoising for Effective Digitization using Image Processing Techniques and Neural Ne', 'null', 'IJAEC ', 'International', 7, 77, '2016', 'null', 'iem02'),
+(87, 'Shilpa Shashikant Chaudhari, Rajashekhar C. Biradar\r\n', 'Resource prediction-based routing using agents in mobile ad hoc networks\r\n\r\n\r\n', 'null', 'Int. J. Communication Networks and Distributed Systems\r\n\r\n', 'International', 0, 0, 'null', 'null', 'iem03'),
+(88, 'Srinidhi Hiriyannaiah, G.M. Siddesh, P. Anoop, K.G. Srinivasa', 'Semi-structured data analysis and visualisation using NoSQL', 'null', 'International Journal of Big Data Intelligence', 'International', 0, 0, '2018', 'null', 'iem04'),
+(89, 'Sanjeetha R., Akshar Prasanna, Pradeep Kumar D., Anita Kanavalli', 'Mitigation of Controller induced DDoS Attack on Primary Server in High Traffic Scenarios of Software', 'null', 'International Journal of Pure and Applied Mathematics', 'International', 0, 0, '2018', 'null', 'cv01'),
+(90, 'Shruthi B R, Pramod C SUNAGAR', 'Multi-Authentication for File Access in Cloud Storage with DNA Crypto System', '2454-1362', 'Imperial Journal of Interdisciplinary Research', 'null', 3, 0, '2017', 'null', 'cv02'),
+(91, 'Pramod Sunagar, Pradeep Kumar, Mallegowda M, Dr. Anita Kanavalli', 'A Vehicular Apprehension Scheme in Wireless Networks', '2347-8616', 'International Journal of Innovations & Advancement in Computer Science', 'International', 0, 0, '2017', 'null', 'cv03'),
+(92, 'Shishir Mathew, Mamatha Jadav V,', 'SE2R2: Secure Energy Efficient and Reliable Routing Protocol in Presence of Phishing Attacks for WSN', '2395-0056', 'International Research Journal of Engineering and Technology (IRJET)', 'International', 4, 0, '2017', 'null', 'cv04'),
+(93, 'Varunashree N  T N R Kumar', 'Identification and classification of brain tumor MRI images with feature extraction using DWT and pr', 'null', 'Springer Nature Journal', 'null', 5, 0, '2018', 'null', 'me01'),
+(94, 'Geetha J, Uday Bhaskar, P Chenna Reddy\r\n', 'New Hadoop Scheduler Framework', '0973-4562', 'International Journal of Applied Engineering Research\r\n\r\n', 'International', 12, 15152, '2017', 'null', 'me02'),
+(95, 'Geetha J, Uday Bhaskar, P Chenna Reddy', 'An Analytical Approach for Optimizing the Performance of Hadoop Map Reduce over RoCE\r\n\r\n', 'null', 'IGI Global Special Issue : IoT, Fog and Cloud Computing Towards Building Intelligent Systems\r\n\r\n', 'null', 10, 0, '2018', 'null', 'cv02'),
+(96, 'Parkavi.A, Dr.K.Lakshmi, Dr.K.G.Srinivasa', 'Predicting effective course conduction strategy using Datamining techniques', 'null', 'Educational research and reviews, Academic Journals', 'null', 12, 1188, '2017', 'null', 'cv01'),
+(97, 'Sanjeetha R., Akshar Prasanna, Pradeep Kumar D., Anita Kanavalli', 'Mitigation of Controller induced DDoS Attack on Primary Server in High Traffic Scenarios of Software', 'null', 'International Journal of Pure and Applied Mathematics', 'International', 0, 0, '2018', 'null', 'iem01'),
+(98, 'Sanjeetha, R., Shikhar Srivastava, Rishab Pokharna, Syed Shafiq, and Anita Kanavalli', 'Mitigation of DDoS attack instigated by compromised switches on SDN controller by analyzing the flow', 'null', 'International Journal of Engineering and Technology (UAE)', 'International', 7, 46, '2018', 'null', 'iem02'),
+(99, 'Jayalakshmi D S,  R Srinivasan', 'A Greedy File Merging Algorithm for Handling Small Files in HDFS', 'null', 'International Journal of Pure and Applied mathematics', 'International', 0, 0, 'null', 'null', 'ise03'),
+(100, 'Jayalakshmi D S,  R Srinivasan', 'An Analytical Model for HDFS Replication Pipeline based on Queuing Theory', 'null', 'International Journal of Applied Engineering Research', 'International', 12, 15158, '2017', 'null', 'ece03'),
+(101, 'N.M. Annigeri, S. Shetty, A.P. Patil', 'Analysing the supervised learning methods for prediction of healthcare data in cloud environment: A ', '2347-2693', 'International Journal of Computer Sciences and Engineering', 'International', 6, 447, '2018', 'null', 'me03'),
+(102, 'Shashikala Gudimani, Koushik S, Dr Annapurna P. Patil', 'SLA Based Brokerage for Multicloud Migration', '2347-8616', 'International Journal of Innovations & Advancement in Computer Science IJIACS', 'International', 6, 128, '2017', 'null', 'cv03'),
+(103, 'Sanjeetha R., Akshar Prasanna, Pradeep Kumar D., Anita Kanavalli', 'Mitigation of Controller induced DDoS Attack on Primary Server in High Traffic Scenarios of Software', 'null', 'International Journal of Pure and Applied Mathematics', 'International', 0, 0, '2018', 'null', 'ise02'),
+(104, 'Sanjeetha, R., Shikhar Srivastava, Rishab Pokharna, Syed Shafiq, and Anita Kanavalli', 'Mitigation of DDoS attack instigated by compromised switches on SDN controller by analyzing the flow', 'null', 'International Journal of Engineering and Technology (UAE)', 'International', 7, 46, '2018', 'null', 'ise01');
 
 -- --------------------------------------------------------
 
@@ -1351,166 +1792,199 @@ ALTER TABLE `student_publication`
 --
 ALTER TABLE `academic_council`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+
 --
 -- AUTO_INCREMENT for table `book`
 --
 ALTER TABLE `book`
-  MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `book_chapter`
 --
 ALTER TABLE `book_chapter`
-  MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
 --
 -- AUTO_INCREMENT for table `conference_paper`
 --
 ALTER TABLE `conference_paper`
-  MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+
 --
 -- AUTO_INCREMENT for table `consultancy`
 --
 ALTER TABLE `consultancy`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `courses_handled`
 --
 ALTER TABLE `courses_handled`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `faculty_conference_symposia`
 --
 ALTER TABLE `faculty_conference_symposia`
-  MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+
 --
 -- AUTO_INCREMENT for table `faculty_guest_lecture`
 --
 ALTER TABLE `faculty_guest_lecture`
-  MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+
 --
 -- AUTO_INCREMENT for table `faculty_patent`
 --
 ALTER TABLE `faculty_patent`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `faculty_qualification`
 --
 ALTER TABLE `faculty_qualification`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+
 --
 -- AUTO_INCREMENT for table `faculty_research`
 --
 ALTER TABLE `faculty_research`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
 --
 -- AUTO_INCREMENT for table `faculty_service`
 --
 ALTER TABLE `faculty_service`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
 --
 -- AUTO_INCREMENT for table `faculty_workshop_fdp`
 --
 ALTER TABLE `faculty_workshop_fdp`
-  MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+
 --
 -- AUTO_INCREMENT for table `finance`
 --
 ALTER TABLE `finance`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
 -- AUTO_INCREMENT for table `funded_projects`
 --
 ALTER TABLE `funded_projects`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `governing_body`
 --
 ALTER TABLE `governing_body`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
 --
 -- AUTO_INCREMENT for table `guest_lectures_invited`
 --
 ALTER TABLE `guest_lectures_invited`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
 --
 -- AUTO_INCREMENT for table `hardware`
 --
 ALTER TABLE `hardware`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
 -- AUTO_INCREMENT for table `industrial_collaboration_mou`
 --
 ALTER TABLE `industrial_collaboration_mou`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `industrial_visit`
 --
 ALTER TABLE `industrial_visit`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `journal_paper`
 --
 ALTER TABLE `journal_paper`
-  MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+
 --
 -- AUTO_INCREMENT for table `other_membership`
 --
 ALTER TABLE `other_membership`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `phd_scholar`
 --
 ALTER TABLE `phd_scholar`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
 --
 -- AUTO_INCREMENT for table `professional_activities`
 --
 ALTER TABLE `professional_activities`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `professional_body_membership`
 --
 ALTER TABLE `professional_body_membership`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `projects_handled`
 --
 ALTER TABLE `projects_handled`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `seminar_workshop`
 --
 ALTER TABLE `seminar_workshop`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
 --
 -- AUTO_INCREMENT for table `software`
 --
 ALTER TABLE `software`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `staff_achievement`
 --
 ALTER TABLE `staff_achievement`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `staff_service`
 --
 ALTER TABLE `staff_service`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `student_achievement`
 --
 ALTER TABLE `student_achievement`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `student_activities`
 --
 ALTER TABLE `student_activities`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `student_publication`
 --
 ALTER TABLE `student_publication`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Constraints for dumped tables
 --
@@ -1742,6 +2216,7 @@ ALTER TABLE `student_activities`
 --
 ALTER TABLE `student_publication`
   ADD CONSTRAINT `student_publication_ibfk_1` FOREIGN KEY (`departmentId`) REFERENCES `department` (`departmentId`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
