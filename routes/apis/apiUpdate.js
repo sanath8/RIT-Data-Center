@@ -31,6 +31,12 @@ router.post('/:tableName', function(req, res, next){
         sql+=upd.join(" , ");
         sql+=" Where facultyId='"+req.body.facultyId + "'";
     }
+    /* else if(req.body.url.indexOf('department') != -1){
+        //department page is accessed.
+        var sql = "Update "+req.params.tableName+" SET ";   
+        sql+=upd.join(" , ");
+        sql+=" Where departmentId='"+req.body.getParam + "'";
+    } */
     // for(var b in req.body){
     //     str=str+"\n"+b;
     // }
@@ -42,8 +48,15 @@ router.post('/:tableName', function(req, res, next){
             return;
         }
         console.log(req.body.url)
-        if(req.body.getParam)
-            res.redirect(req.body.url + "?fId="+req.body.getParam);
+        if(req.body.getParam){
+            //if department page is watched set departmentId
+            if(req.body.url.indexOf('department') != -1){
+                res.redirect(req.body.url + "?departmentId="+req.body.getParam);
+            }
+            else if(req.body.url.indexOf('faculty') != -1){
+                res.redirect(req.body.url + "?fId="+req.body.getParam);
+            }
+        }
         else
             res.redirect(req.body.url);
     });

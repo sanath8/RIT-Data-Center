@@ -20,14 +20,14 @@
                                 <th>Scheduled Date</th>
                             </thead>
                             <tbody>
-                                <% loadInTable(data.industrial_visit)%>
+                                <% loadInTableModular('industrial_visit', updatePermission)%>
                             </tbody>
                         </table>
                     </div>
                     <a href = "/department/generateexcel/1/5/?departmentId=<%-GetParam%>">
                     <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
                     </a>
-                <button class="btn btn-primary pull-right  insertButton" data-toggle="modal" data-target="#myModal1" style="margin:13px" onclick="fillDataVerticleTable(1)">Insert</button>                </div>
+                <button class="btn btn-primary pull-right  insertButton" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataModularInsert('industrial_visit')">Insert</button>                </div>
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
                         <h4 class="title">Invited Guest Lectures</h4>
@@ -50,7 +50,7 @@
                     <a href = "/department/generateexcel/2/5/?departmentId=<%-GetParam%>">
                     <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
                     </a>
-                <button class="btn btn-primary pull-right  insertButton" data-toggle="modal" data-target="#myModal1" style="margin:13px" onclick="fillDataVerticleTable(1)">Insert</button>                </div>
+                <button class="btn btn-primary pull-right  insertButton" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataVerticleTable(1)">Insert</button>                </div>
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
                         <h4 class="title">Seminars | Workshops</h4>
@@ -73,7 +73,7 @@
                     <a href = "/department/generateexcel/3/5/?departmentId=<%-GetParam%>">
                     <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
                     </a>
-                <button class="btn btn-primary pull-right  insertButton" data-toggle="modal" data-target="#myModal1" style="margin:13px" onclick="fillDataVerticleTable(1)">Insert</button>                </div>
+                <button class="btn btn-primary pull-right  insertButton" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataVerticleTable(1)">Insert</button>                </div>
             </div>
         </div>
     </div>

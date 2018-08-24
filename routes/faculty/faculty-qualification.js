@@ -45,12 +45,25 @@ router.get('/', function(req, res, next) {
 					url:"/faculty/qualification",
        				faculty_qualification:
 					{
+						slNo: "slNo",
 						facultyId : facultyID,
 						degree : "degree", 
 						university : "university",
 						passClass :  "passClass",
 						passYear :  "passYear",
 						areaOfSpecialization :  "areaOfSpecialization"
+					}
+				},
+				hiddenFields:{
+					faculty_qualification:
+					{
+						facultyId : true,
+						degree : false, 
+						university : false,
+						passClass :  false,
+						passYear :  false,
+						areaOfSpecialization :  false,
+						slNo: true
 					}
 				},
 				GetParam:req.query.fId,

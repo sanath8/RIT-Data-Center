@@ -58,10 +58,16 @@ router.get('/student-info', function(req, res, next) {
       console.log(studentAchievement);
       console.log(studentPublication);
       console.log(studentActivites);
+
+      var data = {
+
+      }
       res.render('department/student-info', { departmentId: departmentId, type:"student-info",
        data:{student_activities:studentActivites,student_achievement:studentAchievement,student_publication:studentPublication},
        authType:req.session.facultyId, GetParam:req.query.departmentId,
         insertPermission:departmentPermissions.insertPermission,
+        
+
         updatePermission:departmentPermissions.updatePermission
       });
   }
@@ -130,6 +136,8 @@ router.get('/activities', function(req, res, next) {
       var singleEntry = {
        industryName: industrial[i].industryName,
        scheduleDate: industrial[i].scheduleDate,
+       departmentId: industrial[i].departmentId,
+       slNo: industrial[i].slNo
       }
       industrialVisit.push(singleEntry);
     }
@@ -159,9 +167,31 @@ router.get('/activities', function(req, res, next) {
       }
       seminarWorkshop.push(singleEntry);
     }
+    console.log("accessing the activites page query deptID = " + req.query.departmentId + " session deptId" + req.session.departmentId );
+    
       res.render('department/activities', { departmentId: departmentId, type: 'activities',
       data:{industrial_visit:industrialVisit, guest_lectures_invited:invitedGuestLectures, seminar_workshop:seminarWorkshop},
       authType:req.session.facultyId, GetParam:req.query.departmentId,
+      index: {
+        url: '/department/activities',
+        industrial_visit:
+        {
+          industryName: "Industry Name",
+          scheduleDate: "Scheduled Date",
+          departmentId: "departmentId",
+          slNo: "slNo"
+        }
+      },
+      hiddenFields:{
+        industrial_visit:
+        {
+          industryName: false,
+          scheduleDate: false,
+          departmentId: true,
+          slNo: true
+        }
+      },
+
       insertPermission:departmentPermissions.insertPermission,
       updatePermission:departmentPermissions.updatePermission
   });
@@ -254,10 +284,9 @@ router.get('/bosboe', function(req, res, next) {
       }
       professionalbodyMembership.push(singleEntry);
     }
-
     res.render('department/bosboe', { departmentId: departmentId, type:'bosboe',
     data:{professional_activities:professionalActivities, other_membership: otherMembership, professional_body_membership: professionalbodyMembership},
-    authType:req.session.facultyId , GetParam:req.query.departmentId,
+    authType:req.session.facultyId , GetParam:req.query.departmentId || req.session.departmentId,
     insertPermission:departmentPermissions.insertPermission,
     updatePermission:departmentPermissions.updatePermission });
   }

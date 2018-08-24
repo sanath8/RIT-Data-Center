@@ -36,8 +36,16 @@ router.post('/:tableName', function(req, res, next){
         }
         if(!req.body.getParam)
             res.redirect(req.body.url);
-        else
-            res.redirect(req.body.url+"?fId="+req.body.getParam);
+        else{
+            //if department page is watched set departmentId
+            if(req.body.url.indexOf('department') != -1){
+                res.redirect(req.body.url + "?departmentId="+req.body.getParam);
+            }
+            else if(req.body.url.indexOf('faculty') != -1){
+                res.redirect(req.body.url + "?fId="+req.body.getParam);
+            }
+        }
+            
     });
 
 });
