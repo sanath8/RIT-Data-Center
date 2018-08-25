@@ -23,14 +23,14 @@
                                 <th>Year</th>
                             </thead>
                             <tbody>
-                                <%loadInTable(data.professional_activities)%>
+                                <%loadInTableModular("professional_activities", updatePermission)%>
                             </tbody>
                         </table>
                     </div>
                     <a href = "/department/generateexcel/1/6/?departmentId=<%-GetParam%>">
                     <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
                     </a>
-                <button class="btn btn-primary pull-right insertButton" data-toggle="modal" data-target="#myModal1" style="margin:13px" onclick="fillDataVerticleTable(1)">Update</button>                </div>
+                <button class="btn btn-primary pull-right insertButton" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataModularInsert('professional_activities')">Update</button>                </div>
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
                         <h4 class="title">Professional Body Membership.</h4>
@@ -45,14 +45,14 @@
                                 <th>Year of Subscription</th>
                             </thead>
                             <tbody>
-                                <%loadInTable(data.professional_body_membership)%>
+                                <%loadInTableModular("professional_body_membership", updatePermission)%>
                             </tbody>
                         </table>
                     </div>
                     <a href = "/department/generateexcel/2/6/?departmentId=<%-GetParam%>">
                     <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
                     </a>
-                <button class="btn btn-primary pull-right insertButton" data-toggle="modal" data-target="#myModal1" style="margin:13px" onclick="fillDataVerticleTable(1)">Update</button>                </div>
+                <button class="btn btn-primary pull-right insertButton" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataModularInsert('professional_body_membership')">Update</button>                </div>
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
                         <h4 class="title">Other Memberships</h4>
@@ -67,14 +67,14 @@
                                 <th>External / Internal</th>
                             </thead>
                             <tbody>
-                                <%loadInTable(data.other_membership)%>
+                                <%loadInTableModular("other_membership", updatePermission)%>
                             </tbody>
                         </table>
                     </div>
                     <a href = "/department/generateexcel/3/6/?departmentId=<%-GetParam%>">
                     <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
                     </a>
-                <button class="btn btn-primary pull-right insertButton" data-toggle="modal" data-target="#myModal1" style="margin:13px" onclick="fillDataVerticleTable(1)">Update</button>                </div>
+                <button class="btn btn-primary pull-right insertButton" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataModularInsert('other_membership')">Update</button>                </div>
             </div>
         </div>
     </div>

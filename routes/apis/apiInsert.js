@@ -61,7 +61,7 @@ router.post('/:tableName', function(req, res, next){
     //     str=str+"\n"+b;
     // }
 
-    console.log("the query is : " + sql);
+    console.log("the query is : " + sql + " getParam" );
     mysql.runRawQuery(sql, function(err, result){
         if(err){
             res.end("Error : "+err.message);

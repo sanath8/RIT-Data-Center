@@ -82,6 +82,25 @@ router.get('/', function(req, res, next) {
 					about : "About"
 				}
 			},
+			hiddenFields:{
+				faculty:{
+					facultyId:true,
+					facultyName:false,
+					gender:false,
+					address:false,
+					religion:false,
+					caste:false,
+					dob:false,
+					atureOfAppointment:false,
+					contactNumber:false,
+					emailId:false,
+					panNumber:false,
+					accountNumber:false,
+					pfNumber:false,
+					about : false,
+					slNo: true
+				}
+			},
 			fId:facultyId, about:about, GetParam:req.query.fId, authType:req.session.facultyId, departmentId:req.session.departmentId,
 			insertPermission:facultyPermissions.insertPermission,
 			updatePermission:facultyPermissions.updatePermission

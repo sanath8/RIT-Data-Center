@@ -49,7 +49,7 @@ router.get('/', function(req, res, next) {
 			url:"/institution/academic",
 			academic_council:
 			{
-				facultyId : facultyID,
+				facultyId : "facultyId",
 				slNo : "Sl. No", 
 				name : "Name",
 				category :  "Category",
@@ -62,7 +62,7 @@ router.get('/', function(req, res, next) {
 			academic_council:
 			{
 				facultyId : true,
-				slNo : false, 
+				slNo : true, 
 				name : false,
 				category :  false,
 				address :  false,

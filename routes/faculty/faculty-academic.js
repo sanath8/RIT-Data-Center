@@ -30,7 +30,7 @@ router.get('/', function(req, res, next) {
 		index : { 
 			url:"/faculty/academic-details",
 			courses_handled:{ 
-				facultyId : facultyID,
+				facultyId : "facultyId",
 				yearHandled : "yearHandled", 
 				subjectName : "subjectName",
 				ugOrPg :  "ugOrPg",
@@ -72,6 +72,53 @@ router.get('/', function(req, res, next) {
 				status:'status'               
 			   }
 		      
+		},
+		hiddenFields:{
+			courses_handled:{ 
+				slNo: true,
+				facultyId : true,
+				yearHandled : false, 
+				subjectName : false,
+				ugOrPg :  false,
+				labHandled :  false,                
+			   }
+		   ,
+		   projects_handled:
+			   {     
+				slNo: true,       
+				facultyId : true,
+				batch : false,
+				ugOrPg : false,
+				projectTitle : false,               
+			   }
+		   ,
+		   faculty_research:
+			   {            
+				slNo: true,
+				guideName: false,
+				researchCandidateName:false,
+				usn:false,
+				centreName:false,
+				university:false,
+				registrationYear:false,
+				title:false,
+				status:false,
+				facultyId:true       
+			   }
+		   ,
+		   phd_scholar:
+			{ 
+				slNo: true,           
+				facultyId:true,
+				scholarName:false,
+				guideName:false,
+				researchCentre:false,
+				university:false,
+				registrationYear:false,
+				usn:false,
+				title:false,
+				status:false               
+			}
 		},
 		GetParam: req.query.fId,
 		/* tableNames : ["courses_handled", "projects_handled", "faculty_research", "phd_scholar"],
@@ -116,7 +163,7 @@ router.get('/', function(req, res, next) {
 		authType:req.session.facultyId,
 		departmentId:req.session.departmentId,
 		insertPermission:facultyPermissions.insertPermission,
-			updatePermission:facultyPermissions.updatePermission
+		updatePermission:facultyPermissions.updatePermission
 	});
 		
 	}

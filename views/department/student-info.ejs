@@ -23,14 +23,14 @@
                                 <th>Category</th>
                             </thead>
                             <tbody>
-                                <% loadInTable(data.student_achievement)%>
+                                <% loadInTableModular('student_achievement', updatePermission)%>
                             </tbody>
                         </table>
                     </div>
                     <a href = "/department/generateexcel/1/2/?departmentId=<%-GetParam%>">
                     <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
                     </a>
-                <button class="btn btn-primary pull-right  insertButton" data-toggle="modal" data-target="#myModal1" style="margin:13px" onclick="fillDataVerticleTable(1)">Update</button>                </div>
+                <button class="btn btn-primary pull-right  insertButton" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataModularInsert('student_achievement')">Insert</button>                </div>
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
                         <h4 class="title">Student Activities</h4>
@@ -46,14 +46,14 @@
                                 <th>Category</th>
                             </thead>
                             <tbody>
-                                <% loadInTable(data.student_activities)%>
+                                <% loadInTableModular('student_activities', updatePermission)%>
                             </tbody>
                         </table>
                     </div>
                    <a href = "/department/generateexcel/2/2/?departmentId=<%-GetParam%>">
                     <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
                     </a>
-                <button class="btn btn-primary pull-right insertButton" data-toggle="modal" data-target="#myModal1" style="margin:13px" onclick="fillDataVerticleTable(1)">Update</button>                </div>
+                <button class="btn btn-primary pull-right insertButton" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataModularInsert('student_activities')">Insert</button>                </div>
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
                         <h4 class="title">Student Publications</h4>
@@ -69,14 +69,14 @@
                                 <th>Place</th>
                             </thead>
                             <tbody>
-                                <% loadInTable(data.student_publication)%>
+                                <% loadInTableModular('student_publication', updatePermission)%>
                             </tbody>
                         </table>
                     </div>
                     <a href = "/department/generateexcel/3/2/?departmentId=<%-GetParam%>">
                     <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
                     </a>
-                <button class="btn btn-primary pull-right  insertButton" data-toggle="modal" data-target="#myModal1" style="margin:13px" onclick="fillDataVerticleTable(1)">Update</button>                </div>
+                <button class="btn btn-primary pull-right  insertButton" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataModularInsert('student_publication')">Insert`</button>                </div>
             </div>
         </div>
     </div>

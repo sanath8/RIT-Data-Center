@@ -45,8 +45,8 @@ router.get('/', function(req, res, next) {
 					url:"/faculty/qualification",
        				faculty_qualification:
 					{
-						slNo: "slNo",
-						facultyId : facultyID,
+						slNo: "Sl. No",
+						facultyId : "facultyId",
 						degree : "degree", 
 						university : "university",
 						passClass :  "passClass",
@@ -67,15 +67,6 @@ router.get('/', function(req, res, next) {
 					}
 				},
 				GetParam:req.query.fId,
-				tableNames : ["faculty_qualification"],
-				columnSchema:[{
-					facultyId : facultyID,
-					degree : "degree", 
-					university : "university",
-					passClass :  "passClass",
-					passYear :  "passYear",
-					areaOfSpecialization :  "areaOfSpecialization"
-				}],
 				authType:req.session.facultyId,
 				departmentId:req.session.departmentId,
 				insertPermission:facultyPermissions.insertPermission,

@@ -24,6 +24,10 @@ router.post('/:tableName', function(req, res, next){
     }else if(req.body.facultyId){
         sql += " WHERE facultyId='"+req.body.facultyId + "'";   
     }
+    else if(req.body.url.indexOf('department') != -1){
+        //department page is accessed. 
+        sql+=" Where departmentId='"+req.body.getParam + "'";
+    }
     sql += 'AND ' + upd.join(' AND ');
     // for(var b in req.body){
     //     str=str+"\n"+b;

@@ -170,6 +170,85 @@ router.get('/', function(req, res, next) {
 				sjrQuartile : "SJR Quartile"               
 			}
 		], */
+		hiddenFields: {
+			faculty_workshop_fdp:
+			   {
+				facultyId : true,
+				title : false ,
+				sponsoredOrFunded : false ,
+				date : false ,
+				noOfParticipants : false ,
+				type : false,
+				slNo: true 
+			   }
+		   ,
+		   faculty_conference_symposia:
+			   {
+				facultyId : true,
+				eventName : false ,
+				place : false ,
+				date : false ,
+				invitedOrDeputed : false ,
+				noOfPapersPresented : false,
+				slNo: true 
+			   }
+		   ,
+		   faculty_guest_lecture:
+			   {            
+				facultyId:true,
+				placeInvited : false ,
+				title : false ,
+				date : false,
+				slNo: true                
+			   }
+		   ,
+		   book:
+			   {            
+				facultyId:true,         
+				bookTitle : false ,
+				bookAuthors : false ,
+				bookPublisher : false ,
+				year : false,
+				slNo: true                 
+			   }
+		   ,
+		   book_chapter:
+			   {            
+				facultyId:facultyID,         
+				chapterName : "Chapter Name" ,
+				bookName : "Book Name" ,
+				chapterAuthors : "Chapter Authors" ,
+				publisher : "Publisher" ,
+				year : "Year"                
+			   }
+		   ,
+		   conference_paper:
+			   {
+				
+				facultyId:facultyID,
+				authors : "Authors" ,
+				title : "Title" ,
+				conferenceName : "Conference Name" ,
+				conferenceType : "Conference Type" ,
+				organizedBy : "Organized By" ,
+				year : "Year"                
+			   }
+		   ,
+		   journal_paper:
+			{            
+				facultyId:facultyID,
+				authors : "Authors" ,
+				title : "Title" ,
+				issn : "ISSN" ,
+				journalName : "Journal Name" ,
+				journalType : "Journal Type" ,
+				volumeNumber : "Volume Number" ,
+				pageNumbers : "Page Numbbers" ,
+				year : "Year" ,
+				sjrQuartile : "SJR Quartile"               
+			}
+		   
+		},
 		authType:req.session.facultyId,
 		departmentId:req.session.departmentId,
 		insertPermission:facultyPermissions.insertPermission,

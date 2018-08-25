@@ -31,12 +31,12 @@ router.post('/:tableName', function(req, res, next){
         sql+=upd.join(" , ");
         sql+=" Where facultyId='"+req.body.facultyId + "'";
     }
-    /* else if(req.body.url.indexOf('department') != -1){
+    else if(req.body.url.indexOf('department') != -1){
         //department page is accessed.
         var sql = "Update "+req.params.tableName+" SET ";   
         sql+=upd.join(" , ");
         sql+=" Where departmentId='"+req.body.getParam + "'";
-    } */
+    }
     // for(var b in req.body){
     //     str=str+"\n"+b;
     // }
