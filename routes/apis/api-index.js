@@ -6,7 +6,7 @@ router.use('/logout', require('./logoutApi'));
 router.use('/update', require('./update'));
 router.use('/apiUpdate', require('./apiUpdate'));
 router.use('/apiInsert', require('./apiInsert'));
-
+router.use('/mail', require('./mailApi'));
 router.use('/apiDelete', require('./apiDelete'));
 router.use('/data', require('./dataApi'));
 
