@@ -3,7 +3,7 @@ var router = express.Router();
 var mysql = require('./mySqlCalls');
 
 router.post('/', function(req, res, next){
-    var facultyId = "cse"+Math.ceil(Math.random()*1000);
+    var facultyId = req.body.department+Math.ceil(Math.random()*1000);
     console.log("coming here")
     console.log(req.body);
     var sqlQuery = "INSERT INTO faculty VALUES (\"" + facultyId+"\",\""+req.body.name+"\",\""+req.body.gender+"\",\""+"null"+"\",\""+"null"+"\",\""
