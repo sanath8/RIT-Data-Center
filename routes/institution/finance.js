@@ -57,7 +57,7 @@ router.get('/', function(req, res, next) {
 			finance:
 			{
 				facultyId : true,
-				slNo : false, 
+				slNo : true, 
 				name : false,
 				category :  false,
 				address :  false,

@@ -58,9 +58,72 @@ router.get('/student-info', function(req, res, next) {
       console.log(studentAchievement);
       console.log(studentPublication);
       console.log(studentActivites);
+
+      var data = {
+
+      }
       res.render('department/student-info', { departmentId: departmentId, type:"student-info",
        data:{student_activities:studentActivites,student_achievement:studentAchievement,student_publication:studentPublication},
        authType:req.session.facultyId, GetParam:req.query.departmentId,
+       index: {
+         url: "/department/student-info",
+         student_activities: {
+           slNo: "slNo",
+           studentName: "Name of Student",
+           eventName: "Name of Event",
+           date: "Date",
+           industryOrOrganization: "Industry/Organization",
+           category: "Category",
+           departmentId: "departmentId"
+         },
+         student_achievement: {
+           slNo: "slNo",
+           studentName: "Name of Student",
+           eventName: "Name of Event",
+           date: "Date", 
+           award: "Award",
+           category: "Category",
+           departmentId: "departmentID"
+         },
+         student_publication: {
+          slNo: "Sl. No",
+          authors: "Authors",
+          title: "Title",
+          date: "Date",
+          conferenceOrJournal: "Conference/Journal",
+          place: "Place",
+          departmentId: "departmentId"
+        }
+       },
+       hiddenFields:{
+        student_activities: {
+          slNo: true,
+          studentName: false,
+          eventName: false,
+          date: false,
+          industryOrOrganization: false,
+          category: false,
+          departmentId: true
+        },
+        student_achievement: {
+          slNo: true,
+          studentName: false,
+          eventName: false,
+          date: false, 
+          award: false,
+          category: false,
+          departmentId: true
+        },
+        student_publication: {
+          slNo: true,
+          authors: false,
+          title: false,
+          date: false,
+          conferenceOrJournal: false,
+          place: false,
+          departmentId: true
+        }
+       },
         insertPermission:departmentPermissions.insertPermission,
         updatePermission:departmentPermissions.updatePermission
       });
@@ -108,6 +171,50 @@ router.get('/infrastructure-details', function(req, res, next) {
       console.log(result);
       res.render('department/infrastructure-details', { departmentId: departmentId, type:"infrastructure-details",
       data:{"hardware":hardware,"software":software}, authType:req.session.facultyId, GetParam:req.query.departmentId,
+      index: {
+        url: '/department/infrastructure-details',
+        hardware:
+        {
+          labName: "Name Of the Lab",
+          carpetArea: "Carpet Area",
+          majorEquipments: "Major Equipments",
+          slNo: "slNo",
+          totalInvestment: "Total Investment",
+          departmentId: "departmentId"
+        },
+        software:
+        {
+          slNo: "slNo", 
+          softwareName: "Name of the Software",
+          licenseNumber: "License Number",
+          noOfUsers: "Number of Users",
+          expiryDate: "Expiry Date",
+          vendorName: "Vendor Name",
+          departmentId: "departmentId"
+        }
+      },
+      hiddenFields:{
+        hardware:
+        {
+          labName: false,
+          carpetArea: false,
+          majorEquipments: false,
+          slNo: true,
+          totalInvestment: false,
+          departmentId: true
+        },
+        software:
+        {
+          slNo: true, 
+          softwareName: false,
+          licenseNumber: false,
+          noOfUsers: false,
+          expiryDate: false,
+          vendorName: false,
+          departmentId: true
+        }
+      },
+      
       insertPermission:departmentPermissions.insertPermission,
       updatePermission:departmentPermissions.updatePermission });
    }
@@ -130,6 +237,8 @@ router.get('/activities', function(req, res, next) {
       var singleEntry = {
        industryName: industrial[i].industryName,
        scheduleDate: industrial[i].scheduleDate,
+       departmentId: industrial[i].departmentId,
+       slNo: industrial[i].slNo
       }
       industrialVisit.push(singleEntry);
     }
@@ -159,9 +268,31 @@ router.get('/activities', function(req, res, next) {
       }
       seminarWorkshop.push(singleEntry);
     }
+    console.log("accessing the activites page query deptID = " + req.query.departmentId + " session deptId" + req.session.departmentId );
+    
       res.render('department/activities', { departmentId: departmentId, type: 'activities',
       data:{industrial_visit:industrialVisit, guest_lectures_invited:invitedGuestLectures, seminar_workshop:seminarWorkshop},
       authType:req.session.facultyId, GetParam:req.query.departmentId,
+      index: {
+        url: '/department/activities',
+        industrial_visit:
+        {
+          industryName: "Industry Name",
+          scheduleDate: "Scheduled Date",
+          departmentId: "departmentId",
+          slNo: "slNo"
+        }
+      },
+      hiddenFields:{
+        industrial_visit:
+        {
+          industryName: false,
+          scheduleDate: false,
+          departmentId: true,
+          slNo: true
+        }
+      },
+
       insertPermission:departmentPermissions.insertPermission,
       updatePermission:departmentPermissions.updatePermission
   });
@@ -184,6 +315,7 @@ router.get('/admission-details', function(req, res, next) {
     var admissionSpcific = result.admissions;
     for(var i=0; i<admissionSpcific.length; i++){
       var singleEntry = {
+        departmentId: admissionSpcific[i].departmentId,
         year: admissionSpcific[i].year,
         noOfUgStudents: admissionSpcific[i].noOfUgStudents,
         noOfPgStudents: admissionSpcific[i].noOfPgStudents,
@@ -200,8 +332,44 @@ router.get('/admission-details', function(req, res, next) {
        admission.push(singleEntry);
     }
     res.render('department/admission-details', { departmentId: departmentId, type: 'admission-details',
-      data:{admission: admission},
+      data:{admissions: admission},
       authType:req.session.facultyId, GetParam:req.query.departmentId,
+      index: {
+        url: "/department/admission-details",
+        admissions:{
+          year: "Year",
+          noOfUgStudents: "No of UG students admitted	",
+          noOfPgStudents: "No of PG students admitted	",
+          noOfPgStudentsWithGateScore: "No of PG students with GATE score	",
+          ugCet: "CET",
+          ugComedK: "COMEDK",
+          pgCet: "CET",
+          pgComedK: "COMEDK",
+          lateralEntry: "Admitted Through Lateral Entry	",
+          fullTimePhd: "Full Time	",
+          partTimePhd: "Part Time ",
+          mscByResearch: "MSc by research",
+          departmentId: "departmentId"
+        }
+      },
+      hiddenFields: {
+        admissions:{
+          year: false,
+          noOfUgStudents: false,
+          noOfPgStudents: false,
+          noOfPgStudentsWithGateScore: false,
+          ugCet: false,
+          ugComedK: false,
+          pgCet: false,
+          pgComedK: false,
+          lateralEntry: false,
+          fullTimePhd: false,
+          partTimePhd: false,
+          mscByResearch: false,
+          departmentId: true
+        }
+      },
+      
       insertPermission:departmentPermissions.insertPermission,
       updatePermission:departmentPermissions.updatePermission  });
     }
@@ -254,10 +422,64 @@ router.get('/bosboe', function(req, res, next) {
       }
       professionalbodyMembership.push(singleEntry);
     }
-
     res.render('department/bosboe', { departmentId: departmentId, type:'bosboe',
     data:{professional_activities:professionalActivities, other_membership: otherMembership, professional_body_membership: professionalbodyMembership},
-    authType:req.session.facultyId , GetParam:req.query.departmentId,
+    authType:req.session.facultyId , GetParam:req.query.departmentId || req.session.departmentId,
+    index:{
+      url: '/department/bosboe',
+      professional_activities: {
+        slNo: "Sl. No",
+        facultyName: "Name of Faculty",
+        board: "Board",
+        college: "College",
+        externalOrInternal: "External/Internal",
+        year: "Year",
+        departmentId: "departmentId"
+      },
+      other_membership:{
+        slNo: "Sl. No",
+        facultyName: "Name of Faculty",
+        contributionType: "Type of Contribution",
+        year: "Year",
+        internalOrExternal: "External/Internal",
+        departmentId: "departmentId"
+      },
+      professional_body_membership:{
+        slNo: "Sl. No",
+        facultyName: "Name of Faculty",
+        professionalBodyName: "Name of Professional Body",
+        membershipType: "Membership Type",
+        subscriptionYear: "Subscription Year",
+        departmentId: "departmentId"
+      }
+    },
+    hiddenFields:{
+      professional_activities: {
+        slNo: true,
+        facultyName: false,
+        board: false,
+        college: false,
+        externalOrInternal: false,
+        year: false,
+        departmentId: true
+      },
+      other_membership:{
+        slNo: true,
+        facultyName: false,
+        contributionType: false,
+        year: false,
+        internalOrExternal: false,
+        departmentId: true
+      },
+      professional_body_membership:{
+        slNo: true,
+        facultyName: false,
+        professionalBodyName: false,
+        membershipType: false,
+        subscriptionYear: false,
+        departmentId: true
+      }
+    },
     insertPermission:departmentPermissions.insertPermission,
     updatePermission:departmentPermissions.updatePermission });
   }

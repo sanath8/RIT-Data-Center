@@ -36,7 +36,10 @@ router.get('/', function(req, res, next) {
 
 		console.log(JSON.stringify(data));
 		console.log("Here is academics page of institution facultyId " + req.session.facultyID);
-		res.render('institution/academic', {title : "Academic Council Details", type:"academic", data:data,
+		res.render('institution/academic', {title : "Academic Council Details", 
+		type:"academic", 
+		
+		data:data,
 
         GetParam: req.query.deptId,
 
@@ -46,7 +49,7 @@ router.get('/', function(req, res, next) {
 			url:"/institution/academic",
 			academic_council:
 			{
-				facultyId : facultyID,
+				facultyId : "facultyId",
 				slNo : "Sl. No", 
 				name : "Name",
 				category :  "Category",
@@ -59,7 +62,7 @@ router.get('/', function(req, res, next) {
 			academic_council:
 			{
 				facultyId : true,
-				slNo : false, 
+				slNo : true, 
 				name : false,
 				category :  false,
 				address :  false,

@@ -50,6 +50,7 @@ router.get('/', function(req, res, next) {
 						url:"/faculty/service-details",
 						faculty_service:
 							{
+							 slNo: "Sl. No",
 							 facultyId : facultyID,
 							 designation : "Designation" ,
 							 qualification : "Qualification" ,
@@ -59,6 +60,20 @@ router.get('/', function(req, res, next) {
 							 payScale : "Payscale" 
 							}
 						
+					 },
+					 hiddenFields:
+					 {
+						faculty_service:
+						{
+						 facultyId : true,
+						 designation: false,
+						 qualification: false,
+						 joiningDate: false,
+						 yearsOfExperience: false,
+						 promotionDate: false,
+						 payScale: false ,
+						 slNo: true
+						}
 					 },
 				GetParam: req.query.fId,
 				/* tableNames : ["faculty_service"],

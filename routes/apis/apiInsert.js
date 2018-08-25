@@ -17,16 +17,22 @@ router.post('/:tableName', function(req, res, next){
     var tableKey=[];
     console.log("request body in apiInsert : " + JSON.stringify(req.body));
     for(var t in req.body){
-        if(t!="slNo" && t!="facultyId" && t!="url" && t!="getParam"){
+        if(t!="slNo" && t!="facultyId" && t!="url" && t!="getParam" && t != "departmentId"){
             upd.push("'"+req.body[t]+"'");
             tableKey.push(t);
-        }else if(t=="facultyId"){
+        }else if(t==="facultyId" || t==="departmentId"){
             console.log("req.session.facultyId = " + req.session.facultyId);
             if(req.session.facultyId === 'admin'){
                 if(req.body.url.indexOf('institution') != -1){
                     //if the institution page is accessed from admin level, dont include facultyId
                     continue;
                 }
+                else if(req.body.url.indexOf('department') != -1){
+                    //if the institution page is accessed from admin level, dont include facultyId
+                    upd.push("'"+req.body.getParam+"'");
+                    tableKey.push("departmentId");
+                }
+
                 else if(req.body.url.indexOf('faculty') != -1){
                     //if the faculty page is accessed from admin level, include the facultyId
                     upd.push("'"+req.body.getParam+"'");
@@ -55,7 +61,7 @@ router.post('/:tableName', function(req, res, next){
     //     str=str+"\n"+b;
     // }
 
-    console.log("the query is : " + sql);
+    console.log("the query is : " + sql + " getParam" );
     mysql.runRawQuery(sql, function(err, result){
         if(err){
             res.end("Error : "+err.message);
@@ -64,7 +70,13 @@ router.post('/:tableName', function(req, res, next){
         if(!req.body.getParam){
             res.redirect(req.body.url);
         }else{
-            res.redirect(req.body.url+"?fId="+req.body.getParam);
+            //if department page is watched set departmentId
+            if(req.body.url.indexOf('department') != -1){
+                res.redirect(req.body.url + "?departmentId="+req.body.getParam);
+            }
+            else if(req.body.url.indexOf('faculty') != -1){
+                res.redirect(req.body.url + "?fId="+req.body.getParam);
+            }
         }
     });
 

@@ -66,6 +66,48 @@ router.get('/', function(req, res, next) {
 				}
 			   
 			},
+			hiddenFields:{
+				funded_projects:
+				{   
+					facultyId : true,         
+					investigatorName : false ,
+					projectTitle  : false ,
+					nameOfFundingAgent : false ,
+					sanctionOrderNumber : false ,
+					projectDuration : false ,
+					dateSanctioned : false ,
+					sanctionedAmount : false,
+					slNo: true                
+				}
+			,
+			faculty_patent:
+				{   
+					facultyId : true,            
+					patentTitle : false ,
+					applicationNumber : false ,
+					dateOfFilingApplication : false ,
+					publicationDate : false                
+				}
+			,
+			consultancy:
+				{   
+					facultyId : true,            
+					financialYear : false ,
+					clientOrganization : false ,
+					consultancyProjectTitle : false ,
+					amountReceived : false, 
+					slNo: true                
+				}
+			,
+			industrial_collaboration_mou:
+				{   
+					facultyId : true,            
+					mouTitle : false ,
+					mouSignedWithIndustryOrGovt : false ,
+					mouSigningDate : false ,
+					slNo: true               
+				}
+			},
 		GetParam: req.query.fId,
 		/* tableNames:["funded_projects", "faculty_patent", "consultancy", "industrial_collaboration_mou"],
 		columnSchema:[

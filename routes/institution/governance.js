@@ -58,7 +58,7 @@ router.get('/', function(req, res, next) {
 			governing_body:
 			{
 				facultyId : true,
-				slNo : false, 
+				slNo : true, 
 				name : false,
 				category :  false,
 				address :  false,
