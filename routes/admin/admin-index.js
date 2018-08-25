@@ -60,4 +60,6 @@ router.get('/getSummary/:tableName/:from/:to/:departmentId/:type', function(req,
 
 router.use('/admin-reports', require('./admin-reports'));
 
+router.use('/add-faculty', require('./add-faculty'))
+
 module.exports = router;
