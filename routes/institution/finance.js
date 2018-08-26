@@ -56,13 +56,21 @@ router.get('/', function(req, res, next) {
 		hiddenFields:{
 			finance:
 			{
-				facultyId : true,
-				slNo : true, 
-				name : false,
-				category :  false,
-				address :  false,
-				status :  false,
-				instituteName:true
+				facultyId : {
+					view: true,
+					insert: true,
+					update: true
+				},
+				slNo : {
+					view: true,
+					insert: true,
+					update: true
+				}, 
+				name : { view: false, insert: false, update: false },
+				category :  { view: false, insert: false, update: false },
+				address :  { view: false, insert: false, update: false },
+				status :  { view: false, insert: false, update: false },
+				instituteName:{ view: true, insert: false, update: false }
 			}
 		},
 		updatePermission:institutionPermissions.updatePermission, insertPermission:institutionPermissions.insertPermission,

@@ -20,7 +20,7 @@
                     console.log("it reached hiddenFields  j = " + j);
                     console.log("it reached hiddenFields " + JSON.stringify(hiddenFields) + " " + hiddenFields[columnName][j] + " " + j);
                     
-                    if(hiddenFields[columnName][j]){
+                    if(hiddenFields[columnName][j].view){
                         continue;
                     }
                 }
@@ -170,7 +170,7 @@ var hiddenFields = {};
 
         console.log(columnName);
         for(var j in res){
-            if(hiddenFields[columnName][j]){
+            if(hiddenFields[columnName][j].update){
                 str = str + ("<input name='"+j+"' type='hidden' value='"+res[j]+"'>");
                 continue;
             }
@@ -210,7 +210,7 @@ var hiddenFields = {};
         console.log(JSON.stringify(hiddenFields) + " " + columnName + " ");
         
         for(var j in index[columnName]){
-            if(hiddenFields[columnName][j]){
+            if(hiddenFields[columnName][j].insert){
                 str = str + ("<input name='"+j+"' type='hidden' value='null'>");
                 continue;
             }
