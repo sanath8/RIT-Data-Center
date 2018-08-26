@@ -29,7 +29,7 @@ mailer.prototype.sendMail = function(mailTo, res)
           from: 'datacenterrit@gmail.com',
           to: mailTo,
           subject: 'Password Recovery',
-          text: 'Your password is ' + JSON.stringify(result[0].password) + '. Do not share this with anyone.'
+          text: 'Password for user name '+ mailTo +' is ' + JSON.stringify(result[0].password) + '. Do not share this with anyone.'
         };
 
         transporter.sendMail(mailOptions, function(error, info){
