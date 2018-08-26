@@ -97,31 +97,31 @@ router.get('/student-info', function(req, res, next) {
        },
        hiddenFields:{
         student_activities: {
-          slNo: true,
-          studentName: false,
-          eventName: false,
-          date: false,
-          industryOrOrganization: false,
-          category: false,
-          departmentId: true
+          slNo: { view: true, insert: true, update: true } ,
+          studentName: { view: false, insert: false, update: false },
+          eventName: { view: false, insert: false, update: false },
+          date: { view: false, insert: false, update: false },
+          industryOrOrganization: { view: false, insert: false, update: false },
+          category: { view: false, insert: false, update: false },
+          departmentId: { view: true, insert: true, update: true } 
         },
         student_achievement: {
-          slNo: true,
-          studentName: false,
-          eventName: false,
-          date: false, 
-          award: false,
-          category: false,
-          departmentId: true
+          slNo: { view: true, insert: true, update: true } ,
+          studentName: { view: false, insert: false, update: false },
+          eventName: { view: false, insert: false, update: false },
+          date: { view: false, insert: false, update: false }, 
+          award: { view: false, insert: false, update: false },
+          category: { view: false, insert: false, update: false },
+          departmentId: { view: true, insert: true, update: true } 
         },
         student_publication: {
-          slNo: true,
-          authors: false,
-          title: false,
-          date: false,
-          conferenceOrJournal: false,
-          place: false,
-          departmentId: true
+          slNo: { view: true, insert: true, update: true } ,
+          authors: { view: false, insert: false, update: false },
+          title: { view: false, insert: false, update: false },
+          date: { view: false, insert: false, update: false },
+          conferenceOrJournal: { view: false, insert: false, update: false },
+          place: { view: false, insert: false, update: false },
+          departmentId: { view: true, insert: true, update: true } 
         }
        },
         insertPermission:departmentPermissions.insertPermission,
@@ -196,22 +196,22 @@ router.get('/infrastructure-details', function(req, res, next) {
       hiddenFields:{
         hardware:
         {
-          labName: false,
-          carpetArea: false,
-          majorEquipments: false,
-          slNo: true,
-          totalInvestment: false,
-          departmentId: true
+          labName: { view: false, insert: false, update: false },
+          carpetArea: { view: false, insert: false, update: false },
+          majorEquipments: { view: false, insert: false, update: false },
+          slNo: { view: true, insert: true, update: true } ,
+          totalInvestment: { view: false, insert: false, update: false },
+          departmentId: { view: true, insert: true, update: true } 
         },
         software:
         {
-          slNo: true, 
-          softwareName: false,
-          licenseNumber: false,
-          noOfUsers: false,
-          expiryDate: false,
-          vendorName: false,
-          departmentId: true
+          slNo: { view: true, insert: true, update: true } , 
+          softwareName: { view: false, insert: false, update: false },
+          licenseNumber: { view: false, insert: false, update: false },
+          noOfUsers: { view: false, insert: false, update: false },
+          expiryDate: { view: false, insert: false, update: false },
+          vendorName: { view: false, insert: false, update: false },
+          departmentId: { view: true, insert: true, update: true } 
         }
       },
       
@@ -286,10 +286,10 @@ router.get('/activities', function(req, res, next) {
       hiddenFields:{
         industrial_visit:
         {
-          industryName: false,
-          scheduleDate: false,
-          departmentId: true,
-          slNo: true
+          industryName: { view: false, insert: false, update: false },
+          scheduleDate: { view: false, insert: false, update: false },
+          departmentId: { view: true, insert: true, update: true } ,
+          slNo: { view: true, insert: true, update: true } 
         }
       },
 
@@ -354,19 +354,19 @@ router.get('/admission-details', function(req, res, next) {
       },
       hiddenFields: {
         admissions:{
-          year: false,
-          noOfUgStudents: false,
-          noOfPgStudents: false,
-          noOfPgStudentsWithGateScore: false,
-          ugCet: false,
-          ugComedK: false,
-          pgCet: false,
-          pgComedK: false,
-          lateralEntry: false,
-          fullTimePhd: false,
-          partTimePhd: false,
-          mscByResearch: false,
-          departmentId: true
+          year: { view: false, insert: false, update: false },
+          noOfUgStudents: { view: false, insert: false, update: false },
+          noOfPgStudents: { view: false, insert: false, update: false },
+          noOfPgStudentsWithGateScore: { view: false, insert: false, update: false },
+          ugCet: { view: false, insert: false, update: false },
+          ugComedK: { view: false, insert: false, update: false },
+          pgCet: { view: false, insert: false, update: false },
+          pgComedK: { view: false, insert: false, update: false },
+          lateralEntry: { view: false, insert: false, update: false },
+          fullTimePhd: { view: false, insert: false, update: false },
+          partTimePhd: { view: false, insert: false, update: false },
+          mscByResearch: { view: false, insert: false, update: false },
+          departmentId: { view: true, insert: true, update: true } 
         }
       },
       
@@ -455,29 +455,29 @@ router.get('/bosboe', function(req, res, next) {
     },
     hiddenFields:{
       professional_activities: {
-        slNo: true,
-        facultyName: false,
-        board: false,
-        college: false,
-        externalOrInternal: false,
-        year: false,
-        departmentId: true
+        slNo: { view: true, insert: true, update: true } ,
+        facultyName: { view: false, insert: false, update: false },
+        board: { view: false, insert: false, update: false },
+        college: { view: false, insert: false, update: false },
+        externalOrInternal: { view: false, insert: false, update: false },
+        year: { view: false, insert: false, update: false },
+        departmentId: { view: true, insert: true, update: true } 
       },
       other_membership:{
-        slNo: true,
-        facultyName: false,
-        contributionType: false,
-        year: false,
-        internalOrExternal: false,
-        departmentId: true
+        slNo: { view: true, insert: true, update: true } ,
+        facultyName: { view: false, insert: false, update: false },
+        contributionType: { view: false, insert: false, update: false },
+        year: { view: false, insert: false, update: false },
+        internalOrExternal: { view: false, insert: false, update: false },
+        departmentId: { view: true, insert: true, update: true } 
       },
       professional_body_membership:{
-        slNo: true,
-        facultyName: false,
-        professionalBodyName: false,
-        membershipType: false,
-        subscriptionYear: false,
-        departmentId: true
+        slNo: { view: true, insert: true, update: true } ,
+        facultyName: { view: false, insert: false, update: false },
+        professionalBodyName: { view: false, insert: false, update: false },
+        membershipType: { view: false, insert: false, update: false },
+        subscriptionYear: { view: false, insert: false, update: false },
+        departmentId: { view: true, insert: true, update: true } 
       }
     },
     insertPermission:departmentPermissions.insertPermission,
