@@ -173,80 +173,44 @@ router.get('/', function(req, res, next) {
 		hiddenFields: {
 			faculty_workshop_fdp:
 			   {
-				facultyId : true,
-				title : false ,
-				sponsoredOrFunded : false ,
-				date : false ,
-				noOfParticipants : false ,
-				type : false,
-				slNo: true 
+				facultyId : { view: true, insert: true, update: true },
+				title : { view: false, insert: false, update: false } ,
+				sponsoredOrFunded : { view: false, insert: false, update: false } ,
+				date : { view: false, insert: false, update: false } ,
+				noOfParticipants : { view: false, insert: false, update: false } ,
+				type : { view: false, insert: false, update: false },
+				slNo: { view: true, insert: true, update: true } 
 			   }
 		   ,
 		   faculty_conference_symposia:
 			   {
-				facultyId : true,
-				eventName : false ,
-				place : false ,
-				date : false ,
-				invitedOrDeputed : false ,
-				noOfPapersPresented : false,
-				slNo: true 
+				facultyId : { view: true, insert: true, update: true },
+				eventName : { view: false, insert: false, update: false } ,
+				place : { view: false, insert: false, update: false } ,
+				date : { view: false, insert: false, update: false } ,
+				invitedOrDeputed : { view: false, insert: false, update: false } ,
+				noOfPapersPresented : { view: false, insert: false, update: false },
+				slNo: { view: true, insert: true, update: true } 
 			   }
 		   ,
 		   faculty_guest_lecture:
 			   {            
-				facultyId:true,
-				placeInvited : false ,
-				title : false ,
-				date : false,
-				slNo: true                
+				facultyId:{ view: true, insert: true, update: true },
+				placeInvited : { view: false, insert: false, update: false } ,
+				title : { view: false, insert: false, update: false } ,
+				date : { view: false, insert: false, update: false },
+				slNo: { view: true, insert: true, update: true }                
 			   }
 		   ,
 		   book:
 			   {            
-				facultyId:true,         
-				bookTitle : false ,
-				bookAuthors : false ,
-				bookPublisher : false ,
-				year : false,
-				slNo: true                 
+				facultyId:{ view: true, insert: true, update: true },         
+				bookTitle : { view: false, insert: false, update: false } ,
+				bookAuthors : { view: false, insert: false, update: false } ,
+				bookPublisher : { view: false, insert: false, update: false } ,
+				year : { view: false, insert: false, update: false },
+				slNo: { view: true, insert: true, update: true }                 
 			   }
-		   ,
-		   book_chapter:
-			   {            
-				facultyId:facultyID,         
-				chapterName : "Chapter Name" ,
-				bookName : "Book Name" ,
-				chapterAuthors : "Chapter Authors" ,
-				publisher : "Publisher" ,
-				year : "Year"                
-			   }
-		   ,
-		   conference_paper:
-			   {
-				
-				facultyId:facultyID,
-				authors : "Authors" ,
-				title : "Title" ,
-				conferenceName : "Conference Name" ,
-				conferenceType : "Conference Type" ,
-				organizedBy : "Organized By" ,
-				year : "Year"                
-			   }
-		   ,
-		   journal_paper:
-			{            
-				facultyId:facultyID,
-				authors : "Authors" ,
-				title : "Title" ,
-				issn : "ISSN" ,
-				journalName : "Journal Name" ,
-				journalType : "Journal Type" ,
-				volumeNumber : "Volume Number" ,
-				pageNumbers : "Page Numbbers" ,
-				year : "Year" ,
-				sjrQuartile : "SJR Quartile"               
-			}
 		   
 		},
 		authType:req.session.facultyId,
