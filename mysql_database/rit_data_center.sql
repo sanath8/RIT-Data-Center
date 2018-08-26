@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
--- https://www.phpmyadmin.net/
+-- version 4.5.2
+-- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Aug 24, 2018 at 12:51 PM
--- Server version: 10.1.30-MariaDB
--- PHP Version: 7.2.2
+-- Host: localhost
+-- Generation Time: Aug 26, 2018 at 01:26 PM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 5.6.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -27,7 +25,7 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `academic_council`
 --
-CREATE DATABASE rit_data_center
+
 CREATE TABLE `academic_council` (
   `slNo` int(11) NOT NULL,
   `category` varchar(50) NOT NULL,
@@ -119,6 +117,13 @@ CREATE TABLE `admissions` (
   `mscByResearch` int(11) NOT NULL,
   `departmentId` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admissions`
+--
+
+INSERT INTO `admissions` (`year`, `noOfUgStudents`, `noOfPgStudents`, `noOfPgStudentsWithGateScore`, `ugCet`, `ugComedK`, `pgCet`, `pgComedK`, `lateralEntry`, `fullTimePhd`, `partTimePhd`, `mscByResearch`, `departmentId`) VALUES
+('ih;', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'cse');
 
 -- --------------------------------------------------------
 
@@ -333,7 +338,8 @@ INSERT INTO `department` (`departmentId`, `departmentName`, `yearOfEstablishment
 ('ece', 'Electronics and Communication Engineering', '1975', 'division of electrical sciences block, 3rd floor', '080-23600822/23606939', 'hod_ec@msrit.edu', 'Dr. S Sethu Selvi', '9481183798', 'Ramaiah Institute of Technology'),
 ('iem', 'Industrial Engineering & Management', '1979', 'engineering sciences block', '080-23600822/23606939', 'hod_im@msrit.edu', 'Dr. G. S. Prakash', '9448226933', 'Ramaiah Institute of Technology'),
 ('ise', 'Information Science & Engineering', '1992', 'division of electrical sciences block, 2nd floor', '080-23600822/23606939', 'hod_is@msrit.edu', 'DR. VIJAYA KUMAR B. P.', '9980634134', 'Ramaiah Institute of Technology'),
-('me', 'Mechanical Engineering', '1962', 'engineering sciences block', '080-23600822/23606939', 'hod-me@msrit.edu', 'Dr. Raji George', '9845318047', 'Ramaiah Institute of Technology');
+('me', 'Mechanical Engineering', '1962', 'engineering sciences block', '080-23600822/23606939', 'hod-me@msrit.edu', 'Dr. Raji George', '9845318047', 'Ramaiah Institute of Technology'),
+('te', 'Telecommunication and engineering', '', '', '', '', '', '', 'Ramaiah Institute of Technology');
 
 -- --------------------------------------------------------
 
@@ -367,11 +373,11 @@ CREATE TABLE `faculty` (
 --
 
 INSERT INTO `faculty` (`facultyId`, `facultyName`, `gender`, `address`, `religion`, `caste`, `category`, `dob`, `natureOfAppointment`, `contactNumber`, `emailId`, `password`, `panNumber`, `accountNumber`, `pfNumber`, `about`, `designation`, `departmentId`) VALUES
-('cse01', 'Anita Kanavalli', 'Female', 'NO 25 ANASWARA 1ST MAIN, 2nd cross MSR Ngar', 'Christian', 'Protestant', 'GM', '1967-04-02', 'Regular', '9845899681', 'anithak@msrit.edu', 'rit', 'AKOPK7232J', '141201010012262', 'KN/BN/8146/0754', 'Dr. Anita Kanavalli is working as the Head of Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include Adhoc networks, high performance computing and microprocessors.', 'PROFESSOR', 'cse'),
+('cse01', 'Anita Kanavalli', 'Female', 'NO 25 ANASWARA 1ST MAIN, 2nd cross MSR Ngar', 'Christian', 'Protestant', 'GM', '1967-03-31', 'Regular', '9845899681', 'anithak@msrit.edu', 'rit', 'AKOPK7232J', '141201010012262', 'KN/BN/8146/0754', 'Dr. Anita Kanavalli is working as the Head of Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include Adhoc networks, high performance computing and microprocessors.', 'PROFESSOR', 'cse'),
 ('cse02', 'Annapurna P. Patil', 'Female', '#308, C Block Gowri Apartment, NEW BEL Road', 'Hindu', 'Veershaiva Jang', 'GM 371J', '1972-10-10', 'Regular', '9945409177', 'annapurnap2@msrit.edu', 'rit', 'AIMPP9079L', '141201010013904', 'KN/BN/8146/0852', 'Dr. Annapurna P. Patil is working as a Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include Wireless Networks, Artificial Intelligence, Protocol Engineering, Cloud Computing and IOT, Data Structures and Analysis of Algorithms.', 'PROFESSOR', 'cse'),
 ('cse03', 'Seema S', 'Female', '#327, 7TH CROSS,  3RD BLOCK, HMT layout, Vidyarany', 'Hindu', 'Marathi', 'GM', '1970-06-29', 'Regular', '9901688004', 'seemas@msrit.edu', 'rit', 'ARJPS9571N', '141201010010588', 'KN/BN/8146/0779', 'Dr. S. Seema is working as a Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include databases, data mining and big data, computer graphics, bioinformatics and data analytics.', 'PROFESSOR', 'cse'),
-('cse04', 'Jagadish S.K.', 'Male', 'NO.79, 9TH MAIN, 6TH CROSS, J C Nagar, Kurubara ha', 'Hindu', 'Lingayath', 'GM', '1977-07-19', 'Regular', '9844413643', 'jagadish.k@msrit.edu', 'rit', 'AHRPK8437B', '141201010015421', 'KN/BN/8146/0942', 'Dr. Jagadish S. Kallimani is working as an Associate Professor in Computer Science Department of Ramaiah Institute of Technology. His areas of interest include artificial intelligence, natural language processing, information retrieval, information extraction, and statistical machine learning.', 'ASSOCIATE PROFESSOR', 'cse'),
-('cse05', 'Jayalakshmi D.S', 'Female', '#325/6, \"SRINIDHI\", F BLOCK, Sahakara nagar', 'Hindu', 'Bramhin', 'GM', '1967-04-21', 'Regular', '8197820657', 'jayalakshmids@msrit.edu', 'rit', 'AHGPD5509A', '141201010018116', 'KN/BN/8146/0984', 'Jayalakshmi D. S. is working as an Associate Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include cloud computing, big data, computer graphics.', 'ASSOCIATE PROFESSOR', 'cse'),
+('cse04', 'Jagadish S.K', 'Male', 'NO.79, 9TH MAIN, 6TH CROSS, J C Nagar, Kurubara ha', 'Hindu', 'Lingayath', 'GM', '1977-07-17', 'Regular', '9844413643', 'jagadish.k@msrit.edu', 'rit', 'AHRPK8437B', '141201010015421', 'KN/BN/8146/0942', 'Dr. Jagadish S. Kallimani is working as an Associate Professor in Computer Science Department of Ramaiah Institute of Technology. His areas of interest include artificial intelligence, natural language processing, information retrieval, information extraction, and statistical machine learning.', 'ASSOCIATE PROFESSOR', 'cse'),
+('cse05', 'Jayalakshmi D.S', 'Female', '#325/6, "SRINIDHI", F BLOCK, Sahakara nagar', 'Hindu', 'Bramhin', 'GM', '1967-04-21', 'Regular', '8197820657', 'jayalakshmids@msrit.edu', 'rit', 'AHGPD5509A', '141201010018116', 'KN/BN/8146/0984', 'Jayalakshmi D. S. is working as an Associate Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include cloud computing, big data, computer graphics.', 'ASSOCIATE PROFESSOR', 'cse'),
 ('cse06', 'Monica R Mundada', 'Female', '137/A1, 13th cross ASCS layout, Near RMV Hosptial,', 'Hindu', 'Marwadi', 'GM', '1974-09-15', 'Regular', '9008365087', 'monica@msrit.edu', 'rit', 'AIWPM8762H', '141201010015521', 'KN/BN/8146/0924', 'Dr. Monica R. Mundada is working as an Associate Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include theory of computation, wireless sensor networks, computer networks, data communications, and IOT.', 'ASSOCIATE PROFESSOR', 'cse'),
 ('cse07', 'Sanjeetha R', 'Female', 'Sri Manjunatha Swamy Nilaya, #78, 2nd cross, Vinay', 'Hindu', 'vokkaliga', 'vokkaliga', '1980-10-16', 'Regular', '9986406819', 'sanjeetha.r@msrit.edu', 'rit', 'BTYPS2093H', '141201011000968', 'KN/BN/8146/1102', 'Sanjeetha R. is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include software defined networks, computer networks, data communications, operating systems, and database systems.', 'ASST PROFESSOR', 'cse'),
 ('cse08', 'A Parkavi', 'Female', 'C/O, C.SINGARAM, NO.124, 6TH MAIN, 3RD CROSS, IST ', 'Christian', 'Pallan', 'SC', '1979-05-05', 'Regular', '9902524685', 'parkavi.a@msrit.edu', 'rit', 'APHPP4199M', '141201011000983', 'KN/BN/8146/1097', 'Parkavi A. is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include data mining, educational data mining, social network analysis, compiler design and educational technology.', 'ASST PROFESSOR', 'cse'),
@@ -379,7 +385,7 @@ INSERT INTO `faculty` (`facultyId`, `facultyName`, `gender`, `address`, `religio
 ('cse10', 'J Geetha', 'Female', 'NO-106 SLV Durga Apartments Vidyaranipura,  BANGAL', 'Hindu', 'reddy', 'GM', '1979-07-16', 'Regular', '9916912573', 'geetha@msrit.edu', 'rit', 'ALDPG4963E', '141201011001787', 'KN/BN/8146/1161', 'Geetha J. is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include cloud computing, big data, semantic web, graph theory and web designing.', 'ASST PROFESSOR', 'cse'),
 ('cse11', 'T.N R. Kumar', 'Male', '#1/3(212) 3RD CROSS CHIKKANNA, Gardenns Shankarpur', 'Hindu', 'Bramhin', 'Other', '1967-06-19', 'Regular', '9844636865', 'tnrkumar@msrit.edu', 'rit', 'AHWPR2220G', '141201011002750', 'KN/BN/8146/1174', 'Dr. T.N.R.Kumar is working as an Associate Professor in Computer Science Department of Ramaiah Institute of Technology. His areas of interest include image processing, software engineering and computer networks.', 'ASST PROFESSOR', 'cse'),
 ('cse12', 'Mamatha  Jadhav V', 'Female', '#2709 11TH MAIN D BLOCK, II stage Rajajinagar Blor', 'Hindu', 'Marathi', 'Other', '1973-10-22', 'Regular', '9844094962', 'mamsdalvi@msrit.edu', 'rit', 'AKDPJ5187A', '141201011011032', 'KN/BN/8146/1263', 'Mamatha Jadhav V. is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include computer networks, database management systems and data mining.', 'ASST PROFESSOR', 'cse'),
-('cse13', 'Chethan C T', 'Male', '#208 PATEL CHANNAPA\'S, 1ST Main Dwaraka nagar BSK ', 'Hindu', 'Gowda', '3A', '1985-10-28', 'Regular', '9449035534', 'ctchethan@msrit.edu', 'rit', 'AIDPC7398G', '141201011004919', 'KN/BN/8146/1299', 'Mr. Chethan is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. His areas of interest include analytics, entrepreneurship, incubation, consultancy, and industry association.', 'ASST PROFESSOR', 'cse'),
+('cse13', 'Chethan C T', 'Male', '#208 PATEL CHANNAPA''S, 1ST Main Dwaraka nagar BSK ', 'Hindu', 'Gowda', '3A', '1985-10-28', 'Regular', '9449035534', 'ctchethan@msrit.edu', 'rit', 'AIDPC7398G', '141201011004919', 'KN/BN/8146/1299', 'Mr. Chethan is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. His areas of interest include analytics, entrepreneurship, incubation, consultancy, and industry association.', 'ASST PROFESSOR', 'cse'),
 ('cse14', 'Sini Anna Alex', 'Female', '#171, BETHEL, 1st main, AYR Layout, Shettyhalli, J', 'Christian', 'Orthodox', 'GM', '1983-02-24', 'Regular', '9845437091', 'sinialex@msrit.edu', 'rit', 'CDKPS5458K', '141201011005688', 'KN/BN/8146/1322', 'Mrs. Sini Anna Alex is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include, ubiquitous computing, compiler design, mobile and wireless sensor networks, distributed, database systems and algorithm analysis.', 'ASST PROFESSOR', 'cse'),
 ('cse15', 'Sardar Vandana Sudhakar', 'Female', '#14, Venkateshwara Layout, MSR Nagar', 'Hindu', 'Mahar', 'SC', '1979-05-19', 'Regular', '9886878953', 'vandana.s@msrit.edu', 'rit', 'BCBPS9768K', '141201011007877', 'KN/BN/8146/1398', 'Vandana Sudhakar Sardar is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include information retrieval and machine learning.', 'ASST PROFESSOR', 'cse'),
 ('cse16', 'Meera Devi A Kawalgi', 'Female', '#307, Garuda Royal Apt, Sharadamba Nagar, Jalahall', 'Hindu', 'Lingayath', 'GM', '1984-09-13', 'Regular', '8792068734', 'meera_ak@msrit.edu', 'rit', 'AWCPP1652M', '141201011007888', 'KN/BN/8146/1400', 'Meeradevi A. K. is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include Computer Networks, Information Security, Data Communications, WSN & IoT.', 'ASST PROFESSOR', 'cse'),
@@ -387,7 +393,7 @@ INSERT INTO `faculty` (`facultyId`, `facultyName`, `gender`, `address`, `religio
 ('cse18', 'Dr.H.V. Divakar', 'Male', '#105, TELECOM COLONY, behind new timberyard', 'Hindu', 'Bramhin', 'Other', '1965-07-03', 'Regular', '9980315974', 'divakar.h@msrit.edu', 'rit', 'AAYPD4812D', '141201011009452', 'KN/BN/8146/1453', 'Dr. Divakar Harekal is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. His areas of interest include software engineering, embedded system design and cloud computing.', 'ASST PROFESSOR', 'cse'),
 ('cse19', 'Chandrika Prasad', 'Female', '#143, I STAGE, II CROSS, B.E.M.L., Basaveshwara Na', 'Hindu', 'Bramhin', 'Other', '1980-05-28', 'Regular', '9845053122', 'chandrika@msrit.edu', 'rit', 'AHZPC9945N', '141201011009473', 'KN/BN/8146/1454', 'Chandrika Prasad is working as an assistant professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include operating system and are teaching computer organization and UNIX system programming.', 'ASST PROFESSOR', 'cse'),
 ('cse20', 'Rajarajeswari S', 'Female', '#501, SIRI RESIDENCY, I CROSS, PAPPANA LAYOUT, V.N', 'Hindu', 'Vanniya Kula Ks', 'OBC', '1975-08-02', 'Regular', '9886958079', 'raji@msrit.edu', 'rit', 'ANFPR9711D', '141201011009606', 'KN/BN/8146/1467', 'S. Rajarajeswari is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include cloud computing, big data and data sciences, artificial intelligence, data mining and image processing.', 'ASST PROFESSOR', 'cse'),
-('cse21', 'Pramod C Sunagar', 'Male', '#18, \"GURUKRUPA NILAYA\" 17TH A CROSS, BNS LAYOUT, ', 'Hindu', 'Ambiger', 'CAT - I', '1984-12-16', 'Regular', '9886358659', 'pramods@msrit.edu', 'rit', 'BPVPS0308L', '141201011013869', 'KN/BN/8146/1552', 'Mr. Pramod Sunagar is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. His areas of interest include data analytics algorithms, android development, java & j2ee and data structures.', 'ASST PROFESSOR', 'cse'),
+('cse21', 'Pramod C Sunagar', 'Male', '#18, "GURUKRUPA NILAYA" 17TH A CROSS, BNS LAYOUT, ', 'Hindu', 'Ambiger', 'CAT - I', '1984-12-16', 'Regular', '9886358659', 'pramods@msrit.edu', 'rit', 'BPVPS0308L', '141201011013869', 'KN/BN/8146/1552', 'Mr. Pramod Sunagar is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. His areas of interest include data analytics algorithms, android development, java & j2ee and data structures.', 'ASST PROFESSOR', 'cse'),
 ('cse22', 'Sowmya B J', 'Female', '829, 1ST CROSS, 4 BLOCK, HMT LAYOUT', 'Hindu', 'Lingayath', '3BG', '1986-11-30', 'Regular', '9886733368', 'sowmyabj@msrit.edu', 'rit', 'CJRPS4964D', '141201011015419', 'KN/BN/8146/4801', 'Sowmya B. J. is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. Her areas of interest include software engineering, computer organization, computer security and data analytics.', 'ASST PROFESSOR', 'cse'),
 ('cse23', 'Pradeep kumar D ', 'Male', 'NO 740, 9MAIN 9 BLOCK, NAGARBAVI', 'Hindu', 'Gowda', 'OBC', '1985-09-27', 'Regular', '9886715235', 'pradeepkumard@msrit.edu', 'rit', 'BCOPD2999E', '141201011017395', 'KN/BN/8146/5011', 'Mr. Pradeep Kumar D. is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. His areas of interest include data mining, data sciences, big data, machine learning and internet of things.', 'ASST PROFESSOR', 'cse'),
 ('cse24', 'Chetan  Shetty ', 'Male', 'NO 13, B 306, 3RD FLOOR, RENAISSANCE BRINDAVAN, UT', 'Hindu', 'Bunts', 'GM', '1986-02-24', 'Regular', '9686575665', 'chetanshetty@msrit.edu', 'rit', 'CPFPS0001H', '141201011008572', 'KN/BN/8146/5014', 'Chetan Shetty is working as an Assistant Professor in Computer Science Department of Ramaiah Institute of Technology. His areas of interest include data analytics and teach design and analysis of algorithms, software engineering and computer security.', 'ASST PROFESSOR', 'cse'),
@@ -419,7 +425,22 @@ INSERT INTO `faculty` (`facultyId`, `facultyName`, `gender`, `address`, `religio
 ('me01', 'Dr. Raji George', 'Male', 'null', 'null', 'null', 'null', '0000-00-00', 'Regular', '9845318047', 'rgeorgemsrit@rediffmail.com', 'rit', 'null', 'null', 'null', 'Dr. Raji George is a Professor and Head in the Mechanical Engineering Department of RIT. His areas of interests include subjects like Nano Technology, Mechanics of Materials, design and Finite element methods', 'PROFESSOR', 'me'),
 ('me02', 'Dr. N. D. Prasanna', 'Male', 'null', 'null', 'null', 'null', '0000-00-00', 'Regular', '9900864304', 'nd.prasanna47@gmail.com', 'rit', 'null', 'null', 'null', 'Dr. N. D. Prasanna is a Professor in the Mechanical Engineering Department of RIT. His areas of interests include subjects like Production and Characterization of ADI', 'PROFESSOR', 'me'),
 ('me03', 'Dr. P. Dinesh', 'Male', 'null', 'null', 'null', 'null', '0000-00-00', 'Regular', '9242259629', 'pdineshmech@msrit.edu', 'rit', 'null', 'null', 'null', 'Dr. P. Dinesh is a Professor in the Mechanical Engineering Department of RIT. His areas of interests include subjects like Machine Design, Finite Element Method, Manufacture Engineering, Material Characterization and Vibration.', 'PROFESSOR', 'me'),
-('me04', 'Dr. Putta Bore Gowda B.', 'Male', 'null', 'null', 'null', 'null', '0000-00-00', 'Regular', '9611649803', 'pbgowda@msrit.edu', 'rit', 'null', 'null', 'null', 'Dr. Putta Bore Gowda B. is a Professor in the Mechanical Engineering Department of RIT. His areas of interests include subjects like Thermal Engineering, Solar Energy', 'PROFESSOR', 'me');
+('me04', 'Dr. Putta Bore Gowda B.', 'Male', 'null', 'null', 'null', 'null', '0000-00-00', 'Regular', '9611649803', 'pbgowda@msrit.edu', 'rit', 'null', 'null', 'null', 'Dr. Putta Bore Gowda B. is a Professor in the Mechanical Engineering Department of RIT. His areas of interests include subjects like Thermal Engineering, Solar Energy', 'PROFESSOR', 'me'),
+('stu01', 'sanath', '', '', '', '', '', '0000-00-00', '', '', 'sanathbhargav26@gmail.com', 'rit', '', '', '', NULL, '', 'cse'),
+('te01', 'Dr. B. K. Sujatha', 'female', 'null', 'null', 'null', 'null', '0000-00-00', 'null', 'null', 'bksujatha@msrit.edu', 'null', 'null', 'null', 'null', 'null', 'null', 'te'),
+('te02', 'Dr. ViswanathTalasila', 'male', 'null', 'null', 'null', 'null', '0001-00-00', 'null', 'null', 'viswanath.talasila@msrit.edu', 'null', 'null', 'null', 'null', 'null', 'null', 'te'),
+('te03', 'Dr. Shobha K. R.', 'female', 'null', 'null', 'null', 'null', '0002-00-00', 'null', 'null', 'shobha_shankar@msrit.edu', 'null', 'null', 'null', 'null', 'null', 'null', 'te'),
+('te04', 'Dr. SatishTunga', 'male', 'null', 'null', 'null', 'null', '0003-00-00', 'null', 'null', 'satish.tunga@msrit.edu', 'null', 'null', 'null', 'null', 'null', 'null', 'te'),
+('te05', 'S.J. Krishna Prasad', 'male', 'null', 'null', 'null', 'null', '0004-00-00', 'null', 'null', 'krishnaprasad@msrit.edu', 'null', 'null', 'null', 'null', 'null', 'null', 'te'),
+('te06', 'Dr. S. G. ShivaprasadYadav', 'male', 'null', 'null', 'null', 'null', '0005-00-00', 'null', 'null', 'shivaprasad@msrit.edu', 'null', 'null', 'null', 'null', 'null', 'null', 'te'),
+('te07', 'Dr. ParimalaPrabhakar', 'female', 'null', 'null', 'null', 'null', '0006-00-00', 'null', 'null', 'parimalap@msrit.edu', 'null', 'null', 'null', 'null', 'null', 'null', 'te'),
+('te08', 'Venu K.N', 'male', 'null', 'null', 'null', 'null', '0007-00-00', 'null', 'null', 'venu1.kn@msrit.edu', 'null', 'null', 'null', 'null', 'null', 'null', 'te'),
+('te09', 'Ramya H. R.', 'female', 'null', 'null', 'null', 'null', '0008-00-00', 'null', 'null', 'ramya_hr@msrit.edu', 'null', 'null', 'null', 'null', 'null', 'null', 'te'),
+('te10', 'Umesharaddy', 'male', 'null', 'null', 'null', 'null', '0009-00-00', 'null', 'null', 'umesh.reddy@msrit.edu', 'null', 'null', 'null', 'null', 'null', 'null', 'te'),
+('te11', 'Nisha S.L.', 'female', 'null', 'null', 'null', 'null', '0010-00-00', 'null', 'null', 'nisha_sln@msrit.edu', 'null', 'null', 'null', 'null', 'null', 'null', 'te'),
+('te12', 'Kusuma S. M.', 'female', 'null', 'null', 'null', 'null', '0011-00-00', 'null', 'null', 'kusumasm@msrit.edu', 'null', 'null', 'null', 'null', 'null', 'null', 'te'),
+('te13', 'Swetha Amit', 'female', 'null', 'null', 'null', 'null', '0012-00-00', 'null', 'null', 'swetha.amit@msrit.edu', 'null', 'null', 'null', 'null', 'null', 'null', 'te'),
+('te14', 'Arvind Kumar G.', 'male', 'null', 'null', 'null', 'null', '0013-00-00', 'null', 'null', 'arvind@msrit.edu', 'null', 'null', 'null', 'null', 'null', 'null', 'te');
 
 -- --------------------------------------------------------
 
@@ -512,7 +533,7 @@ INSERT INTO `faculty_guest_lecture` (`slNo`, `placeInvited`, `title`, `date`, `f
 (12, 'BMSIT, Bengaluru', 'Setting up CUDA', '2016-01-01', 'cse27'),
 (13, 'MSRIT Bangalore', 'Python Programming  and Advanced Java Programming', '2015-01-07', 'cse10'),
 (14, 'MSRIT Bangalore', 'Advanced Java Programming', '2015-01-07', 'cse20'),
-(15, 'Conference on recent trends in 4G/5G wireless mobile communication: Dept. of EC, MSRIT', 'Talk on\" Protocol Engineering: From Specification, to Design to Implementation \".', '2016-01-07', 'cse02'),
+(15, 'Conference on recent trends in 4G/5G wireless mobile communication: Dept. of EC, MSRIT', 'Talk on" Protocol Engineering: From Specification, to Design to Implementation ".', '2016-01-07', 'cse02'),
 (16, 'RIT, Bangalore', 'Internet of Things', '2016-01-10', 'cse28'),
 (17, 'RIT, Bangalore', 'Python Programming', '2017-01-07', 'cse28'),
 (18, 'AIET, Moodbidri', 'Python Programming', '2016-01-08', 'cse28'),
@@ -553,7 +574,7 @@ INSERT INTO `faculty_guest_lecture` (`slNo`, `placeInvited`, `title`, `date`, `f
 (53, 'BMSIT, Bengaluru', 'Setting up CUDA', '2016-01-01', 'cv03'),
 (54, 'MSRIT Bangalore', 'Python Programming  and Advanced Java Programming', '2015-01-07', 'cv04'),
 (55, 'MSRIT Bangalore', 'Advanced Java Programming', '2015-01-07', 'ece01'),
-(56, 'Conference on recent trends in 4G/5G wireless mobile communication: Dept. of EC, MSRIT', 'Talk on\" Protocol Engineering: From Specification, to Design to Implementation \".', '2016-01-07', 'ece02'),
+(56, 'Conference on recent trends in 4G/5G wireless mobile communication: Dept. of EC, MSRIT', 'Talk on" Protocol Engineering: From Specification, to Design to Implementation ".', '2016-01-07', 'ece02'),
 (57, 'RIT, Bangalore', 'Internet of Things', '2016-01-10', 'ece03'),
 (58, 'RIT, Bangalore', 'Python Programming', '2017-01-07', 'cv01'),
 (59, 'AIET, Moodbidri', 'Python Programming', '2016-01-08', 'ise01'),
@@ -1039,9 +1060,7 @@ INSERT INTO `hardware` (`slNo`, `labName`, `carpetArea`, `majorEquipments`, `tot
 (1, 'CSE-LAB1', 'null', 'Dell Servers,4 x 5 KVA Online UPS,Kaspersky Business Space Security (Sofware) 1500UL,IBM Thinkcentre', 45, 'cse'),
 (2, 'CSE-LAB2', 'null', ' 10+5 KVA Online UPS,Kaspersky Business Space Security (Sofware) 1500UL,IBM Thinkcentre Series Deskt', 40, 'cse'),
 (3, 'ANALOG & DIGITAL ELECTRONICS LAB', 'null', 'Pentium D , 3 GB RAM , 3.40GHz, 160 GB HDD, DVD Writer, Mother Board Intel 945,ACER TFT Monitor, ACE', 5, 'cse'),
-(4, 'Embedded Center', 'null', 'Pentium Core II Deo , 1 GB RAM , 160 GB HDD, DVD Writer, Mother Board Intel 945,ACER TFT Monitor, AC', 50, 'cse'),
-(5, 'COMPUTER LAB-3 ', 'null', 'Dell Make Desktop Computer System with Inter Core I5 SG, 4GB DDR3, 500GB HDD, DVD Writer, Dell Make ', 16, 'cse'),
-(6, 'COMPUTER LAB-4 ', 'null', 'Client Nodes (28  Nos.), Dell Make Desktop Computer System with Inter Core I5 SG, 4GB DDR3, 500GB HD', 11, 'cse'),
+(4, 'Embedded Center', 'Carpet Area', 'Pentium Core II Deo , 1 GB RAM , 160 GB HDD, DVD Writer, Mother Board Intel 945,ACER TFT Monitor, AC', 50, 'cse'),
 (7, 'PG Lab-1', 'null', 'Lenovo Desktop Computer Model H530S with Intel CoreI5, 4th Gen, 8GB DDR3 RAM  1TB SATA HDD, WIFI, Ca', 11, 'cse'),
 (8, 'PG Lab-2', 'null', 'HP-UX servers for cloud setup', 0, 'cse');
 
@@ -1101,7 +1120,7 @@ CREATE TABLE `institution` (
 --
 
 INSERT INTO `institution` (`instituteName`, `yearOfEstablishment`, `address`, `contactNumber`, `websiteUrl`, `officialMailId`, `headOfTheInstitution`, `headContactNumber`) VALUES
-('Ramaiah Institute of Technology', '1962', 'MSR College Road, MSR Nagar, MSRIT Post, Bengaluru, Karnataka 560054', '\"+9180-23606939', 'msrit.edu', 'admn@msrit.edu', 'NVR Naidu', '\"+9180-23600822');
+('Ramaiah Institute of Technology', '1962', 'MSR College Road, MSR Nagar, MSRIT Post, Bengaluru, Karnataka 560054', '"+9180-23606939', 'msrit.edu', 'admn@msrit.edu', 'NVR Naidu', '"+9180-23600822');
 
 -- --------------------------------------------------------
 
@@ -1353,6 +1372,13 @@ CREATE TABLE `projects_handled` (
   `facultyId` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `projects_handled`
+--
+
+INSERT INTO `projects_handled` (`slNo`, `batch`, `ugOrPg`, `projectTitle`, `facultyId`) VALUES
+(3, '', '', '', 'cse01');
+
 -- --------------------------------------------------------
 
 --
@@ -1418,6 +1444,13 @@ CREATE TABLE `software` (
   `vendorName` varchar(30) NOT NULL,
   `departmentId` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `software`
+--
+
+INSERT INTO `software` (`slNo`, `softwareName`, `licenseNumber`, `noOfUsers`, `expiryDate`, `vendorName`, `departmentId`) VALUES
+(1, 'uho;i', 'oihj', 0, '0000-00-00', 'oi;h', 'cse');
 
 -- --------------------------------------------------------
 
@@ -1792,199 +1825,166 @@ ALTER TABLE `student_publication`
 --
 ALTER TABLE `academic_council`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
-
 --
 -- AUTO_INCREMENT for table `book`
 --
 ALTER TABLE `book`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT for table `book_chapter`
 --
 ALTER TABLE `book_chapter`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
-
 --
 -- AUTO_INCREMENT for table `conference_paper`
 --
 ALTER TABLE `conference_paper`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
-
 --
 -- AUTO_INCREMENT for table `consultancy`
 --
 ALTER TABLE `consultancy`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `courses_handled`
 --
 ALTER TABLE `courses_handled`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `faculty_conference_symposia`
 --
 ALTER TABLE `faculty_conference_symposia`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
-
 --
 -- AUTO_INCREMENT for table `faculty_guest_lecture`
 --
 ALTER TABLE `faculty_guest_lecture`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
-
 --
 -- AUTO_INCREMENT for table `faculty_patent`
 --
 ALTER TABLE `faculty_patent`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `faculty_qualification`
 --
 ALTER TABLE `faculty_qualification`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
-
 --
 -- AUTO_INCREMENT for table `faculty_research`
 --
 ALTER TABLE `faculty_research`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
 --
 -- AUTO_INCREMENT for table `faculty_service`
 --
 ALTER TABLE `faculty_service`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
-
 --
 -- AUTO_INCREMENT for table `faculty_workshop_fdp`
 --
 ALTER TABLE `faculty_workshop_fdp`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
-
 --
 -- AUTO_INCREMENT for table `finance`
 --
 ALTER TABLE `finance`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
 --
 -- AUTO_INCREMENT for table `funded_projects`
 --
 ALTER TABLE `funded_projects`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `governing_body`
 --
 ALTER TABLE `governing_body`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
 --
 -- AUTO_INCREMENT for table `guest_lectures_invited`
 --
 ALTER TABLE `guest_lectures_invited`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
 --
 -- AUTO_INCREMENT for table `hardware`
 --
 ALTER TABLE `hardware`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
 --
 -- AUTO_INCREMENT for table `industrial_collaboration_mou`
 --
 ALTER TABLE `industrial_collaboration_mou`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `industrial_visit`
 --
 ALTER TABLE `industrial_visit`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT for table `journal_paper`
 --
 ALTER TABLE `journal_paper`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
-
 --
 -- AUTO_INCREMENT for table `other_membership`
 --
 ALTER TABLE `other_membership`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `phd_scholar`
 --
 ALTER TABLE `phd_scholar`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
 --
 -- AUTO_INCREMENT for table `professional_activities`
 --
 ALTER TABLE `professional_activities`
-  MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `professional_body_membership`
 --
 ALTER TABLE `professional_body_membership`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `projects_handled`
 --
 ALTER TABLE `projects_handled`
-  MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `seminar_workshop`
 --
 ALTER TABLE `seminar_workshop`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
 --
 -- AUTO_INCREMENT for table `software`
 --
 ALTER TABLE `software`
-  MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `staff_achievement`
 --
 ALTER TABLE `staff_achievement`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `staff_service`
 --
 ALTER TABLE `staff_service`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `student_achievement`
 --
 ALTER TABLE `student_achievement`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `student_activities`
 --
 ALTER TABLE `student_activities`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `student_publication`
 --
 ALTER TABLE `student_publication`
   MODIFY `slNo` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- Constraints for dumped tables
 --
@@ -2216,7 +2216,6 @@ ALTER TABLE `student_activities`
 --
 ALTER TABLE `student_publication`
   ADD CONSTRAINT `student_publication_ibfk_1` FOREIGN KEY (`departmentId`) REFERENCES `department` (`departmentId`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
