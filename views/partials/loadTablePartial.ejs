@@ -170,11 +170,12 @@ var hiddenFields = {};
 
         console.log(columnName);
         for(var j in res){
+            console.log("index[columnNAme][j] = " + columnName + " " + j + " " + index[columnName][j]);
+            
             if(hiddenFields[columnName][j].update){
                 str = str + ("<input name='"+j+"' type='hidden' value='"+res[j]+"'>");
                 continue;
             }
-            console.log("index[columnNAme][j] = " + columnName + " " + j + " " + index[columnName][j]);
             if(index[columnName][j]){
                 var temp = index[columnName][j]
             }
