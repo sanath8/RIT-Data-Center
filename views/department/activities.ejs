@@ -43,14 +43,14 @@
                                 <th>Date of the Lecture</th>
                             </thead>
                             <tbody>
-                                <% loadInTable(data.guest_lectures_invited)%>
+                                <% loadInTableModular("guest_lectures_invited", updatePermission)%>
                             </tbody>
                         </table>
                     </div>
                     <a href = "/department/generateexcel/2/5/?departmentId=<%-GetParam%>">
                     <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
                     </a>
-                <button class="btn btn-primary pull-right  insertButton" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataVerticleTable(1)">Insert</button>                </div>
+                <button class="btn btn-primary pull-right  insertButton" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataModularInsert('guest_lectures_invited')">Insert</button>                </div>
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
                         <h4 class="title">Seminars | Workshops</h4>
@@ -66,14 +66,14 @@
                                 <th>Broad Area</th>
                             </thead>
                             <tbody>
-                                <% loadInTable(data.seminar_workshop)%>
+                                <% loadInTableModular("seminar_workshop", updatePermission)%>
                             </tbody>
                         </table>
                     </div>
                     <a href = "/department/generateexcel/3/5/?departmentId=<%-GetParam%>">
                     <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
                     </a>
-                <button class="btn btn-primary pull-right  insertButton" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataVerticleTable(1)">Insert</button>                </div>
+                <button class="btn btn-primary pull-right  insertButton" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataModularInsert('seminar_workshop')">Insert</button>                </div>
             </div>
         </div>
     </div>
