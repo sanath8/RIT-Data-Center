@@ -69,43 +69,44 @@ router.get('/', function(req, res, next) {
 			hiddenFields:{
 				funded_projects:
 				{   
-					facultyId : true,         
-					investigatorName : false ,
-					projectTitle  : false ,
-					nameOfFundingAgent : false ,
-					sanctionOrderNumber : false ,
-					projectDuration : false ,
-					dateSanctioned : false ,
-					sanctionedAmount : false,
-					slNo: true                
+					facultyId : { view: true, insert: true, update: true },         
+					investigatorName : { view: false, insert: false, update: false } ,
+					projectTitle  : { view: false, insert: false, update: false } ,
+					nameOfFundingAgent : { view: false, insert: false, update: false } ,
+					sanctionOrderNumber : { view: false, insert: false, update: false } ,
+					projectDuration : { view: false, insert: false, update: false } ,
+					dateSanctioned : { view: false, insert: false, update: false } ,
+					sanctionedAmount : { view: false, insert: false, update: false },
+					slNo: { view: true, insert: true, update: true }                
 				}
 			,
 			faculty_patent:
 				{   
-					facultyId : true,            
-					patentTitle : false ,
-					applicationNumber : false ,
-					dateOfFilingApplication : false ,
-					publicationDate : false                
+					facultyId : { view: true, insert: true, update: true },            
+					patentTitle : { view: false, insert: false, update: false } ,
+					applicationNumber : { view: false, insert: false, update: false } ,
+					dateOfFilingApplication : { view: false, insert: false, update: false } ,
+					publicationDate : { view: false, insert: false, update: false } ,
+					slNo: { view: true, insert: true, update: true }               
 				}
 			,
 			consultancy:
 				{   
-					facultyId : true,            
-					financialYear : false ,
-					clientOrganization : false ,
-					consultancyProjectTitle : false ,
-					amountReceived : false, 
-					slNo: true                
+					facultyId : { view: true, insert: true, update: true },            
+					financialYear : { view: false, insert: false, update: false } ,
+					clientOrganization : { view: false, insert: false, update: false } ,
+					consultancyProjectTitle : { view: false, insert: false, update: false } ,
+					amountReceived : { view: false, insert: false, update: false }, 
+					slNo: { view: true, insert: true, update: true }                
 				}
 			,
 			industrial_collaboration_mou:
 				{   
-					facultyId : true,            
-					mouTitle : false ,
-					mouSignedWithIndustryOrGovt : false ,
-					mouSigningDate : false ,
-					slNo: true               
+					facultyId : { view: true, insert: true, update: true },            
+					mouTitle : { view: false, insert: false, update: false } ,
+					mouSignedWithIndustryOrGovt : { view: false, insert: false, update: false } ,
+					mouSigningDate : { view: false, insert: false, update: false } ,
+					slNo: { view: true, insert: true, update: true }               
 				}
 			},
 		GetParam: req.query.fId,

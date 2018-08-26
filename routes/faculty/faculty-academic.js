@@ -75,49 +75,49 @@ router.get('/', function(req, res, next) {
 		},
 		hiddenFields:{
 			courses_handled:{ 
-				slNo: true,
-				facultyId : true,
-				yearHandled : false, 
-				subjectName : false,
-				ugOrPg :  false,
-				labHandled :  false,                
+				slNo: { view: true, insert: true, update: true },
+				facultyId : { view: true, insert: true, update: true },
+				yearHandled : { view: false, insert: false, update: false }, 
+				subjectName : { view: false, insert: false, update: false },
+				ugOrPg :  { view: false, insert: false, update: false },
+				labHandled :  { view: false, insert: false, update: false },                
 			   }
 		   ,
 		   projects_handled:
 			   {     
-				slNo: true,       
-				facultyId : true,
-				batch : false,
-				ugOrPg : false,
-				projectTitle : false,               
+				slNo: { view: true, insert: true, update: true },       
+				facultyId : { view: true, insert: true, update: true },
+				batch : { view: false, insert: false, update: false },
+				ugOrPg : { view: false, insert: false, update: false },
+				projectTitle : { view: false, insert: false, update: false },               
 			   }
 		   ,
 		   faculty_research:
 			   {            
-				slNo: true,
-				guideName: false,
-				researchCandidateName:false,
-				usn:false,
-				centreName:false,
-				university:false,
-				registrationYear:false,
-				title:false,
-				status:false,
-				facultyId:true       
+				slNo: { view: true, insert: true, update: true },
+				guideName: { view: false, insert: false, update: false },
+				researchCandidateName:{ view: false, insert: false, update: false },
+				usn:{ view: false, insert: false, update: false },
+				centreName:{ view: false, insert: false, update: false },
+				university:{ view: false, insert: false, update: false },
+				registrationYear:{ view: false, insert: false, update: false },
+				title:{ view: false, insert: false, update: false },
+				status:{ view: false, insert: false, update: false },
+				facultyId:{ view: true, insert: true, update: true }       
 			   }
 		   ,
 		   phd_scholar:
 			{ 
-				slNo: true,           
-				facultyId:true,
-				scholarName:false,
-				guideName:false,
-				researchCentre:false,
-				university:false,
-				registrationYear:false,
-				usn:false,
-				title:false,
-				status:false               
+				slNo: { view: true, insert: true, update: true },           
+				facultyId:{ view: true, insert: true, update: true },
+				scholarName:{ view: false, insert: false, update: false },
+				guideName:{ view: false, insert: false, update: false },
+				researchCentre:{ view: false, insert: false, update: false },
+				university:{ view: false, insert: false, update: false },
+				registrationYear:{ view: false, insert: false, update: false },
+				usn:{ view: false, insert: false, update: false },
+				title:{ view: false, insert: false, update: false },
+				status:{ view: false, insert: false, update: false }               
 			}
 		},
 		GetParam: req.query.fId,

@@ -173,79 +173,81 @@ router.get('/', function(req, res, next) {
 		hiddenFields: {
 			faculty_workshop_fdp:
 			   {
-				facultyId : true,
-				title : false ,
-				sponsoredOrFunded : false ,
-				date : false ,
-				noOfParticipants : false ,
-				type : false,
-				slNo: true 
+				facultyId : { view: true, insert: true, update: true },
+				title : { view: false, insert: false, update: false } ,
+				sponsoredOrFunded : { view: false, insert: false, update: false } ,
+				date : { view: false, insert: false, update: false } ,
+				noOfParticipants : { view: false, insert: false, update: false } ,
+				type : { view: false, insert: false, update: false },
+				slNo: { view: true, insert: true, update: true } 
 			   }
 		   ,
 		   faculty_conference_symposia:
 			   {
-				facultyId : true,
-				eventName : false ,
-				place : false ,
-				date : false ,
-				invitedOrDeputed : false ,
-				noOfPapersPresented : false,
-				slNo: true 
+				facultyId : { view: true, insert: true, update: true },
+				eventName : { view: false, insert: false, update: false } ,
+				place : { view: false, insert: false, update: false } ,
+				date : { view: false, insert: false, update: false } ,
+				invitedOrDeputed : { view: false, insert: false, update: false } ,
+				noOfPapersPresented : { view: false, insert: false, update: false },
+				slNo: { view: true, insert: true, update: true } 
 			   }
 		   ,
 		   faculty_guest_lecture:
 			   {            
-				facultyId:true,
-				placeInvited : false ,
-				title : false ,
-				date : false,
-				slNo: true                
+				facultyId:{ view: true, insert: true, update: true },
+				placeInvited : { view: false, insert: false, update: false } ,
+				title : { view: false, insert: false, update: false } ,
+				date : { view: false, insert: false, update: false },
+				slNo: { view: true, insert: true, update: true }                
 			   }
 		   ,
 		   book:
 			   {            
-				facultyId:true,         
-				bookTitle : false ,
-				bookAuthors : false ,
-				bookPublisher : false ,
-				year : false,
-				slNo: true                 
-			   }
-		   ,
-		   book_chapter:
+				facultyId:{ view: true, insert: true, update: true },         
+				bookTitle : { view: false, insert: false, update: false } ,
+				bookAuthors : { view: false, insert: false, update: false } ,
+				bookPublisher : { view: false, insert: false, update: false } ,
+				year : { view: false, insert: false, update: false },
+				slNo: { view: true, insert: true, update: true }                 
+			   },
+			   book_chapter:
 			   {            
-				facultyId:facultyID,         
-				chapterName : "Chapter Name" ,
-				bookName : "Book Name" ,
-				chapterAuthors : "Chapter Authors" ,
-				publisher : "Publisher" ,
-				year : "Year"                
+				facultyId:{ view: true, insert: true, update: true } ,         
+				chapterName : { view: false, insert: false, update: false } ,
+				bookName : { view: false, insert: false, update: false } ,
+				chapterAuthors : { view: false, insert: false, update: false } ,
+				publisher : { view: false, insert: false, update: false } ,
+				year : { view: false, insert: false, update: false },
+				slNo: { view: true, insert: true, update: true }                         
 			   }
 		   ,
 		   conference_paper:
 			   {
 				
-				facultyId:facultyID,
-				authors : "Authors" ,
-				title : "Title" ,
-				conferenceName : "Conference Name" ,
-				conferenceType : "Conference Type" ,
-				organizedBy : "Organized By" ,
-				year : "Year"                
+				facultyId:{ view: true, insert: true, update: true } ,
+				authors : { view: false, insert: false, update: false } ,
+				title : { view: false, insert: false, update: false } ,
+				conferenceName : { view: false, insert: false, update: false } ,
+				conferenceType : { view: false, insert: false, update: false } ,
+				organizedBy : { view: false, insert: false, update: false } ,
+				year : { view: false, insert: false, update: false },
+				slNo: { view: true, insert: true, update: true }                          
 			   }
 		   ,
 		   journal_paper:
 			{            
-				facultyId:facultyID,
-				authors : "Authors" ,
-				title : "Title" ,
-				issn : "ISSN" ,
-				journalName : "Journal Name" ,
-				journalType : "Journal Type" ,
-				volumeNumber : "Volume Number" ,
-				pageNumbers : "Page Numbbers" ,
-				year : "Year" ,
-				sjrQuartile : "SJR Quartile"               
+				facultyId:{ view: true, insert: true, update: true } ,
+				authors : { view: false, insert: false, update: false } ,
+				title : { view: false, insert: false, update: false } ,
+				issn : { view: false, insert: false, update: false } ,
+				journalName : { view: false, insert: false, update: false } ,
+				journalType : { view: false, insert: false, update: false } ,
+				volumeNumber : { view: false, insert: false, update: false } ,
+				pageNumbers : { view: false, insert: false, update: false } ,
+				year : { view: false, insert: false, update: false } ,
+				sjrQuartile : { view: false, insert: false, update: false },
+				slNo: { view: true, insert: true, update: true }                
 			}
 		   
 		},

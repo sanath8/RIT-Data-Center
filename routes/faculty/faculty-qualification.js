@@ -57,13 +57,13 @@ router.get('/', function(req, res, next) {
 				hiddenFields:{
 					faculty_qualification:
 					{
-						facultyId : true,
-						degree : false, 
-						university : false,
-						passClass :  false,
-						passYear :  false,
-						areaOfSpecialization :  false,
-						slNo: true
+						facultyId : { view: true, insert: true, update: true },
+						degree : { view: false, insert: false, update: false }, 
+						university : { view: false, insert: false, update: false },
+						passClass :  { view: false, insert: false, update: false },
+						passYear :  { view: false, insert: false, update: false },
+						areaOfSpecialization :  { view: false, insert: false, update: false },
+						slNo: { view: true, insert: true, update: true }
 					}
 				},
 				GetParam:req.query.fId,

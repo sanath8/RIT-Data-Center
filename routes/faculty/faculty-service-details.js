@@ -65,14 +65,14 @@ router.get('/', function(req, res, next) {
 					 {
 						faculty_service:
 						{
-						 facultyId : true,
-						 designation: false,
-						 qualification: false,
-						 joiningDate: false,
-						 yearsOfExperience: false,
-						 promotionDate: false,
-						 payScale: false ,
-						 slNo: true
+						 facultyId : { view: true, insert: true, update: true } ,
+						 designation: { view: false, insert: false, update: false },
+						 qualification: { view: false, insert: false, update: false },
+						 joiningDate: { view: false, insert: false, update: false },
+						 yearsOfExperience: { view: false, insert: false, update: false },
+						 promotionDate: { view: false, insert: false, update: false },
+						 payScale: { view: false, insert: false, update: false } ,
+						 slNo: { view: true, insert: true, update: true } 
 						}
 					 },
 				GetParam: req.query.fId,
