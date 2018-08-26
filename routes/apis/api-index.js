@@ -9,5 +9,6 @@ router.use('/apiInsert', require('./apiInsert'));
 router.use('/mail', require('./mailApi'));
 router.use('/apiDelete', require('./apiDelete'));
 router.use('/data', require('./dataApi'));
+router.use('/addFaculty', require('./new-faculty'))
 
 module.exports = router;
