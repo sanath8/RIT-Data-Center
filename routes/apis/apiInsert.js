@@ -41,8 +41,15 @@ router.post('/:tableName', function(req, res, next){
             }
             else if(req.session.facultyId === 'hod'){
                 //this logic is for hod level
-                upd.push("'"+req.body.getParam+"'");
-                tableKey.push("facultyId");
+                if(req.body.url.indexOf('department') != -1){
+                    //if the institution page is accessed from admin level, dont include facultyId
+                    upd.push("'"+req.body.getParam+"'");
+                    tableKey.push("departmentId");
+                }
+                else if(req.body.url.indexOf('faculty') != -1){
+                    upd.push("'"+req.body.getParam+"'");
+                    tableKey.push("facultyId");
+                }
             }
             else {
                 //this logic is for faculty level
