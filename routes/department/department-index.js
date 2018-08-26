@@ -251,7 +251,9 @@ router.get('/activities', function(req, res, next) {
         expertOrganisationOrAddress: invited[i].expertOrganisationOrAddress,
         title: invited[i].title,
         areaOfSpecialization: invited[i].areaOfSpecialization,
-        date: invited[i].date
+        date: invited[i].date,
+        departmentId: invited[i].departmentId,
+        slNo: invited[i].slNo
       }
       invitedGuestLectures.push(singleEntry);
     }
@@ -264,7 +266,9 @@ router.get('/activities', function(req, res, next) {
         endDate: seminar[i].endDate,
         title: seminar[i].title,
         event: seminar[i].event,
-        broadArea: seminar[i].broadArea
+        broadArea: seminar[i].broadArea,
+        slNo: seminar[i].slNo,
+        departmentId: seminar[i].departmentId
       }
       seminarWorkshop.push(singleEntry);
     }
@@ -281,6 +285,24 @@ router.get('/activities', function(req, res, next) {
           scheduleDate: "Scheduled Date",
           departmentId: "departmentId",
           slNo: "slNo"
+        },
+        guest_lectures_invited: {
+          slNo: "Sl. No",
+          guestName: "Name of Guest",
+          expertOrganisationOrAddress: "Expert Organization/Address",
+          title: "Title",
+          areaOfSpecialization: "Area Of Specialization",
+          date: "Date",
+          departmentId: "DepartmentId"
+        },
+        seminar_workshop: {
+          slNo: "Sl. No",
+          startDate: "Start Date",
+          endDate: "End Date",
+          title: "Title",
+          event: "Event",
+          broadArea: "Broad Area",
+          departmentId: "Department Id"
         }
       },
       hiddenFields:{
@@ -290,6 +312,24 @@ router.get('/activities', function(req, res, next) {
           scheduleDate: { view: false, insert: false, update: false },
           departmentId: { view: true, insert: true, update: true } ,
           slNo: { view: true, insert: true, update: true } 
+        },
+        guest_lectures_invited: {
+          slNo: { view: true, insert: true, update: true },
+          guestName: { view: false, insert: false, update: false },
+          expertOrganisationOrAddress: { view: false, insert: false, update: false },
+          title: { view: false, insert: false, update: false },
+          areaOfSpecialization: { view: false, insert: false, update: false },
+          date: { view: false, insert: false, update: false },
+          departmentId: { view: true, insert: true, update: true }
+        },
+        seminar_workshop: {
+          slNo: { view: true, insert: true, update: true },
+          startDate: { view: false, insert: false, update: false },
+          endDate: { view: false, insert: false, update: false },
+          title: { view: false, insert: false, update: false },
+          event: { view: false, insert: false, update: false },
+          broadArea: { view: false, insert: false, update: false },
+          departmentId: { view: true, insert: true, update: true }
         }
       },
 
