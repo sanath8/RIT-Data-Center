@@ -13,7 +13,7 @@ router.post('/', function(req, res, next){
             res.end("Error : "+err.message);
             return;
         } else{
-            var count = result[0].noOfFaculty;
+            var count = result[0].noOfFaculty + 1;
             facultyId  = facultyId + count;
             sqlQuery = "INSERT INTO faculty VALUES (\"" + facultyId+"\",\""+req.body.name+"\",\""+req.body.gender+"\",\""+"null"+"\",\""+"null"+"\",\""
             +"null"+"\",\""+"null"+"\",\""+"null"+"\",\""+req.body.natureOfAppointment+"\",\""+req.body.contactNumber+"\",\""+req.body.email+"\",\""+facultyId+"\",\""
