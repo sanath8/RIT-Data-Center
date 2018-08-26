@@ -210,7 +210,45 @@ router.get('/', function(req, res, next) {
 				bookPublisher : { view: false, insert: false, update: false } ,
 				year : { view: false, insert: false, update: false },
 				slNo: { view: true, insert: true, update: true }                 
+			   },
+			   book_chapter:
+			   {            
+				facultyId:{ view: true, insert: true, update: true } ,         
+				chapterName : { view: false, insert: false, update: false } ,
+				bookName : { view: false, insert: false, update: false } ,
+				chapterAuthors : { view: false, insert: false, update: false } ,
+				publisher : { view: false, insert: false, update: false } ,
+				year : { view: false, insert: false, update: false },
+				slNo: { view: true, insert: true, update: true }                         
 			   }
+		   ,
+		   conference_paper:
+			   {
+				
+				facultyId:{ view: true, insert: true, update: true } ,
+				authors : { view: false, insert: false, update: false } ,
+				title : { view: false, insert: false, update: false } ,
+				conferenceName : { view: false, insert: false, update: false } ,
+				conferenceType : { view: false, insert: false, update: false } ,
+				organizedBy : { view: false, insert: false, update: false } ,
+				year : { view: false, insert: false, update: false },
+				slNo: { view: true, insert: true, update: true }                          
+			   }
+		   ,
+		   journal_paper:
+			{            
+				facultyId:{ view: true, insert: true, update: true } ,
+				authors : { view: false, insert: false, update: false } ,
+				title : { view: false, insert: false, update: false } ,
+				issn : { view: false, insert: false, update: false } ,
+				journalName : { view: false, insert: false, update: false } ,
+				journalType : { view: false, insert: false, update: false } ,
+				volumeNumber : { view: false, insert: false, update: false } ,
+				pageNumbers : { view: false, insert: false, update: false } ,
+				year : { view: false, insert: false, update: false } ,
+				sjrQuartile : { view: false, insert: false, update: false },
+				slNo: { view: true, insert: true, update: true }                
+			}
 		   
 		},
 		authType:req.session.facultyId,
