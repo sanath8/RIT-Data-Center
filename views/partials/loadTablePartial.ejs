@@ -182,10 +182,32 @@ var hiddenFields = {};
             else{
                 var temp = "Undefined";
             }   
+            //if we have a date to display use a date widget/ selector
+            console.log('column name: '+j)
+            if(additional_data[j]){
+                optionsList = '';
+                for(var ind_add = 0 ; ind_add < additional_data[j].length; ind_add++){
+                    var item = additional_data[j][ind_add];
+                    optionsList += '<option value = "' + item[j] + '">' + item[j] + '</option>';
+                    console.log(item[j] + " is entry");
+                }
+                console.log("additional data is " + additional_data[columnName]);
+                str = str + ('<label for="inputState">' + j + '</label>\
+      <select name="' + j + '" id="inputState" class="form-control">\
+        ' + optionsList + '</select>')
+            }
+            else if(j.indexOf('date') != -1 || j.indexOf('Date') != -1){
+                str = str + ('<div class="form-group ">\
+                <label class="control-label">'+temp+'</label>\
+                <input name="'+j+'" type="date" class="form-control" value="'+res[j]+'">\
+                </div>')
+            }
+            else{
                 str = str + ('<div class="form-group ">\
                 <label class="control-label">'+temp+'</label>\
                 <input name="'+j+'" type="text" class="form-control" value="'+res[j]+'">\
                 </div>')
+            }
         }
         str = str + ('<button type="submit" class="btn btn-primary pull-right">Update</button>\
             <button type="reset" class="btn btn-warning pull-right" data-dismiss="modal">Cancel</button>\
@@ -231,6 +253,12 @@ var hiddenFields = {};
                 str = str + ('<label for="inputState">' + j + '</label>\
       <select name="' + j + '" id="inputState" class="form-control">\
         ' + optionsList + '</select>')
+            }
+            else if(j.indexOf('date') != -1 || j.indexOf('Date') != -1){
+                str = str + ('<div class="form-group ">\
+                <label class="control-label">'+temp+'</label>\
+                <input name="'+j+'" type="date" class="form-control" ">\
+                </div>')
             }
             else    
             str = str + ('<div class="form-group ">\

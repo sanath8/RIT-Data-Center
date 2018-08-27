@@ -34,9 +34,10 @@ router.get('/', function(req, res, next) {
 				qualification:result[i]["qualification"],
 				joiningDate:result[i]["joiningDate"],
 				yearsOfExperience:result[i]["yearsOfExperience"],
-				promotionDate:result[i]["promotionDate"],
+				promotionDate:result[i]["promotionDate"].toJSON().substr(0,10),
 				payScale:result[i]["payScale"]
 			};
+			// console.log("Date type " + temp.promotionDate.toJSON().substr(0,10));
 			arr.push(temp);
 		}
 		// reportData[0] = result;

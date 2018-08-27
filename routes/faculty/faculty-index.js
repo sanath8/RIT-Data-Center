@@ -30,7 +30,7 @@ router.get('/', function(req, res, next) {
 		if(err || result.length==0){
 			res.redirect("/login");
 			console.log("It reached in error");
-			throw err;
+			res.send("this is error");
 		}
 
 		console.log("Result  : "+result);
