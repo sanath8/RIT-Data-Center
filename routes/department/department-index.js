@@ -630,7 +630,7 @@ router.get('/generateexcel/:tableNo/:index/',function(req,res,next){
 	}
 	if(err || result.length==0){
 		console.log("It reached in error");
-		throw err;
+		res.send("error");
 	}
 	}
 

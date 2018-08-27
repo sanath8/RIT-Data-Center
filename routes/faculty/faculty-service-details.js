@@ -37,6 +37,7 @@ router.get('/', function(req, res, next) {
 				promotionDate:result[i]["promotionDate"],
 				payScale:result[i]["payScale"]
 			};
+			// console.log("Date type " + temp.promotionDate.toJSON().substr(0,10));
 			arr.push(temp);
 		}
 		// reportData[0] = result;
