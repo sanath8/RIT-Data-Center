@@ -74,7 +74,7 @@ router.post('/:tableName', function(req, res, next){
             res.end("Error : "+err.message);
             return;
         }
-        if(!req.body.getParam){
+        if(!req.body.getParam || typeof(req.body.getParam) === "undefined" || req.body.getParam === "undefined"){
             res.redirect(req.body.url);
         }else{
             //if department page is watched set departmentId
