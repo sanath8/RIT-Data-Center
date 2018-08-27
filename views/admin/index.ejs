@@ -6,28 +6,31 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-            <div class="card">
+            <!--<div class="card">-->
+            <div class="card" style="width:110%">
                 <div class="card-header" data-background-color="purple">
                     <h4 class="title">Departments Information</h4>
                     <p class="category">General Departments Information</p>
                 </div>
-                <div class="card-content table-responsive">
-                    <table class="table" >
-                        <thead class="text-primary">
-                            <th>departmentId</th>  
-                            <th>departmentName</th>  
-                            <th>yearOfEstablishment</th>  
-                            <th>address</th>  
-                            <th>contactNumber</th>  
-                            <th>officialMailId</th>  
-                            <th>hodName</th> 
-                            <th>hodContactNumber</th>  
-                            <th>instituteName</th>     
-                        </thead>
-                        <tbody>
-                        <%loadInTable(data)%>
-                        </tbody>
-                    </table>
+                <div class="mid-width wrapItems">
+                    <div class="card-content table-responsive">
+                        <table class="table" >
+                            <thead class="text-primary">
+                                <th>departmentId</th>  
+                                <th>departmentName</th>  
+                                <th>yearOfEstablishment</th>  
+                                <th>address</th>  
+                                <th>contactNumber</th>  
+                                <th>officialMailId</th>  
+                                <th>hodName</th> 
+                                <th>hodContactNumber</th>  
+                                <th>instituteName</th>     
+                            </thead>
+                            <tbody>
+                            <%loadInTable(data)%>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <a href = "/faculty/generateexcel/1/1">
                 <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
