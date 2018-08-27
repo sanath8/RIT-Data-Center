@@ -34,7 +34,7 @@ router.get('/', function(req, res, next) {
 				qualification:result[i]["qualification"],
 				joiningDate:result[i]["joiningDate"],
 				yearsOfExperience:result[i]["yearsOfExperience"],
-				promotionDate:result[i]["promotionDate"].toJSON().substr(0,10),
+				promotionDate:result[i]["promotionDate"],
 				payScale:result[i]["payScale"]
 			};
 			// console.log("Date type " + temp.promotionDate.toJSON().substr(0,10));

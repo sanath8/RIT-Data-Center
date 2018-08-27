@@ -26,12 +26,23 @@
                 }
                 if(j==="slNo" || j==="facultyId")
                    continue;
-                 console.log(j + 'hello');    
+                
+                
+                 console.log(typeof(resultSet[i][j]) + " " + j + 'hello');    
                  console.log(resultSet[i]);            
 
                 __append('<td>');
-                if(resultSet[i][j]!=null)
-                    __append(''+resultSet[i][j] +'');
+                if(resultSet[i][j]!=null){
+
+                    if(j.indexOf('date') != -1 || j.indexOf('Date') != -1){ 
+                        var dateString = new Date(Date.parse(resultSet[i][j]));
+                        console.log("dateString " + typeof(dateString));
+                        __append(''+dateString.toDateString() +'');
+                    }
+                    else{
+                        __append(''+resultSet[i][j] +'');
+                    }
+                }
                 else
                     __append("-");
                 __append('</td>');
@@ -80,8 +91,17 @@
                     __append("-");
                 __append('</th>');
                 __append('<td>');
-                if(resultSet[i][j]!=null)
-                    __append(''+resultSet[i][j] +'');
+                if(resultSet[i][j]!=null){
+                    if(j.indexOf('dob') != -1){ 
+                        var dateString = new Date(Date.parse(resultSet[i][j]));
+                        console.log("dateString " + typeof(dateString));
+                        __append(''+dateString.toDateString() +'');
+                    }
+                    else{
+                        __append(''+resultSet[i][j] +'');
+                    }
+                }
+                    
                 else
                     __append("-");
                 __append('</td>');
@@ -160,6 +180,7 @@ var hiddenFields = {};
     function fillDataModular(columnName, i){
         var cardCont=$("#modalCardContent");
         var str="";
+        
         str = str + ("<form method='POST' action='/v1/apis/apiUpdate/"+columnName+"'>");
         //cardCont.append("<form method='POST' action='/v1/apis/apiUpdate/"+columnName+"'>")
         str = str + ("<input name='url' type='hidden' value='"+index["url"]+"'>");
@@ -196,10 +217,29 @@ var hiddenFields = {};
       <select name="' + j + '" id="inputState" class="form-control">\
         ' + optionsList + '</select>')
             }
-            else if(j.indexOf('date') != -1 || j.indexOf('Date') != -1){
+            else if(j.indexOf('date') != -1 || j.indexOf('Date') != -1 || j === 'dob'){
+                var mDate = new Date(Date.parse(res[j]));
+                 
+                console.log("fillDAtaModular res[j]" + mDate.getMonth());
+                var dateString = mDate.getFullYear() + "-";
+                var mm = mDate.getMonth() + 1;
+                if(mm < 10){
+                    dateString += '0' + mm;
+                } 
+                else {
+                    dateString += mm;
+                }
+                dateString += "-";
+                if(mDate.getDate() < 10){
+                    dateString += '0' + mDate.getDate();   
+                }
+                else{
+                    dateString += mDate.getDate();   
+                }
+                console.log("dateSTring " + dateString);
                 str = str + ('<div class="form-group ">\
                 <label class="control-label">'+temp+'</label>\
-                <input name="'+j+'" type="date" class="form-control" value="'+res[j]+'">\
+                <input name="'+j+'" type="date" class="form-control" value="'+dateString+'">\
                 </div>')
             }
             else{
