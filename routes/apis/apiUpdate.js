@@ -54,7 +54,13 @@ router.post('/:tableName', function(req, res, next){
                 res.redirect(req.body.url + "?departmentId="+req.body.getParam);
             }
             else if(req.body.url.indexOf('faculty') != -1){
-                res.redirect(req.body.url + "?fId="+req.body.getParam);
+                if(!req.body.getParam || typeof(req.body.getParam) === "undefined" || req.body.getParam === "undefined"){
+                    //this means faculty is viewing own page
+                    res.redirect(req.body.url);
+                }
+                else{
+                    res.redirect(req.body.url + "?fId="+req.body.getParam);
+                }
             }
         }
         else
