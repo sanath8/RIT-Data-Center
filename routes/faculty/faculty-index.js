@@ -30,7 +30,7 @@ router.get('/', function(req, res, next) {
 		if(err || result.length==0){
 			res.redirect("/login");
 			console.log("It reached in error");
-			throw err;
+			//throw err;
 		}
 
 		console.log("Result  : "+result);
@@ -61,7 +61,7 @@ router.get('/', function(req, res, next) {
 		var facultyID = req.session.facultyId;
 		// var departmentId = tresult["departmentId"];
 		console.log("myR" + JSON.stringify(myR));
-		
+
 		res.render('faculty/index', { title: 'Express', type:"dashboard", data : {faculty:data},
 			index:{
 				url:"/faculty/",
@@ -100,7 +100,7 @@ router.get('/', function(req, res, next) {
 					accountNumber:{ view: false, insert: false, update: false },
 					pfNumber:{ view: false, insert: false, update: false },
 					about : { view: false, insert: false, update: false },
-					slNo: { view: true, insert: true, update: true } 
+					slNo: { view: true, insert: true, update: true }
 				}
 			},
 			fId:facultyId, about:about, GetParam:req.query.fId, authType:req.session.facultyId, departmentId:req.session.departmentId,
@@ -175,7 +175,7 @@ router.get('/generateexcel/:tableNo/:index/',function(req,res,next){
 	}
 	if(err || result.length==0){
 		console.log("It reached in error");
-		throw err;
+		//throw err;
 	}
 	}
 
