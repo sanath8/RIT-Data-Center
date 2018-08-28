@@ -70,6 +70,7 @@ function getFormatedDate(subYear)
 
 }
 
+
 function filteredSummaryReport(type)
 {
 
@@ -290,21 +291,19 @@ function performFilterOperations(flag, reportCallBack)
       success: function(dataRecieved) {
         if(flag == 'report')
         {
-          console.log("asasasasasasasasasas"+dataRecieved);
-
             reportCallBack(dataRecieved);
+            console.log("report data" + dataRecieved);
         }
         else
         {
+          dataRecieved = preProcessApi.removeHiddenFields(dataRecieved);
           finalResultSet = dataRecieved;
           if(flag == 'table_changed')
             buildColumnFilters(dataRecieved);
           buildTable(dataRecieved);
         }
-
       }
     });
-
 }
 
 
