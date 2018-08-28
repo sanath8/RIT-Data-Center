@@ -5,6 +5,19 @@ var utility = require('../utilities');
 
 router.get('/', function(req, res, next) {
   utility.checkSesssion(req, res);
+  if(!utility.checkGetParam(req,res)){
+		facultyId = req.session.facultyId;
+	}
+	else{
+		if(req.session.facultyId != "admin" && req.session.facultyId != "principal"){
+			auth = false;
+		}
+		facultyId = req.query.fId;
+  }
+  if(facultyId !== 'admin'){
+		res.redirect("/error/401");
+		return;
+	}
   var callBack = function(result0, result1, result2, result3){
 
     var res1 = []
