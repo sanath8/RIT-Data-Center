@@ -17,6 +17,29 @@ router.get('/student-info', function(req, res, next) {
   } else{
     departmentId = req.session.departmentId;
   }
+  var facultyId = req.session.facultyId;
+  if(facultyId === 'admin' || facultyId === 'principal'){
+    //if it is an admin or the principal allow access.
+  }
+  else {
+    //if it is a faculty or hod or coordinator they have only department level access.
+    if(facultyId === 'hod' || facultyId === 'coordinator'){
+      //this is hod or coordinator level logic.
+      var mEmail = req.session.email;
+      mEmail = mEmail.split("@")[0];
+      if(mEmail.indexOf(departmentId) == -1){
+        res.redirect("/error/401");
+        return;
+      }
+    }
+    else {
+      //this is faculty level logic.
+      if(facultyId.indexOf(departmentId) == -1){
+        res.redirect("/error/401");
+        return;
+      }
+    }
+  }
   var callback = function(err, result){
     if(err)
       throw err;
@@ -137,6 +160,30 @@ router.get('/infrastructure-details', function(req, res, next) {
   } else{
     departmentId = req.session.departmentId;
   }
+  var facultyId = req.session.facultyId;
+  if(facultyId === 'admin' || facultyId === 'principal'){
+    //if it is an admin or the principal allow access.
+  }
+  else {
+    //if it is a faculty or hod or coordinator they have only department level access.
+    if(facultyId === 'hod' || facultyId === 'coordinator'){
+      //this is hod or coordinator level logic.
+      var mEmail = req.session.email;
+      mEmail = mEmail.split("@")[0];
+      if(mEmail.indexOf(departmentId) == -1){
+        res.redirect("/error/401");
+        return;
+      }
+    }
+    else {
+      //this is faculty level logic.
+      if(facultyId.indexOf(departmentId) == -1){
+        res.redirect("/error/401");
+        return;
+      }
+    }
+  }
+
   var callback = function(err, result){
     if(err)
       throw err;
@@ -227,7 +274,29 @@ router.get('/activities', function(req, res, next) {
   } else{
     departmentId = req.session.departmentId;
   }
-
+  var facultyId = req.session.facultyId;
+  if(facultyId === 'admin' || facultyId === 'principal'){
+    //if it is an admin or the principal allow access.
+  }
+  else {
+    //if it is a faculty or hod or coordinator they have only department level access.
+    if(facultyId === 'hod' || facultyId === 'coordinator'){
+      //this is hod or coordinator level logic.
+      var mEmail = req.session.email;
+      mEmail = mEmail.split("@")[0];
+      if(mEmail.indexOf(departmentId) == -1){
+        res.redirect("/error/401");
+        return;
+      }
+    }
+    else {
+      //this is faculty level logic.
+      if(facultyId.indexOf(departmentId) == -1){
+        res.redirect("/error/401");
+        return;
+      }
+    }
+  }
   var callback = function(error, result){
     console.log(result);
 
@@ -347,7 +416,29 @@ router.get('/admission-details', function(req, res, next) {
     departmentId = req.session.departmentId;
   }
 
-
+  var facultyId = req.session.facultyId;
+  if(facultyId === 'admin' || facultyId === 'principal'){
+    //if it is an admin or the principal allow access.
+  }
+  else {
+    //if it is a faculty or hod or coordinator they have only department level access.
+    if(facultyId === 'hod' || facultyId === 'coordinator'){
+      //this is hod or coordinator level logic.
+      var mEmail = req.session.email;
+      mEmail = mEmail.split("@")[0];
+      if(mEmail.indexOf(departmentId) == -1){
+        res.redirect("/error/401");
+        return;
+      }
+    }
+    else {
+      //this is faculty level logic.
+      if(facultyId.indexOf(departmentId) == -1){
+        res.redirect("/error/401");
+        return;
+      }
+    }
+  }
 
   var callback = function(error, result){
     console.log(result);
@@ -423,7 +514,29 @@ router.get('/bosboe', function(req, res, next) {
   } else{
     departmentId = req.session.departmentId;
   }
-
+  var facultyId = req.session.facultyId;
+  if(facultyId === 'admin' || facultyId === 'principal'){
+    //if it is an admin or the principal allow access.
+  }
+  else {
+    //if it is a faculty or hod or coordinator they have only department level access.
+    if(facultyId === 'hod' || facultyId === 'coordinator'){
+      //this is hod or coordinator level logic.
+      var mEmail = req.session.email;
+      mEmail = mEmail.split("@")[0];
+      if(mEmail.indexOf(departmentId) == -1){
+        res.redirect("/error/401");
+        return;
+      }
+    }
+    else {
+      //this is faculty level logic.
+      if(facultyId.indexOf(departmentId) == -1){
+        res.redirect("/error/401");
+        return;
+      }
+    }
+  }
   var callback = function(error, result){
     console.log(result);
     var professionalActivities = [];
@@ -530,7 +643,10 @@ router.get('/bosboe', function(req, res, next) {
 router.get('/getExcel', function(req, res, next){
 	res.setHeader('Content-Type', 'application/json');
 
-	utility.checkSesssion(req, res);
+  utility.checkSesssion(req, res);
+  
+
+
 	  console.log('here');
 	    var query = req.cookies['query'];
 			console.log("Here is my query:" + query);
@@ -567,10 +683,51 @@ router.get('/getSummary/:tableName/:from/:to/:departmentId/:type', function(req,
 
 
 router.get('/', function(req, res, next) {
+
+  if(!utility.checkSesssion(req, res))
+		return;
+
+	var facultyId;
+	var auth = true;
+
+	if(!utility.checkGetParam(req,res)){
+		facultyId = req.session.facultyId;
+	}
+	else{
+		if(req.session.facultyId != "admin" && req.session.facultyId != "principal"){
+			auth = false;
+		}
+		facultyId = req.query.fId;
+	}
+
+
   if(req.query.departmentId){
     var departmentId = req.query.departmentId;
   } else{
     var departmentId = req.session.departmentId;
+  }
+  console.log("department-index facultyId " + facultyId + " departmentId " + departmentId);
+  if(facultyId === 'admin' || facultyId === 'principal'){
+    //if it is an admin or the principal allow access.
+  }
+  else {
+    //if it is a faculty or hod or coordinator they have only department level access.
+    if(facultyId === 'hod' || facultyId === 'coordinator'){
+      //this is hod or coordinator level logic.
+      var mEmail = req.session.email;
+      mEmail = mEmail.split("@")[0];
+      if(mEmail.indexOf(departmentId) == -1){
+        res.redirect("/error/401");
+        return;
+      }
+    }
+    else {
+      //this is faculty level logic.
+      if(facultyId.indexOf(departmentId) == -1){
+        res.redirect("/error/401");
+        return;
+      }
+    }
   }
   var callback = function(err,result){
     if(err){
@@ -612,6 +769,30 @@ router.get('/', function(req, res, next) {
 
 router.get('/generateexcel/:tableNo/:index/',function(req,res,next){
   if(!utility.checkSesssion(req, res)) return;
+  
+  var facultyId = req.session.facultyId;
+  if(facultyId === 'admin' || facultyId === 'principal'){
+    //if it is an admin or the principal allow access.
+  }
+  else {
+    //if it is a faculty or hod or coordinator they have only department level access.
+    if(facultyId === 'hod' || facultyId === 'coordinator'){
+      //this is hod or coordinator level logic.
+      var mEmail = req.session.email;
+      mEmail = mEmail.split("@")[0];
+      if(mEmail.indexOf(departmentId) == -1){
+        res.redirect("/error/401");
+        return;
+      }
+    }
+    else {
+      //this is faculty level logic.
+      if(facultyId.indexOf(departmentId) == -1){
+        res.redirect("/error/401");
+        return;
+      }
+    }
+  }
   console.log("this is " + req.params.facultyTable);
   var map=["", "", "", "", "", "",""];
   var index = req.params.index;
