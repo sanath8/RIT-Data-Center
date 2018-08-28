@@ -52,6 +52,7 @@ router.get('/', function(req, res, next) {
 			myR["address"]=tresult["address"];
 			myR["religion"]=tresult["religion"];
 			myR["caste"]=tresult["caste"];
+			myR["category"]=tresult["category"];
 		}
 		myR["dob"]=tresult["dob"];
 		myR["natureOfAppointment"]=tresult["natureOfAppointment"];
@@ -75,12 +76,13 @@ router.get('/', function(req, res, next) {
 				url:"/faculty/",
 				faculty:{
 					facultyId:facultyID,
-					facultyName:"facultyName",
-					gender:"gender",
-					address:"address",
-					religion:"religion",
-					caste:"caste",
-					dob:"dob",
+					facultyName:"Faculty Name",
+					gender:"Gender",
+					address:"Address",
+					religion:"Religion",
+					caste:"Caste",
+					category:"Category",
+					dob:"Date of Birth",
 					designation: "Designation",
 					natureOfAppointment:"Nature Of Appointment",
 					contactNumber:"Contact No.",
@@ -100,6 +102,7 @@ router.get('/', function(req, res, next) {
 					address:{ view: false, insert: false, update: false },
 					religion:{ view: false, insert: false, update: false },
 					caste:{ view: false, insert: false, update: false },
+					category:{ view: false, insert: false, update: false },
 					dob:{ view: false, insert: false, update: false },
 					natureOfAppointment:{ view: false, insert: false, update: false },
 					contactNumber:{ view: false, insert: false, update: false },
