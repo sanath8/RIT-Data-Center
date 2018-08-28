@@ -95,7 +95,7 @@ router.get('/', function(req, res, next) {
 					dob:{ view: false, insert: false, update: false },
 					natureOfAppointment:{ view: false, insert: false, update: false },
 					contactNumber:{ view: false, insert: false, update: false },
-					emailId:{ view: false, insert: false, update: false },
+					emailId:{ view: false, insert: false, update: true },
 					panNumber:{ view: false, insert: false, update: false },
 					accountNumber:{ view: false, insert: false, update: false },
 					pfNumber:{ view: false, insert: false, update: false },
