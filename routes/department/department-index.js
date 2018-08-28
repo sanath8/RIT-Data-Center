@@ -342,13 +342,8 @@ router.get('/activities', function(req, res, next) {
       }
       seminarWorkshop.push(singleEntry);
     }
-<<<<<<< HEAD
-    console.log("accessing the activites page query deptID = " + req.query.departmentId + " session deptId" + req.session.departmentId );
-
-=======
     // console.log("accessing the activites page query deptID = " + req.query.departmentId + " session deptId" + req.session.departmentId );
     
->>>>>>> 59b87769d23f4eb1c7c870730d4be95c9d43eafa
       res.render('department/activities', { departmentId: departmentId, type: 'activities',
       data:{industrial_visit:industrialVisit, guest_lectures_invited:invitedGuestLectures, seminar_workshop:seminarWorkshop},
       authType:req.session.facultyId, GetParam:req.query.departmentId,
