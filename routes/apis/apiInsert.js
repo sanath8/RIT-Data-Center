@@ -15,13 +15,13 @@ router.post('/:tableName', function(req, res, next){
     //var str="Apis need to integrated";
     var upd=[];
     var tableKey=[];
-    console.log("request body in apiInsert : " + JSON.stringify(req.body));
+    // console.log("request body in apiInsert : " + JSON.stringify(req.body));
     for(var t in req.body){
         if(t!="slNo" && t!="facultyId" && t!="url" && t!="getParam" && t != "departmentId"){
             upd.push("'"+req.body[t]+"'");
             tableKey.push(t);
         }else if(t==="facultyId" || t==="departmentId"){
-            console.log("req.session.facultyId = " + req.session.facultyId);
+            // console.log("req.session.facultyId = " + req.session.facultyId);
             if(req.session.facultyId === 'admin'){
                 if(req.body.url.indexOf('institution') != -1){
                     //if the institution page is accessed from admin level, dont include facultyId

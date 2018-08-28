@@ -24,14 +24,14 @@ router.get('/', function(req, res, next) {
 		facultyId = req.query.fId;
 	}
 
-	console.log("The facultyId is " + facultyId);	
+	// console.log("The facultyId is " + facultyId);	
 	if(facultyId !== 'admin' && facultyId !== 'principal'){
 		res.redirect("/error/401");
 		return;
 	}
 function callback(err,results){
   var facultyId = req.session.facultyId;
-  console.log("you just sent " + facultyId);
+  // console.log("you just sent " + facultyId);
   res.render('admin/index', { title: 'Express', type:"index", data:results, authType:facultyId, departmentId:req.session.departmentId, GetParam:"dummy"  });
 }
 mySqlCalls.getDepartmentInfo(callback);
@@ -45,9 +45,9 @@ router.get('/getExcel', function(req, res, next){
 	res.setHeader('Content-Type', 'application/json');
 
 	utility.checkSesssion(req, res);
-	  console.log('here');
+	  // console.log('here');
 	    var query = req.cookies['query'];
-			console.log("Here is my query:" + query);
+			// console.log("Here is my query:" + query);
 
 	    var callBack = function(result)
 			{
@@ -62,8 +62,8 @@ router.get('/getExcel', function(req, res, next){
 router.get('/getSummary/:tableName/:from/:to/:departmentId/:type', function(req, res, next){
 	res.setHeader('Content-Type', 'application/json');
 	utility.checkSesssion(req, res);
-  console.log('here');
-  console.log("years"+ req.params.from+" "+req.params.to);
+  // console.log('here');
+  // console.log("years"+ req.params.from+" "+req.params.to);
   var tableName = req.params.tableName;
 
 

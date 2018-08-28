@@ -23,13 +23,13 @@ sqlObject.prototype.login = function(email, pass, callback){
 			var sql = "select * \
 				from administrator_login \
 				where emailId=? and password=?";
-				console.log("hll");
+				// console.log("hll");
 		   connection.query(sql, [email, pass], function(err,result){
 			if(err){
 				callback(err,undefined);
 				return;
 			}
-			console.log("hll");
+			// console.log("hll");
 			callback(err,result);
 		})
 		} else{
@@ -51,7 +51,7 @@ sqlObject.prototype.getFaultyQualification = function(fid, callback){
 		from " + this.tables.facultyQualification+" Q natural join "+this.tables.facultyInformation+"\
 		WHERE facultyId=?";
 	this.connection.query(sql, [fid],function(err,results,fields){
-		console.log(results);
+		// console.log(results);
 		callback(err, results);
 	});
 }
@@ -60,7 +60,7 @@ sqlObject.prototype.getFacultyService = function(fid, callback){
 		from " + this.tables.facultyServiceDetails+" S \
 		WHERE facultyId=?";
 	this.connection.query(sql, [fid],function(err,results,fields){
-		console.log(results);
+		// console.log(results);
 		callback(err, results);
 	});
 }
@@ -77,7 +77,7 @@ sqlObject.prototype.getFaultyAcademics = function(fid, callback){
 
 
 	this.connection.query(sql, [fid],function(err,results,fields){
-		console.log(results);
+		// console.log(results);
 		if(err){
 			callback(err, undefined);
 			return;
@@ -89,7 +89,7 @@ sqlObject.prototype.getFaultyAcademics = function(fid, callback){
 			Where facultyId=?";
 
 		connection.query(sql, [fid], function(err, results){
-			console.log(results);
+			// console.log(results);
 			if(err){
 				callback(err, undefined);
 				return;
@@ -100,7 +100,7 @@ sqlObject.prototype.getFaultyAcademics = function(fid, callback){
 				from "+myO.tables.facultyResearch+"\
 				Where facultyId=?";
 			connection.query(sql, [fid], function(err, results){
-				console.log(results);
+				// console.log(results);
 				if(err){
 					callback(err, undefined);
 					return;
@@ -111,7 +111,7 @@ sqlObject.prototype.getFaultyAcademics = function(fid, callback){
 					from "+myO.tables.PhdScholar+"\
 					Where facultyId=?";
 				connection.query(sql, [fid], function(err, results){
-					console.log(results);
+					// console.log(results);
 					if(err){
 						callback(err, undefined);
 						return;
@@ -134,7 +134,7 @@ sqlObject.prototype.getFaultyRND = function(fid, callback){
 	var myO=this;
 
 	this.connection.query(sql, [fid],function(err,results,fields){
-		console.log(results);
+		// console.log(results);
 		if(err){
 			callback(err, undefined);
 			return;
@@ -146,7 +146,7 @@ sqlObject.prototype.getFaultyRND = function(fid, callback){
 			Where facultyId=?";
 
 		connection.query(sql, [fid], function(err, results){
-			console.log(results);
+			// console.log(results);
 			if(err){
 				callback(err, undefined);
 				return;
@@ -157,7 +157,7 @@ sqlObject.prototype.getFaultyRND = function(fid, callback){
 				from "+myO.tables.consultancyDetails+"\
 				Where facultyId=?";
 			connection.query(sql, [fid], function(err, results){
-				console.log(results);
+				// console.log(results);
 				if(err){
 					callback(err, undefined);
 					return;
@@ -168,7 +168,7 @@ sqlObject.prototype.getFaultyRND = function(fid, callback){
 					from "+myO.tables.industrialCollaborations+"\
 					Where facultyId=?";
 				connection.query(sql, [fid], function(err, results){
-					console.log(results);
+					// console.log(results);
 					if(err){
 						callback(err, undefined);
 						return;
@@ -191,7 +191,7 @@ sqlObject.prototype.getFaultyAchievements = function(fid, callback){
 	var myO=this;
 
 	this.connection.query(sql, [fid],function(err,results,fields){
-		console.log(results);
+		// console.log(results);
 		if(err){
 			callback(err, undefined);
 			return;
@@ -203,7 +203,7 @@ sqlObject.prototype.getFaultyAchievements = function(fid, callback){
 			Where facultyId=?";
 
 		connection.query(sql, [fid], function(err, results){
-			console.log(results);
+			// console.log(results);
 			if(err){
 				callback(err, undefined);
 				return;
@@ -214,7 +214,7 @@ sqlObject.prototype.getFaultyAchievements = function(fid, callback){
 				from faculty_guest_lecture\
 				Where facultyId=?";
 			connection.query(sql, [fid], function(err, results){
-				console.log(results);
+				// console.log(results);
 				if(err){
 					callback(err, undefined);
 					return;
@@ -225,7 +225,7 @@ sqlObject.prototype.getFaultyAchievements = function(fid, callback){
 					from book\
 					Where facultyId=?";
 				connection.query(sql, [fid], function(err, results){
-					console.log(results);
+					// console.log(results);
 					if(err){
 						callback(err, undefined);
 						return;
@@ -236,7 +236,7 @@ sqlObject.prototype.getFaultyAchievements = function(fid, callback){
 						from book_chapter\
 						Where facultyId=?";
 					connection.query(sql, [fid], function(err, results){
-						console.log(results);
+						// console.log(results);
 						if(err){
 							callback(err, undefined);
 							return;
@@ -247,7 +247,7 @@ sqlObject.prototype.getFaultyAchievements = function(fid, callback){
 							from conference_paper\
 							Where facultyId=?";
 						connection.query(sql, [fid], function(err, results){
-							console.log(results);
+							// console.log(results);
 							if(err){
 								callback(err, undefined);
 								return;
@@ -258,7 +258,7 @@ sqlObject.prototype.getFaultyAchievements = function(fid, callback){
 								from journal_paper\
 								Where facultyId=?";
 							connection.query(sql, [fid], function(err, results){
-								console.log(results);
+								// console.log(results);
 								if(err){
 									callback(err, undefined);
 									return;
@@ -517,7 +517,7 @@ sqlObject.prototype.getWholeTable = function(callback, url, email){
       WHERE emailId=?";
   var data;
   this.connection.query(sql, [email],function(err,results,fields){
-    console.log(results);
+    // console.log(results);
     callback(err, results);
   });
 }
@@ -662,7 +662,7 @@ sqlObject.prototype.getAchievements = function(callback){
 sqlObject.prototype.getDataBaseTables = function(dataBase, callBack)
 {
 	var query = "SELECT table_name FROM information_schema.tables where table_schema = '" + dataBase + "'";
-  console.log(query);
+  // console.log(query);
 	this.connection.query(query, function (err, result, fields)
 	  {
 	    if (err)
@@ -707,7 +707,7 @@ sqlObject.prototype.executeSummaryQuery = function(tableName, from, to, departme
 				 WHERE "+ columnConversions[tableName] +" = 'national' " + filterHelper + "\
 				 GROUP BY " + typeConversions[type] + "\
 				 ORDER BY " + typeConversions[type];
-				 console.log("sql1" + sql1 + "sql2" + sql2);
+				//  console.log("sql1" + sql1 + "sql2" + sql2);
 				 var data1, data2, format;
 				 /*if(type == "admin")
 					format = [{"departmentId":"Department ID", "international":"International", "national":"National"}];
@@ -718,7 +718,7 @@ sqlObject.prototype.executeSummaryQuery = function(tableName, from, to, departme
 			   });
 			   this.connection.query(sql2,function(err,results,fields){
 					 data2 = results;
-					 console.log("data join :" + JSON.stringify(data1));
+					//  console.log("data join :" + JSON.stringify(data1));
 					 var formatedData = formatSummary(data1, data2, typeConversions[type]);
 					 //console.log("formatting finished" + JSON.stringify(formatedData));
 					 callback(formatedData);
@@ -729,7 +729,7 @@ sqlObject.prototype.executeSummaryQuery = function(tableName, from, to, departme
 
 function formatSummary(international, national, compared) //modification needed in this function, faculty id to be used instead of name
 {
-	console.log(" data1 " + JSON.stringify(international) + " data " + JSON.stringify(national));
+	// console.log(" data1 " + JSON.stringify(international) + " data " + JSON.stringify(national));
 	internationalPointer = 0;
 	nationalPointer = 0;
 	lenInternational = international.length;
@@ -740,7 +740,7 @@ function formatSummary(international, national, compared) //modification needed 
 	{
 		var temp = {};
 
-		console.log(international[internationalPointer][compared] +"   "+ national[nationalPointer][compared]+"\n");
+		// console.log(international[internationalPointer][compared] +"   "+ national[nationalPointer][compared]+"\n");
 		if(international[internationalPointer][compared] > national[nationalPointer][compared])
 		{
 			temp[compared] = national[nationalPointer][compared];
@@ -855,17 +855,17 @@ sqlObject.prototype.fetchResults = function(columns, url, whereOptions, type, fa
 		else
 				columnSelect = columns;
     var query = "SELECT "+ columnSelect +" FROM "+ naturalJoinApi.getJoinTable(url) + "" + url + " WHERE 1=1";
-		console.log(whereOptions);
+		// console.log(whereOptions);
     for(var i = 0; i < whereOptions.length; i++)
     {
       query += " AND " + whereOptions[i];
     }
-		console.log("jdjyvsd" + facultyId);
+		// console.log("jdjyvsd" + facultyId);
 		if(facultyId != "principal" && facultyId != "admin")
 			query += " AND departmentId = '" + departmentId+"'";
 
-		console.log(query);
-		console.log(whereOptions);
+		// console.log(query);
+		// console.log(whereOptions);
 
     this.connection.query(query,
       function (err, result, fields)

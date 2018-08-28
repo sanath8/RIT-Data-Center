@@ -17,7 +17,7 @@ router.post('/:tableName', function(req, res, next){
 
     // console.log("this is from update api the get param" + req.body.getParam);
     var upd=[];
-    console.log("request body in apiUpdate : " + JSON.stringify(req.body));
+    // console.log("request body in apiUpdate : " + JSON.stringify(req.body));
     for(var t in req.body){
         if(t!="slNo" && t!="facultyId" && t!="url" && t!="getParam")
             upd.push(t+"='"+req.body[t]+"'");
@@ -47,7 +47,7 @@ router.post('/:tableName', function(req, res, next){
             res.end("Error : "+err.message);
             return;
         }
-        console.log(req.body.url)
+        // console.log(req.body.url)
         if(req.body.getParam){
             //if department page is watched set departmentId
             if(req.body.url.indexOf('department') != -1){

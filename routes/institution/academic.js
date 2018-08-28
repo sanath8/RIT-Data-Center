@@ -34,8 +34,8 @@ router.get('/', function(req, res, next) {
 
 		var facultyID = req.session.facultyId;;
 
-		console.log(JSON.stringify(data));
-		console.log("Here is academics page of institution facultyId " + req.session.facultyID);
+		// console.log(JSON.stringify(data));
+		// console.log("Here is academics page of institution facultyId " + req.session.facultyID);
 		res.render('institution/academic', {title : "Academic Council Details", 
 		type:"academic", 
 		
@@ -92,7 +92,7 @@ router.get('/generateexcel/:tableName',function(req,res,next)
   {
       generateexcel.getExcelSheet(result, "Report.xls", res);
   }
-  console.log(Array(req.body.whereOption));
+//   console.log(Array(req.body.whereOption));
   sqlExecute.executeDirectQuery("select * from " + req.params.tableName, callBack);
 });
 

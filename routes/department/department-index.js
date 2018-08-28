@@ -78,9 +78,9 @@ router.get('/student-info', function(req, res, next) {
         };
         studentPublication.push(individualEntry);
       }
-      console.log(studentAchievement);
-      console.log(studentPublication);
-      console.log(studentActivites);
+      // console.log(studentAchievement);
+      // console.log(studentPublication);
+      // console.log(studentActivites);
 
       var data = {
 
@@ -215,7 +215,7 @@ router.get('/infrastructure-details', function(req, res, next) {
         software.push(entry);
       }
 
-      console.log(result);
+      // console.log(result);
       res.render('department/infrastructure-details', { departmentId: departmentId, type:"infrastructure-details",
       data:{"hardware":hardware,"software":software}, authType:req.session.facultyId, GetParam:req.query.departmentId,
       index: {
@@ -298,7 +298,7 @@ router.get('/activities', function(req, res, next) {
     }
   }
   var callback = function(error, result){
-    console.log(result);
+    // console.log(result);
 
     var industrialVisit = [];
     var industrial = result.industrial_visit;
@@ -341,7 +341,7 @@ router.get('/activities', function(req, res, next) {
       }
       seminarWorkshop.push(singleEntry);
     }
-    console.log("accessing the activites page query deptID = " + req.query.departmentId + " session deptId" + req.session.departmentId );
+    // console.log("accessing the activites page query deptID = " + req.query.departmentId + " session deptId" + req.session.departmentId );
     
       res.render('department/activities', { departmentId: departmentId, type: 'activities',
       data:{industrial_visit:industrialVisit, guest_lectures_invited:invitedGuestLectures, seminar_workshop:seminarWorkshop},
@@ -441,7 +441,7 @@ router.get('/admission-details', function(req, res, next) {
   }
 
   var callback = function(error, result){
-    console.log(result);
+    // console.log(result);
     var admission = []
     var admissionSpcific = result.admissions;
     for(var i=0; i<admissionSpcific.length; i++){
@@ -538,7 +538,7 @@ router.get('/bosboe', function(req, res, next) {
     }
   }
   var callback = function(error, result){
-    console.log(result);
+    // console.log(result);
     var professionalActivities = [];
     var professional = result.professional_activities;
     for(var i=0;i<professional.length;i++){
@@ -647,15 +647,15 @@ router.get('/getExcel', function(req, res, next){
   
 
 
-	  console.log('here');
+	  // console.log('here');
 	    var query = req.cookies['query'];
-			console.log("Here is my query:" + query);
+			// console.log("Here is my query:" + query);
 
 	    var callBack = function(result)
 			{
 	        generateexcel.getExcelSheet(result, "Report.xls", res);
 	    }
-	    console.log(Array(req.body.whereOption));
+	    // console.log(Array(req.body.whereOption));
 	    sqlExecute.executeDirectQuery(query, callBack);
 
 	    //sqlExecute.getJointFacultyInfo(callBack, req.params.tableName);*/
@@ -665,8 +665,8 @@ router.get('/getExcel', function(req, res, next){
 router.get('/getSummary/:tableName/:from/:to/:departmentId/:type', function(req, res, next){
 	res.setHeader('Content-Type', 'application/json');
 	utility.checkSesssion(req, res);
-  console.log('here');
-  console.log("years"+ req.params.from+" "+req.params.to);
+  // console.log('here');
+  // console.log("years"+ req.params.from+" "+req.params.to);
   var tableName = req.params.tableName;
 
 
@@ -706,7 +706,7 @@ router.get('/', function(req, res, next) {
   } else{
     var departmentId = req.session.departmentId;
   }
-  console.log("department-index facultyId " + facultyId + " departmentId " + departmentId);
+  // console.log("department-index facultyId " + facultyId + " departmentId " + departmentId);
   if(facultyId === 'admin' || facultyId === 'principal'){
     //if it is an admin or the principal allow access.
   }
@@ -793,7 +793,7 @@ router.get('/generateexcel/:tableNo/:index/',function(req,res,next){
       }
     }
   }
-  console.log("this is " + req.params.facultyTable);
+  // console.log("this is " + req.params.facultyTable);
   var map=["", "", "", "", "", "",""];
   var index = req.params.index;
   if(req.query.departmentId){
@@ -810,7 +810,7 @@ router.get('/generateexcel/:tableNo/:index/',function(req,res,next){
 		generateexcel.getExcelSheet(result[map[tableno]],map[tableno]+ ".xls",res);
 	}
 	if(err || result.length==0){
-		console.log("It reached in error");
+		// console.log("It reached in error");
 		res.send("error");
 	}
 	}
