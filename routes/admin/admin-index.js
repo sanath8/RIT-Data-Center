@@ -8,6 +8,27 @@ var utility = require('../utilities');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+	if(!utility.checkSesssion(req, res))
+		return;
+
+	var facultyId;
+	var auth = true;
+
+	if(!utility.checkGetParam(req,res)){
+		facultyId = req.session.facultyId;
+	}
+	else{
+		if(req.session.facultyId != "admin" && req.session.facultyId != "principal"){
+			auth = false;
+		}
+		facultyId = req.query.fId;
+	}
+
+	console.log("The facultyId is " + facultyId);	
+	if(facultyId !== 'admin'){
+		res.redirect("/error/401");
+		return;
+	}
 function callback(err,results){
   var facultyId = req.session.facultyId;
   console.log("you just sent " + facultyId);
