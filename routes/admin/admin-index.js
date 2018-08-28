@@ -25,7 +25,7 @@ router.get('/', function(req, res, next) {
 	}
 
 	console.log("The facultyId is " + facultyId);	
-	if(facultyId !== 'admin'){
+	if(facultyId !== 'admin' && facultyId !== 'principal'){
 		res.redirect("/error/401");
 		return;
 	}
