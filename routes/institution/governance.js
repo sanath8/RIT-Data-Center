@@ -34,8 +34,8 @@ router.get('/', function(req, res, next) {
 			governing_body: data1
 		}
 		var authType = req.session.facultyId;
-		console.log("in governance page of institution facultyID " + req.session.facultyId + " " + authType);
-		console.log(JSON.stringify(data2) + "instituteNames");
+		// console.log("in governance page of institution facultyID " + req.session.facultyId + " " + authType);
+		// console.log(JSON.stringify(data2) + "instituteNames");
 		var facultyID = req.session.facultyId;;
 
 		res.render('institution/governance', {title : "Governing Body Details", type:"governance", data:data1,
@@ -83,7 +83,7 @@ router.get('/generateexcel/:tableName',function(req,res,next)
   {
       generateexcel.getExcelSheet(result, "Report.xls", res);
   }
-  console.log(Array(req.body.whereOption));
+//   console.log(Array(req.body.whereOption));
   sqlExecute.executeDirectQuery("select * from " + req.params.tableName, callBack);
 });
 
