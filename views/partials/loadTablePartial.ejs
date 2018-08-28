@@ -85,8 +85,20 @@
                 if(j === 'about')continue;
                 __append('<tr onmouseover="hoverEffect(this)" onmouseout="removeHoverEffect(this)">');
                 __append('<th>');
-                if(j!=null)
-                    __append(''+j +'');
+                if(j!=null){
+                    var k = '';
+                    k=k+j[0].toUpperCase();
+
+                    for(var n=1; n < j.length; n++){
+                        if(j[n] === j[n].toUpperCase())
+                            k=k+' '+j[n];
+                        else
+                            k=k+j[n];
+                    }
+                    if(j === 'dob')
+                        k = 'Date of Birth'
+                    __append(''+k +'');
+                }
                 else
                     __append("-");
                 __append('</th>');
