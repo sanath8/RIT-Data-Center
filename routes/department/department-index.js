@@ -751,9 +751,9 @@ router.get('/', function(req, res, next) {
     index:{
       url:"/faculty/",
       departmentGeneralInfo:{
-        facultyName:"facultyName",
-        gender:"gender",
-        address:"address",
+        facultyName:"Faculty Name",
+        gender:"Gender",
+        address:"Address",
         atureOfAppointment:"Nature Of Appointment",
         contactNumber:"Contact No.",
         emailId:"Email Id"
