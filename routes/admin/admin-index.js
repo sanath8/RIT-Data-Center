@@ -4,6 +4,7 @@ var mySqlCalls = require('../apis/mySqlCalls');
 var sqlApi = require('../../back-end/sqlAPI');
 var generateexcel = require('../../back-end/excelGenerator');
 var utility = require('../utilities');
+var preProcessor = require('../apis/dataPreprocessor');
 
 
 /* GET home page. */
@@ -24,7 +25,7 @@ router.get('/', function(req, res, next) {
 		facultyId = req.query.fId;
 	}
 
-	// console.log("The facultyId is " + facultyId);	
+	// console.log("The facultyId is " + facultyId);
 	if(facultyId !== 'admin' && facultyId !== 'principal'){
 		res.redirect("/error/401");
 		return;
@@ -51,7 +52,7 @@ router.get('/getExcel', function(req, res, next){
 
 	    var callBack = function(result)
 			{
-	        generateexcel.getExcelSheet(result, "Report.xls", res);
+	        generateexcel.getExcelSheet(preProcessor.removeHiddenFields(result), "Report.xls", res);
 	    }
 	    console.log(Array(req.body.whereOption));
 	    mySqlCalls.executeDirectQuery(query, callBack);

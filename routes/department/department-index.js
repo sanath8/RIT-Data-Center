@@ -4,6 +4,7 @@ var router = express.Router();
 var sqlExecute = require('../apis/mySqlCalls');
 var generateexcel = require('../../back-end/excelGenerator');
 var utility = require('../utilities');
+var preProcessor = require('../apis/dataPreprocessor');
 
 var departmentPermissions = require('./department-permissions');
 
@@ -53,7 +54,7 @@ router.get('/student-info', function(req, res, next) {
           award: studentAchieve[i].award,
           category: studentAchieve[i].category };
         studentAchievement.push(individualEntry);
-      } 
+      }
       var studentActivites = [];
       var studentActivity = result.student_activities;
       for(var i=0; i<studentActivity.length; i++){
@@ -103,7 +104,7 @@ router.get('/student-info', function(req, res, next) {
            slNo: "slNo",
            studentName: "Name of Student",
            eventName: "Name of Event",
-           date: "Date", 
+           date: "Date",
            award: "Award",
            category: "Category",
            departmentId: "departmentID"
@@ -126,16 +127,16 @@ router.get('/student-info', function(req, res, next) {
           date: { view: false, insert: false, update: false },
           industryOrOrganization: { view: false, insert: false, update: false },
           category: { view: false, insert: false, update: false },
-          departmentId: { view: true, insert: true, update: true } 
+          departmentId: { view: true, insert: true, update: true }
         },
         student_achievement: {
           slNo: { view: true, insert: true, update: true } ,
           studentName: { view: false, insert: false, update: false },
           eventName: { view: false, insert: false, update: false },
-          date: { view: false, insert: false, update: false }, 
+          date: { view: false, insert: false, update: false },
           award: { view: false, insert: false, update: false },
           category: { view: false, insert: false, update: false },
-          departmentId: { view: true, insert: true, update: true } 
+          departmentId: { view: true, insert: true, update: true }
         },
         student_publication: {
           slNo: { view: true, insert: true, update: true } ,
@@ -144,7 +145,7 @@ router.get('/student-info', function(req, res, next) {
           date: { view: false, insert: false, update: false },
           conferenceOrJournal: { view: false, insert: false, update: false },
           place: { view: false, insert: false, update: false },
-          departmentId: { view: true, insert: true, update: true } 
+          departmentId: { view: true, insert: true, update: true }
         }
        },
         insertPermission:departmentPermissions.insertPermission,
@@ -231,7 +232,7 @@ router.get('/infrastructure-details', function(req, res, next) {
         },
         software:
         {
-          slNo: "slNo", 
+          slNo: "slNo",
           softwareName: "Name of the Software",
           licenseNumber: "License Number",
           noOfUsers: "Number of Users",
@@ -248,20 +249,20 @@ router.get('/infrastructure-details', function(req, res, next) {
           majorEquipments: { view: false, insert: false, update: false },
           slNo: { view: true, insert: true, update: true } ,
           totalInvestment: { view: false, insert: false, update: false },
-          departmentId: { view: true, insert: true, update: true } 
+          departmentId: { view: true, insert: true, update: true }
         },
         software:
         {
-          slNo: { view: true, insert: true, update: true } , 
+          slNo: { view: true, insert: true, update: true } ,
           softwareName: { view: false, insert: false, update: false },
           licenseNumber: { view: false, insert: false, update: false },
           noOfUsers: { view: false, insert: false, update: false },
           expiryDate: { view: false, insert: false, update: false },
           vendorName: { view: false, insert: false, update: false },
-          departmentId: { view: true, insert: true, update: true } 
+          departmentId: { view: true, insert: true, update: true }
         }
       },
-      
+
       insertPermission:departmentPermissions.insertPermission,
       updatePermission:departmentPermissions.updatePermission });
    }
@@ -380,7 +381,7 @@ router.get('/activities', function(req, res, next) {
           industryName: { view: false, insert: false, update: false },
           scheduleDate: { view: false, insert: false, update: false },
           departmentId: { view: true, insert: true, update: true } ,
-          slNo: { view: true, insert: true, update: true } 
+          slNo: { view: true, insert: true, update: true }
         },
         guest_lectures_invited: {
           slNo: { view: true, insert: true, update: true },
@@ -497,10 +498,10 @@ router.get('/admission-details', function(req, res, next) {
           fullTimePhd: { view: false, insert: false, update: false },
           partTimePhd: { view: false, insert: false, update: false },
           mscByResearch: { view: false, insert: false, update: false },
-          departmentId: { view: true, insert: true, update: true } 
+          departmentId: { view: true, insert: true, update: true }
         }
       },
-      
+
       insertPermission:departmentPermissions.insertPermission,
       updatePermission:departmentPermissions.updatePermission  });
     }
@@ -614,7 +615,7 @@ router.get('/bosboe', function(req, res, next) {
         college: { view: false, insert: false, update: false },
         externalOrInternal: { view: false, insert: false, update: false },
         year: { view: false, insert: false, update: false },
-        departmentId: { view: true, insert: true, update: true } 
+        departmentId: { view: true, insert: true, update: true }
       },
       other_membership:{
         slNo: { view: true, insert: true, update: true } ,
@@ -622,7 +623,7 @@ router.get('/bosboe', function(req, res, next) {
         contributionType: { view: false, insert: false, update: false },
         year: { view: false, insert: false, update: false },
         internalOrExternal: { view: false, insert: false, update: false },
-        departmentId: { view: true, insert: true, update: true } 
+        departmentId: { view: true, insert: true, update: true }
       },
       professional_body_membership:{
         slNo: { view: true, insert: true, update: true } ,
@@ -630,7 +631,7 @@ router.get('/bosboe', function(req, res, next) {
         professionalBodyName: { view: false, insert: false, update: false },
         membershipType: { view: false, insert: false, update: false },
         subscriptionYear: { view: false, insert: false, update: false },
-        departmentId: { view: true, insert: true, update: true } 
+        departmentId: { view: true, insert: true, update: true }
       }
     },
     insertPermission:departmentPermissions.insertPermission,
@@ -644,7 +645,7 @@ router.get('/getExcel', function(req, res, next){
 	res.setHeader('Content-Type', 'application/json');
 
   utility.checkSesssion(req, res);
-  
+
 
 
 	  // console.log('here');
@@ -653,7 +654,7 @@ router.get('/getExcel', function(req, res, next){
 
 	    var callBack = function(result)
 			{
-	        generateexcel.getExcelSheet(result, "Report.xls", res);
+	        generateexcel.getExcelSheet(preProcessor.removeHiddenFields(result), "Report.xls", res);
 	    }
 	    // console.log(Array(req.body.whereOption));
 	    sqlExecute.executeDirectQuery(query, callBack);
@@ -769,7 +770,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/generateexcel/:tableNo/:index/',function(req,res,next){
   if(!utility.checkSesssion(req, res)) return;
-  
+
   var facultyId = req.session.facultyId;
   if(facultyId === 'admin' || facultyId === 'principal'){
     //if it is an admin or the principal allow access.
