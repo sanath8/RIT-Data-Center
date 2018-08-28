@@ -21,7 +21,14 @@ router.get('/', function(req, res, next) {
 		}
 		facultyId = req.query.fId;
 	}
-
+	console.log("faculty-index.js " + (typeof req.param("fId") === 'undefined'));
+	//admin, hod, coordinator, principal  cannot access this page ONLY IF fId is not set.
+	if(facultyId === 'admin' || facultyId === 'hod' || facultyId === 'coordinator' || facultyId === 'principal'){
+		if((typeof req.param("fId") === 'undefined')){
+			res.redirect("/error/401");
+			return;
+		}
+	}
 // //just for experimentation below code
 // 	globalvar.checkGet(req,res);
 // 	facultyId = globalvar.facultyId;
@@ -61,6 +68,7 @@ router.get('/', function(req, res, next) {
 		var facultyID = req.session.facultyId;
 		// var departmentId = tresult["departmentId"];
 		console.log("myR" + JSON.stringify(myR));
+
 
 		res.render('faculty/index', { title: 'Express', type:"dashboard", data : {faculty:data},
 			index:{

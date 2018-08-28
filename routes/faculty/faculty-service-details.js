@@ -19,6 +19,13 @@ router.get('/', function(req, res, next) {
 		facultyId = req.query.fId;
 	}
 
+	if(facultyId === 'admin' || facultyId === 'hod' || facultyId === 'coordinator' || facultyId === 'principal'){
+		if((typeof req.param("fId") === 'undefined')){
+			res.redirect("/error/401");
+			return;
+		}
+	}
+
 	var callback = function(err, result){
 		if(err)
 			throw err;
