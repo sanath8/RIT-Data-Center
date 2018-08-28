@@ -291,11 +291,6 @@ function performFilterOperations(flag, reportCallBack)
       success: function(dataRecieved) {
         if(flag == 'report')
         {
-<<<<<<< HEAD
-=======
-          // console.log("asasasasasasasasasas"+dataRecieved);
-
->>>>>>> 59b87769d23f4eb1c7c870730d4be95c9d43eafa
             reportCallBack(dataRecieved);
             console.log("report data" + dataRecieved);
         }
