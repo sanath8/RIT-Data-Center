@@ -29,7 +29,7 @@ router.get('/', function(req, res, next) {
 	var callback = function(err, result){
 		if(err)
 			throw err;
-		console.log(result);
+		// console.log(result);
 		var arr = [];
 		var facultyID = req.session.facultyId;
 		for(var i in result){

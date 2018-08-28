@@ -27,8 +27,8 @@ router.get('/', function(req, res, next) {
     }
     res1.push(result1[0]);
 
-    console.log("result of tables ::");
-    console.log(res1);
+    // console.log("result of tables ::");
+    // console.log(res1);
     res.render('admin/admin-reports', {type : 'admin-reports', selectList0 : result0, selectList1 : res1, selectList2 : result2, GetParam: req.query.fId, authType:req.session.facultyId, departmentId:req.session.departmentId, GetParam:"dummy" });
   }
   sqlExecute.getTwoSelectList(callBack,'facultyName', 'faculty', 'none');

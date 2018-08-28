@@ -5,7 +5,7 @@
             authType = 'faculty';
         }
         for(var i = 0 ; i<resultSet.length;i++){
-            console.log("from loadtablePartial " + authType + " " + permission[authType] + " " + GetParam);
+            // console.log("from loadtablePartial " + authType + " " + permission[authType] + " " + GetParam);
             if(typeof(GetParam) != 'undefined' && authType === 'faculty'){
                 __append('<tr>');
             }
@@ -17,8 +17,8 @@
             }
             for(var j in resultSet[i]){
                 if(typeof hiddenFields !== 'undefined'){
-                    console.log("it reached hiddenFields  j = " + j);
-                    console.log("it reached hiddenFields " + JSON.stringify(hiddenFields) + " " + hiddenFields[columnName][j] + " " + j);
+                    // console.log("it reached hiddenFields  j = " + j);
+                    // console.log("it reached hiddenFields " + JSON.stringify(hiddenFields) + " " + hiddenFields[columnName][j] + " " + j);
                     
                     if(hiddenFields[columnName][j].view){
                         continue;
@@ -28,15 +28,15 @@
                    continue;
                 
                 
-                 console.log(typeof(resultSet[i][j]) + " " + j + 'hello');    
-                 console.log(resultSet[i]);            
+                //  console.log(typeof(resultSet[i][j]) + " " + j + 'hello');    
+                //  console.log(resultSet[i]);            
 
                 __append('<td>');
                 if(resultSet[i][j]!=null){
 
                     if(j.indexOf('date') != -1 || j.indexOf('Date') != -1){ 
                         var dateString = new Date(Date.parse(resultSet[i][j]));
-                        console.log("dateString " + typeof(dateString));
+                        // console.log("dateString " + typeof(dateString));
                         __append(''+dateString.toDateString() +'');
                     }
                     else{
@@ -94,7 +94,7 @@
                 if(resultSet[i][j]!=null){
                     if(j.indexOf('dob') != -1){ 
                         var dateString = new Date(Date.parse(resultSet[i][j]));
-                        console.log("dateString " + typeof(dateString));
+                        // console.log("dateString " + typeof(dateString));
                         __append(''+dateString.toDateString() +'');
                     }
                     else{
@@ -186,12 +186,12 @@ var hiddenFields = {};
         str = str + ("<input name='url' type='hidden' value='"+index["url"]+"'>");
         str = str + ("<input name='getParam' type='hidden' value='<%=GetParam%>'>");
         var res = data[columnName][i];
-        console.log(JSON.stringify(Object.keys(index[columnName])));
-        console.log(JSON.stringify(Object.keys(res)));
+        // console.log(JSON.stringify(Object.keys(index[columnName])));
+        // console.log(JSON.stringify(Object.keys(res)));
 
-        console.log(columnName);
+        // console.log(columnName);
         for(var j in res){
-            console.log("index[columnNAme][j] = " + columnName + " " + j + " " + index[columnName][j]);
+            // console.log("index[columnNAme][j] = " + columnName + " " + j + " " + index[columnName][j]);
             
             if(hiddenFields[columnName][j].update){
                 str = str + ("<input name='"+j+"' type='hidden' value='"+res[j]+"'>");
@@ -204,15 +204,15 @@ var hiddenFields = {};
                 var temp = "Undefined";
             }   
             //if we have a date to display use a date widget/ selector
-            console.log('column name: '+j)
+            // console.log('column name: '+j)
             if(additional_data[j]){
                 optionsList = '';
                 for(var ind_add = 0 ; ind_add < additional_data[j].length; ind_add++){
                     var item = additional_data[j][ind_add];
                     optionsList += '<option value = "' + item[j] + '">' + item[j] + '</option>';
-                    console.log(item[j] + " is entry");
+                    // console.log(item[j] + " is entry");
                 }
-                console.log("additional data is " + additional_data[columnName]);
+                // console.log("additional data is " + additional_data[columnName]);
                 str = str + ('<label for="inputState">' + j + '</label>\
       <select name="' + j + '" id="inputState" class="form-control">\
         ' + optionsList + '</select>')
@@ -220,7 +220,7 @@ var hiddenFields = {};
             else if(j.indexOf('date') != -1 || j.indexOf('Date') != -1 || j === 'dob'){
                 var mDate = new Date(Date.parse(res[j]));
                  
-                console.log("fillDAtaModular res[j]" + mDate.getMonth());
+                // console.log("fillDAtaModular res[j]" + mDate.getMonth());
                 var dateString = mDate.getFullYear() + "-";
                 var mm = mDate.getMonth() + 1;
                 if(mm < 10){
@@ -236,7 +236,7 @@ var hiddenFields = {};
                 else{
                     dateString += mDate.getDate();   
                 }
-                console.log("dateSTring " + dateString);
+                // console.log("dateSTring " + dateString);
                 str = str + ('<div class="form-group ">\
                 <label class="control-label">'+temp+'</label>\
                 <input name="'+j+'" type="date" class="form-control" value="'+dateString+'">\
@@ -257,7 +257,7 @@ var hiddenFields = {};
     }
 
     function fillDataModularInsert(columnName){
-      console.log("Insert model poped up");
+    //   console.log("Insert model poped up");
         var cardCont=$("#modalCardContent");
         var str="";
         str = str + ("<form method='POST' action='/v1/apis/apiInsert/"+columnName+"'>");
@@ -265,12 +265,12 @@ var hiddenFields = {};
         str = str + ("<input name='url' type='hidden' value='"+index["url"]+"'>");
         str = str + ("<input name='getParam' type='hidden' value='<%=GetParam%>'>");
 
-        console.log(JSON.stringify(Object.keys(index[columnName])));
+        // console.log(JSON.stringify(Object.keys(index[columnName])));
 
-        console.log(columnName);
-        console.log(JSON.stringify(additional_data) + " " + columnName + " ");
+        // console.log(columnName);
+        // console.log(JSON.stringify(additional_data) + " " + columnName + " ");
         
-        console.log(JSON.stringify(hiddenFields) + " " + columnName + " ");
+        // console.log(JSON.stringify(hiddenFields) + " " + columnName + " ");
         
         for(var j in index[columnName]){
             if(hiddenFields[columnName][j].insert){
@@ -287,9 +287,9 @@ var hiddenFields = {};
                 for(var ind_add = 0 ; ind_add < additional_data[j].length; ind_add++){
                     var item = additional_data[j][ind_add];
                     optionsList += '<option value = "' + item[j] + '">' + item[j] + '</option>';
-                    console.log(item[j] + " is entry");
+                    // console.log(item[j] + " is entry");
                 }
-                console.log("additional data is " + additional_data[columnName]);
+                // console.log("additional data is " + additional_data[columnName]);
                 str = str + ('<label for="inputState">' + j + '</label>\
       <select name="' + j + '" id="inputState" class="form-control">\
         ' + optionsList + '</select>')
@@ -320,10 +320,10 @@ var hiddenFields = {};
         str = str + ("<input name='url' type='hidden' value='"+index["url"]+"'>");
         str = str + ("<input name='getParam' type='hidden' value='"+GetParam+"'>");
         var res = data[columnName][i];
-        console.log(JSON.stringify(Object.keys(index[columnName])));
-        console.log(JSON.stringify(Object.keys(res)));
+        // console.log(JSON.stringify(Object.keys(index[columnName])));
+        // console.log(JSON.stringify(Object.keys(res)));
 
-        console.log(columnName);
+        // console.log(columnName);
         for(var j in res){
             if(j=="slNo" || j=="facultyId"){
                 str = str + ("<input name='"+j+"' type='hidden' value='"+res[j]+"'>");
@@ -350,10 +350,10 @@ var hiddenFields = {};
 
     function fillData(resultSet,tableNumber){
         var rowData = resultSet.cells;
-        console.log(rowData[1].innerHTML);
+        // console.log(rowData[1].innerHTML);
         var noOfEntries = rowData.length;
             for(var i = 0;i<noOfEntries - 1;i++){
-                console.log('data'+tableNumber + i);
+                // console.log('data'+tableNumber + i);
                 document.getElementById('data'+ tableNumber + i).value = rowData[i].innerHTML;
             }
         //add("Update", tableNumber)
@@ -363,14 +363,14 @@ var hiddenFields = {};
         <%if(data["faculty"]){%>
             var resultSet = <%-JSON.stringify(data["faculty"])%>;
         <%}%>
-        console.log(resultSet);
+        // console.log(resultSet);
         var len = resultSet.length;
         noOfEntries =  Object.keys(resultSet[0]).length;
         var i=1;
         for(var k=0;k<len;k++){
             for(var j in resultSet[k]){
                 document.getElementById('data'+tableNumber + i).value = resultSet[k][j];
-                console.log(resultSet[k][j]);
+                // console.log(resultSet[k][j]);
                 i++;
             }
         }
@@ -385,9 +385,9 @@ var hiddenFields = {};
     }
     function checkIfInput(){
         if(document.getElementById("profileImageButton").value == null){
-            console.log("null");
+            // console.log("null");
         } else{
-            console.log("yeas");
+            // console.log("yeas");
             document.getElementById("profileForm").submit();
         }
     }

@@ -10,7 +10,7 @@ mailer.prototype.sendMail = function(mailTo, res)
 {
   callback = function(err, result)
   {
-      console.log("pass "+JSON.stringify(result))
+      // console.log("pass "+JSON.stringify(result))
       if(result.length == 0)
       {
         res.redirect("/forgotPass?error="+qs.escape("Sorry, this e-mail id does not exist. Please enter a valid e-mail id."));

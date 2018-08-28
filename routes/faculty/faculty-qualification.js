@@ -31,7 +31,7 @@ router.get('/', function(req, res, next) {
 		if(err)
 			throw err;
 		// var result object below tobe deleted 
-		console.log(JSON.stringify(result));
+		// console.log(JSON.stringify(result));
 		var arr=[];
 		var facultyID = req.session.facultyId;;
 		for(var i in result){
@@ -82,7 +82,7 @@ router.get('/', function(req, res, next) {
 			});
 	}
 	//sqlExecute.getWholeTable(callback,'facultyQualification', req.session.email);
-	console.log("Faculty ID : "+facultyId);
+	// console.log("Faculty ID : "+facultyId);
 	sqlExecute.getFaultyQualification(facultyId, callback);
 });
 

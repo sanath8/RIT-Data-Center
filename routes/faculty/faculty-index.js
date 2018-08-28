@@ -21,7 +21,7 @@ router.get('/', function(req, res, next) {
 		}
 		facultyId = req.query.fId;
 	}
-	console.log("faculty-index.js " + (typeof req.param("fId") === 'undefined'));
+	// console.log("faculty-index.js " + (typeof req.param("fId") === 'undefined'));
 	//admin, hod, coordinator, principal  cannot access this page ONLY IF fId is not set.
 	if(facultyId === 'admin' || facultyId === 'hod' || facultyId === 'coordinator' || facultyId === 'principal'){
 		if((typeof req.param("fId") === 'undefined')){
@@ -36,11 +36,11 @@ router.get('/', function(req, res, next) {
 	var callback=function(err, result){
 		if(err || result.length==0){
 			res.redirect("/login");
-			console.log("It reached in error");
+			// console.log("It reached in error");
 			//throw err;
 		}
 
-		console.log("Result  : "+result);
+		// console.log("Result  : "+result);
 
 		var myR={};
 		tresult=result[0];
@@ -67,7 +67,7 @@ router.get('/', function(req, res, next) {
 		var data=[myR];
 		var facultyID = req.session.facultyId;
 		// var departmentId = tresult["departmentId"];
-		console.log("myR" + JSON.stringify(myR));
+		// console.log("myR" + JSON.stringify(myR));
 
 
 		res.render('faculty/index', { title: 'Express', type:"dashboard", data : {faculty:data},
@@ -136,8 +136,8 @@ router.use('/achievements', require('./faculty-achievements'));
 
 router.post('/generateexcelTest/',function(req,res,next){
   utility.checkSesssion(req, res);
-  console.log("this is " + req.params.jsonObject);
-  console.log("parsing" + JSON.parse(req.params.jsonObject));
+//   console.log("this is " + req.params.jsonObject);
+//   console.log("parsing" + JSON.parse(req.params.jsonObject));
   generateexcel.getExcelSheet(JSON.parse(req.params.jsonObject),"Report.xls",res)
   //res.redirect('/faculty/reports');
 });
@@ -146,15 +146,15 @@ router.get('/getExcel', function(req, res, next){
 	res.setHeader('Content-Type', 'application/json');
 
 	utility.checkSesssion(req, res);
-	  console.log('here')
+	//   console.log('here')
 	    var query = req.cookies['query'];
-			console.log("Here is my query:" + query);
+			// console.log("Here is my query:" + query);
 
 	    callBack = function(result)
 			{
 	        generateexcel.getExcelSheet(result, "Report.xls", res);
 	    }
-	    console.log(Array(req.body.whereOption));
+	    // console.log(Array(req.body.whereOption));
 	    mysql.executeDirectQuery(query, callBack);
 
 	    //sqlExecute.getJointFacultyInfo(callBack, req.params.tableName);*/
@@ -165,7 +165,7 @@ router.get('/getExcel', function(req, res, next){
 
 router.get('/generateexcel/:tableNo/:index/',function(req,res,next){
   if(!utility.checkSesssion(req, res)) return;
-  console.log("this is " + req.params.facultyTable);
+//   console.log("this is " + req.params.facultyTable);
   var map=["", "", "", "", "", "",""];
   var index = req.params.index;
   if(req.query.faculty){
@@ -182,7 +182,7 @@ router.get('/generateexcel/:tableNo/:index/',function(req,res,next){
 		generateexcel.getExcelSheet(result[map[tableno]],map[tableno]+ ".xls",res);
 	}
 	if(err || result.length==0){
-		console.log("It reached in error");
+		// console.log("It reached in error");
 		//throw err;
 	}
 	}

@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
         if(req.session.facultyId === 'admin' || req.session.facultyId === 'principal')
             res.redirect("/admin")
         res.redirect("/faculty");
-        console.log(req.session)
+        // console.log(req.session)
     }else{
         if(!req.query.error){
             res.render('login', { title: 'Express', type:"login" });

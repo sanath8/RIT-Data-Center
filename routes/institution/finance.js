@@ -89,7 +89,7 @@ router.get('/generateexcel/:tableName',function(req,res,next)
   {
       generateexcel.getExcelSheet(result, "Report.xls", res);
   }
-  console.log(Array(req.body.whereOption));
+//   console.log(Array(req.body.whereOption));
   sqlExecute.executeDirectQuery("select * from " + req.params.tableName, callBack);
 });
 
