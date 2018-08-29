@@ -343,7 +343,7 @@ router.get('/activities', function(req, res, next) {
       seminarWorkshop.push(singleEntry);
     }
     // console.log("accessing the activites page query deptID = " + req.query.departmentId + " session deptId" + req.session.departmentId );
-    
+
       res.render('department/activities', { departmentId: departmentId, type: 'activities',
       data:{industrial_visit:industrialVisit, guest_lectures_invited:invitedGuestLectures, seminar_workshop:seminarWorkshop},
       authType:req.session.facultyId, GetParam:req.query.departmentId,
