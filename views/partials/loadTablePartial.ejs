@@ -261,11 +261,16 @@ var hiddenFields = {};
                 </div>')
             }
         }
-        str = str + ('<button type="submit" class="btn btn-primary pull-right">Update</button>\
-            <button type="reset" class="btn btn-warning pull-right" data-dismiss="modal">Cancel</button>\
-            <button type="submit" formaction="/v1/apis/apiDelete/'+columnName+'" class="btn btn-danger pull-right">Delete</button>\
-            </form>')
-        cardCont.html(str);
+        str = str + '<button type="submit" class="btn btn-primary pull-right">Update</button>\
+            <button type="reset" class="btn btn-warning pull-right" data-dismiss="modal">Cancel</button>'
+            if(columnName == 'faculty'){
+                str += '</form>'
+            }
+            else{
+                str += '<button type="submit" formaction="/v1/apis/apiDelete/'+columnName+'" class="btn btn-danger pull-right">Delete</button>\
+                </form>'
+            }
+            cardCont.html(str);
     }
 
     function fillDataModularInsert(columnName){
