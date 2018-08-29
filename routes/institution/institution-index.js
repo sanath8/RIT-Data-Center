@@ -6,7 +6,7 @@ var institutionPermissions = require('./institution-permissions');
 
 /* GET home page. */
 router.get('/',function(req,res,next){
-  console.log("in institution index path reached the facultyId is " + req.session.facultyId);
+  // console.log("in institution index path reached the facultyId is " + req.session.facultyId);
   res.render('institution/index', { departmentId: req.session.departmentId, type: "dashboard", authType:req.session.facultyId, GetParam:req.query.deptId, updatePermission:institutionPermissions.updatePermission, insertPermission:institutionPermissions.insertPermission});
 })
 // router.get('/governance', function(req, res, next) {

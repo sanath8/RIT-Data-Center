@@ -41,7 +41,7 @@ function setFacultyNamesFilter(tableName)
     document.getElementById("facultyList").value = "ALL";
     document.getElementById("facultyList").disabled = true;
 
-    console.log("after disabling" +$('#facultyList').val());
+    // console.log("after disabling" +$('#facultyList').val());
   }
   else
   {
@@ -69,6 +69,7 @@ function getFormatedDate(subYear)
   return reqYear;
 
 }
+
 
 function filteredSummaryReport(type)
 {
@@ -194,13 +195,13 @@ function checkSummaryEligibility(tableName)
 }
 function performFilterOperations(flag, reportCallBack)
 {
-  console.log("querty till here");
+  // console.log("querty till here");
   if(tableLock == 1)
   {
     tableLock = 0;
     return;
   }
-  console.log("querty till here !!!");
+  // console.log("querty till here !!!");
 
 
   var tableName = $('#tableList').val();
@@ -290,21 +291,18 @@ function performFilterOperations(flag, reportCallBack)
       success: function(dataRecieved) {
         if(flag == 'report')
         {
-          console.log("asasasasasasasasasas"+dataRecieved);
-
             reportCallBack(dataRecieved);
         }
         else
         {
+          dataRecieved = preProcessApi.removeHiddenFields(dataRecieved);
           finalResultSet = dataRecieved;
           if(flag == 'table_changed')
             buildColumnFilters(dataRecieved);
           buildTable(dataRecieved);
         }
-
       }
     });
-
 }
 
 

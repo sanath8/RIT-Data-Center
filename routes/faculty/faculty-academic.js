@@ -23,9 +23,9 @@ router.get('/', function(req, res, next) {
 		if(err)
 			throw err;
 		var facultyID = req.session.facultyId;
-		console.log("GetParam : " + req.session.facultyId);
-		console.log("faculty id : " + facultyID);
-		console.log(JSON.stringify(data));
+		// console.log("GetParam : " + req.session.facultyId);
+		// console.log("faculty id : " + facultyID);
+		// console.log(JSON.stringify(data));
 		res.render('faculty/academic-details', {title : "Faculty Academic Details", type:"academic-details", data:data,
 		index : { 
 			url:"/faculty/academic-details",

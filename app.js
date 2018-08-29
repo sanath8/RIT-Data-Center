@@ -31,6 +31,12 @@ app.use('/admin', require('./routes/admin/admin-index'));
 app.use('/department', require('./routes/department/department-index'));
 app.use('/institution', require('./routes/institution/institution-index'));
 
+app.get('/error/:type', function(req, res, next){
+  if(req.params.type == 401){
+    res.render("error401.ejs");
+  }
+})
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

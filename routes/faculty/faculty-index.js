@@ -21,7 +21,14 @@ router.get('/', function(req, res, next) {
 		}
 		facultyId = req.query.fId;
 	}
-
+	// console.log("faculty-index.js " + (typeof req.param("fId") === 'undefined'));
+	//admin, hod, coordinator, principal  cannot access this page ONLY IF fId is not set.
+	if(facultyId === 'admin' || facultyId === 'hod' || facultyId === 'coordinator' || facultyId === 'principal'){
+		if((typeof req.param("fId") === 'undefined')){
+			res.redirect("/error/401");
+			return;
+		}
+	}
 // //just for experimentation below code
 // 	globalvar.checkGet(req,res);
 // 	facultyId = globalvar.facultyId;
@@ -29,11 +36,11 @@ router.get('/', function(req, res, next) {
 	var callback=function(err, result){
 		if(err || result.length==0){
 			res.redirect("/login");
-			console.log("It reached in error");
-			throw err;
+			// console.log("It reached in error");
+			//throw err;
 		}
 
-		console.log("Result  : "+result);
+		// console.log("Result  : "+result);
 
 		var myR={};
 		tresult=result[0];
@@ -45,6 +52,7 @@ router.get('/', function(req, res, next) {
 			myR["address"]=tresult["address"];
 			myR["religion"]=tresult["religion"];
 			myR["caste"]=tresult["caste"];
+			myR["category"]=tresult["category"];
 		}
 		myR["dob"]=tresult["dob"];
 		myR["natureOfAppointment"]=tresult["natureOfAppointment"];
@@ -60,19 +68,21 @@ router.get('/', function(req, res, next) {
 		var data=[myR];
 		var facultyID = req.session.facultyId;
 		// var departmentId = tresult["departmentId"];
-		console.log("myR" + JSON.stringify(myR));
-		
+		// console.log("myR" + JSON.stringify(myR));
+
+
 		res.render('faculty/index', { title: 'Express', type:"dashboard", data : {faculty:data},
 			index:{
 				url:"/faculty/",
 				faculty:{
 					facultyId:facultyID,
-					facultyName:"facultyName",
-					gender:"gender",
-					address:"address",
-					religion:"religion",
-					caste:"caste",
-					dob:"dob",
+					facultyName:"Faculty Name",
+					gender:"Gender",
+					address:"Address",
+					religion:"Religion",
+					caste:"Caste",
+					category:"Category",
+					dob:"Date of Birth",
 					designation: "Designation",
 					natureOfAppointment:"Nature Of Appointment",
 					contactNumber:"Contact No.",
@@ -92,15 +102,16 @@ router.get('/', function(req, res, next) {
 					address:{ view: false, insert: false, update: false },
 					religion:{ view: false, insert: false, update: false },
 					caste:{ view: false, insert: false, update: false },
+					category:{ view: false, insert: false, update: false },
 					dob:{ view: false, insert: false, update: false },
 					natureOfAppointment:{ view: false, insert: false, update: false },
 					contactNumber:{ view: false, insert: false, update: false },
-					emailId:{ view: false, insert: false, update: false },
+					emailId:{ view: false, insert: false, update: true },
 					panNumber:{ view: false, insert: false, update: false },
 					accountNumber:{ view: false, insert: false, update: false },
 					pfNumber:{ view: false, insert: false, update: false },
 					about : { view: false, insert: false, update: false },
-					slNo: { view: true, insert: true, update: true } 
+					slNo: { view: true, insert: true, update: true }
 				}
 			},
 			fId:facultyId, about:about, GetParam:req.query.fId, authType:req.session.facultyId, departmentId:req.session.departmentId,
@@ -128,8 +139,8 @@ router.use('/achievements', require('./faculty-achievements'));
 
 router.post('/generateexcelTest/',function(req,res,next){
   utility.checkSesssion(req, res);
-  console.log("this is " + req.params.jsonObject);
-  console.log("parsing" + JSON.parse(req.params.jsonObject));
+//   console.log("this is " + req.params.jsonObject);
+//   console.log("parsing" + JSON.parse(req.params.jsonObject));
   generateexcel.getExcelSheet(JSON.parse(req.params.jsonObject),"Report.xls",res)
   //res.redirect('/faculty/reports');
 });
@@ -138,15 +149,15 @@ router.get('/getExcel', function(req, res, next){
 	res.setHeader('Content-Type', 'application/json');
 
 	utility.checkSesssion(req, res);
-	  console.log('here')
+	//   console.log('here')
 	    var query = req.cookies['query'];
-			console.log("Here is my query:" + query);
+			// console.log("Here is my query:" + query);
 
 	    callBack = function(result)
 			{
 	        generateexcel.getExcelSheet(result, "Report.xls", res);
 	    }
-	    console.log(Array(req.body.whereOption));
+	    // console.log(Array(req.body.whereOption));
 	    mysql.executeDirectQuery(query, callBack);
 
 	    //sqlExecute.getJointFacultyInfo(callBack, req.params.tableName);*/
@@ -157,7 +168,7 @@ router.get('/getExcel', function(req, res, next){
 
 router.get('/generateexcel/:tableNo/:index/',function(req,res,next){
   if(!utility.checkSesssion(req, res)) return;
-  console.log("this is " + req.params.facultyTable);
+//   console.log("this is " + req.params.facultyTable);
   var map=["", "", "", "", "", "",""];
   var index = req.params.index;
   if(req.query.faculty){
@@ -174,8 +185,8 @@ router.get('/generateexcel/:tableNo/:index/',function(req,res,next){
 		generateexcel.getExcelSheet(result[map[tableno]],map[tableno]+ ".xls",res);
 	}
 	if(err || result.length==0){
-		console.log("It reached in error");
-		throw err;
+		// console.log("It reached in error");
+		//throw err;
 	}
 	}
 

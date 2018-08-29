@@ -4,10 +4,10 @@ var mysql = require('./mySqlCalls');
 
 router.post('/', function(req, res, next){
     var facultyId = req.body.department;
-    console.log("coming here")
-    console.log(req.body);
+    // console.log("coming here")
+    // console.log(req.body);
     var sqlQuery = "SELECT COUNT(*) as noOfFaculty FROM faculty WHERE departmentId = \"" + req.body.department + "\"";
-    console.log(sqlQuery)
+    // console.log(sqlQuery)
     mysql.runRawQuery(sqlQuery, function(err, result){
         if(err){
             res.end("Error : "+err.message);
@@ -15,7 +15,7 @@ router.post('/', function(req, res, next){
         } else{
             var count = result[0].noOfFaculty + 1;
             if(count.toString().length == 1){
-                console.log("small")
+                // console.log("small")
                 count = 0 + count.toString();
             }
             facultyId  = facultyId + count;

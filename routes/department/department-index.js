@@ -4,6 +4,7 @@ var router = express.Router();
 var sqlExecute = require('../apis/mySqlCalls');
 var generateexcel = require('../../back-end/excelGenerator');
 var utility = require('../utilities');
+var preProcessor = require('../apis/dataPreprocessor');
 
 var departmentPermissions = require('./department-permissions');
 
@@ -16,6 +17,29 @@ router.get('/student-info', function(req, res, next) {
     departmentId = req.query.departmentId;
   } else{
     departmentId = req.session.departmentId;
+  }
+  var facultyId = req.session.facultyId;
+  if(facultyId === 'admin' || facultyId === 'principal'){
+    //if it is an admin or the principal allow access.
+  }
+  else {
+    //if it is a faculty or hod or coordinator they have only department level access.
+    if(facultyId === 'hod' || facultyId === 'coordinator'){
+      //this is hod or coordinator level logic.
+      var mEmail = req.session.email;
+      mEmail = mEmail.split("@")[0];
+      if(mEmail.indexOf(departmentId) == -1){
+        res.redirect("/error/401");
+        return;
+      }
+    }
+    else {
+      //this is faculty level logic.
+      if(facultyId.indexOf(departmentId) == -1){
+        res.redirect("/error/401");
+        return;
+      }
+    }
   }
   var callback = function(err, result){
     if(err)
@@ -30,7 +54,7 @@ router.get('/student-info', function(req, res, next) {
           award: studentAchieve[i].award,
           category: studentAchieve[i].category };
         studentAchievement.push(individualEntry);
-      } 
+      }
       var studentActivites = [];
       var studentActivity = result.student_activities;
       for(var i=0; i<studentActivity.length; i++){
@@ -55,9 +79,9 @@ router.get('/student-info', function(req, res, next) {
         };
         studentPublication.push(individualEntry);
       }
-      console.log(studentAchievement);
-      console.log(studentPublication);
-      console.log(studentActivites);
+      // console.log(studentAchievement);
+      // console.log(studentPublication);
+      // console.log(studentActivites);
 
       var data = {
 
@@ -80,7 +104,7 @@ router.get('/student-info', function(req, res, next) {
            slNo: "slNo",
            studentName: "Name of Student",
            eventName: "Name of Event",
-           date: "Date", 
+           date: "Date",
            award: "Award",
            category: "Category",
            departmentId: "departmentID"
@@ -103,16 +127,16 @@ router.get('/student-info', function(req, res, next) {
           date: { view: false, insert: false, update: false },
           industryOrOrganization: { view: false, insert: false, update: false },
           category: { view: false, insert: false, update: false },
-          departmentId: { view: true, insert: true, update: true } 
+          departmentId: { view: true, insert: true, update: true }
         },
         student_achievement: {
           slNo: { view: true, insert: true, update: true } ,
           studentName: { view: false, insert: false, update: false },
           eventName: { view: false, insert: false, update: false },
-          date: { view: false, insert: false, update: false }, 
+          date: { view: false, insert: false, update: false },
           award: { view: false, insert: false, update: false },
           category: { view: false, insert: false, update: false },
-          departmentId: { view: true, insert: true, update: true } 
+          departmentId: { view: true, insert: true, update: true }
         },
         student_publication: {
           slNo: { view: true, insert: true, update: true } ,
@@ -121,7 +145,7 @@ router.get('/student-info', function(req, res, next) {
           date: { view: false, insert: false, update: false },
           conferenceOrJournal: { view: false, insert: false, update: false },
           place: { view: false, insert: false, update: false },
-          departmentId: { view: true, insert: true, update: true } 
+          departmentId: { view: true, insert: true, update: true }
         }
        },
         insertPermission:departmentPermissions.insertPermission,
@@ -137,6 +161,30 @@ router.get('/infrastructure-details', function(req, res, next) {
   } else{
     departmentId = req.session.departmentId;
   }
+  var facultyId = req.session.facultyId;
+  if(facultyId === 'admin' || facultyId === 'principal'){
+    //if it is an admin or the principal allow access.
+  }
+  else {
+    //if it is a faculty or hod or coordinator they have only department level access.
+    if(facultyId === 'hod' || facultyId === 'coordinator'){
+      //this is hod or coordinator level logic.
+      var mEmail = req.session.email;
+      mEmail = mEmail.split("@")[0];
+      if(mEmail.indexOf(departmentId) == -1){
+        res.redirect("/error/401");
+        return;
+      }
+    }
+    else {
+      //this is faculty level logic.
+      if(facultyId.indexOf(departmentId) == -1){
+        res.redirect("/error/401");
+        return;
+      }
+    }
+  }
+
   var callback = function(err, result){
     if(err)
       throw err;
@@ -168,7 +216,7 @@ router.get('/infrastructure-details', function(req, res, next) {
         software.push(entry);
       }
 
-      console.log(result);
+      // console.log(result);
       res.render('department/infrastructure-details', { departmentId: departmentId, type:"infrastructure-details",
       data:{"hardware":hardware,"software":software}, authType:req.session.facultyId, GetParam:req.query.departmentId,
       index: {
@@ -184,7 +232,7 @@ router.get('/infrastructure-details', function(req, res, next) {
         },
         software:
         {
-          slNo: "slNo", 
+          slNo: "slNo",
           softwareName: "Name of the Software",
           licenseNumber: "License Number",
           noOfUsers: "Number of Users",
@@ -201,20 +249,20 @@ router.get('/infrastructure-details', function(req, res, next) {
           majorEquipments: { view: false, insert: false, update: false },
           slNo: { view: true, insert: true, update: true } ,
           totalInvestment: { view: false, insert: false, update: false },
-          departmentId: { view: true, insert: true, update: true } 
+          departmentId: { view: true, insert: true, update: true }
         },
         software:
         {
-          slNo: { view: true, insert: true, update: true } , 
+          slNo: { view: true, insert: true, update: true } ,
           softwareName: { view: false, insert: false, update: false },
           licenseNumber: { view: false, insert: false, update: false },
           noOfUsers: { view: false, insert: false, update: false },
           expiryDate: { view: false, insert: false, update: false },
           vendorName: { view: false, insert: false, update: false },
-          departmentId: { view: true, insert: true, update: true } 
+          departmentId: { view: true, insert: true, update: true }
         }
       },
-      
+
       insertPermission:departmentPermissions.insertPermission,
       updatePermission:departmentPermissions.updatePermission });
    }
@@ -227,9 +275,31 @@ router.get('/activities', function(req, res, next) {
   } else{
     departmentId = req.session.departmentId;
   }
-
+  var facultyId = req.session.facultyId;
+  if(facultyId === 'admin' || facultyId === 'principal'){
+    //if it is an admin or the principal allow access.
+  }
+  else {
+    //if it is a faculty or hod or coordinator they have only department level access.
+    if(facultyId === 'hod' || facultyId === 'coordinator'){
+      //this is hod or coordinator level logic.
+      var mEmail = req.session.email;
+      mEmail = mEmail.split("@")[0];
+      if(mEmail.indexOf(departmentId) == -1){
+        res.redirect("/error/401");
+        return;
+      }
+    }
+    else {
+      //this is faculty level logic.
+      if(facultyId.indexOf(departmentId) == -1){
+        res.redirect("/error/401");
+        return;
+      }
+    }
+  }
   var callback = function(error, result){
-    console.log(result);
+    // console.log(result);
 
     var industrialVisit = [];
     var industrial = result.industrial_visit;
@@ -272,8 +342,8 @@ router.get('/activities', function(req, res, next) {
       }
       seminarWorkshop.push(singleEntry);
     }
-    console.log("accessing the activites page query deptID = " + req.query.departmentId + " session deptId" + req.session.departmentId );
-    
+    // console.log("accessing the activites page query deptID = " + req.query.departmentId + " session deptId" + req.session.departmentId );
+
       res.render('department/activities', { departmentId: departmentId, type: 'activities',
       data:{industrial_visit:industrialVisit, guest_lectures_invited:invitedGuestLectures, seminar_workshop:seminarWorkshop},
       authType:req.session.facultyId, GetParam:req.query.departmentId,
@@ -311,7 +381,7 @@ router.get('/activities', function(req, res, next) {
           industryName: { view: false, insert: false, update: false },
           scheduleDate: { view: false, insert: false, update: false },
           departmentId: { view: true, insert: true, update: true } ,
-          slNo: { view: true, insert: true, update: true } 
+          slNo: { view: true, insert: true, update: true }
         },
         guest_lectures_invited: {
           slNo: { view: true, insert: true, update: true },
@@ -347,10 +417,32 @@ router.get('/admission-details', function(req, res, next) {
     departmentId = req.session.departmentId;
   }
 
-
+  var facultyId = req.session.facultyId;
+  if(facultyId === 'admin' || facultyId === 'principal'){
+    //if it is an admin or the principal allow access.
+  }
+  else {
+    //if it is a faculty or hod or coordinator they have only department level access.
+    if(facultyId === 'hod' || facultyId === 'coordinator'){
+      //this is hod or coordinator level logic.
+      var mEmail = req.session.email;
+      mEmail = mEmail.split("@")[0];
+      if(mEmail.indexOf(departmentId) == -1){
+        res.redirect("/error/401");
+        return;
+      }
+    }
+    else {
+      //this is faculty level logic.
+      if(facultyId.indexOf(departmentId) == -1){
+        res.redirect("/error/401");
+        return;
+      }
+    }
+  }
 
   var callback = function(error, result){
-    console.log(result);
+    // console.log(result);
     var admission = []
     var admissionSpcific = result.admissions;
     for(var i=0; i<admissionSpcific.length; i++){
@@ -406,10 +498,10 @@ router.get('/admission-details', function(req, res, next) {
           fullTimePhd: { view: false, insert: false, update: false },
           partTimePhd: { view: false, insert: false, update: false },
           mscByResearch: { view: false, insert: false, update: false },
-          departmentId: { view: true, insert: true, update: true } 
+          departmentId: { view: true, insert: true, update: true }
         }
       },
-      
+
       insertPermission:departmentPermissions.insertPermission,
       updatePermission:departmentPermissions.updatePermission  });
     }
@@ -423,9 +515,31 @@ router.get('/bosboe', function(req, res, next) {
   } else{
     departmentId = req.session.departmentId;
   }
-
+  var facultyId = req.session.facultyId;
+  if(facultyId === 'admin' || facultyId === 'principal'){
+    //if it is an admin or the principal allow access.
+  }
+  else {
+    //if it is a faculty or hod or coordinator they have only department level access.
+    if(facultyId === 'hod' || facultyId === 'coordinator'){
+      //this is hod or coordinator level logic.
+      var mEmail = req.session.email;
+      mEmail = mEmail.split("@")[0];
+      if(mEmail.indexOf(departmentId) == -1){
+        res.redirect("/error/401");
+        return;
+      }
+    }
+    else {
+      //this is faculty level logic.
+      if(facultyId.indexOf(departmentId) == -1){
+        res.redirect("/error/401");
+        return;
+      }
+    }
+  }
   var callback = function(error, result){
-    console.log(result);
+    // console.log(result);
     var professionalActivities = [];
     var professional = result.professional_activities;
     for(var i=0;i<professional.length;i++){
@@ -501,7 +615,7 @@ router.get('/bosboe', function(req, res, next) {
         college: { view: false, insert: false, update: false },
         externalOrInternal: { view: false, insert: false, update: false },
         year: { view: false, insert: false, update: false },
-        departmentId: { view: true, insert: true, update: true } 
+        departmentId: { view: true, insert: true, update: true }
       },
       other_membership:{
         slNo: { view: true, insert: true, update: true } ,
@@ -509,7 +623,7 @@ router.get('/bosboe', function(req, res, next) {
         contributionType: { view: false, insert: false, update: false },
         year: { view: false, insert: false, update: false },
         internalOrExternal: { view: false, insert: false, update: false },
-        departmentId: { view: true, insert: true, update: true } 
+        departmentId: { view: true, insert: true, update: true }
       },
       professional_body_membership:{
         slNo: { view: true, insert: true, update: true } ,
@@ -517,7 +631,7 @@ router.get('/bosboe', function(req, res, next) {
         professionalBodyName: { view: false, insert: false, update: false },
         membershipType: { view: false, insert: false, update: false },
         subscriptionYear: { view: false, insert: false, update: false },
-        departmentId: { view: true, insert: true, update: true } 
+        departmentId: { view: true, insert: true, update: true }
       }
     },
     insertPermission:departmentPermissions.insertPermission,
@@ -530,16 +644,19 @@ router.get('/bosboe', function(req, res, next) {
 router.get('/getExcel', function(req, res, next){
 	res.setHeader('Content-Type', 'application/json');
 
-	utility.checkSesssion(req, res);
-	  console.log('here');
+  utility.checkSesssion(req, res);
+
+
+
+	  // console.log('here');
 	    var query = req.cookies['query'];
-			console.log("Here is my query:" + query);
+			// console.log("Here is my query:" + query);
 
 	    var callBack = function(result)
 			{
-	        generateexcel.getExcelSheet(result, "Report.xls", res);
+	        generateexcel.getExcelSheet(preProcessor.removeHiddenFields(result), "Report.xls", res);
 	    }
-	    console.log(Array(req.body.whereOption));
+	    // console.log(Array(req.body.whereOption));
 	    sqlExecute.executeDirectQuery(query, callBack);
 
 	    //sqlExecute.getJointFacultyInfo(callBack, req.params.tableName);*/
@@ -549,8 +666,8 @@ router.get('/getExcel', function(req, res, next){
 router.get('/getSummary/:tableName/:from/:to/:departmentId/:type', function(req, res, next){
 	res.setHeader('Content-Type', 'application/json');
 	utility.checkSesssion(req, res);
-  console.log('here');
-  console.log("years"+ req.params.from+" "+req.params.to);
+  // console.log('here');
+  // console.log("years"+ req.params.from+" "+req.params.to);
   var tableName = req.params.tableName;
 
 
@@ -567,10 +684,51 @@ router.get('/getSummary/:tableName/:from/:to/:departmentId/:type', function(req,
 
 
 router.get('/', function(req, res, next) {
+
+  if(!utility.checkSesssion(req, res))
+		return;
+
+	var facultyId;
+	var auth = true;
+
+	if(!utility.checkGetParam(req,res)){
+		facultyId = req.session.facultyId;
+	}
+	else{
+		if(req.session.facultyId != "admin" && req.session.facultyId != "principal"){
+			auth = false;
+		}
+		facultyId = req.query.fId;
+	}
+
+
   if(req.query.departmentId){
     var departmentId = req.query.departmentId;
   } else{
     var departmentId = req.session.departmentId;
+  }
+  // console.log("department-index facultyId " + facultyId + " departmentId " + departmentId);
+  if(facultyId === 'admin' || facultyId === 'principal'){
+    //if it is an admin or the principal allow access.
+  }
+  else {
+    //if it is a faculty or hod or coordinator they have only department level access.
+    if(facultyId === 'hod' || facultyId === 'coordinator'){
+      //this is hod or coordinator level logic.
+      var mEmail = req.session.email;
+      mEmail = mEmail.split("@")[0];
+      if(mEmail.indexOf(departmentId) == -1){
+        res.redirect("/error/401");
+        return;
+      }
+    }
+    else {
+      //this is faculty level logic.
+      if(facultyId.indexOf(departmentId) == -1){
+        res.redirect("/error/401");
+        return;
+      }
+    }
   }
   var callback = function(err,result){
     if(err){
@@ -594,9 +752,9 @@ router.get('/', function(req, res, next) {
     index:{
       url:"/faculty/",
       departmentGeneralInfo:{
-        facultyName:"facultyName",
-        gender:"gender",
-        address:"address",
+        facultyName:"Faculty Name",
+        gender:"Gender",
+        address:"Address",
         atureOfAppointment:"Nature Of Appointment",
         contactNumber:"Contact No.",
         emailId:"Email Id"
@@ -612,7 +770,31 @@ router.get('/', function(req, res, next) {
 
 router.get('/generateexcel/:tableNo/:index/',function(req,res,next){
   if(!utility.checkSesssion(req, res)) return;
-  console.log("this is " + req.params.facultyTable);
+
+  var facultyId = req.session.facultyId;
+  if(facultyId === 'admin' || facultyId === 'principal'){
+    //if it is an admin or the principal allow access.
+  }
+  else {
+    //if it is a faculty or hod or coordinator they have only department level access.
+    if(facultyId === 'hod' || facultyId === 'coordinator'){
+      //this is hod or coordinator level logic.
+      var mEmail = req.session.email;
+      mEmail = mEmail.split("@")[0];
+      if(mEmail.indexOf(departmentId) == -1){
+        res.redirect("/error/401");
+        return;
+      }
+    }
+    else {
+      //this is faculty level logic.
+      if(facultyId.indexOf(departmentId) == -1){
+        res.redirect("/error/401");
+        return;
+      }
+    }
+  }
+  // console.log("this is " + req.params.facultyTable);
   var map=["", "", "", "", "", "",""];
   var index = req.params.index;
   if(req.query.departmentId){
@@ -629,8 +811,8 @@ router.get('/generateexcel/:tableNo/:index/',function(req,res,next){
 		generateexcel.getExcelSheet(result[map[tableno]],map[tableno]+ ".xls",res);
 	}
 	if(err || result.length==0){
-		console.log("It reached in error");
-		throw err;
+		// console.log("It reached in error");
+		res.send("error");
 	}
 	}
 

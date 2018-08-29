@@ -8,12 +8,12 @@ var path = require('path')
 
 var storage = multer.diskStorage({
 	destination: function(req, file, callback) {
-		console.log("hello, i am heere");
+		// console.log("hello, i am heere");
 		callback(null, './public/assets/img/faces')
 	},
 	filename: function(req, file, callback) {
-		console.log("hello bor");
-		console.log(file)
+		// console.log("hello bor");
+		// console.log(file)
 		callback(null, req.session.facultyId + ".jpg")
 	}
 })
@@ -23,8 +23,8 @@ var upload = multer({
 })
 
 router.post('/',upload.single('avatar') ,function(req, res, next) {
-	console.log(req.file);
-	console.log(req.body);
+	// console.log(req.file);
+	// console.log(req.body);
 	res.redirect('/faculty')
 });
 

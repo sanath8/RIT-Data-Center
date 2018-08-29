@@ -4,12 +4,12 @@
     var authType = <%-JSON.stringify(authType)%>
     var GetParam = <%-JSON.stringify(GetParam)%>
 
-    console.log("getparam : " + GetParam + " facultyId : " + authType);
+    // console.log("getparam : " + GetParam + " facultyId : " + authType);
     if(authType != 'principal' && authType != 'coordinator' && authType != 'hod' && authType != 'admin'){
         authType = 'faculty';
     }
-    console.log("hello everyone");
-    console.log("insertPermission authType " + insertPermission[authType] + " " + authType);
+    // console.log("hello everyone");
+    // console.log("insertPermission authType " + insertPermission[authType] + " " + authType);
     var buttonsDisable = document.getElementsByClassName("insertButton");
     for(var i = 0; i< buttonsDisable.length;i++){
         if(typeof(GetParam) != 'undefined' && authType === 'faculty'){
@@ -17,7 +17,7 @@
         }
         else if(insertPermission[authType] === false){
             buttonsDisable[i].disabled = true;
-            console.log("disabling button " + insertPermission[authType] + " " + authType);
+            // console.log("disabling button " + insertPermission[authType] + " " + authType);
         }
 
     }

@@ -15,7 +15,7 @@ router.post('/:tableName', function(req, res, next){
     //var str="Apis need to integrated";
     var upd=[];
     var tableKey=[];
-    console.log("request body in apiInsert : " + JSON.stringify(req.body));
+    // console.log("request body in apiInsert : " + JSON.stringify(req.body));
     for(var t in req.body){
         var newData = "";
         for(var j = 0; j< req.body[t].length; j++){
@@ -27,7 +27,7 @@ router.post('/:tableName', function(req, res, next){
             upd.push("'"+newData+"'");
             tableKey.push(t);
         }else if(t==="facultyId" || t==="departmentId"){
-            console.log("req.session.facultyId = " + req.session.facultyId);
+            // console.log("req.session.facultyId = " + req.session.facultyId);
             if(req.session.facultyId === 'admin'){
                 if(req.body.url.indexOf('institution') != -1){
                     //if the institution page is accessed from admin level, dont include facultyId
@@ -80,7 +80,7 @@ router.post('/:tableName', function(req, res, next){
             res.end("Error : "+err.message);
             return;
         }
-        if(!req.body.getParam){
+        if(!req.body.getParam || typeof(req.body.getParam) === "undefined" || req.body.getParam === "undefined"){
             res.redirect(req.body.url);
         }else{
             //if department page is watched set departmentId

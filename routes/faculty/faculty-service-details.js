@@ -19,10 +19,17 @@ router.get('/', function(req, res, next) {
 		facultyId = req.query.fId;
 	}
 
+	if(facultyId === 'admin' || facultyId === 'hod' || facultyId === 'coordinator' || facultyId === 'principal'){
+		if((typeof req.param("fId") === 'undefined')){
+			res.redirect("/error/401");
+			return;
+		}
+	}
+
 	var callback = function(err, result){
 		if(err)
 			throw err;
-		console.log(result);
+		// console.log(result);
 		var arr = [];
 		var facultyID = req.session.facultyId;
 		for(var i in result){
@@ -37,6 +44,7 @@ router.get('/', function(req, res, next) {
 				promotionDate:result[i]["promotionDate"],
 				payScale:result[i]["payScale"]
 			};
+			// console.log("Date type " + temp.promotionDate.toJSON().substr(0,10));
 			arr.push(temp);
 		}
 		// reportData[0] = result;
