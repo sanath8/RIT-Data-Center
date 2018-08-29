@@ -17,8 +17,14 @@ router.post('/:tableName', function(req, res, next){
     var tableKey=[];
     // console.log("request body in apiInsert : " + JSON.stringify(req.body));
     for(var t in req.body){
+        var newData = "";
+        for(var j = 0; j< req.body[t].length; j++){
+            if(req.body[t][j] != '"'){
+                newData += req.body[t][j];
+            }
+        }
         if(t!="slNo" && t!="facultyId" && t!="url" && t!="getParam" && t != "departmentId"){
-            upd.push("'"+req.body[t]+"'");
+            upd.push("\""+newData+"\"");
             tableKey.push(t);
         }else if(t==="facultyId" || t==="departmentId"){
             // console.log("req.session.facultyId = " + req.session.facultyId);
