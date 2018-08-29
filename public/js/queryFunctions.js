@@ -292,7 +292,6 @@ function performFilterOperations(flag, reportCallBack)
         if(flag == 'report')
         {
             reportCallBack(dataRecieved);
-            console.log("report data" + dataRecieved);
         }
         else
         {

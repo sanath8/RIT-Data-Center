@@ -1,4 +1,4 @@
-/* Backend version of preProcessor which is used for hiding some of the 
+/* Backend version of preProcessor which is used for hiding some of the
 confidential fields to the user who is not authenticated. Make sure the changes
 you make here is also reflected back in its front-end counter part.*/
 
@@ -20,7 +20,6 @@ preProcessor.prototype.removeHiddenFields = function(sqlResults)
 
         try
         {
-
           delete this.resultSet[i][this.hiddenFields[j]];
         } catch (e)
         {
