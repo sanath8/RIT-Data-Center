@@ -84,4 +84,28 @@ router.use('/admin-reports', require('./admin-reports'));
 
 router.use('/add-faculty', require('./add-faculty'))
 
+router.get('/generateexcel/:tableNo/:index/',function(req,res,next){
+  if(!utility.checkSesssion(req, res)) return;
+//   console.log("this is " + req.params.facultyTable);
+  var map=[""];
+  var index = req.params.index;
+  var tableno = parseInt(req.params.tableNo)-1;
+	
+	var callback=function(err, result){
+		if(index == 1){
+			generateexcel.getExcelSheet(result,map[tableno] + ".xls",res);
+		} else{
+			generateexcel.getExcelSheet(result[map[tableno]],map[tableno]+ ".xls",res);
+		}
+		if(err || result.length==0){
+			// console.log("It reached in error");
+			//throw err;
+		}
+	}
+  if(index == 1){
+		mySqlCalls.getDepartmentInfo(callback);
+		map[0]="department";
+  }
+});
+
 module.exports = router;
