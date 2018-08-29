@@ -24,7 +24,7 @@ router.post('/:tableName', function(req, res, next){
             }
         }
         if(t!="slNo" && t!="facultyId" && t!="url" && t!="getParam" && t != "departmentId"){
-            upd.push("'"+newData+"'");
+            upd.push("\""+newData+"\"");
             tableKey.push(t);
         }else if(t==="facultyId" || t==="departmentId"){
             // console.log("req.session.facultyId = " + req.session.facultyId);
