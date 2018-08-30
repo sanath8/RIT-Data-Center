@@ -33,9 +33,16 @@ router.post('/:tableName', function(req, res, next){
     }
     else if(req.body.url.indexOf('department') != -1){
         //department page is accessed.
-        var sql = "Update "+req.params.tableName+" SET ";   
-        sql+=upd.join(" , ");
-        sql+=" Where departmentId='"+req.body.getParam + "'";
+        if(req.params.tableName === 'admissions'){
+            var sql = "Update "+req.params.tableName+" SET ";   
+            sql+=upd.join(" , ");
+            sql+=" Where year='"+req.body.year + "'";
+        }
+        else{
+            var sql = "Update "+req.params.tableName+" SET ";   
+            sql+=upd.join(" , ");
+            sql+=" Where departmentId='"+req.body.getParam + "'";
+        }
     }
     // for(var b in req.body){
     //     str=str+"\n"+b;

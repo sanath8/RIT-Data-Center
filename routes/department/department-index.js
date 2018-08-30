@@ -490,7 +490,7 @@ router.get('/admission-details', function(req, res, next) {
       },
       hiddenFields: {
         admissions:{
-          year: { view: false, insert: false, update: false },
+          year: { view: false, insert: false, update: true },
           noOfUgStudents: { view: false, insert: false, update: false },
           noOfPgStudents: { view: false, insert: false, update: false },
           noOfPgStudentsWithGateScore: { view: false, insert: false, update: false },
