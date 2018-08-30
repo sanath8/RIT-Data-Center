@@ -52,7 +52,9 @@ router.get('/student-info', function(req, res, next) {
           eventName: studentAchieve[i].eventName,
           date: studentAchieve[i].date,
           award: studentAchieve[i].award,
-          category: studentAchieve[i].category };
+          category: studentAchieve[i].category, 
+          slNo: studentAchieve[i].slNo
+        };
         studentAchievement.push(individualEntry);
       }
       var studentActivites = [];
@@ -63,7 +65,8 @@ router.get('/student-info', function(req, res, next) {
           eventName: studentActivity[i].eventName,
           date: studentActivity[i].date,
           industryOrOrganization: studentActivity[i].industryOrOrganization,
-          category: studentActivity[i].category
+          category: studentActivity[i].category,
+          slNo: studentActivity[i].slNo
          };
          studentActivites.push(individualEntry);
       }
@@ -75,7 +78,8 @@ router.get('/student-info', function(req, res, next) {
           title: studentpublic[i].title,
           date: studentpublic[i].date,
           conferenceOrJournal: studentpublic[i].conferenceOrJournal,
-          place: studentpublic[i].place
+          place: studentpublic[i].place,
+          slNo: studentpublic[i].slNo
         };
         studentPublication.push(individualEntry);
       }
@@ -548,7 +552,8 @@ router.get('/bosboe', function(req, res, next) {
         board: professional[i].board,
         college: professional[i].college,
         externalOrInternal: professional[i].externalOrInternal,
-        year: professional[i].year
+        year: professional[i].year,
+        slNo: professional[i].slNo
       }
       professionalActivities.push(singleEntry);
     }
@@ -560,7 +565,8 @@ router.get('/bosboe', function(req, res, next) {
         facultyName: other[i].facultyName,
         contributionType: other[i].contributionType,
         year: other[i].year,
-        internalOrExternal: other[i].internalOrExternal
+        internalOrExternal: other[i].internalOrExternal,
+        slNo: other[i].slNo
       }
       otherMembership.push(singleEntry);
     }
@@ -572,7 +578,8 @@ router.get('/bosboe', function(req, res, next) {
         facultyName: profess[i].facultyName,
         professionalBodyName: profess[i].professionalBodyName,
         membershipType: profess[i].membershipType,
-        subscriptionYear: profess[i].subscriptionYear
+        subscriptionYear: profess[i].subscriptionYear,
+        slNo: profess[i].slNo
       }
       professionalbodyMembership.push(singleEntry);
     }
