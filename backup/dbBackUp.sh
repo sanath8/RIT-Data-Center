@@ -4,6 +4,13 @@ YEAR=`date +%Y`
 MONTH=`date +%m`
 DAY=`date +%d`
 HOUR=`date +%H`
-/opt/lampp/bin/mysqldump -u root -pmysql12345 rit_data_center > /home/sanath/important/RIT-Information-Site/backup/$YEAR-$MONTH-$DAY-backup.sql
-#For transferring the file to other server use : sshpass -p 0987 scp tiltSensor.py  sanath@localhost:
-#For deleting file from present server use : rm /home/sanath/important/RIT-Information-Site/backup/$YEAR-$MONTH-$DAY-backup.sql
+MINUTE=`date +%M`
+#Below command will make a copy of the sql file
+/opt/lampp/bin/mysqldump -u root -pmysql12345 rit_data_center > /home/alpha/rit-data-center/RIT-Information-Site/backup/$YEAR-$MONTH-$DAY-$MINUTE-backup.sql
+
+#Below two commands can be used to send the file to the beta server
+#/usr/local/bin/sshpass -p rit2019 scp /home/alpha/rit-data-center/RIT-Information-Site/backup/2018-08-30-backup.sql  beta@172.1.16.106:/home/beta/
+/usr/local/bin/sshpass -p rit2019 rsync -av /home/alpha/rit-data-center/RIT-Information-Site/backup/$YEAR-$MONTH-$DAY-$MINUTE-backup.sql beta@172.1.16.106:/home/beta/dbBackups
+
+#For deleting file from present server use : 
+/bin/rm /home/alpha/rit-data-center/RIT-Information-Site/backup/$YEAR-$MONTH-$DAY-$MINUTE-backup.sql
