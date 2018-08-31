@@ -1,3 +1,4 @@
+<script src="/dropdowns/dropdown.js"></script>
 <%
     loadInTableModular=function(columnName, permission){
         var resultSet=data[columnName];
@@ -160,24 +161,24 @@
     </div>
 
 <script>
-var data={};
-var index={};
-var additional_data = {};
-<% if(locals.data){%>
- data = <%- JSON.stringify(data) %>
-<%}%>
-<% if(locals.index){%>
- index = <%- JSON.stringify(index) %>
-<%}%>
+    var data={};
+    var index={};
+    var additional_data = {};
+    <% if(locals.data){%>
+    data = <%- JSON.stringify(data) %>
+    <%}%>
+    <% if(locals.index){%>
+    index = <%- JSON.stringify(index) %>
+    <%}%>
 
-<% if(locals.additional_data){%>
- additional_data = <%- JSON.stringify(additional_data) %>
-<%}%>
+    <% if(locals.additional_data){%>
+    additional_data = <%- JSON.stringify(additional_data) %>
+    <%}%>
 
-var hiddenFields = {};
-<% if(locals.hiddenFields){%>
- hiddenFields = <%- JSON.stringify(hiddenFields) %>
-<%}%>
+    var hiddenFields = {};
+    <% if(locals.hiddenFields){%>
+    hiddenFields = <%- JSON.stringify(hiddenFields) %>
+    <%}%>
 </script>
 
 
@@ -254,6 +255,15 @@ var hiddenFields = {};
                 <input name="'+j+'" type="date" class="form-control" value="'+dateString+'">\
                 </div>')
             }
+            else if(dropdowns[columnName][j]){
+                var optionsList = ""
+                var op = dropdowns[columnName][j];
+                for(var z = 0; z< op.length ; z++){
+                    optionsList += '<option value = "' + op[z] + '">' + op[z] + '</option>';
+                }
+                str = str + '<select name="' + j + '" id="inputState" class="form-control">\
+                ' + optionsList + '</select>'
+            } 
             else{
                 str = str + ('<div class="form-group ">\
                 <label class="control-label">'+temp+'</label>\
@@ -308,8 +318,8 @@ var hiddenFields = {};
                 }
                 // console.log("additional data is " + additional_data[columnName]);
                 str = str + ('<label for="inputState">' + j + '</label>\
-      <select name="' + j + '" id="inputState" class="form-control">\
-        ' + optionsList + '</select>')
+                <select name="' + j + '" id="inputState" class="form-control">\
+                ' + optionsList + '</select>')
             }
             else if(j.indexOf('date') != -1 || j.indexOf('Date') != -1){
                 str = str + ('<div class="form-group ">\
@@ -317,11 +327,21 @@ var hiddenFields = {};
                 <input name="'+j+'" type="date" class="form-control" ">\
                 </div>')
             }
-            else    
-            str = str + ('<div class="form-group ">\
+            else if(dropdowns[columnName][j]){
+                var optionsList = ""
+                var op = dropdowns[columnName][j];
+                for(var z = 0; z< op.length ; z++){
+                    optionsList += '<option value = "' + op[z] + '">' + op[z] + '</option>';
+                }
+                str = str + '<select name="' + j + '" id="inputState" class="form-control">\
+                ' + optionsList + '</select>'
+            } 
+            else{
+                str = str + ('<div class="form-group ">\
                 <label class="control-label">'+temp+'</label>\
                 <input name="'+j+'" type="text" class="form-control" ">\
                 </div>')
+            }
         }
         str = str + ('<button type="submit" class="btn btn-primary pull-right">Insert</button>\
             <button type="reset" class="btn btn-warning pull-right" data-dismiss="modal">Cancel</button>\
