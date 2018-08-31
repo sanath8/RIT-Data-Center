@@ -255,14 +255,16 @@
                 <input name="'+j+'" type="date" class="form-control" value="'+dateString+'">\
                 </div>')
             }
-            else if(dropdowns[columnName][j]){
+            else if(dropdowns[columnName +"_"+ j]){
                 var optionsList = ""
-                var op = dropdowns[columnName][j];
+                var op = dropdowns[columnName +"_"+ j];
                 for(var z = 0; z< op.length ; z++){
                     optionsList += '<option value = "' + op[z] + '">' + op[z] + '</option>';
                 }
+                str = str + '<div class="form-group ">\
+                <label class="control-label">'+temp+'</label>'
                 str = str + '<select name="' + j + '" id="inputState" class="form-control">\
-                ' + optionsList + '</select>'
+                ' + optionsList + '</select></div>'
             } 
             else{
                 str = str + ('<div class="form-group ">\
@@ -327,14 +329,16 @@
                 <input name="'+j+'" type="date" class="form-control" ">\
                 </div>')
             }
-            else if(dropdowns[columnName][j]){
+            else if(dropdowns[columnName +"_"+ j]){
                 var optionsList = ""
-                var op = dropdowns[columnName][j];
+                var op = dropdowns[columnName +"_"+ j];
                 for(var z = 0; z< op.length ; z++){
                     optionsList += '<option value = "' + op[z] + '">' + op[z] + '</option>';
                 }
+                str = str + '<div class="form-group ">\
+                <label class="control-label">'+temp+'</label>'
                 str = str + '<select name="' + j + '" id="inputState" class="form-control">\
-                ' + optionsList + '</select>'
+                ' + optionsList + '</select></div>'
             } 
             else{
                 str = str + ('<div class="form-group ">\
