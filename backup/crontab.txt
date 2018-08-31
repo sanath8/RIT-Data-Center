@@ -1,5 +1,3 @@
-  GNU nano 2.9.3                                                         /tmp/crontab.JMbleZ/crontab                                                                    
-
 # Edit this file to introduce tasks to be run by cron.
 # 
 # Each task to run has to be defined through a single line
@@ -22,8 +20,7 @@
 # For more information see the manual pages of crontab(5) and cron(8)
 # 
 # m h  dom mon dow   command
-01 09 * * * /bin/bash /home/alpha/rit-data-center/RIT-Information-Site/backup/dbBackUp.sh
-
+30 08 * * * /bin/bash /home/gamma/RIT-Data-Center/backup/dbBackUp.sh
 
 
 
