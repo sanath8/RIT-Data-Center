@@ -51,7 +51,7 @@ router.get('/', function(req, res, next) {
 				category :  "Category",
 				address :  "Address",
 				status :  "Status",
-				instituteName:'institution Name'
+				instituteName:'Institution Name'
 			}
 		},
 		hiddenFields:{

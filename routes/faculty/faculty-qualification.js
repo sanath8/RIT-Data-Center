@@ -55,11 +55,11 @@ router.get('/', function(req, res, next) {
 					{
 						slNo: "Sl. No",
 						facultyId : "facultyId",
-						degree : "degree", 
-						university : "university",
-						passClass :  "passClass",
-						passYear :  "passYear",
-						areaOfSpecialization :  "areaOfSpecialization"
+						degree : "Degree", 
+						university : "University",
+						passClass :  "Pass Class",
+						passYear :  "Year of Passing",
+						areaOfSpecialization :  "Area Of Specialization"
 					}
 				},
 				hiddenFields:{

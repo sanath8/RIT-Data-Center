@@ -226,9 +226,10 @@
                     // console.log(item[j] + " is entry");
                 }
                 // console.log("additional data is " + additional_data[columnName]);
-                str = str + ('<label for="inputState">' + j + '</label>\
-      <select name="' + j + '" id="inputState" class="form-control">\
-        ' + optionsList + '</select>')
+                str = str + ('<div class="form-group ">\
+                <label class="control-label" for="inputState">' + temp + '</label>\
+                <select name="' + j + '" id="inputState" class="form-control">\
+                ' + optionsList + '</select>')
             }
             else if(j.indexOf('date') != -1 || j.indexOf('Date') != -1 || j === 'dob'){
                 var mDate = new Date(Date.parse(res[j]));
@@ -319,7 +320,8 @@
                     // console.log(item[j] + " is entry");
                 }
                 // console.log("additional data is " + additional_data[columnName]);
-                str = str + ('<label for="inputState">' + j + '</label>\
+                str = str + ('<div class="form-group ">\
+                <label class="control-label" for="inputState">' + temp + '</label>\
                 <select name="' + j + '" id="inputState" class="form-control">\
                 ' + optionsList + '</select>')
             }
