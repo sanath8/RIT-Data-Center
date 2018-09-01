@@ -1,6 +1,10 @@
 <script>
-<% if( authType != "principal" && authType != "admin") {  console.log("principal"  +  authType);
+
+<% if( departmentId != "college") {  console.log("principal"  +  authType);
  %>
   document.getElementById("department").disabled=true;
+  var deptIDCode =  <%- JSON.stringify(departmentId) %>;
+  document.getElementById("department").value = deptIDCode;
+
 <%}%>
 </script>
