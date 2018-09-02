@@ -34,9 +34,9 @@ mailer.prototype.sendMail = function(mailTo, res)
 
         transporter.sendMail(mailOptions, function(error, info){
           if (error) {
-            res.redirect("/forgotPass?error="+qs.escape("Something went wrong. Please enter a valid e-mail id."));
+            res.redirect("/forgotPass?error="+qs.escape(error));
           } else {
-            res.redirect("/forgotPass?error="+qs.escape("We have mailed you the password."));
+            res.redirect("/login?error="+qs.escape("We have mailed you the password."));
           }
         });
     }
