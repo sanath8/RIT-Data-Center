@@ -29,6 +29,13 @@
         </th>
 
         <th>
+          <label for="type">Type</label>
+          <select class="form-control" id="type">
+            <%loadInList([{type:"ALL"}, {type:"international"}, {type:"national"}])%>
+          </select>
+        </th>
+
+        <th>
           <label for="yearList">Year</label>
           <select class="form-control" id="yearList">
             <%loadInList([{year:"ALL"}, {year:1}, {year:2}, {year:3}, {year:4}, {year:5}])%>
@@ -91,6 +98,7 @@
 </div>
 <% include ../partials/disableDropDown %>
 <% include ../partials/footer %>
+<script src="/js/dataSets.js"></script>
 <script src="/js/dataPreprocessor.js"></script>
 <script src="/js/conversionDictionary.js"></script>
 <script src="/js/queryFunctions.js"></script>
