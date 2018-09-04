@@ -1,9 +1,6 @@
 var columnsSelected = "";
 var tableLock = 0;
-var facultyLevelTables =["faculty", "book","book_chapter","conference_paper","consultancy",
-"courses_handled","faculty_conference_symposia","faculty_guest_lecture","faculty_patent",
-"faculty_qualification","faculty_research","faculty_service","faculty_workshop_fdp","funded_projects",
-"industrial_collaboraion_mou","journal_paper","phd_scholar","projects_handled"]; //tables that contain faculty-ID
+initializeQueryPage();
 
 $("#getReportDepartment").click(function()
 {
@@ -33,6 +30,14 @@ $("#getSummaryAdmin").click(function(){
 $("#getSummaryDepartment").click(function(){
     filteredSummaryReport("department");
 });
+
+
+function initializeQueryPage()
+{
+  document.getElementById("type").value = "ALL";
+  document.getElementById("type").disabled = true;
+
+}
 
 function setFacultyNamesFilter(tableName)
 {
@@ -132,7 +137,6 @@ function filteredSummaryReport(type)
 $("#tableList").change(function () {
   document.getElementById("title").innerHTML = $('#tableList').val();
   document.getElementById("titleDesc").innerHTML = "information about " + $('#tableList').val();
-
   columnsSelected = "";
   performFilterOperations('table_changed');
   tableLock =1;
@@ -142,6 +146,22 @@ $("#filters").change(function () {
   performFilterOperations('checkbox_changed');
 });
 
+
+function checkPublicationTypeEnabled(table)
+{
+  console.log("inside checkPublicationTypeEnabled");
+  var publicationType = $('#type').val();
+  if(enablePublicTypeTable.indexOf(table) == -1)
+  {
+      document.getElementById("type").value = "ALL";
+      document.getElementById("type").disabled = true;
+  }
+  else
+  {
+      document.getElementById("type").disabled = false;
+  }
+
+}
 
 
 function checkboxClicked(element)
@@ -206,8 +226,10 @@ function performFilterOperations(flag, reportCallBack)
 
   var tableName = $('#tableList').val();
   setFacultyNamesFilter(tableName);
+  checkPublicationTypeEnabled(tableName);
   var department = $('#department').val();
   var facultyName = $('#facultyList').val();
+  var publicationType = $('#type').val();
   var year = $('#yearList').val();
   var from = $('#from').val();
   var fromYear = from.split("-")[0];
@@ -219,8 +241,6 @@ function performFilterOperations(flag, reportCallBack)
     document.getElementById("yearList").disabled=true;
   else
     document.getElementById("yearList").disabled=false;
-
-
 
 
   var queryFilter;
@@ -244,6 +264,16 @@ function performFilterOperations(flag, reportCallBack)
     facultyFilter = ["facultyName = '"+ facultyName +"'"];
     queryFilter.push(facultyFilter);
   }
+
+  if(publicationType == "ALL")
+  {
+      queryFilter = queryFilter;
+  }
+  else
+  {
+      var publicationFilter = "" + converterApi.publicationTranslator(tableName) + " = '" + publicationType + "'";
+      queryFilter.push(publicationFilter);
+  }
   if($('#yearList').is(':enabled'))
   {
     if(year == "ALL")
@@ -252,7 +282,7 @@ function performFilterOperations(flag, reportCallBack)
     }
     else
     {
-      var yearFilter =  ""+ converterApi.yearTranslator(tableName)+" >= '" + (getFormatedDate(year)).toString() + "'";
+      var yearFilter =  "" + converterApi.yearTranslator(tableName)+" >= '" + (getFormatedDate(year)).toString() + "'";
       queryFilter.push(yearFilter);
     }
   }
