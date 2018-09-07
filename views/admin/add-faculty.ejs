@@ -59,12 +59,9 @@
                                 <div class="form-group control-label">
                                     <label>Department</label> <!--give class as class="control-label" for effect-->
                                     <select type="text" class="form-control" name="department">
-                                        <option>cse</option>
-                                        <option>ise</option>
-                                        <option>ece</option>
-                                        <option>iem</option>
-                                        <option>cv</option>
-                                        <option>me</option>
+                                        <% for(var i =0; i< branch.length; i++){%>
+                                        <option><%=branch[i]%></option>
+                                        <%}%>
                                     </select>
                                 </div>
                             </div>                                                     
