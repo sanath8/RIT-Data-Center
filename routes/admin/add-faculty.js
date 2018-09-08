@@ -20,5 +20,6 @@ router.get('/', function(req, res, next) {
 		return;
 	}
     res.render('admin/add-faculty', {type : 'add-faculty', GetParam: req.query.fId, authType:req.session.facultyId, departmentId:req.session.departmentId, GetParam:"dummy", branch:branchs });
+})
 
 module.exports=router;
