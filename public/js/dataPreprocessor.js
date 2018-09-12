@@ -1,6 +1,6 @@
-/* Backend version of preProcessor which is used for hiding some of the
+/* Front-end version of preProcessor which is used for hiding some of the
 confidential fields to the user who is not authenticated. Make sure the changes
-you make here is also reflected back in its back-end counter part.*/ 
+you make here is also reflected back in its back-end counter part.*/
 var preProcessor = function()
 {
   this.hiddenFields = ["password","about"]
@@ -10,7 +10,7 @@ var preProcessor = function()
 preProcessor.prototype.removeHiddenFields = function(sqlResults)
 {
 
-  this.resultSet = sqlResults.slice();;
+  this.resultSet = sqlResults.slice();
 
   for(var i = 0; i < this.resultSet.length; i++)
   {
@@ -23,7 +23,7 @@ preProcessor.prototype.removeHiddenFields = function(sqlResults)
           delete this.resultSet[i][this.hiddenFields[j]];
         } catch (e)
         {
-          console.log("No hidden fields");
+          console.log("No hidden fields" + e);
         }
 
     }

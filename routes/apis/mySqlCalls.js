@@ -593,20 +593,20 @@ sqlObject.prototype.getFourSelectList = function(callback, url1, url2, url3, url
   });
 }
 sqlObject.prototype.getTwoSelectList = function(callback, url1, tableName, depId){
-	var sql0 = "select distinct  departmentId from department";
+	var sql0 = "select distinct  departmentId from department ORDER BY departmentId";
 	var sql1 = "";
 	var sql2 = "";
 	sql1 = "select distinct table_name from information_schema.tables where table_schema = 'rit_data_center'\
 	AND table_name != 'academic_council' AND table_name != 'finance' AND table_name != 'governing_body'\
 	AND table_name != 'institution' AND table_name != 'department' AND table_name != 'administrator_login'\
-	AND table_name != 'scholarship'";
+	AND table_name != 'scholarship' ORDER BY table_name";
 	if(depId != 'none')
 	{
-		sql2 = "select distinct " + url1 + " from " + tableName + " WHERE departmentId = '"+ depId +"'";
+		sql2 = "select distinct " + url1 + " from " + tableName + " WHERE departmentId = '"+ depId +"' ORDER BY facultyName";
 	}
 	else
 	{
-		sql2 = "select distinct " + url1 + " from " + tableName;
+		sql2 = "select distinct " + url1 + " from " + tableName + " ORDER BY facultyName";
 	}
 	console.log("name filter speaking : " + sql2);
   var data0, data1, data2;

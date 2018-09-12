@@ -11,7 +11,7 @@ var preProcessor = function()
 preProcessor.prototype.removeHiddenFields = function(sqlResults)
 {
 
-  this.resultSet = sqlResults.slice();;
+  this.resultSet = sqlResults.slice();
 
   for(var i = 0; i < this.resultSet.length; i++)
   {
@@ -23,7 +23,7 @@ preProcessor.prototype.removeHiddenFields = function(sqlResults)
           delete this.resultSet[i][this.hiddenFields[j]];
         } catch (e)
         {
-          console.log("No hidden fields");
+          console.log("No hidden fields " + e);
         }
 
     }
