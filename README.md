@@ -4,4 +4,4 @@ This project is done for our college, Ramaiah Institute Of Technology, Bangalore
 [Presentation.pptx](https://github.com/sanath8/RIT-Information-Site/files/1896089/Presentation.pptx)
 
 
-Connect to the server - ssh alpha@172.1.16.109
+Connect to the server - ssh alpha@172.1.16.80
