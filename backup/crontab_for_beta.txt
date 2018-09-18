@@ -19,12 +19,8 @@
 # 
 # For more information see the manual pages of crontab(5) and cron(8)
 # 
-# m h  dom mon dow   command
-00 08 * * * /bin/bash /home/gamma/RIT-Data-Center/backup/dbBackUp.sh
-
-
-
-
+# m h  dom mon dow  command
+00 15 * * * /bin/bash /home/beta/dbBackups/removeQueue.sh
 
 
 
