@@ -70,6 +70,7 @@ router.get('/', function(req, res, next) {
 				bookTitle : "Book Title" ,
 				bookAuthors : "Book Author" ,
 				bookPublisher : "Book Publisher" ,
+				isbn : "ISBN",
 				year : "Year"
 			   }
 		   ,
@@ -228,6 +229,7 @@ router.get('/', function(req, res, next) {
 				bookTitle : { view: false, insert: false, update: false } ,
 				bookAuthors : { view: false, insert: false, update: false } ,
 				bookPublisher : { view: false, insert: false, update: false } ,
+				isbn:{ view: false, insert: false, update: false } ,
 				year : { view: false, insert: false, update: false },
 				slNo: { view: true, insert: true, update: true }
 			   },

@@ -54,8 +54,8 @@ router.get('/', function(req, res, next) {
 				centreName:'centreName',
 				university:'university',
 				registrationYear:'registrationYear',
+				yearOfCompletion:'yearOfCompletion',
 				title:'title',
-				yearsOfCompletion:'yearsOfCompletion',
 				status:'status',
 				facultyId:facultyId
 			   }
@@ -63,13 +63,13 @@ router.get('/', function(req, res, next) {
 		   phd_scholar:
 			   {
 				facultyId:facultyId,
+				role:'role',
 				scholarName:'scholarName',
 				researchCentre:'researchCentre',
 				university:'university',
 				registrationYear:'registrationYear',
 				usn:'usn',
 				title:'title',
-				role:'role',
 				status:'status'
 			   }
 
@@ -103,7 +103,7 @@ router.get('/', function(req, res, next) {
 				university:{ view: false, insert: false, update: false },
 				registrationYear:{ view: false, insert: false, update: false },
 				title:{ view: false, insert: false, update: false },
-				yearsOfCompletion:{ view: false, insert: false, update: false },
+				yearOfCompletion:{ view: false, insert: false, update: false },
 				status:{ view: false, insert: false, update: false },
 				facultyId:{ view: true, insert: true, update: true }
 			   }
