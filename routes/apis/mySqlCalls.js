@@ -889,6 +889,15 @@ sqlObject.prototype.fetchResults = function(columns, url, whereOptions, type, fa
 }
 
 
+sqlObject.prototype.getDepartmentIds = function(callback){
+	var query = "select departmentId from department"
+	this.connection.query(query, function(err, result, fields){
+		if(err)
+			throw err;
+		callback(result)
+	})
+}
+
 var object = new sqlObject();
 
 module.exports = object;

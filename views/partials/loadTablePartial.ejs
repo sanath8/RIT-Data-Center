@@ -226,10 +226,10 @@
                     // console.log(item[j] + " is entry");
                 }
                 // console.log("additional data is " + additional_data[columnName]);
-                str = str + ('<div class="form-group ">\
-                <label class="control-label" for="inputState">' + temp + '</label>\
-                <select name="' + j + '" id="inputState" class="form-control">\
-                ' + optionsList + '</select>')
+                      str = str + ('<label for="inputState">' + j + '</label>\
+                <input list="' + j + '" name="' + j + '" id="inputState" class="form-control" />\
+                <datalist id="' + j + '">\
+                ' + optionsList + '</datalist>')
             }
             else if(j.indexOf('date') != -1 || j.indexOf('Date') != -1 || j === 'dob'){
                 var mDate = new Date(Date.parse(res[j]));
@@ -264,8 +264,9 @@
                 }
                 str = str + '<div class="form-group ">\
                 <label class="control-label">'+temp+'</label>'
-                str = str + '<select name="' + j + '" id="inputState" class="form-control">\
-                ' + optionsList + '</select></div>'
+                str = str + '<input list="' + j + '" name="' + j + '" id="inputState" class="form-control" />\
+                <datalist id="' + j + '">\
+                ' + optionsList + '</datalist></div>'
             } 
             else{
                 str = str + ('<div class="form-group ">\
@@ -320,10 +321,10 @@
                     // console.log(item[j] + " is entry");
                 }
                 // console.log("additional data is " + additional_data[columnName]);
-                str = str + ('<div class="form-group ">\
-                <label class="control-label" for="inputState">' + temp + '</label>\
-                <select name="' + j + '" id="inputState" class="form-control">\
-                ' + optionsList + '</select>')
+                str = str + ('<label for="inputState">' + j + '</label>\
+                <input list="' + j + '" name="' + j + '" id="inputState" class="form-control" />\
+                <datalist id="' + j + '">\
+                ' + optionsList + '</datalist>')
             }
             else if(j.indexOf('date') != -1 || j.indexOf('Date') != -1){
                 str = str + ('<div class="form-group ">\
@@ -339,8 +340,9 @@
                 }
                 str = str + '<div class="form-group ">\
                 <label class="control-label">'+temp+'</label>'
-                str = str + '<select name="' + j + '" id="inputState" class="form-control">\
-                ' + optionsList + '</select></div>'
+                str = str + '<input list="' + j + '" name="' + j + '" id="inputState" class="form-control" />\
+                <datalist id="' + j + '">\
+                ' + optionsList + '</datalist></div>'
             } 
             else{
                 str = str + ('<div class="form-group ">\
