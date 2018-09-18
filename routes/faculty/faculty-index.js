@@ -62,7 +62,14 @@ router.get('/', function(req, res, next) {
 			myR["panNumber"]=tresult["panNumber"];
 			myR["accountNumber"]=tresult["accountNumber"];
 			myR["pfNumber"]=tresult["pfNumber"];
+			myR["payScaleBasic"]=tresult["payScaleBasic"];
+			myR["payScaleAgp"]=tresult["payScaleAgp"];
+			myR["payScaleBand"]=tresult["payScaleBand"];
 		}
+		myR['industryExperience'] = tresult['industryExperience']
+		myR['researchExperience'] = tresult['researchExperience']
+		myR['teachingExperience'] = tresult['teachingExperience']
+		myR['highestQualification'] = tresult['highestQualification']
 		myR['about'] = tresult['about']
 		var about = tresult["about"];
 		var data=[myR];
@@ -90,7 +97,15 @@ router.get('/', function(req, res, next) {
 					panNumber:"PAN Number",
 					accountNumber:"Account Number",
 					pfNumber:"PF Number",
-					about : "About"
+					about : "About",
+					payScale : "Pay Scale",
+					payScaleBasic : "Basic Pay",
+					payScaleAgp : "AGP Pay",
+					payScaleBand : "Band Pay",
+					industryExperience : 'Industry Experience',
+					researchExperience : 'Research Experience',
+					teachingExperience : 'Teaching Experience',
+					highestQualification : 'Highest Qualification',
 				}
 			},
 			hiddenFields:{
@@ -110,7 +125,15 @@ router.get('/', function(req, res, next) {
 					panNumber:{ view: false, insert: false, update: false },
 					accountNumber:{ view: false, insert: false, update: false },
 					pfNumber:{ view: false, insert: false, update: false },
-					about : { view: false, insert: false, update: false },
+					about : { view: true, insert: true, update: true },
+					payScale : { view: false, insert: false, update: false },
+					payScaleBasic : { view: false, insert: false, update: false },
+					payScaleAgp : { view: false, insert: false, update: false },
+					payScaleBand : { view: false, insert: false, update: false },
+					industryExperience : { view: false, insert: false, update: false },
+					researchExperience : { view: false, insert: false, update: false },
+					teachingExperience : { view: false, insert: false, update: false },
+					highestQualification : { view: false, insert: false, update: false },
 					slNo: { view: true, insert: true, update: true }
 				}
 			},

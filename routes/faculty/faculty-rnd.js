@@ -37,13 +37,15 @@ router.get('/', function(req, res, next) {
 				funded_projects:
 				{   
 					facultyId : facultyID,         
-					investigatorName : "Investigator Name" ,
+					role : "Role" ,
 					projectTitle  : "Project Title" ,
-					nameOfFundingAgent : "Name of Funded Agent" ,
+					nameOfFundingAgent : "Funding Agency" ,
+					scheme : "Scheme",
 					sanctionOrderNumber : "Sanction Order Number" ,
 					projectDuration : "Project Duration" ,
 					dateSanctioned : "Date Sanctioned" ,
-					sanctionedAmount : "Sanctioned Amount"                
+					sanctionedAmount : "Sanctioned Amount",
+					status : "Status"
 				}
 			,
 			faculty_patent:
@@ -58,9 +60,12 @@ router.get('/', function(req, res, next) {
 			consultancy:
 				{   
 					facultyId : facultyID,            
-					financialYear : "Financial Year" ,
-					clientOrganization : "Client Organization" ,
-					consultancyProjectTitle : "Consultancy Project Title" ,
+					role : "Role",
+					projectTitle : "Project Title" ,
+					typeOfConsultancy : "Type of Consultancy",
+					organization : "Organization",
+					duration : "Duration",
+					sanctionedDate : "Sanctioned Date" ,
 					amountReceived : "Amount Received"                
 				}
 			,
@@ -69,21 +74,26 @@ router.get('/', function(req, res, next) {
 					facultyId : facultyID,            
 					mouTitle : "MOU Title" ,
 					mouSignedWithIndustryOrGovt : "MOU Signed (Industry/Govt)" ,
-					mouSigningDate : "MOU Sign Date"                
+					typeOfMou : "MOU Type",
+					nationalOrInternational : "National / International",
+					mouSigningDate : "MOU Sign Date",
+					validTill : "Valid Till"
 				}
 			   
 			},
 			hiddenFields:{
 				funded_projects:
-				{   
+				{
 					facultyId : { view: true, insert: true, update: true },         
-					investigatorName : { view: false, insert: false, update: false } ,
+					role : { view: false, insert: false, update: false } ,
 					projectTitle  : { view: false, insert: false, update: false } ,
 					nameOfFundingAgent : { view: false, insert: false, update: false } ,
+					scheme : { view: false, insert: false, update: false } ,
 					sanctionOrderNumber : { view: false, insert: false, update: false } ,
 					projectDuration : { view: false, insert: false, update: false } ,
 					dateSanctioned : { view: false, insert: false, update: false } ,
 					sanctionedAmount : { view: false, insert: false, update: false },
+					status : { view: false, insert: false, update: false },
 					slNo: { view: true, insert: true, update: true }                
 				}
 			,
@@ -98,21 +108,35 @@ router.get('/', function(req, res, next) {
 				}
 			,
 			consultancy:
-				{   
+				{  
 					facultyId : { view: true, insert: true, update: true },            
-					financialYear : { view: false, insert: false, update: false } ,
-					clientOrganization : { view: false, insert: false, update: false } ,
-					consultancyProjectTitle : { view: false, insert: false, update: false } ,
+					role : { view: false, insert: false, update: false } ,
+					projectTitle : { view: false, insert: false, update: false } ,
+					typeOfConsultancy : { view: false, insert: false, update: false } ,
+					organization : { view: false, insert: false, update: false }, 
+					duration : { view: false, insert: false, update: false }, 
+					sanctionedDate : { view: false, insert: false, update: false }, 
 					amountReceived : { view: false, insert: false, update: false }, 
 					slNo: { view: true, insert: true, update: true }                
 				}
 			,
 			industrial_collaboration_mou:
 				{   
+					facultyId : facultyID,            
+					mouTitle : "MOU Title" ,
+					mouSignedWithIndustryOrGovt : "MOU Signed (Industry/Govt)" ,
+					typeOfMou : "MOU Type",
+					nationalOrInternational : "National / International",
+					mouSigningDate : "MOU Sign Date",
+					validTill : "Valid Till",
+
 					facultyId : { view: true, insert: true, update: true },            
 					mouTitle : { view: false, insert: false, update: false } ,
 					mouSignedWithIndustryOrGovt : { view: false, insert: false, update: false } ,
+					typeOfMou : { view: false, insert: false, update: false } ,
+					nationalOrInternational : { view: false, insert: false, update: false } ,
 					mouSigningDate : { view: false, insert: false, update: false } ,
+					validTill : { view: false, insert: false, update: false } ,
 					slNo: { view: true, insert: true, update: true }               
 				}
 			},

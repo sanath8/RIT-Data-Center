@@ -11,18 +11,20 @@
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
                         <h4 class="title">Funded Projects</h4>
-                        <p class="category">information about projects handled.</p>
+                        <p class="category">information about projects funded.</p>
                     </div>
                     <div class="card-content table-responsive">
                         <table class="table">
                             <thead class="text-primary">
-                                <th>Principal Investigator</th>
+                                <th>Role</th>
                                 <th>Project Title</th>
                                 <th>Funding Agency</th>
+                                <th>Scheme</th>
                                 <th>Sanctioned Order NUmber</th>
                                 <th>Project Duration</th>
                                 <th>Sanctioned Date</th>
                                 <th>Sanctioned Amount (in Rs.)</th>
+                                <th>Status</th>
                             </thead>
                             <tbody>
                                 <% loadInTableModular("funded_projects", updatePermission)%>
@@ -64,9 +66,12 @@
                     <div class="card-content table-responsive">
                         <table class="table">
                             <thead class="text-primary">
-                              <th>Financial Year</th>
-                              <th>Client Orgnization</th>
-                              <th>Title of Consultancy of Project</th>
+                              <th>Role</th>
+                              <th>Project Title</th>
+                              <th>Type of Consultancy</th>
+                              <th>Organization</th>
+                              <th>Duration</th>
+                              <th>Sanctioned Date</th>
                               <th>Amount received ( in Rs )</th>
                             </thead>
                             <tbody>
@@ -88,8 +93,11 @@
                         <table class="table">
                             <thead class="text-primary">
                               <th>Title of MOU</th>
-                              <th>MOU signed with Industry</th>
+                              <th>MOU signed with (Industry/Govt)</th>
+                              <th>MOU Type</th>
+                              <th>National / International</th>
                               <th>Signing Date</th>
+                              <th>Valid Till</th>
                             </thead>
                             <tbody>
                                 <% loadInTableModular("industrial_collaboration_mou", updatePermission)%>
