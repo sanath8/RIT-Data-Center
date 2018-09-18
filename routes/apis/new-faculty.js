@@ -27,7 +27,7 @@ router.post('/', function(req, res, next){
                     res.end("Error : "+err.message);
                     return;
                 } else{
-                    res.redirect("/admin/add-faculty")
+                    res.redirect('back')
                 }
             })
         }
