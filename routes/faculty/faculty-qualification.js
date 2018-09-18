@@ -30,7 +30,7 @@ router.get('/', function(req, res, next) {
 	var callback = function(err, result){
 		if(err)
 			throw err;
-		// var result object below tobe deleted 
+		// var result object below tobe deleted
 		// console.log(JSON.stringify(result));
 		var arr=[];
 		var facultyID = req.session.facultyId;;
@@ -41,6 +41,7 @@ router.get('/', function(req, res, next) {
 				facultyId:result[i]["facultyId"],
 				degree:result[i]["degree"],
 				university:result[i]["university"],
+				collegeName:result[i]["collegeName"],
 				passClass:result[i]["passClass"],
 				passYear:result[i]["passYear"],
 				areaOfSpecialization:result[i]["areaOfSpecialization"]
@@ -49,25 +50,28 @@ router.get('/', function(req, res, next) {
 		}
 
 		res.render('faculty/qualification', {type:"qualification", data:{ faculty_qualification:arr},
-				index : { 
+				index : {
 					url:"/faculty/qualification",
        				faculty_qualification:
 					{
 						slNo: "Sl. No",
 						facultyId : "facultyId",
-						degree : "Degree", 
-						university : "University",
-						passClass :  "Pass Class",
-						passYear :  "Year of Passing",
-						areaOfSpecialization :  "Area Of Specialization"
+						degree : "degree",
+						university : "university",
+						collegeName : "collegeName",
+						passClass :  "passClass",
+						passYear :  "passYear",
+						areaOfSpecialization :  "areaOfSpecialization"
+
 					}
 				},
 				hiddenFields:{
 					faculty_qualification:
 					{
 						facultyId : { view: true, insert: true, update: true },
-						degree : { view: false, insert: false, update: false }, 
+						degree : { view: false, insert: false, update: false },
 						university : { view: false, insert: false, update: false },
+						collegeName : { view: false, insert: false, update: false },
 						passClass :  { view: false, insert: false, update: false },
 						passYear :  { view: false, insert: false, update: false },
 						areaOfSpecialization :  { view: false, insert: false, update: false },

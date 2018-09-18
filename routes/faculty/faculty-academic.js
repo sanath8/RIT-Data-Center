@@ -27,88 +27,90 @@ router.get('/', function(req, res, next) {
 		// console.log("faculty id : " + facultyID);
 		// console.log(JSON.stringify(data));
 		res.render('faculty/academic-details', {title : "Faculty Academic Details", type:"academic-details", data:data,
-		index : { 
+		index : {
 			url:"/faculty/academic-details",
-			courses_handled:{ 
+			courses_handled:{
 				facultyId : "facultyId",
-				yearHandled : "Year Handled", 
-				subjectName : "Subject Name",
-				ugOrPg :  "Ug Or Pg",
-				labHandled :  "Lab Handled",                
+				//yearHandled : "yearHandled",
+				subjectName : "subjectName",
+				ugOrPg :  "ugOrPg",
+				typeOfSubject :  "typeOfSubject",
 			   }
 		   ,
 		   projects_handled:
-			   {            
+			   {
 				facultyId : facultyId,
-				batch : "Batch",
-				ugOrPg : "Ug Or Pg",
-				projectTitle : 'Project Title',               
+				batch : "batch",
+				ugOrPg : "ugOrPg",
+				projectTitle : 'projectTitle',
 			   }
 		   ,
 		   faculty_research:
-			   {            
-				slNo: "Sl No",
-				guideName: "Guide Name",
-				researchCandidateName:"Research Candidate Name",
-				usn:'USN',
-				centreName:'Centre Name',
-				university:'University',
-				registrationYear:'Registration Year',
-				title:'Title',
-				status:'Status',
-				facultyId:facultyId       
+			   {
+				slNo: "slNo",
+				guideName: "guideName",
+				//researchCandidateName:"researchCandidateName",
+				usn:'usn',
+				centreName:'centreName',
+				university:'university',
+				registrationYear:'registrationYear',
+				title:'title',
+				yearsOfCompletion:'yearsOfCompletion',
+				status:'status',
+				facultyId:facultyId
 			   }
 		   ,
 		   phd_scholar:
-			   {            
+			   {
 				facultyId:facultyId,
-				scholarName:'Scholar Name',
-				guideName:'Guide Name',
-				researchCentre:'Research Centre',
-				university:'University',
-				registrationYear:'Registration Year',
-				usn:'USN',
-				title:'Title',
-				status:'Status'               
+				scholarName:'scholarName',
+				researchCentre:'researchCentre',
+				university:'university',
+				registrationYear:'registrationYear',
+				usn:'usn',
+				title:'title',
+				role:'role',
+				status:'status'
 			   }
-		      
+
 		},
 		hiddenFields:{
-			courses_handled:{ 
+			courses_handled:{
 				slNo: { view: true, insert: true, update: true },
 				facultyId : { view: true, insert: true, update: true },
-				yearHandled : { view: false, insert: false, update: false }, 
+				//yearHandled : { view: false, insert: false, update: false },
 				subjectName : { view: false, insert: false, update: false },
 				ugOrPg :  { view: false, insert: false, update: false },
-				labHandled :  { view: false, insert: false, update: false },                
+				typeOfSubject :  { view: false, insert: false, update: false },
 			   }
 		   ,
 		   projects_handled:
-			   {     
-				slNo: { view: true, insert: true, update: true },       
+			   {
+				slNo: { view: true, insert: true, update: true },
 				facultyId : { view: true, insert: true, update: true },
 				batch : { view: false, insert: false, update: false },
 				ugOrPg : { view: false, insert: false, update: false },
-				projectTitle : { view: false, insert: false, update: false },               
+				projectTitle : { view: false, insert: false, update: false },
 			   }
 		   ,
 		   faculty_research:
-			   {            
+			   {
 				slNo: { view: true, insert: true, update: true },
 				guideName: { view: false, insert: false, update: false },
-				researchCandidateName:{ view: false, insert: false, update: false },
+				//researchCandidateName:{ view: false, insert: false, update: false },
 				usn:{ view: false, insert: false, update: false },
 				centreName:{ view: false, insert: false, update: false },
 				university:{ view: false, insert: false, update: false },
 				registrationYear:{ view: false, insert: false, update: false },
 				title:{ view: false, insert: false, update: false },
+				yearsOfCompletion:{ view: false, insert: false, update: false },
 				status:{ view: false, insert: false, update: false },
-				facultyId:{ view: true, insert: true, update: true }       
+				facultyId:{ view: true, insert: true, update: true }
 			   }
 		   ,
 		   phd_scholar:
-			{ 
-				slNo: { view: true, insert: true, update: true },           
+			{
+				slNo: { view: true, insert: true, update: true },
 				facultyId:{ view: true, insert: true, update: true },
 				scholarName:{ view: false, insert: false, update: false },
 				guideName:{ view: false, insert: false, update: false },
@@ -117,7 +119,8 @@ router.get('/', function(req, res, next) {
 				registrationYear:{ view: false, insert: false, update: false },
 				usn:{ view: false, insert: false, update: false },
 				title:{ view: false, insert: false, update: false },
-				status:{ view: false, insert: false, update: false }               
+				role:{ view: false, insert: false, update: false },
+				status:{ view: false, insert: false, update: false }
 			}
 		},
 		GetParam: req.query.fId,
@@ -125,7 +128,7 @@ router.get('/', function(req, res, next) {
 		columnSchema:[
 			{
 				facultyId : facultyID,
-				yearHandled : "yearHandled", 
+				yearHandled : "yearHandled",
 				subjectName : "subjectName",
 				ugOrPg :  "ugOrPg",
 				labHandled :  "labHandled",
@@ -165,7 +168,7 @@ router.get('/', function(req, res, next) {
 		insertPermission:facultyPermissions.insertPermission,
 		updatePermission:facultyPermissions.updatePermission
 	});
-		
+
 	}
 	sqlExecute.getFaultyAcademics(facultyId, callback);
 });

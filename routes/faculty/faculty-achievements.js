@@ -29,12 +29,12 @@ router.get('/', function(req, res, next) {
 	var callback = function(err, data){
 		if(err)
 			throw err;
-		
+
 		var facultyID = req.session.facultyId;
 		//console.log("GetParam : " + req.query.fId);
-			
+
 		res.render('faculty/achievements', {title : "Faculty Achievement Details",type : "achievements", data:data,
-		index : { 
+		index : {
 			url:"/faculty/achievements",
 			faculty_workshop_fdp:
 			   {
@@ -43,7 +43,7 @@ router.get('/', function(req, res, next) {
 				sponsoredOrFunded : "Sponsored/Funded" ,
 				date : "Date" ,
 				noOfParticipants : "No. of Participants" ,
-				type : "Type" 
+				type : "Type"
 			   }
 		   ,
 		   faculty_conference_symposia:
@@ -53,62 +53,75 @@ router.get('/', function(req, res, next) {
 				place : "Place" ,
 				date : "Date" ,
 				invitedOrDeputed : "Invited Or Deputed" ,
-				noOfPapersPresented : "No. Of Papers Presented" 
+				noOfPapersPresented : "No. Of Papers Presented"
 			   }
 		   ,
 		   faculty_guest_lecture:
-			   {            
+			   {
 				facultyId:facultyID,
-				placeInvited : "Place Invited" ,
+				organization : "Organization" ,
 				title : "Title" ,
-				date : "Date"                
+				date : "Date"
 			   }
 		   ,
 		   book:
-			   {            
-				facultyId:facultyID,         
+			   {
+				facultyId:facultyID,
 				bookTitle : "Book Title" ,
 				bookAuthors : "Book Author" ,
 				bookPublisher : "Book Publisher" ,
-				year : "Year"                 
+				year : "Year"
 			   }
 		   ,
 		   book_chapter:
-			   {            
-				facultyId:facultyID,         
+			   {
+				facultyId:facultyID,
 				chapterName : "Chapter Name" ,
 				bookName : "Book Name" ,
 				chapterAuthors : "Chapter Authors" ,
 				publisher : "Publisher" ,
-				year : "Year"                
+				isbn : "ISBN",
+				year : "Year"
 			   }
 		   ,
 		   conference_paper:
 			   {
-				
+
 				facultyId:facultyID,
 				authors : "Authors" ,
 				title : "Title" ,
 				conferenceName : "Conference Name" ,
 				conferenceType : "Conference Type" ,
 				organizedBy : "Organized By" ,
-				year : "Year"                
+				publisher : "Publisher",
+				year : "Year"
 			   }
 		   ,
 		   journal_paper:
-			{            
+			{
 				facultyId:facultyID,
 				authors : "Authors" ,
 				title : "Title" ,
-				issn : "ISSN" ,
+				issnPrint : "ISSN PRINT" ,
+				issnOnline : "ISSN ONLINE" ,
 				journalName : "Journal Name" ,
 				journalType : "Journal Type" ,
 				volumeNumber : "Volume Number" ,
-				pageNumbers : "Page Numbbers" ,
+				pageNumberFrom : "From Page Number" ,
+				pageNumberTo : "From Page To" ,
+				issueNumber : "Issue Number",
+				impactFactor : "Impact Factor",
+				citation : "citation",
+				doi : "Date of issue",
+				hIndex1 : "hindex 1",
+				hIndex2 : "hindex 2",
+				hIndex3 : "hindex 3",
+				hIndex4 : "hindex 4",
+				hIndex5 : "hindex 5",
 				year : "Year" ,
-				sjrQuartile : "SJR Quartile"               
+				sjrQuartile : "SJR Quartile"
 			}
-		   
+
 		},
 		GetParam:req.query.fId,
 		/* tableNames : ["faculty_workshop_fdp", "faculty_conference_symposia", "faculty_guest_lecture", "book", "book_chapter", "conference_paper", "journal_paper"],
@@ -119,7 +132,7 @@ router.get('/', function(req, res, next) {
 				sponsoredOrFunded : "Sponsored/Funded" ,
 				date : "Date" ,
 				noOfParticipants : "No. of Participants" ,
-				type : "Type" 
+				type : "Type"
 			},
 			{
 				facultyId : facultyID,
@@ -127,44 +140,44 @@ router.get('/', function(req, res, next) {
 				place : "Place" ,
 				date : "Date" ,
 				invitedOrDeputed : "Invited Or Deputed" ,
-				noOfPapersPresented : "No. Of Papers Presented" 
+				noOfPapersPresented : "No. Of Papers Presented"
 			}
 		   ,
-			{            
+			{
 				facultyId:facultyID,
 				placeInvited : "Place Invited" ,
 				title : "Title" ,
-				date : "Date"               
+				date : "Date"
 			}
 		   ,
-			{   
-				facultyId:facultyID,         
+			{
+				facultyId:facultyID,
 				bookTitle : "Book Title" ,
 				bookAuthors : "Book Author" ,
 				bookPublisher : "Book Publisher" ,
-				year : "Year"                
+				year : "Year"
 			}
 		   ,
-			{   
-				facultyId:facultyID,         
+			{
+				facultyId:facultyID,
 				chapterName : "Chapter Name" ,
 				bookName : "Book Name" ,
 				chapterAuthors : "Chapter Authors" ,
 				publisher : "Publisher" ,
-				year : "Year"                
+				year : "Year"
 			}
 		   ,
-			{	
+			{
 				facultyId:facultyID,
 				authors : "Authors" ,
 				title : "Title" ,
 				conferenceName : "Conference Name" ,
 				conferenceType : "Conference Type" ,
 				organizedBy : "Organized By" ,
-				year : "Year"                
+				year : "Year"
 			}
 		   ,
-			{            
+			{
 				facultyId:facultyID,
 				authors : "Authors" ,
 				title : "Title" ,
@@ -174,7 +187,7 @@ router.get('/', function(req, res, next) {
 				volumeNumber : "Volume Number" ,
 				pageNumbers : "Page Numbbers" ,
 				year : "Year" ,
-				sjrQuartile : "SJR Quartile"               
+				sjrQuartile : "SJR Quartile"
 			}
 		], */
 		hiddenFields: {
@@ -186,7 +199,7 @@ router.get('/', function(req, res, next) {
 				date : { view: false, insert: false, update: false } ,
 				noOfParticipants : { view: false, insert: false, update: false } ,
 				type : { view: false, insert: false, update: false },
-				slNo: { view: true, insert: true, update: true } 
+				slNo: { view: true, insert: true, update: true }
 			   }
 		   ,
 		   faculty_conference_symposia:
@@ -197,66 +210,80 @@ router.get('/', function(req, res, next) {
 				date : { view: false, insert: false, update: false } ,
 				invitedOrDeputed : { view: false, insert: false, update: false } ,
 				noOfPapersPresented : { view: false, insert: false, update: false },
-				slNo: { view: true, insert: true, update: true } 
+				slNo: { view: true, insert: true, update: true }
 			   }
 		   ,
 		   faculty_guest_lecture:
-			   {            
+			   {
 				facultyId:{ view: true, insert: true, update: true },
-				placeInvited : { view: false, insert: false, update: false } ,
+				organization : { view: false, insert: false, update: false } ,
 				title : { view: false, insert: false, update: false } ,
 				date : { view: false, insert: false, update: false },
-				slNo: { view: true, insert: true, update: true }                
+				slNo: { view: true, insert: true, update: true }
 			   }
 		   ,
 		   book:
-			   {            
-				facultyId:{ view: true, insert: true, update: true },         
+			   {
+				facultyId:{ view: true, insert: true, update: true },
 				bookTitle : { view: false, insert: false, update: false } ,
 				bookAuthors : { view: false, insert: false, update: false } ,
 				bookPublisher : { view: false, insert: false, update: false } ,
 				year : { view: false, insert: false, update: false },
-				slNo: { view: true, insert: true, update: true }                 
+				slNo: { view: true, insert: true, update: true }
 			   },
 			   book_chapter:
-			   {            
-				facultyId:{ view: true, insert: true, update: true } ,         
+			   {
+				facultyId:{ view: true, insert: true, update: true } ,
 				chapterName : { view: false, insert: false, update: false } ,
 				bookName : { view: false, insert: false, update: false } ,
 				chapterAuthors : { view: false, insert: false, update: false } ,
 				publisher : { view: false, insert: false, update: false } ,
+				isbn:{ view: false, insert: false, update: false } ,
 				year : { view: false, insert: false, update: false },
-				slNo: { view: true, insert: true, update: true }                         
+				slNo: { view: true, insert: true, update: true }
 			   }
 		   ,
 		   conference_paper:
 			   {
-				
+
 				facultyId:{ view: true, insert: true, update: true } ,
 				authors : { view: false, insert: false, update: false } ,
 				title : { view: false, insert: false, update: false } ,
 				conferenceName : { view: false, insert: false, update: false } ,
 				conferenceType : { view: false, insert: false, update: false } ,
 				organizedBy : { view: false, insert: false, update: false } ,
+				publisher : { view: false, insert: false, update: false } ,
 				year : { view: false, insert: false, update: false },
-				slNo: { view: true, insert: true, update: true }                          
+				slNo: { view: true, insert: true, update: true }
 			   }
 		   ,
 		   journal_paper:
-			{            
+			{
 				facultyId:{ view: true, insert: true, update: true } ,
 				authors : { view: false, insert: false, update: false } ,
 				title : { view: false, insert: false, update: false } ,
-				issn : { view: false, insert: false, update: false } ,
 				journalName : { view: false, insert: false, update: false } ,
 				journalType : { view: false, insert: false, update: false } ,
 				volumeNumber : { view: false, insert: false, update: false } ,
-				pageNumbers : { view: false, insert: false, update: false } ,
 				year : { view: false, insert: false, update: false } ,
 				sjrQuartile : { view: false, insert: false, update: false },
-				slNo: { view: true, insert: true, update: true }                
+				slNo: { view: false, insert: false, update: false } ,
+				issnPrint: { view: false, insert: false, update: false } ,
+				issnOnline :{ view: false, insert: false, update: false } ,
+				pageNumberFrom :{ view: false, insert: false, update: false } ,
+				pageNumberTo :{ view: false, insert: false, update: false } ,
+				issueNumber :{ view: false, insert: false, update: false } ,
+				impactFactor :{ view: false, insert: false, update: false } ,
+				citation :{ view: false, insert: false, update: false } ,
+				doi : { view: false, insert: false, update: false } ,
+				hIndex1 :{ view: false, insert: false, update: false } ,
+				hIndex2 :{ view: false, insert: false, update: false } ,
+				hIndex3 :{ view: false, insert: false, update: false } ,
+				hIndex4 :{ view: false, insert: false, update: false } ,
+				hIndex5 :{ view: false, insert: false, update: false }
+
 			}
-		   
+
 		},
 		authType:req.session.facultyId,
 		departmentId:req.session.departmentId,
