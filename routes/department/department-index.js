@@ -856,5 +856,7 @@ router.get('/generateexcel/:tableNo/:index/',function(req,res,next){
   }
 });
 
+router.use('/add-faculty', require('./add-faculty'))
+
 
 module.exports = router;
