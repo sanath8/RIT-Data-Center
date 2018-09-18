@@ -52,7 +52,7 @@ router.get('/', function(req, res, next) {
 	}
 	var branchs = []
 	branchs.push(departmentId)
-	res.render('department/add-faculty', {type : 'add-faculty', GetParam: req.query.fId, authType:req.session.facultyId, departmentId:req.session.departmentId, GetParam:"dummy", branch:branchs });
+	res.render('department/add-faculty', {type : 'add-faculty', GetParam: req.query.fId, authType:req.session.facultyId, departmentId:departmentId, GetParam:"dummy", branch:branchs });
 })
 
 module.exports=router;
