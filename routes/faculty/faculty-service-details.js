@@ -38,11 +38,11 @@ router.get('/', function(req, res, next) {
 				slNo:result[i]["slNo"],
 				facultyId:result[i]["facultyId"],
 				designation:result[i]["designation"],
-				qualification:result[i]["qualification"],
-				joiningDate:result[i]["joiningDate"],
-				yearsOfExperience:result[i]["yearsOfExperience"],
-				promotionDate:result[i]["promotionDate"],
-				payScale:result[i]["payScale"]
+				//qualification:result[i]["qualification"],
+				fromDate:result[i]["fromDate"],
+				//yearsOfExperience:result[i]["yearsOfExperience"],
+				toDate:result[i]["toDate"],
+				//payScale:result[i]["payScale"]
 			};
 			// console.log("Date type " + temp.promotionDate.toJSON().substr(0,10));
 			arr.push(temp);
@@ -51,23 +51,23 @@ router.get('/', function(req, res, next) {
 		// res.render('faculty/service-details', {type:"service-details", resultSet:result});
 		res.render('faculty/service-details', {title : "Faculty Service Details",
 					type : "service-details",
-					data : { 
+					data : {
 						faculty_service:arr
 					},
-					index : { 
+					index : {
 						url:"/faculty/service-details",
 						faculty_service:
 							{
 							 slNo: "Sl. No",
 							 facultyId : facultyID,
 							 designation : "Designation" ,
-							 qualification : "Qualification" ,
-							 joiningDate : "Joining Date" ,
-							 yearsOfExperience : "Years Of Exp." ,
-							 promotionDate : "Promotion Date" ,
-							 payScale : "Payscale" 
+							 //qualification : "Qualification" ,
+							 fromDate : "From" ,
+							 //yearsOfExperience : "Years Of Exp." ,
+							 toDate : "To" ,
+							 //payScale : "Payscale"
 							}
-						
+
 					 },
 					 hiddenFields:
 					 {
@@ -75,12 +75,12 @@ router.get('/', function(req, res, next) {
 						{
 						 facultyId : { view: true, insert: true, update: true } ,
 						 designation: { view: false, insert: false, update: false },
-						 qualification: { view: false, insert: false, update: false },
-						 joiningDate: { view: false, insert: false, update: false },
-						 yearsOfExperience: { view: false, insert: false, update: false },
-						 promotionDate: { view: false, insert: false, update: false },
-						 payScale: { view: false, insert: false, update: false } ,
-						 slNo: { view: true, insert: true, update: true } 
+						 //qualification: { view: false, insert: false, update: false },
+						 fromDate: { view: false, insert: false, update: false },
+						 //yearsOfExperience: { view: false, insert: false, update: false },
+						 toDate: { view: false, insert: false, update: false },
+						 //payScale: { view: false, insert: false, update: false } ,
+						 slNo: { view: true, insert: true, update: true }
 						}
 					 },
 				GetParam: req.query.fId,
@@ -93,7 +93,7 @@ router.get('/', function(req, res, next) {
 						joiningDate : "Joining Date" ,
 						yearsOfExperience : "Years Of Exp." ,
 						promotionDate : "Promotion Date" ,
-						payScale : "Payscale" 
+						payScale : "Payscale"
 					}
 				], */
 				authType:req.session.facultyId,
