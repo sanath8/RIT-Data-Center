@@ -16,11 +16,14 @@
                     <div class="card-content table-responsive">
                         <table class="table">
                             <thead class="text-primary">
+                                <th>Type</th>
                                 <th>Title</th>
                                 <th>Sponsered / Funded</th>
                                 <th>Date</th>
                                 <th>Number of Participants</th>
-                                <th>type</th>
+                                <th>Duaration</th>
+                                <th>Role</th>
+                                <th>National / International</th>
                             </thead>
                             <tbody>
                                 <% loadInTableModular("faculty_workshop_fdp", updatePermission) %>
@@ -40,11 +43,12 @@
                     <div class="card-content table-responsive">
                         <table class="table">
                             <thead class="text-primary">
-                                <th>Name of the Event</th>
+                                <th>Title</th>
                                 <th>Place</th>
                                 <th>Date</th>
-                                <th>Invited / Deputed</th>
+                                <th>Role</th>
                                 <th>Number of Papers Presented</th>
+                                <th>Type</th>
                             </thead>
                             <tbody>
                                 <% loadInTableModular("faculty_conference_symposia", updatePermission) %>
@@ -58,7 +62,7 @@
                 </div>
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
-                        <h4 class="title">Guest Lectures</h4>
+                        <h4 class="title">Guest Lectures Delivered</h4>
                         <p class="category">information about lectures given as a guest lecture outside college.</p>
                     </div>
                     <div class="card-content table-responsive">
@@ -160,34 +164,36 @@
                       <h4 class="title">Journal Publications</h4>
                       <p class="category">information about papers presented in journals.</p>
                   </div>
-                  <div class="card-content table-responsive">
-                      <table class="table">
-                          <thead class="text-primary">
-                              <th>Authors</th>
-                              <th>Title</th>
-                              <th>ISSN Print</th>
-                              <th>ISSN Online</th>
-                              <th>Journal Name</th>
-                              <th>Journal Type</th>
-                              <th>Volume Number</th>
-                              <th>Page Numbers From</th>
-                              <th>Page Numbers To</th>
-                              <th>Year</th>
-                              <th>Issue Number</th>
-                              <th>Impact Factor</th>
-                              <th>Citation</th>
-                              <th>Date of issue</th>
-                              <th>SJR Quartile</th>
-                              <th>h Index1</th>
-                              <th>h Index2</th>
-                              <th>h Index3</th>
-                              <th>h Index4</th>
-                              <th>h Index5</th>
-                          </thead>
-                          <tbody>
-                              <% loadInTableModular("journal_paper", updatePermission) %>
-                          </tbody>
-                      </table>
+                  <div class="mid-width wrapItems" style="overflow-x: scroll;">
+                    <div class="card-content table-responsive">
+                        <table class="table">
+                            <thead class="text-primary">
+                                <th>Authors</th>
+                                <th>Title</th>
+                                <th>ISSN Print</th>
+                                <th>ISSN Online</th>
+                                <th>Journal Name</th>
+                                <th>Journal Type</th>
+                                <th>Volume Number</th>
+                                <th>Page Numbers From</th>
+                                <th>Page Numbers To</th>
+                                <th>Year</th>
+                                <th>Issue Number</th>
+                                <th>Impact Factor</th>
+                                <th>Citation</th>
+                                <th>Date of issue</th>
+                                <th>SJR Quartile</th>
+                                <th>h Index1</th>
+                                <th>h Index2</th>
+                                <th>h Index3</th>
+                                <th>h Index4</th>
+                                <th>h Index5</th>
+                            </thead>
+                            <tbody>
+                                <% loadInTableModular("journal_paper", updatePermission) %>
+                            </tbody>
+                        </table>
+                    </div>
                   </div>
                     <a href = "/faculty/generateexcel/7/4/?faculty=<%-GetParam%>">
                     <button class="btn btn-primary pull-left hodDisable hodDisable" style="margin:13px">Generate Excel file</button>
