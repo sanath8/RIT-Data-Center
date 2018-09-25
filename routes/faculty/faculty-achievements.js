@@ -39,21 +39,25 @@ router.get('/', function(req, res, next) {
 			faculty_workshop_fdp:
 			   {
 				facultyId : facultyID,
+				type : "Type",
 				title : "Title" ,
 				sponsoredOrFunded : "Sponsored/Funded" ,
 				date : "Date" ,
 				noOfParticipants : "No. of Participants" ,
-				type : "Type"
+				duration : "Duration",
+				role : "Role",
+				nationalOrInternational : "Ntional / International"
 			   }
 		   ,
 		   faculty_conference_symposia:
 			   {
 				facultyId : facultyID,
-				eventName : "Event Name" ,
+				title : "Title",
 				place : "Place" ,
 				date : "Date" ,
-				invitedOrDeputed : "Invited Or Deputed" ,
-				noOfPapersPresented : "No. Of Papers Presented"
+				role : "Role" ,
+				noOfPapersPresented : "No. Of Papers Presented",
+				type : "Type"
 			   }
 		   ,
 		   faculty_guest_lecture:
@@ -103,8 +107,8 @@ router.get('/', function(req, res, next) {
 				facultyId:facultyID,
 				authors : "Authors" ,
 				title : "Title" ,
-				issnPrint : "ISSN PRINT" ,
-				issnOnline : "ISSN ONLINE" ,
+				issnPrint : "ISSN Print" ,
+				issnOnline : "ISSN Online" ,
 				journalName : "Journal Name" ,
 				journalType : "Journal Type" ,
 				volumeNumber : "Volume Number" ,
@@ -112,7 +116,7 @@ router.get('/', function(req, res, next) {
 				pageNumberTo : "From Page To" ,
 				issueNumber : "Issue Number",
 				impactFactor : "Impact Factor",
-				citation : "citation",
+				citation : "Citation",
 				doi : "Date of issue",
 				hIndex1 : "hindex 1",
 				hIndex2 : "hindex 2",
@@ -195,22 +199,26 @@ router.get('/', function(req, res, next) {
 			faculty_workshop_fdp:
 			   {
 				facultyId : { view: true, insert: true, update: true },
+				type : { view: false, insert: false, update: false } ,
 				title : { view: false, insert: false, update: false } ,
 				sponsoredOrFunded : { view: false, insert: false, update: false } ,
 				date : { view: false, insert: false, update: false } ,
 				noOfParticipants : { view: false, insert: false, update: false } ,
-				type : { view: false, insert: false, update: false },
+				duration : { view: false, insert: false, update: false } ,
+				role : { view: false, insert: false, update: false } ,
+				nationalOrInternational : { view: false, insert: false, update: false } ,
 				slNo: { view: true, insert: true, update: true }
 			   }
 		   ,
 		   faculty_conference_symposia:
 			   {
 				facultyId : { view: true, insert: true, update: true },
-				eventName : { view: false, insert: false, update: false } ,
+				title : { view: false, insert: false, update: false } ,
 				place : { view: false, insert: false, update: false } ,
 				date : { view: false, insert: false, update: false } ,
-				invitedOrDeputed : { view: false, insert: false, update: false } ,
+				role : { view: false, insert: false, update: false } ,
 				noOfPapersPresented : { view: false, insert: false, update: false },
+				type : { view: false, insert: false, update: false } ,
 				slNo: { view: true, insert: true, update: true }
 			   }
 		   ,
@@ -282,8 +290,8 @@ router.get('/', function(req, res, next) {
 				hIndex2 :{ view: false, insert: false, update: false } ,
 				hIndex3 :{ view: false, insert: false, update: false } ,
 				hIndex4 :{ view: false, insert: false, update: false } ,
-				hIndex5 :{ view: false, insert: false, update: false }
-
+				hIndex5 :{ view: false, insert: false, update: false },
+				slNo: { view: true, insert: true, update: true }
 			}
 
 		},

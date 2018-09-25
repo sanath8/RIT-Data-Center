@@ -52,9 +52,11 @@ router.get('/', function(req, res, next) {
 				{   
 					facultyId : facultyID,            
 					patentTitle : "Patent Title" ,
-					applicationNumber : "Application Number" ,
+					inventors : "Inventors" ,
 					dateOfFilingApplication : "Date of Filing Application" ,
-					publicationDate : "Publication Date"                
+					publicationDate : "Date of Publication",
+					dateGranted : "Date Granted",
+					typeOfPatent : "Patent Type"
 				}
 			,
 			consultancy:
@@ -101,9 +103,11 @@ router.get('/', function(req, res, next) {
 				{   
 					facultyId : { view: true, insert: true, update: true },            
 					patentTitle : { view: false, insert: false, update: false } ,
-					applicationNumber : { view: false, insert: false, update: false } ,
+					inventors : { view: false, insert: false, update: false } ,
 					dateOfFilingApplication : { view: false, insert: false, update: false } ,
 					publicationDate : { view: false, insert: false, update: false } ,
+					dateGranted : { view: false, insert: false, update: false } ,
+					typeOfPatent : { view: false, insert: false, update: false } ,
 					slNo: { view: true, insert: true, update: true }               
 				}
 			,
