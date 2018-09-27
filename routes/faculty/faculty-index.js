@@ -40,7 +40,7 @@ router.get('/', function(req, res, next) {
 			//throw err;
 		}
 
-		console.log("Result  : "+result);
+		// console.log("Result  : "+result);
 
 		var myR={};
 		tresult=result.faculty_info[0];

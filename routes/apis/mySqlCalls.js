@@ -66,19 +66,19 @@ sqlObject.prototype.getFacultyInfo=function(fid, callback){
 				callback(error, undefined);
 				return;
 			}
-			console.log("faculty result backend", result)
+			// console.log("faculty result backend", result)
 			data["faculty_info"] = result;
 			var sql = "select *\
 			from professional_body_membership\
 			where facultyId=?";
 			conn.query(sql, [fid], function(error, result){
 			if(error){
-				console.log(error)
+				// console.log(error)
 				callback(error, undefined);
 				return;
 			}
 			data["professional_body_membership"] = result;
-			console.log("query call",data)
+			// console.log("query call",data)
 			callback(undefined, data);
 		})
 	})
