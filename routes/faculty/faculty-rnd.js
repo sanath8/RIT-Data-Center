@@ -184,7 +184,7 @@ router.get('/', function(req, res, next) {
 		updatePermission:facultyPermissions.updatePermission
 	});
 	}
-	sqlExecute.getFaultyRND(facultyId, callback);
+	sqlExecute.getFacultyRND(facultyId, callback);
   
 });
 
