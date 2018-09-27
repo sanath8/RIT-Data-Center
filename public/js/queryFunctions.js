@@ -325,7 +325,7 @@ function performFilterOperations(flag, reportCallBack)
         }
         else
         {
-          dataRecieved = preProcessApi.removeHiddenFields(dataRecieved);
+          //dataRecieved = preProcessApi.removeHiddenFields(dataRecieved);
           finalResultSet = dataRecieved;
           if(flag == 'table_changed')
             buildColumnFilters(dataRecieved);
