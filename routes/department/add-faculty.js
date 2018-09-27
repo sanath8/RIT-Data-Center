@@ -27,8 +27,12 @@ router.get('/', function(req, res, next) {
 	} else{
 	departmentId = req.session.departmentId;
 	}
+	if(facultyId !== 'admin' && facultyId !== 'principal' && facultyId != 'hod' && facultyId != 'coordinator'){
+		res.redirect("/error/401");
+		return;
+  	}
 	// console.log("department-index facultyId " + facultyId + " departmentId " + departmentId);
-	if(facultyId === 'admin' || facultyId === 'principal'){
+	else if(facultyId === 'admin' || facultyId === 'principal'){
 	//if it is an admin or the principal allow access.
 	}
 	else {

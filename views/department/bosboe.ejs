@@ -8,52 +8,7 @@
         <div class="row">
             <div class="col-md-12">
               <h2>Professional Body/BOE/BOS/Editors/Session Chairs</h2>
-                <div class="card">
-                    <div class="card-header" data-background-color="purple">
-                        <h4 class="title">Professional Activities</h4>
-                        <p class="category">information about professional activities.</p>
-                    </div>
-                    <div class="card-content table-responsive">
-                        <table class="table">
-                            <thead class="text-primary">
-                                <th>Name of the Faculty</th>
-                                <th>Board</th>
-                                <th>College</th>
-                                <th>External / Internal</th>
-                                <th>Year</th>
-                            </thead>
-                            <tbody>
-                                <%loadInTableModular("professional_activities", updatePermission)%>
-                            </tbody>
-                        </table>
-                    </div>
-                    <a href = "/department/generateexcel/1/6/?departmentId=<%-GetParam%>">
-                    <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
-                    </a>
-                <button class="btn btn-primary pull-right insertButton" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataModularInsert('professional_activities')">Insert</button>                </div>
-                <div class="card">
-                    <div class="card-header" data-background-color="purple">
-                        <h4 class="title">Professional Body Membership.</h4>
-                        <p class="category">information about professional bodies.</p>
-                    </div>
-                    <div class="card-content table-responsive">
-                        <table class="table">
-                            <thead class="text-primary">
-                                <th>Name</th>
-                                <th>Name of Professional Body</th>
-                                <th>Type of Membership</th>
-                                <th>Year of Subscription</th>
-                            </thead>
-                            <tbody>
-                                <%loadInTableModular("professional_body_membership", updatePermission)%>
-                            </tbody>
-                        </table>
-                    </div>
-                    <a href = "/department/generateexcel/2/6/?departmentId=<%-GetParam%>">
-                    <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
-                    </a>
-                <button class="btn btn-primary pull-right insertButton" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataModularInsert('professional_body_membership')">Insert</button>                </div>
-                <div class="card">
+                <!--<div class="card">
                     <div class="card-header" data-background-color="purple">
                         <h4 class="title">Other Memberships</h4>
                         <p class="category">information about seminars and workshops conducted in the college.</p>
@@ -74,7 +29,7 @@
                     <a href = "/department/generateexcel/3/6/?departmentId=<%-GetParam%>">
                     <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
                     </a>
-                <button class="btn btn-primary pull-right insertButton" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataModularInsert('other_membership')">Insert</button>                </div>
+                <button class="btn btn-primary pull-right insertButton" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataModularInsert('other_membership')">Insert</button>                </div>-->
             </div>
         </div>
     </div>

@@ -39,14 +39,55 @@ sqlObject.prototype.login = function(email, pass, callback){
 }
 
 sqlObject.prototype.getFacultyInfo=function(fid, callback){
-	var sql="Select * \
-			from "+this.tables.facultyInformation+" \
+	console.log("hellow doo")
+		
+		var sql = "select *\
+		from professional_activities\
+		where facultyId =?";
+
+		var conn = this.connection;
+		var data = {};
+		this.connection.query(sql, [fid], function(error, result){
+		if(error){
+		console.log(error)
+		callback(error, undefined);
+		return;
+		}
+		console.log(result)
+		data["professional_activities"] = result;
+
+		var sql="Select * \
+		from faculty \
+		where facultyId=?";
+
+		conn.query(sql, [fid], function(error, result){
+			if(error){
+				console.log(error)
+				callback(error, undefined);
+				return;
+			}
+			console.log("faculty result backend", result)
+			data["faculty_info"] = result;
+			var sql = "select *\
+			from professional_body_membership\
 			where facultyId=?";
-	this.connection.query(sql, [fid], function(err, result){
-		callback(err, result);
+			conn.query(sql, [fid], function(error, result){
+			if(error){
+				console.log(error)
+				callback(error, undefined);
+				return;
+			}
+			data["professional_body_membership"] = result;
+			console.log("query call",data)
+			callback(undefined, data);
+		})
 	})
+})
+
+
+
 }
-sqlObject.prototype.getFaultyQualification = function(fid, callback){
+sqlObject.prototype.getFacultyQualification = function(fid, callback){
 	var sql = "select Q.* \
 		from " + this.tables.facultyQualification+" Q natural join "+this.tables.facultyInformation+"\
 		WHERE facultyId=?";
@@ -65,7 +106,7 @@ sqlObject.prototype.getFacultyService = function(fid, callback){
 	});
 }
 
-sqlObject.prototype.getFaultyAcademics = function(fid, callback){
+sqlObject.prototype.getFacultyAcademics = function(fid, callback){
   	var sql = "select * \
       from " + this.tables.facultyCourseHandled+" \
       WHERE facultyId=?";
@@ -124,7 +165,7 @@ sqlObject.prototype.getFaultyAcademics = function(fid, callback){
 	});
 }
 
-sqlObject.prototype.getFaultyRND = function(fid, callback){
+sqlObject.prototype.getFacultyRND = function(fid, callback){
   	var sql = "select * \
       from " + this.tables.facultyFundedProjects+" \
       WHERE facultyId=?";
@@ -181,7 +222,7 @@ sqlObject.prototype.getFaultyRND = function(fid, callback){
 	});
 }
 
-sqlObject.prototype.getFaultyAchievements = function(fid, callback){
+sqlObject.prototype.getFacultyAchievements = function(fid, callback){
   	var sql = "select *  \
       from faculty_workshop_fdp \
       WHERE facultyId=?";
@@ -373,7 +414,7 @@ sqlObject.prototype.getInfrastructureDetails = function(callback, departmentId){
 	})
 }
 
-sqlObject.prototype.getBosBoeDetails = function(callback, departmentId){
+sqlObject.prototype.somethingelse = function(callback, departmentId){
 	var sql = "select *\
 						 from professional_activities\
 						 where departmentId =?";
@@ -382,9 +423,11 @@ sqlObject.prototype.getBosBoeDetails = function(callback, departmentId){
   var data = {};
 	this.connection.query(sql, [departmentId], function(error, result){
 		if(error){
+			console.log(error)
 			callback(error, undefined);
 			return;
 		}
+		console.log(result)
 		data["professional_activities"] = result;
 
 		var sql = "select *\
@@ -410,6 +453,26 @@ sqlObject.prototype.getBosBoeDetails = function(callback, departmentId){
 		})
 	})
 	})
+}
+
+
+
+sqlObject.prototype.getBosBoeDetails = function(callback, departmentId){
+	var sql = "select *\
+							 from other_membership\
+							 where departmentId =?";
+
+	var conn = this.connection;
+  var data = {};
+	this.connection.query(sql, [departmentId], function(error, result){
+		if(error){
+			console.log(error)
+			callback(error, undefined);
+			return;
+		}
+		data["other_membership"] = result;
+		callback(undefined, data);
+		})
 }
 
 

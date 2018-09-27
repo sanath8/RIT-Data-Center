@@ -302,7 +302,7 @@ router.get('/', function(req, res, next) {
 	});
 	}
 	//TODO Change the Faculty Achievements Table
-	sqlExecute.getFaultyAchievements(facultyId, callback);
+	sqlExecute.getFacultyAchievements(facultyId, callback);
 });
 
 module.exports=router;

@@ -170,7 +170,7 @@ router.get('/', function(req, res, next) {
 	});
 
 	}
-	sqlExecute.getFaultyAcademics(facultyId, callback);
+	sqlExecute.getFacultyAcademics(facultyId, callback);
 });
 
 
