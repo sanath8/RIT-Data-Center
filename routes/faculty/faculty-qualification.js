@@ -87,7 +87,7 @@ router.get('/', function(req, res, next) {
 	}
 	//sqlExecute.getWholeTable(callback,'facultyQualification', req.session.email);
 	// console.log("Faculty ID : "+facultyId);
-	sqlExecute.getFaultyQualification(facultyId, callback);
+	sqlExecute.getFacultyQualification(facultyId, callback);
 });
 
 module.exports=router;

@@ -43,7 +43,7 @@ router.get('/', function(req, res, next) {
 		// console.log("Result  : "+result);
 
 		var myR={};
-		tresult=result[0];
+		tresult=result.faculty_info[0];
 		myR["facultyId"]=tresult["facultyId"];
 		myR["facultyName"]=tresult["facultyName"];
 		myR["gender"]=tresult["gender"];
@@ -74,11 +74,35 @@ router.get('/', function(req, res, next) {
 		var about = tresult["about"];
 		var data=[myR];
 		var facultyID = req.session.facultyId;
-		// var departmentId = tresult["departmentId"];
+		// var facultyId = tresult["facultyId"];
 		// console.log("myR" + JSON.stringify(myR));
 
 
-		res.render('faculty/index', { title: 'Express', type:"dashboard", data : {faculty:data},
+		var professionalActivities = [];
+		var professional = result.professional_activities;
+		for(var i=0;i<professional.length;i++){
+		  var singleEntry = {
+			board: professional[i].board,
+			college: professional[i].college,
+			externalOrInternal: professional[i].externalOrInternal,
+			year: professional[i].year,
+			slNo: professional[i].slNo
+		  }
+		  professionalActivities.push(singleEntry);
+		}
+		var professionalbodyMembership = [];
+		var profess = result.professional_body_membership;
+		for(var i=0;i<profess.length;i++){
+		var singleEntry = {
+			professionalBodyName: profess[i].professionalBodyName,
+			membershipType: profess[i].membershipType,
+			subscriptionYear: profess[i].subscriptionYear,
+			slNo: profess[i].slNo
+		}
+		professionalbodyMembership.push(singleEntry);
+		}
+
+		res.render('faculty/index', { title: 'Express', type:"dashboard", data : {faculty:data,professional_activities:professionalActivities, professional_body_membership: professionalbodyMembership},
 			index:{
 				url:"/faculty/",
 				faculty:{
@@ -106,7 +130,22 @@ router.get('/', function(req, res, next) {
 					researchExperience : 'Research Experience',
 					teachingExperience : 'Teaching Experience',
 					highestQualification : 'Highest Qualification',
-				}
+				},
+				professional_activities: {
+					slNo: "Sl. No",
+					board: "Board",
+					college: "College",
+					externalOrInternal: "External/Internal",
+					year: "Year",
+					facultyId: "facultyId"
+				  },
+				  professional_body_membership:{
+					slNo: "Sl. No",
+					professionalBodyName: "Name of Professional Body",
+					membershipType: "Membership Type",
+					subscriptionYear: "Subscription Year",
+					facultyId: "facultyId"
+				  }				
 			},
 			hiddenFields:{
 				faculty:{
@@ -135,7 +174,22 @@ router.get('/', function(req, res, next) {
 					teachingExperience : { view: false, insert: false, update: false },
 					highestQualification : { view: false, insert: false, update: false },
 					slNo: { view: true, insert: true, update: true }
-				}
+				},
+				professional_activities: {
+					slNo: { view: true, insert: true, update: true } ,
+					board: { view: false, insert: false, update: false },
+					college: { view: false, insert: false, update: false },
+					externalOrInternal: { view: false, insert: false, update: false },
+					year: { view: false, insert: false, update: false },
+					facultyId: { view: true, insert: true, update: true }
+				  },
+				  professional_body_membership:{
+					slNo: { view: true, insert: true, update: true } ,
+					professionalBodyName: { view: false, insert: false, update: false },
+					membershipType: { view: false, insert: false, update: false },
+					subscriptionYear: { view: false, insert: false, update: false },
+					facultyId: { view: true, insert: true, update: true }
+				  }				
 			},
 			fId:facultyId, about:about, GetParam:req.query.fId, authType:req.session.facultyId, departmentId:req.session.departmentId,
 			insertPermission:facultyPermissions.insertPermission,
@@ -218,7 +272,7 @@ router.get('/generateexcel/:tableNo/:index/',function(req,res,next){
 	map[0]="faculty_personal_details";
   }
   if(index == 2){
-	mysql.getFaultyQualification(fid,callback);
+	mysql.getFacultyQualification(fid,callback);
 	map[0]="faculty_qualification_details";
   }
   if(index == 3){
@@ -233,21 +287,21 @@ router.get('/generateexcel/:tableNo/:index/',function(req,res,next){
 	  map[4] = "book_chapter";
 	  map[5] = "conference_paper";
 	  map[6] = "journal_paper";
-	  mysql.getFaultyAchievements(fid,callback);
+	  mysql.getFacultyAchievements(fid,callback);
   }
   if(index == 5){
 	map[0] = "courses_handled";
 	map[1] = "projects_handled";
 	map[2] = "faculty_research";
 	map[3] = "phd_scholar";
-	  mysql.getFaultyAcademics(fid,callback);
+	  mysql.getFacultyAcademics(fid,callback);
   }
   if(index == 6){
 	map[0] = "funded_projects";
 	map[1] = "faculty_patent";
 	map[2] = "consultancy";
 	map[3] = "industrial_collaboration_mou";
-	  mysql.getFaultyRND(fid,callback);
+	  mysql.getFacultyRND(fid,callback);
   }
 });
 

@@ -542,21 +542,24 @@ router.get('/bosboe', function(req, res, next) {
       }
     }
   }
+
+  res.render('department/bosboe', { departmentId: departmentId, type:'bosboe',    authType:req.session.facultyId , GetParam:req.query.departmentId || req.session.departmentId,})
+
   var callback = function(error, result){
     // console.log(result);
-    var professionalActivities = [];
-    var professional = result.professional_activities;
-    for(var i=0;i<professional.length;i++){
-      var singleEntry = {
-        facultyName: professional[i].facultyName,
-        board: professional[i].board,
-        college: professional[i].college,
-        externalOrInternal: professional[i].externalOrInternal,
-        year: professional[i].year,
-        slNo: professional[i].slNo
-      }
-      professionalActivities.push(singleEntry);
-    }
+    // var professionalActivities = [];
+    // var professional = result.professional_activities;
+    // for(var i=0;i<professional.length;i++){
+    //   var singleEntry = {
+    //     facultyName: professional[i].facultyName,
+    //     board: professional[i].board,
+    //     college: professional[i].college,
+    //     externalOrInternal: professional[i].externalOrInternal,
+    //     year: professional[i].year,
+    //     slNo: professional[i].slNo
+    //   }
+    //   professionalActivities.push(singleEntry);
+    // }
 
     var otherMembership = [];
     var other = result.other_membership;
@@ -571,32 +574,12 @@ router.get('/bosboe', function(req, res, next) {
       otherMembership.push(singleEntry);
     }
 
-    var professionalbodyMembership = [];
-    var profess = result.professional_body_membership;
-    for(var i=0;i<profess.length;i++){
-      var singleEntry = {
-        facultyName: profess[i].facultyName,
-        professionalBodyName: profess[i].professionalBodyName,
-        membershipType: profess[i].membershipType,
-        subscriptionYear: profess[i].subscriptionYear,
-        slNo: profess[i].slNo
-      }
-      professionalbodyMembership.push(singleEntry);
-    }
+    
     res.render('department/bosboe', { departmentId: departmentId, type:'bosboe',
-    data:{professional_activities:professionalActivities, other_membership: otherMembership, professional_body_membership: professionalbodyMembership},
+    data:{other_membership: otherMembership},
     authType:req.session.facultyId , GetParam:req.query.departmentId || req.session.departmentId,
     index:{
       url: '/department/bosboe',
-      professional_activities: {
-        slNo: "Sl. No",
-        facultyName: "Name of Faculty",
-        board: "Board",
-        college: "College",
-        externalOrInternal: "External/Internal",
-        year: "Year",
-        departmentId: "departmentId"
-      },
       other_membership:{
         slNo: "Sl. No",
         facultyName: "Name of Faculty",
@@ -604,26 +587,9 @@ router.get('/bosboe', function(req, res, next) {
         year: "Year",
         internalOrExternal: "External/Internal",
         departmentId: "departmentId"
-      },
-      professional_body_membership:{
-        slNo: "Sl. No",
-        facultyName: "Name of Faculty",
-        professionalBodyName: "Name of Professional Body",
-        membershipType: "Membership Type",
-        subscriptionYear: "Subscription Year",
-        departmentId: "departmentId"
       }
     },
     hiddenFields:{
-      professional_activities: {
-        slNo: { view: true, insert: true, update: true } ,
-        facultyName: { view: false, insert: false, update: false },
-        board: { view: false, insert: false, update: false },
-        college: { view: false, insert: false, update: false },
-        externalOrInternal: { view: false, insert: false, update: false },
-        year: { view: false, insert: false, update: false },
-        departmentId: { view: true, insert: true, update: true }
-      },
       other_membership:{
         slNo: { view: true, insert: true, update: true } ,
         facultyName: { view: false, insert: false, update: false },
@@ -631,21 +597,13 @@ router.get('/bosboe', function(req, res, next) {
         year: { view: false, insert: false, update: false },
         internalOrExternal: { view: false, insert: false, update: false },
         departmentId: { view: true, insert: true, update: true }
-      },
-      professional_body_membership:{
-        slNo: { view: true, insert: true, update: true } ,
-        facultyName: { view: false, insert: false, update: false },
-        professionalBodyName: { view: false, insert: false, update: false },
-        membershipType: { view: false, insert: false, update: false },
-        subscriptionYear: { view: false, insert: false, update: false },
-        departmentId: { view: true, insert: true, update: true }
       }
     },
     insertPermission:departmentPermissions.insertPermission,
     updatePermission:departmentPermissions.updatePermission });
   }
 
-  sqlExecute.getBosBoeDetails(callback, departmentId);
+  // sqlExecute.getBosBoeDetails(callback, departmentId);
 });
 
 router.get('/getExcel', function(req, res, next){
