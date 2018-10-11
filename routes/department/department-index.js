@@ -331,7 +331,10 @@ router.get('/activities', function(req, res, next) {
     for(var i=0;i<industrial.length;i++){
       var singleEntry = {
        industryName: industrial[i].industryName,
-       scheduleDate: industrial[i].scheduleDate,
+       dateOfVisit: industrial[i].dateOfVisit,
+       place: industrial[i].place,
+       semester: industrial[i].semester,
+       noOfStudents: industrial[i].noOfStudents, 
        departmentId: industrial[i].departmentId,
        slNo: industrial[i].slNo
       }
@@ -343,7 +346,8 @@ router.get('/activities', function(req, res, next) {
     for(var i=0;i<invited.length;i++){
       var singleEntry = {
         guestName: invited[i].guestName,
-        expertOrganisationOrAddress: invited[i].expertOrganisationOrAddress,
+        designation: invited[i].designation,
+        affiliation: invited[i].affiliation,
         title: invited[i].title,
         areaOfSpecialization: invited[i].areaOfSpecialization,
         date: invited[i].date,
@@ -376,15 +380,19 @@ router.get('/activities', function(req, res, next) {
         url: '/department/activities',
         industrial_visit:
         {
-          industryName: "Industry Name",
-          scheduleDate: "Scheduled Date",
+          industryName: "Industry/Organization",
+          dateOfVisit: "Date of Visit",
+          place: "Place",
+          semester: "Semester",
+          noOfStudents: "No of Students",
           departmentId: "departmentId",
           slNo: "slNo"
         },
         guest_lectures_invited: {
           slNo: "Sl. No",
-          guestName: "Name of Guest",
-          expertOrganisationOrAddress: "Expert Organization/Address",
+          guestName: "Guest Lecturer Name",
+          designation: "Designation",
+          affiliation: "Affiliation",
           title: "Title",
           areaOfSpecialization: "Area Of Specialization",
           date: "Date",
@@ -404,14 +412,18 @@ router.get('/activities', function(req, res, next) {
         industrial_visit:
         {
           industryName: { view: false, insert: false, update: false },
-          scheduleDate: { view: false, insert: false, update: false },
-          departmentId: { view: true, insert: true, update: true } ,
+          dateOfVisit: { view: false, insert: false, update: false },
+          place: { view: false, insert: false, update: false },
+          semester: { view: false, insert: false, update: false },
+          noOfStudents: { view: false, insert: false, update: false },
+          departmentId: { view: true, insert: true, update: true },
           slNo: { view: true, insert: true, update: true }
         },
         guest_lectures_invited: {
           slNo: { view: true, insert: true, update: true },
           guestName: { view: false, insert: false, update: false },
-          expertOrganisationOrAddress: { view: false, insert: false, update: false },
+          designation: { view: false, insert: false, update: false },
+          affiliation: { view: false, insert: false, update: false },
           title: { view: false, insert: false, update: false },
           areaOfSpecialization: { view: false, insert: false, update: false },
           date: { view: false, insert: false, update: false },

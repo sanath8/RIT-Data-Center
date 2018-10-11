@@ -43,10 +43,10 @@ router.get('/', function(req, res, next) {
 				title : "Title" ,
 				sponsoredOrFunded : "Sponsored/Funded" ,
 				date : "Date" ,
-				noOfParticipants : "No. of Participants" ,
+				place : "Place" ,
 				duration : "Duration",
 				role : "Role",
-				nationalOrInternational : "Ntional / International"
+				nationalOrInternational : "National/International"
 			   }
 		   ,
 		   faculty_conference_symposia:
@@ -56,7 +56,6 @@ router.get('/', function(req, res, next) {
 				place : "Place" ,
 				date : "Date" ,
 				role : "Role" ,
-				noOfPapersPresented : "No. Of Papers Presented",
 				type : "Type"
 			   }
 		   ,
@@ -203,7 +202,7 @@ router.get('/', function(req, res, next) {
 				title : { view: false, insert: false, update: false } ,
 				sponsoredOrFunded : { view: false, insert: false, update: false } ,
 				date : { view: false, insert: false, update: false } ,
-				noOfParticipants : { view: false, insert: false, update: false } ,
+				place : { view: false, insert: false, update: false } ,
 				duration : { view: false, insert: false, update: false } ,
 				role : { view: false, insert: false, update: false } ,
 				nationalOrInternational : { view: false, insert: false, update: false } ,
@@ -217,7 +216,6 @@ router.get('/', function(req, res, next) {
 				place : { view: false, insert: false, update: false } ,
 				date : { view: false, insert: false, update: false } ,
 				role : { view: false, insert: false, update: false } ,
-				noOfPapersPresented : { view: false, insert: false, update: false },
 				type : { view: false, insert: false, update: false } ,
 				slNo: { view: true, insert: true, update: true }
 			   }
