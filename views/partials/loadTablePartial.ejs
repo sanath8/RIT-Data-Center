@@ -5,7 +5,7 @@
         if(authType != 'principal' && authType != 'coordinator' && authType != 'hod' && authType != 'admin'){
             authType = 'faculty';
         }
-        for(var i = 0 ; i<resultSet.length;i++){
+        for(var i = resultSet.length - 1; i >= 0; i--){
             // console.log("from loadtablePartial " + authType + " " + permission[authType] + " " + GetParam);
             if(typeof(GetParam) != 'undefined' && authType === 'faculty'){
                 __append('<tr>');
