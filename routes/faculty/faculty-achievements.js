@@ -43,10 +43,10 @@ router.get('/', function(req, res, next) {
 				title : "Title" ,
 				sponsoredOrFunded : "Sponsored/Funded" ,
 				date : "Date" ,
-				noOfParticipants : "No. of Participants" ,
+				place : "Place" ,
 				duration : "Duration",
 				role : "Role",
-				nationalOrInternational : "Ntional / International"
+				nationalOrInternational : "National/International"
 			   }
 		   ,
 		   faculty_conference_symposia:
@@ -56,7 +56,6 @@ router.get('/', function(req, res, next) {
 				place : "Place" ,
 				date : "Date" ,
 				role : "Role" ,
-				noOfPapersPresented : "No. Of Papers Presented",
 				type : "Type"
 			   }
 		   ,
@@ -71,9 +70,9 @@ router.get('/', function(req, res, next) {
 		   book:
 			   {
 				facultyId:facultyID,
-				bookTitle : "Book Title" ,
-				bookAuthors : "Book Author" ,
-				bookPublisher : "Book Publisher" ,
+				bookTitle : "Title" ,
+				bookAuthors : "Authors" ,
+				bookPublisher : "Publisher" ,
 				isbn : "ISBN",
 				year : "Year"
 			   }
@@ -83,7 +82,7 @@ router.get('/', function(req, res, next) {
 				facultyId:facultyID,
 				chapterName : "Chapter Name" ,
 				bookName : "Book Name" ,
-				chapterAuthors : "Chapter Authors" ,
+				chapterAuthors : "Authors" ,
 				publisher : "Publisher" ,
 				isbn : "ISBN",
 				year : "Year"
@@ -112,19 +111,18 @@ router.get('/', function(req, res, next) {
 				journalName : "Journal Name" ,
 				journalType : "Journal Type" ,
 				volumeNumber : "Volume Number" ,
-				pageNumberFrom : "From Page Number" ,
-				pageNumberTo : "From Page To" ,
+				pageNumbers: "Page Numbers" ,
+				year : "Year" ,
 				issueNumber : "Issue Number",
 				impactFactor : "Impact Factor",
 				citation : "Citation",
-				doi : "Date of issue",
-				hIndex1 : "hindex 1",
-				hIndex2 : "hindex 2",
-				hIndex3 : "hindex 3",
-				hIndex4 : "hindex 4",
-				hIndex5 : "hindex 5",
-				year : "Year" ,
-				sjrQuartile : "SJR Quartile"
+				doi : "Digital Object Identifier",
+				sjrQuartile : "SJR Quartile",
+				hIndex1 : "h-index 1",
+				hIndex2 : "h-index 2",
+				hIndex3 : "h-index 3",
+				hIndex4 : "h-index 4",
+				hIndex5 : "h-index 5"
 			}
 
 		},
@@ -203,7 +201,7 @@ router.get('/', function(req, res, next) {
 				title : { view: false, insert: false, update: false } ,
 				sponsoredOrFunded : { view: false, insert: false, update: false } ,
 				date : { view: false, insert: false, update: false } ,
-				noOfParticipants : { view: false, insert: false, update: false } ,
+				place : { view: false, insert: false, update: false } ,
 				duration : { view: false, insert: false, update: false } ,
 				role : { view: false, insert: false, update: false } ,
 				nationalOrInternational : { view: false, insert: false, update: false } ,
@@ -217,7 +215,6 @@ router.get('/', function(req, res, next) {
 				place : { view: false, insert: false, update: false } ,
 				date : { view: false, insert: false, update: false } ,
 				role : { view: false, insert: false, update: false } ,
-				noOfPapersPresented : { view: false, insert: false, update: false },
 				type : { view: false, insert: false, update: false } ,
 				slNo: { view: true, insert: true, update: true }
 			   }
@@ -280,8 +277,7 @@ router.get('/', function(req, res, next) {
 				slNo: { view: false, insert: false, update: false } ,
 				issnPrint: { view: false, insert: false, update: false } ,
 				issnOnline :{ view: false, insert: false, update: false } ,
-				pageNumberFrom :{ view: false, insert: false, update: false } ,
-				pageNumberTo :{ view: false, insert: false, update: false } ,
+				pageNumbers :{ view: false, insert: false, update: false } ,
 				issueNumber :{ view: false, insert: false, update: false } ,
 				impactFactor :{ view: false, insert: false, update: false } ,
 				citation :{ view: false, insert: false, update: false } ,

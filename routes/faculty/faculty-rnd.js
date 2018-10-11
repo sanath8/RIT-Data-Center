@@ -43,7 +43,7 @@ router.get('/', function(req, res, next) {
 					scheme : "Scheme",
 					sanctionOrderNumber : "Sanction Order Number" ,
 					projectDuration : "Project Duration" ,
-					dateSanctioned : "Date Sanctioned" ,
+					dateSanctioned : "Sanctioned Date" ,
 					sanctionedAmount : "Sanctioned Amount",
 					status : "Status"
 				}
@@ -68,7 +68,7 @@ router.get('/', function(req, res, next) {
 					organization : "Organization",
 					duration : "Duration",
 					sanctionedDate : "Sanctioned Date" ,
-					amountReceived : "Amount Received"                
+					amountReceived : "Amount Received ( in Rs )"                
 				}
 			,
 			industrial_collaboration_mou:

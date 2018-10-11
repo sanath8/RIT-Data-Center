@@ -16,8 +16,11 @@
                     <div class="card-content table-responsive">
                         <table class="table">
                             <thead class="text-primary">
-                                <th>Industry Name</th>
-                                <th>Scheduled Date</th>
+                                <th>Industry/Organization</th>
+                                <th>Date of Visit</th>
+                                <th>Place</th>
+                                <th>Semester</th>
+                                <th>No of Students</th>
                             </thead>
                             <tbody>
                                 <% loadInTableModular('industrial_visit', updatePermission)%>
@@ -36,11 +39,12 @@
                     <div class="card-content table-responsive">
                         <table class="table">
                             <thead class="text-primary">
-                                <th>Name</th>
-                                <th>Expert Organization / Address</th>
+                                <th>Guest Lecturer Name</th>
+                                <th>Designation</th>
+                                <th>Affiliation</th>
                                 <th>Title</th>
                                 <th>Area of Specialization</th>
-                                <th>Date of the Lecture</th>
+                                <th>Date</th>
                             </thead>
                             <tbody>
                                 <% loadInTableModular("guest_lectures_invited", updatePermission)%>

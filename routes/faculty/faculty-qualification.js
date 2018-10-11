@@ -56,12 +56,12 @@ router.get('/', function(req, res, next) {
 					{
 						slNo: "Sl. No",
 						facultyId : "facultyId",
-						degree : "degree",
-						university : "university",
-						collegeName : "collegeName",
-						passClass :  "passClass",
-						passYear :  "passYear",
-						areaOfSpecialization :  "areaOfSpecialization"
+						degree : "Degree",
+						university : "University",
+						collegeName : "College Name",
+						passClass :  "Pass Class",
+						passYear :  "Year of Degree Awarded",
+						areaOfSpecialization :  "Area of Specialization"
 
 					}
 				},

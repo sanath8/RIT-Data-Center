@@ -32,45 +32,45 @@ router.get('/', function(req, res, next) {
 			courses_handled:{
 				facultyId : "facultyId",
 				//yearHandled : "yearHandled",
-				subjectName : "subjectName",
-				ugOrPg :  "ugOrPg",
-				typeOfSubject :  "typeOfSubject",
+				subjectName : "Course Name",
+				ugOrPg :  "Ug/Pg",
+				typeOfSubject :  "Type of Subject",
 			   }
 		   ,
 		   projects_handled:
 			   {
 				facultyId : facultyId,
-				batch : "batch",
-				ugOrPg : "ugOrPg",
-				projectTitle : 'projectTitle',
+				batch : "Batch",
+				ugOrPg : "Ug/Pg",
+				projectTitle : 'Project Title',
 			   }
 		   ,
 		   faculty_research:
 			   {
 				slNo: "slNo",
-				guideName: "guideName",
+				guideName: "Guide Name",
 				//researchCandidateName:"researchCandidateName",
-				usn:'usn',
-				centreName:'centreName',
-				university:'university',
-				registrationYear:'registrationYear',
-				yearOfCompletion:'yearOfCompletion',
-				title:'title',
-				status:'status',
+				usn:'USN',
+				centreName:'Research Centre',
+				university:'University',
+				registrationYear:'Year of Registration',
+				yearOfCompletion:'Year Of Completion',
+				title:'Title',
+				status:'Status',
 				facultyId:facultyId
 			   }
 		   ,
 		   phd_scholar:
 			   {
 				facultyId:facultyId,
-				role:'role',
-				scholarName:'scholarName',
-				researchCentre:'researchCentre',
-				university:'university',
-				registrationYear:'registrationYear',
-				usn:'usn',
-				title:'title',
-				status:'status'
+				role:'Role',
+				scholarName:'Scholar Name',
+				usn:'USN',
+				researchCentre:'Research Centre',
+				university:'University',
+				registrationYear:'Year of Registration',
+				title:'Title',
+				status:'Status'
 			   }
 
 		},
