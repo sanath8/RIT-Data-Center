@@ -62,6 +62,7 @@ router.get('/', function(req, res, next) {
 			myR["panNumber"]=tresult["panNumber"];
 			myR["accountNumber"]=tresult["accountNumber"];
 			myR["pfNumber"]=tresult["pfNumber"];
+			myR["payScale"]=tresult["payScale"];
 			myR["payScaleBasic"]=tresult["payScaleBasic"];
 			myR["payScaleAgp"]=tresult["payScaleAgp"];
 			myR["payScaleBand"]=tresult["payScaleBand"];
