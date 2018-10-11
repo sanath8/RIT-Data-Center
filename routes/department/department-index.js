@@ -51,8 +51,10 @@ router.get('/student-info', function(req, res, next) {
           studentName: studentAchieve[i].studentName,
           eventName: studentAchieve[i].eventName,
           date: studentAchieve[i].date,
+          place: studentAchieve[i].place,
           award: studentAchieve[i].award,
           category: studentAchieve[i].category, 
+          type: studentAchieve[i].type,
           slNo: studentAchieve[i].slNo
         };
         studentAchievement.push(individualEntry);
@@ -66,6 +68,7 @@ router.get('/student-info', function(req, res, next) {
           date: studentActivity[i].date,
           industryOrOrganization: studentActivity[i].industryOrOrganization,
           category: studentActivity[i].category,
+          type: studentActivity[i].type,          
           slNo: studentActivity[i].slNo
          };
          studentActivites.push(individualEntry);
@@ -102,6 +105,7 @@ router.get('/student-info', function(req, res, next) {
            date: "Date",
            industryOrOrganization: "Industry/Organization",
            category: "Category",
+           type: "Type",           
            departmentId: "departmentId"
          },
          student_achievement: {
@@ -109,8 +113,10 @@ router.get('/student-info', function(req, res, next) {
            studentName: "Name of Student",
            eventName: "Name of Event",
            date: "Date",
+           place: "Place",
            award: "Award",
            category: "Category",
+           type: "Type",
            departmentId: "departmentID"
          },
          student_publication: {
@@ -131,6 +137,7 @@ router.get('/student-info', function(req, res, next) {
           date: { view: false, insert: false, update: false },
           industryOrOrganization: { view: false, insert: false, update: false },
           category: { view: false, insert: false, update: false },
+          type: { view: false, insert: false, update: false},
           departmentId: { view: true, insert: true, update: true }
         },
         student_achievement: {
@@ -138,8 +145,10 @@ router.get('/student-info', function(req, res, next) {
           studentName: { view: false, insert: false, update: false },
           eventName: { view: false, insert: false, update: false },
           date: { view: false, insert: false, update: false },
+          place: { view: false, insert: false, update: false},
           award: { view: false, insert: false, update: false },
           category: { view: false, insert: false, update: false },
+          type: { view: false, insert: false, update: false},
           departmentId: { view: true, insert: true, update: true }
         },
         student_publication: {
