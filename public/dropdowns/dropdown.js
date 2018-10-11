@@ -24,4 +24,6 @@ var dropdowns = {
         "faculty_workshop_fdp_nationalOrInternational" : ["National", "International"],
         "faculty_conference_symposia_role" : ["Session Chair","Keynote Speaker","Participant","Presented","Others"],
         "faculty_conference_symposia_type" : ["National","International"],
+        "student_activities_type" : ["National","International"],
+        "student_achievement_type" : ["National","International"]        
 }
