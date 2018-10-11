@@ -24,4 +24,5 @@ var dropdowns = {
         "faculty_workshop_fdp_nationalOrInternational" : ["National", "International"],
         "faculty_conference_symposia_role" : ["Session Chair","Keynote Speaker","Participant","Presented","Others"],
         "faculty_conference_symposia_type" : ["National","International"],
+        "software_typeOfLicence" :["Perpetual","Renewal"],
 }

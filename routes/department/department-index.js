@@ -213,9 +213,13 @@ router.get('/infrastructure-details', function(req, res, next) {
           slNo: softwareTemp[i].slNo,
           softwareName: softwareTemp[i].softwareName,
           licenseNumber: softwareTemp[i].licenseNumber,
+          typeOfLicence: softwareTemp[i].typeOfLicence,
           noOfUsers: softwareTemp[i].noOfUsers,
+          dateOfProcurement: softwareTemp[i].dateOfProcurement,
+          modeOfProcurement: softwareTemp[i].modeOfProcurement,
           expiryDate: softwareTemp[i].expiryDate,
-          vendorName: softwareTemp[i].vendorName
+          vendorName: softwareTemp[i].vendorName,
+          costOfSoftware: softwareTemp[i].costOfSoftware
         }
         software.push(entry);
       }
@@ -236,12 +240,16 @@ router.get('/infrastructure-details', function(req, res, next) {
         },
         software:
         {
-          slNo: "slNo",
-          softwareName: "Name of the Software",
+          slNo: "Sl No",
+          softwareName: "Software Name",
           licenseNumber: "License Number",
-          noOfUsers: "Number of Users",
+          typeOfLicence: "License Type",
+          noOfUsers: "No of Users",
+          dateOfProcurement: "Date of Procurement",
+          modeOfProcurement: "Mode of Procurement",
           expiryDate: "Expiry Date",
           vendorName: "Vendor Name",
+          costOfSoftware: "Cost of Software",
           departmentId: "departmentId"
         }
       },
@@ -260,9 +268,13 @@ router.get('/infrastructure-details', function(req, res, next) {
           slNo: { view: true, insert: true, update: true } ,
           softwareName: { view: false, insert: false, update: false },
           licenseNumber: { view: false, insert: false, update: false },
+          typeOfLicence: { view: false, insert: false, update: false },
           noOfUsers: { view: false, insert: false, update: false },
+          dateOfProcurement: { view: false, insert: false, update: false },
+          modeOfProcurement: { view: false, insert: false, update: false },
           expiryDate: { view: false, insert: false, update: false },
           vendorName: { view: false, insert: false, update: false },
+          costOfSoftware: { view: false, insert: false, update: false },
           departmentId: { view: true, insert: true, update: true }
         }
       },
