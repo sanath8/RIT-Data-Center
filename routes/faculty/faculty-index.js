@@ -142,8 +142,8 @@ router.get('/', function(req, res, next) {
 				  professional_body_membership:{
 					slNo: "Sl. No",
 					professionalBodyName: "Name of Professional Body",
-					membershipType: "Membership Type",
-					subscriptionYear: "Subscription Year",
+					membershipType: "Type of Membership",
+					subscriptionYear: "Year of Subscription",
 					facultyId: "facultyId"
 				  }				
 			},

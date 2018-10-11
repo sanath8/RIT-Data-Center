@@ -70,9 +70,9 @@ router.get('/', function(req, res, next) {
 		   book:
 			   {
 				facultyId:facultyID,
-				bookTitle : "Book Title" ,
-				bookAuthors : "Book Author" ,
-				bookPublisher : "Book Publisher" ,
+				bookTitle : "Title" ,
+				bookAuthors : "Authors" ,
+				bookPublisher : "Publisher" ,
 				isbn : "ISBN",
 				year : "Year"
 			   }
@@ -82,7 +82,7 @@ router.get('/', function(req, res, next) {
 				facultyId:facultyID,
 				chapterName : "Chapter Name" ,
 				bookName : "Book Name" ,
-				chapterAuthors : "Chapter Authors" ,
+				chapterAuthors : "Authors" ,
 				publisher : "Publisher" ,
 				isbn : "ISBN",
 				year : "Year"
@@ -111,19 +111,18 @@ router.get('/', function(req, res, next) {
 				journalName : "Journal Name" ,
 				journalType : "Journal Type" ,
 				volumeNumber : "Volume Number" ,
-				pageNumberFrom : "From Page Number" ,
-				pageNumberTo : "From Page To" ,
+				pageNumbers: "Page Numbers" ,
+				year : "Year" ,
 				issueNumber : "Issue Number",
 				impactFactor : "Impact Factor",
 				citation : "Citation",
-				doi : "Date of issue",
-				hIndex1 : "hindex 1",
-				hIndex2 : "hindex 2",
-				hIndex3 : "hindex 3",
-				hIndex4 : "hindex 4",
-				hIndex5 : "hindex 5",
-				year : "Year" ,
-				sjrQuartile : "SJR Quartile"
+				doi : "Digital Object Identifier",
+				sjrQuartile : "SJR Quartile",
+				hIndex1 : "h-index 1",
+				hIndex2 : "h-index 2",
+				hIndex3 : "h-index 3",
+				hIndex4 : "h-index 4",
+				hIndex5 : "h-index 5"
 			}
 
 		},
@@ -278,8 +277,7 @@ router.get('/', function(req, res, next) {
 				slNo: { view: false, insert: false, update: false } ,
 				issnPrint: { view: false, insert: false, update: false } ,
 				issnOnline :{ view: false, insert: false, update: false } ,
-				pageNumberFrom :{ view: false, insert: false, update: false } ,
-				pageNumberTo :{ view: false, insert: false, update: false } ,
+				pageNumbers :{ view: false, insert: false, update: false } ,
 				issueNumber :{ view: false, insert: false, update: false } ,
 				impactFactor :{ view: false, insert: false, update: false } ,
 				citation :{ view: false, insert: false, update: false } ,

@@ -17,14 +17,16 @@ var dropdowns = {
         "funded_projects_status" : ["Completed", "Pending","Others"],
         "consultancy_typeOfConsultancy" : ["Testing", "Training", "Research", "Others"],
         "consultancy_role" : ["Principal Investigator", "Co - Investigator","Others"],
-        "industrial_collaboration_mou_typeOfMou" : ["Intership", "Industrial Training", "Placement", "Project","Others"],
+        "industrial_collaboration_mou_typeOfMou" : ["Intership", "Industrial Training", "Placement", "Project", "Others"],
         "industrial_collaboration_mou_nationalOrInternational" : ["National","International"],
         "faculty_workshop_fdp_role" : ["Resource Person","Participant","Co-Ordinator","Others"],
-        "faculty_workshop_fdp_type" : ["Training", "Field Visit", "SDP","Others"],
+        "faculty_workshop_fdp_type" : ["Training", "Field Visit", "Workshop", "SDP","Others"],
         "faculty_workshop_fdp_nationalOrInternational" : ["National", "International"],
         "faculty_conference_symposia_role" : ["Session Chair","Keynote Speaker","Participant","Presented","Others"],
         "faculty_conference_symposia_type" : ["National","International"],
         "software_typeOfLicence" :["Perpetual","Renewal"],
         "student_activities_type" : ["National","International"],
-        "student_achievement_type" : ["National","International"]        
+        "student_achievement_type" : ["National","International"],
+        "faculty_qualification_degree" : ["BE","BTech","ME","MTech","MS","PhD","BSc","MSc","Others"],
+        "faculty_qualification_passClass" : ["FCD", "First", "Second", "Third", "Others"]
 }

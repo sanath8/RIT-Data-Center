@@ -100,8 +100,8 @@ router.get('/student-info', function(req, res, next) {
          url: "/department/student-info",
          student_activities: {
            slNo: "slNo",
-           studentName: "Name of Student",
-           eventName: "Name of Event",
+           studentName: "Student Name",
+           eventName: "Event Name",
            date: "Date",
            industryOrOrganization: "Industry/Organization",
            category: "Category",
@@ -110,8 +110,8 @@ router.get('/student-info', function(req, res, next) {
          },
          student_achievement: {
            slNo: "slNo",
-           studentName: "Name of Student",
-           eventName: "Name of Event",
+           studentName: "Student Name",
+           eventName: "Event Name",
            date: "Date",
            place: "Place",
            award: "Award",
@@ -258,7 +258,7 @@ router.get('/infrastructure-details', function(req, res, next) {
           modeOfProcurement: "Mode of Procurement",
           expiryDate: "Expiry Date",
           vendorName: "Vendor Name",
-          costOfSoftware: "Cost of Software",
+          costOfSoftware: "Cost of Software (in Rs)",
           departmentId: "departmentId"
         }
       },
