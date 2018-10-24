@@ -40,7 +40,7 @@ sqlObject.prototype.login = function(email, pass, callback){
 
 sqlObject.prototype.getFacultyInfo=function(fid, callback){
 	console.log("hellow doo")
-		
+
 		var sql = "select *\
 		from professional_activities\
 		where facultyId =?";
@@ -908,7 +908,7 @@ sqlObject.prototype.executeDirectQuery = function (query, callBack)
 
 }
 
-sqlObject.prototype.fetchResults = function(columns, url, whereOptions, type, facultyId, departmentId, callBack)
+sqlObject.prototype.fetchResults = function(columns, url, whereOptions, type, facultyId, departmentId, indexer, callBack)
 {
   //whereOptions is an array of strings
   try
@@ -925,10 +925,16 @@ sqlObject.prototype.fetchResults = function(columns, url, whereOptions, type, fa
     }
 		// console.log("jdjyvsd" + facultyId);
 		if(facultyId != "principal" && facultyId != "admin")
+		{
 			query += " AND departmentId = '" + departmentId+"'";
-
+		}
 		// console.log(query);
 		// console.log(whereOptions);
+		// ordering by increasing year
+		if(indexer)
+		{
+				query += " ORDER BY " + indexer;
+		}
 
     this.connection.query(query,
       function (err, result, fields)
