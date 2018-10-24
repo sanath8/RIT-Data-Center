@@ -301,7 +301,8 @@ function performFilterOperations(flag, reportCallBack)
   }
   dataForSelect = {
       'schema': columnsSelected,
-      'whereOption' : queryFilter
+      'whereOption' : queryFilter,
+      'indexer' : converterApi.yearTranslator(tableName)
   };
   var url;
   if(flag == 'report')

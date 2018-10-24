@@ -11,7 +11,7 @@ router.post('/:tableName/:callBackType', function(req, res, next){
           res.send(preProcessor.removeHiddenFields(result));
     }
     // console.log(Array(req.body.whereOption));
-    sqlExecute.fetchResults(req.body.schema, req.params.tableName, req.body.whereOption, req.params.callBackType, req.session.facultyId, req.session.departmentId, callBack);
+    sqlExecute.fetchResults(req.body.schema, req.params.tableName, req.body.whereOption, req.params.callBackType, req.session.facultyId, req.session.departmentId, req.body.indexer, callBack);
 
     //sqlExecute.getJointFacultyInfo(callBack, req.params.tableName);
 
