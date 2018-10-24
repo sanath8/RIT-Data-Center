@@ -256,6 +256,26 @@
                 <input name="'+j+'" type="date" class="form-control" value="'+dateString+'">\
                 </div>')
             }
+
+            else if(dropdowns["fixed_" + columnName + "_" + j]){
+                var optionsList = ""
+                var op = dropdowns["fixed_" + columnName + "_" + j];
+                for(var z = 0; z< op.length ; z++){
+                  if(op[z] == res[j])
+                  {
+                    optionsList += '<option value = "' + op[z] + '" selected>' + op[z] + '</option>';
+                  }
+                  else
+                  {
+                    optionsList += '<option value = "' + op[z] + '">' + op[z] + '</option>';
+                  }
+                }
+                str = str + '<div class="form-group ">\
+                <label class="control-label">'+temp+'</label>'
+                str = str + '<select name="' + j + '" id="inputState" class="form-control">\
+                ' + optionsList + '</select></div>'
+                  }
+
             else if(dropdowns[columnName +"_"+ j]){
                 var optionsList = ""
                 var op = dropdowns[columnName +"_"+ j];
@@ -331,6 +351,17 @@
                 <label class="control-label">'+temp+'</label>\
                 <input name="'+j+'" type="date" class="form-control" ">\
                 </div>')
+            }
+            else if(dropdowns["fixed_" + columnName + "_" + j]){
+                var optionsList = ""
+                var op = dropdowns["fixed_" + columnName +"_"+ j];
+                for(var z = 0; z< op.length ; z++){
+                    optionsList += '<option value = "' + op[z] + '">' + op[z] + '</option>';
+                }
+                str = str + '<div class="form-group ">\
+                <label class="control-label">'+temp+'</label>'
+                str = str + '<select name="' + j + '" id="inputState" class="form-control">\
+                ' + optionsList + '</select></div>'
             }
             else if(dropdowns[columnName +"_"+ j]){
                 var optionsList = ""
