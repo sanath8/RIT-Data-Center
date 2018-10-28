@@ -98,7 +98,8 @@ router.get('/', function(req, res, next) {
 				conferenceType : "Conference Type" ,
 				organizedBy : "Organized By" ,
 				publisher : "Publisher",
-				year : "Year"
+				year : "Year",
+				date : "Date"
 			   }
 		   ,
 		   journal_paper:
@@ -118,11 +119,11 @@ router.get('/', function(req, res, next) {
 				citation : "Citation",
 				doi : "Digital Object Identifier",
 				sjrQuartile : "SJR Quartile",
-				hIndex1 : "h-index 1",
-				hIndex2 : "h-index 2",
-				hIndex3 : "h-index 3",
-				hIndex4 : "h-index 4",
-				hIndex5 : "h-index 5"
+				hIndex : "h-index",
+				iIndex : "i-index",
+				isbn : "ISBN",
+				indexing : "Indexing",
+				date : "Date"
 			}
 
 		},
@@ -261,6 +262,7 @@ router.get('/', function(req, res, next) {
 				organizedBy : { view: false, insert: false, update: false } ,
 				publisher : { view: false, insert: false, update: false } ,
 				year : { view: false, insert: false, update: false },
+				date : { view: false, insert: false, update: false },
 				slNo: { view: true, insert: true, update: true }
 			   }
 		   ,
@@ -282,11 +284,11 @@ router.get('/', function(req, res, next) {
 				impactFactor :{ view: false, insert: false, update: false } ,
 				citation :{ view: false, insert: false, update: false } ,
 				doi : { view: false, insert: false, update: false } ,
-				hIndex1 :{ view: false, insert: false, update: false } ,
-				hIndex2 :{ view: false, insert: false, update: false } ,
-				hIndex3 :{ view: false, insert: false, update: false } ,
-				hIndex4 :{ view: false, insert: false, update: false } ,
-				hIndex5 :{ view: false, insert: false, update: false },
+				hIndex :{ view: false, insert: false, update: false } ,
+				iIndex :{ view: false, insert: false, update: false } ,
+				isbn :{ view: false, insert: false, update: false } ,
+				indexing :{ view: false, insert: false, update: false } ,
+				date :{ view: false, insert: false, update: false },
 				slNo: { view: true, insert: true, update: true }
 			}
 
