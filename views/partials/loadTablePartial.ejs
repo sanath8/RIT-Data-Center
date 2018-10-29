@@ -394,7 +394,8 @@
         str = str + ("<form method='POST' action='/v1/apis/apiUpdate/"+columnName+"'>");
         //cardCont.append("<form method='POST' action='/v1/apis/apiUpdate/"+columnName+"'>")
         str = str + ("<input name='url' type='hidden' value='"+index["url"]+"'>");
-        str = str + ("<input name='getParam' type='hidden' value='"+GetParam+"'>");
+        if(typeof GetParam != 'undefined')
+            str = str + ("<input name='getParam' type='hidden' value='"+GetParam+"'>");
         var res = data[columnName][i];
         // console.log(JSON.stringify(Object.keys(index[columnName])));
         // console.log(JSON.stringify(Object.keys(res)));
@@ -418,7 +419,6 @@
         }
         str = str + ('<button type="submit" class="btn btn-primary pull-right">Update</button>\
             <button type="reset" class="btn btn-warning pull-right" data-dismiss="modal">Cancel</button>\
-            <button type="submit" formaction="/v1/apis/apiDelete/'+columnName+'" class="btn btn-danger pull-right">Delete</button>\
             </form>')
         cardCont.html(str);
     }
