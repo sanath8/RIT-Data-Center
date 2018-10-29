@@ -29,5 +29,6 @@ var dropdowns = {
         "student_achievement_type" : ["National","International"],
         "faculty_qualification_degree" : ["BE","BTech","ME","MTech","MS","PhD","BSc","MSc","Others"],
         "faculty_qualification_passClass" : ["FCD", "First", "Second", "Third", "Others"],
-        "faculty_payScale" : ["5th Pay","6th Pay","7th Pay","Others"]
+        "faculty_payScale" : ["5th Pay","6th Pay","7th Pay","Others"],
+        "journal_paper_indexing" : ["Web of Science", "Scopers", "Google Scholar"] 
 }
