@@ -2,7 +2,6 @@ var dropdowns = {
         "faculty_natureOfAppointment":["Regular","Visiting"],
         "faculty_designation":["Professor","Associate Professor","Assistant Professor"],
         "fixed_faculty_gender":["Male","Female"],
-        "fixed_faculty_workshop_fdp_type":["National","International"],
         "fixed_faculty_conference_symposia_invitedOrDeputed":["Invited","Deputed"],
         "faculty_conference_symposia_role":["session chair","keynote speaker"],
         "fixed_conference_paper_conferenceType":["National","International"],
