@@ -492,7 +492,7 @@ router.get('/infrastructure-details', function(req, res, next) {
           dateOfProcurement: "Date of Procurement",
           modeOfProcurement: "Mode of procurement",
           description: "Description",
-          quantity: "Quality",
+          quantity: "Quantity",
           amountPerUnit: "Amount Per Unit",
         },
         software:
@@ -513,8 +513,8 @@ router.get('/infrastructure-details', function(req, res, next) {
       hiddenFields:{
         hardware:
         {
-          labName: { view: false, insert: false, update: false },
-          carpetArea: { view: false, insert: false, update: false },          
+          labName: { view: false, insert: false, update: true },
+          carpetArea: { view: false, insert: false, update: true },          
           slNo: { view: true, insert: true, update: true } ,
           totalInvestment: { view: false, insert: false, update: false },
           departmentId: { view: true, insert: true, update: true },
