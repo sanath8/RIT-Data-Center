@@ -20,7 +20,7 @@
                                 <th>Event Name</th>
                                 <th>Date</th>
                                 <th>Place</th>
-                                <th>Award</th>                                
+                                <th>Award</th>
                                 <th>Category</th>
                                 <th>Type</th>
                             </thead>
@@ -56,7 +56,8 @@
                    <a href = "/department/generateexcel/2/2/?departmentId=<%-GetParam%>">
                     <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
                     </a>
-                <button class="btn btn-primary pull-right insertButton" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataModularInsert('student_activities')">Insert</button>                </div>
+                <button class="btn btn-primary pull-right insertButton" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataModularInsert('student_activities')">Insert</button>
+              </div>
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
                         <h4 class="title">Student Publications</h4>
@@ -79,7 +80,34 @@
                     <a href = "/department/generateexcel/3/2/?departmentId=<%-GetParam%>">
                     <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
                     </a>
-                <button class="btn btn-primary pull-right  insertButton" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataModularInsert('student_publication')">Insert`</button>                </div>
+                <button class="btn btn-primary pull-right  insertButton" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataModularInsert('student_publication')">Insert</button>
+              </div>
+              <!-- table change 4 -->
+              <div class="card">
+                  <div class="card-header" data-background-color="purple">
+                      <h4 class="title">Student Conference Publications</h4>
+                      <p class="category">information about student conference publications.</p>
+                  </div>
+                  <div class="card-content table-responsive">
+                      <table class="table">
+                          <thead class="text-primary">
+                              <th>Authors</th>
+                              <th>Title</th>
+                              <th>Conference Type</th>
+                              <th>Organized By</th>
+                              <th>Publisher</th>
+                              <th>Year</th>
+                          </thead>
+                          <tbody>
+                              <% loadInTableModular('student_conference_publications', updatePermission)%>
+                          </tbody>
+                      </table>
+                  </div>
+                  <a href = "/department/generateexcel/3/2/?departmentId=<%-GetParam%>">
+                  <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
+                  </a>
+              <button class="btn btn-primary pull-right  insertButton" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataModularInsert('student_conference_publications')">Insert</button>
+            </div>
             </div>
         </div>
     </div>

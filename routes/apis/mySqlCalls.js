@@ -557,6 +557,18 @@ sqlObject.prototype.getStudentInformation = function(callback, departmentId){
 				return;
 			}
 			data["student_activities"] = result;
+      //table change 6
+			var sql = "select *\
+								from student_conference_publications\
+								where departmentId =?"
+			con.query(sql, [departmentId], function(error, result){
+				if(error){
+					callback(error, undefined);
+					return;
+				}
+				data["student_conference_publications"] = result;
+
+
 
 			var sql = "select *\
 								from student_publication\
@@ -572,6 +584,7 @@ sqlObject.prototype.getStudentInformation = function(callback, departmentId){
 			})
 		})
 	})
+})
 }
 
 sqlObject.prototype.getWholeTable = function(callback, url, email){

@@ -53,7 +53,7 @@ router.get('/student-info', function(req, res, next) {
           date: studentAchieve[i].date,
           place: studentAchieve[i].place,
           award: studentAchieve[i].award,
-          category: studentAchieve[i].category, 
+          category: studentAchieve[i].category,
           type: studentAchieve[i].type,
           slNo: studentAchieve[i].slNo
         };
@@ -68,7 +68,7 @@ router.get('/student-info', function(req, res, next) {
           date: studentActivity[i].date,
           industryOrOrganization: studentActivity[i].industryOrOrganization,
           category: studentActivity[i].category,
-          type: studentActivity[i].type,          
+          type: studentActivity[i].type,
           slNo: studentActivity[i].slNo
          };
          studentActivites.push(individualEntry);
@@ -90,11 +90,30 @@ router.get('/student-info', function(req, res, next) {
       // console.log(studentPublication);
       // console.log(studentActivites);
 
+      //table change 1
+      var studentConferencePublications = [];
+      var studentConfPublic = result.student_conference_publications;
+      for(var i=0; i<studentConfPublic.length; i++){
+        var individualEntry = {
+          authors: studentConfPublic[i].authors,
+          title: studentConfPublic[i].title,
+          conferenceType: studentConfPublic[i].conferenceType,
+          organizedBy: studentConfPublic[i].organizedBy,
+          publisher: studentConfPublic[i].publisher,
+          year: studentConfPublic[i].year,
+          slNo: studentConfPublic[i].slNo
+        };
+
+        studentConferencePublications.push(individualEntry);
+      }
+
+
       var data = {
 
       }
       res.render('department/student-info', { departmentId: departmentId, type:"student-info",
-       data:{student_activities:studentActivites,student_achievement:studentAchievement,student_publication:studentPublication},
+      //table change 5
+       data:{student_activities:studentActivites,student_achievement:studentAchievement,student_publication:studentPublication, student_conference_publications:studentConferencePublications},
        authType:req.session.facultyId, GetParam:req.query.departmentId,
        index: {
          url: "/department/student-info",
@@ -105,7 +124,7 @@ router.get('/student-info', function(req, res, next) {
            date: "Date",
            industryOrOrganization: "Industry/Organization",
            category: "Category",
-           type: "Type",           
+           type: "Type",
            departmentId: "departmentId"
          },
          student_achievement: {
@@ -127,7 +146,19 @@ router.get('/student-info', function(req, res, next) {
           conferenceOrJournal: "Conference/Journal",
           place: "Place",
           departmentId: "departmentId"
-        }
+        },
+        //table change 2
+        student_conference_publications: {
+          authors: "Authors",
+          title: "Title",
+          conferenceType: "Conference Type",
+          organizedBy: "Organized By",
+          publisher: "Publisher",
+          year: "Year",
+          slNo: "Sl No",
+          departmentId: "departmentId"
+
+       }
        },
        hiddenFields:{
         student_activities: {
@@ -159,7 +190,20 @@ router.get('/student-info', function(req, res, next) {
           conferenceOrJournal: { view: false, insert: false, update: false },
           place: { view: false, insert: false, update: false },
           departmentId: { view: true, insert: true, update: true }
+        },
+        //table change 3
+        student_conference_publications: {
+
+          slNo: { view: true, insert: true, update: true } ,
+          authors: { view: false, insert: false, update: false },
+          title: { view: false, insert: false, update: false },
+          conferenceType: { view: false, insert: false, update: false },
+          organizedBy: { view: false, insert: false, update: false },
+          publisher: { view: false, insert: false, update: false },
+          year: { view: false, insert: false, update: false },
+          departmentId: { view: true, insert: true, update: true }
         }
+
        },
         insertPermission:departmentPermissions.insertPermission,
         updatePermission:departmentPermissions.updatePermission
@@ -334,7 +378,7 @@ router.get('/activities', function(req, res, next) {
        dateOfVisit: industrial[i].dateOfVisit,
        place: industrial[i].place,
        semester: industrial[i].semester,
-       noOfStudents: industrial[i].noOfStudents, 
+       noOfStudents: industrial[i].noOfStudents,
        departmentId: industrial[i].departmentId,
        slNo: industrial[i].slNo
       }
@@ -607,7 +651,7 @@ router.get('/bosboe', function(req, res, next) {
       otherMembership.push(singleEntry);
     }
 
-    
+
     res.render('department/bosboe', { departmentId: departmentId, type:'bosboe',
     data:{other_membership: otherMembership},
     authType:req.session.facultyId , GetParam:req.query.departmentId || req.session.departmentId,
@@ -823,6 +867,7 @@ router.get('/generateexcel/:tableNo/:index/',function(req,res,next){
   map[0]="student_achievement";
   map[1]= "student_activities";
   map[2]= "student_publication";
+  map[3] = "student_conference_publications";
 }
   if(index == 3){
     map[0] = "hardware";
