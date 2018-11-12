@@ -107,13 +107,59 @@ router.get('/student-info', function(req, res, next) {
         studentConferencePublications.push(individualEntry);
       }
 
+      var studentJournalPublications = [];
+      var studentJournPublic = result.student_journal_publications;
+      for(var i=0; i<studentJournPublic.length; i++){
+        var individualEntry = {
+          authors: studentJournPublic[i].authors,
+          title: studentJournPublic[i].title,
+          issnPrint: studentJournPublic[i].issnPrint,
+          issnOnline: studentJournPublic[i].issnOnline,
+          journalName: studentJournPublic[i].journalName,
+          journalType: studentJournPublic[i].journalType,
+          volumeNumber: studentJournPublic[i].volumeNumber,
+          pageNumbers: studentJournPublic[i].pageNumbers,
+          year: studentJournPublic[i].year,
+          issueNumber: studentJournPublic[i].issueNumber,
+          impactFactor: studentJournPublic[i].impactFactor,
+          citation: studentJournPublic[i].citation,
+          doi: studentJournPublic[i].doi,
+          sjrQuartile: studentJournPublic[i].sjrQuartile,
+          hIndex: studentJournPublic[i].hIndex,
+          iIndex: studentJournPublic[i].iIndex,
+          isbn: studentJournPublic[i].isbn,
+          indexing: studentJournPublic[i].indexing,
+          date: studentJournPublic[i].date,
+          departmentId: studentJournPublic[i].departmentId,
+
+        };
+
+        studentJournalPublications.push(individualEntry);
+      }
+
+      var higherStudies = [];
+      var higherStud = result.higher_studies;
+      for(var i=0; i<higherStud.length; i++){
+        var individualEntry = {
+          studentName: higherStud[i].studentName,
+          usn: higherStud[i].usn,
+          yearOfPassing: higherStud[i].yearOfPassing,
+          program: higherStud[i].program,
+          course: higherStud[i].course,
+          departmentId: higherStud[i].departmentId,
+
+        };
+
+        higherStudies.push(individualEntry);
+      }
+
 
       var data = {
 
       }
       res.render('department/student-info', { departmentId: departmentId, type:"student-info",
       //table change 5
-       data:{student_activities:studentActivites,student_achievement:studentAchievement,student_publication:studentPublication, student_conference_publications:studentConferencePublications},
+       data:{student_activities:studentActivites,student_achievement:studentAchievement,student_publication:studentPublication, student_conference_publications:studentConferencePublications, student_journal_publications:studentJournalPublications, higher_studies : higherStudies},
        authType:req.session.facultyId, GetParam:req.query.departmentId,
        index: {
          url: "/department/student-info",
@@ -158,7 +204,38 @@ router.get('/student-info', function(req, res, next) {
           slNo: "Sl No",
           departmentId: "departmentId"
 
-       }
+       },
+       student_journal_publications: {
+         authors: "Authors",
+         title: "Title",
+         issnPrint: "Issn Print",
+         issnOnline: "Issn Online",
+         journalName: "Journal Name",
+         journalType: "Journal Type",
+         volumeNumber: "Volume Number",
+         pageNumbers: "Page Numbers",
+         year: "Year",
+         issueNumber: "Issue Number",
+         impactFactor: "Impact Factor",
+         citation: "Citation",
+         doi: "DOI",
+         sjrQuartile: "SJR Quartile",
+         hIndex: "h-index",
+         iIndex: "i-index",
+         isbn: "ISBN",
+         indexing: "indexing",
+         date: "Date",
+         departmentId: "departmentID",
+
+      },
+      higher_studies: {
+        studentName: "Student Name",
+        usn: "USN",
+        yearOfPassing: "Year Of Passing",
+        program: "Program",
+        course: "Course",
+        departmentId: "departmentId"
+     }
        },
        hiddenFields:{
         student_activities: {
@@ -201,6 +278,40 @@ router.get('/student-info', function(req, res, next) {
           organizedBy: { view: false, insert: false, update: false },
           publisher: { view: false, insert: false, update: false },
           year: { view: false, insert: false, update: false },
+          departmentId: { view: true, insert: true, update: true }
+        },
+
+        student_journal_publications: {
+
+          slNo: { view: true, insert: true, update: true } ,
+          authors: { view: false, insert: false, update: false },
+          title: { view: false, insert: false, update: false },
+          issnPrint: { view: false, insert: false, update: false },
+          issnOnline:{ view: false, insert: false, update: false },
+          journalName: { view: false, insert: false, update: false },
+          journalType:{ view: false, insert: false, update: false },
+          volumeNumber:{ view: false, insert: false, update: false },
+          pageNumbers:{ view: false, insert: false, update: false },
+          year: { view: false, insert: false, update: false },
+          issueNumber:{ view: false, insert: false, update: false },
+          impactFactor: { view: false, insert: false, update: false },
+          citation: { view: false, insert: false, update: false },
+          doi: { view: false, insert: false, update: false },
+          sjrQuartile:{ view: false, insert: false, update: false },
+          hIndex:{ view: false, insert: false, update: false },
+          iIndex:{ view: false, insert: false, update: false },
+          isbn:{ view: false, insert: false, update: false },
+          indexing: { view: false, insert: false, update: false },
+          date: { view: false, insert: false, update: false },
+           departmentId: { view: true, insert: true, update: true }
+        },
+        higher_studies: {
+
+          studentName: { view: false, insert: false, update: false },
+          usn: { view: false, insert: false, update: false },
+          yearOfPassing: { view: false, insert: false, update: false },
+          program: { view: false, insert: false, update: false },
+          course: { view: false, insert: false, update: false },
           departmentId: { view: true, insert: true, update: true }
         }
 
@@ -868,6 +979,9 @@ router.get('/generateexcel/:tableNo/:index/',function(req,res,next){
   map[1]= "student_activities";
   map[2]= "student_publication";
   map[3] = "student_conference_publications";
+  map[4] = "student_journal_publications";
+  map[5] = "higher_studies";
+
 }
   if(index == 3){
     map[0] = "hardware";
