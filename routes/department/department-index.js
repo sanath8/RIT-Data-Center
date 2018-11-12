@@ -184,8 +184,7 @@ router.get('/student-info', function(req, res, next) {
           yearOfPassing: placeDetails[i].yearOfPassing,
           companyName: placeDetails[i].companyName,
           package: placeDetails[i].package,
-
-          departmentId: compExam[i].departmentId,
+          departmentId: placeDetails[i].departmentId,
 
         };
 
