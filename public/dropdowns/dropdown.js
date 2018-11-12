@@ -29,5 +29,6 @@ var dropdowns = {
         "faculty_qualification_degree" : ["BE","BTech","ME","MTech","MS","PhD","BSc","MSc"],
         "faculty_qualification_passClass" : ["FCD", "First", "Second", "Third"],
         "faculty_payScale" : ["5th Pay","6th Pay","7th Pay"],
-        "fixed_journal_paper_indexing" : ["Web of Science", "Scopers", "Google Scholar"] 
+        "fixed_journal_paper_indexing" : ["Web of Science", "Scopers", "Google Scholar"],
+        "events_organized_event" : ["FDP", "Workshop", "Seminar", "Confernence", "Symposia"]
 }

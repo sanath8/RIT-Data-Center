@@ -357,24 +357,27 @@ router.get('/activities', function(req, res, next) {
       invitedGuestLectures.push(singleEntry);
     }
 
-    var seminarWorkshop = [];
-    var seminar = result.seminar_workshop;
-    for(var i=0;i<seminar.length;i++){
+    var events_organized = [];
+    var events = result.events_organized;
+    for(var i=0;i<events.length;i++){
       var singleEntry = {
-        startDate: seminar[i].startDate,
-        endDate: seminar[i].endDate,
-        title: seminar[i].title,
-        event: seminar[i].event,
-        broadArea: seminar[i].broadArea,
-        slNo: seminar[i].slNo,
-        departmentId: seminar[i].departmentId
+        event: events[i].event,
+        title: events[i].title,
+        startDate: events[i].startDate,
+        endDate: events[i].endDate,
+        noOfParticipants: events[i].noOfParticipants,
+        sponsors: events[i].sponsors,
+        coordinators: events[i].coordinators,
+        collaborators: events[i].collaborators,
+        slNo: events[i].slNo,
+        departmentId: events[i].departmentId
       }
-      seminarWorkshop.push(singleEntry);
+      events_organized.push(singleEntry);
     }
     // console.log("accessing the activites page query deptID = " + req.query.departmentId + " session deptId" + req.session.departmentId );
 
       res.render('department/activities', { departmentId: departmentId, type: 'activities',
-      data:{industrial_visit:industrialVisit, guest_lectures_invited:invitedGuestLectures, seminar_workshop:seminarWorkshop},
+      data:{industrial_visit:industrialVisit, guest_lectures_invited:invitedGuestLectures, events_organized:events_organized},
       authType:req.session.facultyId, GetParam:req.query.departmentId,
       index: {
         url: '/department/activities',
@@ -398,13 +401,16 @@ router.get('/activities', function(req, res, next) {
           date: "Date",
           departmentId: "DepartmentId"
         },
-        seminar_workshop: {
+        events_organized: {
           slNo: "Sl. No",
+          event: "Event",
+          title: "Title",
           startDate: "Start Date",
           endDate: "End Date",
-          title: "Title",
-          event: "Event",
-          broadArea: "Broad Area",
+          noOfParticipants: "No. of Participants",
+          sponsors: "Sponsors",
+          coordinators: "Coordinator(s)",
+          collaborators: "Collaborator(s) if any",
           departmentId: "Department Id"
         }
       },
@@ -429,13 +435,16 @@ router.get('/activities', function(req, res, next) {
           date: { view: false, insert: false, update: false },
           departmentId: { view: true, insert: true, update: true }
         },
-        seminar_workshop: {
+        events_organized: {
           slNo: { view: true, insert: true, update: true },
+          event: { view: false, insert: false, update: false },
+          title: { view: false, insert: false, update: false },
           startDate: { view: false, insert: false, update: false },
           endDate: { view: false, insert: false, update: false },
-          title: { view: false, insert: false, update: false },
-          event: { view: false, insert: false, update: false },
-          broadArea: { view: false, insert: false, update: false },
+          noOfParticipants: { view: false, insert: false, update: false },
+          sponsors: { view: false, insert: false, update: false },
+          coordinators: { view: false, insert: false, update: false },
+          collaborators: { view: false, insert: false, update: false },
           departmentId: { view: true, insert: true, update: true }
         }
       },
@@ -836,7 +845,7 @@ router.get('/generateexcel/:tableNo/:index/',function(req,res,next){
   if(index == 5){
 	map[0] = "industrial_visit";
 	map[1] = "guest_lectures_invited";
-	map[2] = "seminar_workshop";
+	map[2] = "events_organized";
 	  sqlExecute.getDepartmentActivities(callback, dId);
   }
   if(index == 6){

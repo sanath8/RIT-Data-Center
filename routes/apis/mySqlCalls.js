@@ -518,7 +518,7 @@ sqlObject.prototype.getDepartmentActivities = function(callback, departmentId){
 			data["guest_lectures_invited"] = result;
 
 			var sql = "select *\
-								from seminar_workshop\
+								from events_organized\
 								where departmentId = ?"
 
 			con.query(sql, [departmentId], function(error, result){
@@ -526,7 +526,7 @@ sqlObject.prototype.getDepartmentActivities = function(callback, departmentId){
 					callback(error, undefined);
 					return;
 				}
-				data["seminar_workshop"] = result;
+				data["events_organized"] = result;
 				callback(undefined, data);
 			})
 		})
