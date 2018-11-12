@@ -8,7 +8,7 @@ back-end/excelSheets/*
 back-end/uploadExcel/*
 back-end/uploadExcelTest/*
 backup/2018-08-30-backup.sql
-dbConnect.js
+/dbConnect.js
 # Runtime data
 pids
 *.pid

@@ -30,24 +30,24 @@
                             <table class="table" style="border: 1px solid black;">
                                 <thead class="text-primary">                                
                                     <th>Equipment</th>
-                                    <th>Total Investment</th>
                                     <th>Date of Procurement</th>
                                     <th>Mode of Procurement</th>
                                     <th>Description</th>
                                     <th>Quantity</th>
                                     <th>Amount Per Unit</th>
+                                    <th>Total Investment</th>
                                 </thead>
                                 <tbody>
                                     <% for(; i< data.hardware.length && labName == data.hardware[i].labName; i++){%>
                                     <%console.log(i)%>                                    
                                         <tr data-toggle="modal" data-target="#myModalModular" onclick="fillDataModular('hardware',<%=i%>)" onmouseover="hoverEffect(this)" onmouseout="removeHoverEffect(this)">
                                             <td><%=data.hardware[i].equipments%></td>
-                                            <td><%=data.hardware[i].totalInvestment%></td>
                                             <td><%=data.hardware[i].dateOfProcurement%></td>
                                             <td><%=data.hardware[i].modeOfProcurement%></td>
                                             <td><%=data.hardware[i].description%></td>
                                             <td><%=data.hardware[i].quantity%></td>
                                             <td><%=data.hardware[i].amountPerUnit%></td>
+                                            <td><%=data.hardware[i].totalInvestment%></td>
                                         </tr>
                                     <%}%>
                                 </tbody>
