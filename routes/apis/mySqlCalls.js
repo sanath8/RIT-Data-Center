@@ -388,7 +388,8 @@ sqlObject.prototype.getDepartmentInfo = function(callback){
 sqlObject.prototype.getInfrastructureDetails = function(callback, departmentId){
 	var sql = "select *\
 						 from hardware\
-						 where departmentId =?";
+						 where departmentId =?\
+						 order by labName";
 
 	var conn = this.connection;
   var data = {};

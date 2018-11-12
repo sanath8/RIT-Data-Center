@@ -447,9 +447,14 @@ router.get('/infrastructure-details', function(req, res, next) {
           slNo: hardwareTemp[i].slNo,
           labName: hardwareTemp[i].labName,
           carpetArea: hardwareTemp[i].carpetArea,
-          majorEquipments: hardwareTemp[i].majorEquipments,
+          equipments: hardwareTemp[i].equipments,
+          dateOfProcurement: hardwareTemp[i].dateOfProcurement,
+          modeOfProcurement: hardwareTemp[i].modeOfProcurement,
+          description: hardwareTemp[i].description,
+          quantity: hardwareTemp[i].quantity,
+          amountPerUnit: hardwareTemp[i].amountPerUnit,
           totalInvestment: hardwareTemp[i].totalInvestment
-        }
+          }
         hardware.push(entry);
       }
 
@@ -480,10 +485,15 @@ router.get('/infrastructure-details', function(req, res, next) {
         {
           labName: "Name Of the Lab",
           carpetArea: "Carpet Area",
-          majorEquipments: "Major Equipments",
           slNo: "slNo",
           totalInvestment: "Total Investment",
-          departmentId: "departmentId"
+          departmentId: "departmentId",
+          equipments: "Equipment",
+          dateOfProcurement: "Date of Procurement",
+          modeOfProcurement: "Mode of procurement",
+          description: "Description",
+          quantity: "Quality",
+          amountPerUnit: "Amount Per Unit",
         },
         software:
         {
@@ -504,11 +514,16 @@ router.get('/infrastructure-details', function(req, res, next) {
         hardware:
         {
           labName: { view: false, insert: false, update: false },
-          carpetArea: { view: false, insert: false, update: false },
-          majorEquipments: { view: false, insert: false, update: false },
+          carpetArea: { view: false, insert: false, update: false },          
           slNo: { view: true, insert: true, update: true } ,
           totalInvestment: { view: false, insert: false, update: false },
-          departmentId: { view: true, insert: true, update: true }
+          departmentId: { view: true, insert: true, update: true },
+          equipments: { view: false, insert: false, update: false },
+          dateOfProcurement: { view: false, insert: false, update: false },
+          modeOfProcurement: { view: false, insert: false, update: false },
+          description: { view: false, insert: false, update: false },
+          quantity: { view: false, insert: false, update: false },
+          amountPerUnit: { view: false, insert: false, update: false }
         },
         software:
         {
