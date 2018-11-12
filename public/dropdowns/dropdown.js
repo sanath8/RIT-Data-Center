@@ -18,6 +18,8 @@ var dropdowns = {
         "consultancy_role" : ["Principal Investigator", "Co - Investigator"],
         "industrial_collaboration_mou_typeOfMou" : ["Intership", "Industrial Training", "Placement", "Project"],
         "fixed_industrial_collaboration_mou_nationalOrInternational" : ["National","International"],
+        "department_industrial_collaboration_mou_typeOfMou" : ["Intership", "Industrial Training", "Placement", "Project"],
+        "fixed_department_industrial_collaboration_mou_nationalOrInternational" : ["National","International"],
         "faculty_workshop_fdp_role" : ["Resource Person","Participant","Co-Ordinator"],
         "faculty_workshop_fdp_type" : ["Training", "Field Visit", "Workshop", "SDP"],
         "fixed_faculty_workshop_fdp_nationalOrInternational" : ["National", "International"],
@@ -29,5 +31,6 @@ var dropdowns = {
         "faculty_qualification_degree" : ["BE","BTech","ME","MTech","MS","PhD","BSc","MSc"],
         "faculty_qualification_passClass" : ["FCD", "First", "Second", "Third"],
         "faculty_payScale" : ["5th Pay","6th Pay","7th Pay"],
-        "fixed_journal_paper_indexing" : ["Web of Science", "Scopers", "Google Scholar"] 
+        "fixed_journal_paper_indexing" : ["Web of Science", "Scopers", "Google Scholar"],
+        "events_organized_event" : ["FDP", "Workshop", "Seminar", "Confernence", "Symposia"]
 }

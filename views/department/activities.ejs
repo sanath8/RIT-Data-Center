@@ -57,27 +57,55 @@
                 <button class="btn btn-primary pull-right  insertButton" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataModularInsert('guest_lectures_invited')">Insert</button>                </div>
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
-                        <h4 class="title">Seminars | Workshops</h4>
+                        <h4 class="title">Events Organized</h4>
                         <p class="category">information about seminars and workshops conducted in the college.</p>
                     </div>
                     <div class="card-content table-responsive">
                         <table class="table">
                             <thead class="text-primary">
+                                <th>Event</th>
+                                <th>Title</th>
                                 <th>Start Date</th>
                                 <th>End Date</th>
-                                <th>Title</th>
-                                <th>Event</th>
-                                <th>Broad Area</th>
+                                <th>No. of Participants</th>
+                                <th>Sponsors</th>
+                                <th>Coordinator(s)</th>
+                                <th>Collaborator(s) if any</th>
                             </thead>
                             <tbody>
-                                <% loadInTableModular("seminar_workshop", updatePermission)%>
+                                <% loadInTableModular("events_organized", updatePermission)%>
                             </tbody>
                         </table>
                     </div>
                     <a href = "/department/generateexcel/3/5/?departmentId=<%-GetParam%>">
                     <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
                     </a>
-                <button class="btn btn-primary pull-right  insertButton" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataModularInsert('seminar_workshop')">Insert</button>                </div>
+                <button class="btn btn-primary pull-right  insertButton" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataModularInsert('events_organized')">Insert</button>                </div>
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Industrial Collaborations / MOU</h4>
+                        <p class="category">information about industrial collaborations.</p>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <table class="table">
+                            <thead class="text-primary">
+                                <th>Coordinators</th>
+                                <th>MOU Title</th>
+                                <th>MOU Signed With Industry / Collaboration</th>
+                                <th>Type of MOU</th>
+                                <th>National / International</th>
+                                <th>Date of Signing</th>
+                                <th>Valid Till</th>
+                            </thead>
+                            <tbody>
+                                <% loadInTableModular("department_industrial_collaboration_mou", updatePermission)%>
+                            </tbody>
+                        </table>
+                    </div>
+                    <a href = "/department/generateexcel/3/5/?departmentId=<%-GetParam%>">
+                    <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
+                    </a>
+                <button class="btn btn-primary pull-right  insertButton" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataModularInsert('department_industrial_collaboration_mou')">Insert</button>                </div>
             </div>
         </div>
     </div>
