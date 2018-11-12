@@ -748,7 +748,7 @@ router.get('/', function(req, res, next) {
       myR["Fid"] = tresult["facultyId"];
 			myR["Name"]=tresult["facultyName"];
 			myR["Gender"]=tresult["gender"];
-			myR["Address"]=tresult["address"];
+			myR["Designation"]=tresult["designation"];
 			myR["Nature of Appointment"]=tresult["natureOfAppointment"];
 			myR["Contact No."]=tresult["contactNumber"];
 			myR["Email Id"]=tresult["emailId"];
@@ -761,7 +761,7 @@ router.get('/', function(req, res, next) {
       departmentGeneralInfo:{
         facultyName:"Faculty Name",
         gender:"Gender",
-        address:"Address",
+        designation:"Designation",
         atureOfAppointment:"Nature Of Appointment",
         contactNumber:"Contact No.",
         emailId:"Email Id"
