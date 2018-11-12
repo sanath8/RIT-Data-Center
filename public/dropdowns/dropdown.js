@@ -18,6 +18,8 @@ var dropdowns = {
         "consultancy_role" : ["Principal Investigator", "Co - Investigator"],
         "industrial_collaboration_mou_typeOfMou" : ["Intership", "Industrial Training", "Placement", "Project"],
         "fixed_industrial_collaboration_mou_nationalOrInternational" : ["National","International"],
+        "department_industrial_collaboration_mou_typeOfMou" : ["Intership", "Industrial Training", "Placement", "Project"],
+        "fixed_department_industrial_collaboration_mou_nationalOrInternational" : ["National","International"],
         "faculty_workshop_fdp_role" : ["Resource Person","Participant","Co-Ordinator"],
         "faculty_workshop_fdp_type" : ["Training", "Field Visit", "Workshop", "SDP"],
         "fixed_faculty_workshop_fdp_nationalOrInternational" : ["National", "International"],

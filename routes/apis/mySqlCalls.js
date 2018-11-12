@@ -527,7 +527,19 @@ sqlObject.prototype.getDepartmentActivities = function(callback, departmentId){
 					return;
 				}
 				data["events_organized"] = result;
-				callback(undefined, data);
+
+				var sql = "select *\
+									from department_industrial_collaboration_mou\
+									where departmentId = ?"
+
+				con.query(sql, [departmentId], function(error, result){
+					if(error){
+						callback(error,undefined);
+						return;
+					}
+					data["department_industrial_collaboration_mou"] = result;
+					callback(undefined, data);
+				})
 			})
 		})
 	})

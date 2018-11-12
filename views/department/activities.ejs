@@ -81,6 +81,31 @@
                     <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
                     </a>
                 <button class="btn btn-primary pull-right  insertButton" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataModularInsert('events_organized')">Insert</button>                </div>
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Industrial Collaborations / MOU</h4>
+                        <p class="category">information about industrial collaborations.</p>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <table class="table">
+                            <thead class="text-primary">
+                                <th>Coordinators</th>
+                                <th>MOU Title</th>
+                                <th>MOU Signed With Industry / Collaboration</th>
+                                <th>Type of MOU</th>
+                                <th>National / International</th>
+                                <th>Date of Signing</th>
+                                <th>Valid Till</th>
+                            </thead>
+                            <tbody>
+                                <% loadInTableModular("department_industrial_collaboration_mou", updatePermission)%>
+                            </tbody>
+                        </table>
+                    </div>
+                    <a href = "/department/generateexcel/3/5/?departmentId=<%-GetParam%>">
+                    <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
+                    </a>
+                <button class="btn btn-primary pull-right  insertButton" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataModularInsert('department_industrial_collaboration_mou')">Insert</button>                </div>
             </div>
         </div>
     </div>

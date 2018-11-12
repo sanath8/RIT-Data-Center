@@ -376,8 +376,25 @@ router.get('/activities', function(req, res, next) {
     }
     // console.log("accessing the activites page query deptID = " + req.query.departmentId + " session deptId" + req.session.departmentId );
 
+    var industrial_collaboration_mou = [];
+    var mou = result.department_industrial_collaboration_mou;
+    for(var i=0;i<mou.length;i++){
+      var singleEntry = {
+        coordinators: mou[i].coordinators,
+        mouTitle: mou[i].mouTitle,
+        mouSignedWith: mou[i].mouSignedWith,
+        typeOfMou: mou[i].typeOfMou,
+        nationalOrInternational: mou[i].nationalOrInternational,
+        mouSigningDate: mou[i].mouSigningDate,
+        validTill: mou[i].validTill,
+        slNo: mou[i].slNo,
+        departmentId: mou[i].departmentId
+      }
+      industrial_collaboration_mou.push(singleEntry);
+    }
+
       res.render('department/activities', { departmentId: departmentId, type: 'activities',
-      data:{industrial_visit:industrialVisit, guest_lectures_invited:invitedGuestLectures, events_organized:events_organized},
+      data:{industrial_visit:industrialVisit, guest_lectures_invited:invitedGuestLectures, events_organized:events_organized, department_industrial_collaboration_mou:industrial_collaboration_mou },
       authType:req.session.facultyId, GetParam:req.query.departmentId,
       index: {
         url: '/department/activities',
@@ -412,6 +429,17 @@ router.get('/activities', function(req, res, next) {
           coordinators: "Coordinator(s)",
           collaborators: "Collaborator(s) if any",
           departmentId: "Department Id"
+        },
+        department_industrial_collaboration_mou: {
+          slNo: "Sl. No",
+          coordinators: "Coordinator(s)",
+          mouTitle: "MOU Title",
+          mouSignedWith: "MOU Signed With Industry/Organization",
+          typeOfMou: "Type of MOU",
+          nationalOrInternational: "National / International",
+          mouSigningDate: "Date of signing",
+          validTill: "Valid Till",
+          departmentId: "Department Id"
         }
       },
       hiddenFields:{
@@ -445,6 +473,17 @@ router.get('/activities', function(req, res, next) {
           sponsors: { view: false, insert: false, update: false },
           coordinators: { view: false, insert: false, update: false },
           collaborators: { view: false, insert: false, update: false },
+          departmentId: { view: true, insert: true, update: true }
+        },
+        department_industrial_collaboration_mou: {
+          slNo: { view: true, insert: true, update: true },
+          coordinators: { view: false, insert: false, update: false },
+          mouTitle: { view: false, insert: false, update: false },
+          mouSignedWith: { view: false, insert: false, update: false },
+          typeOfMou: { view: false, insert: false, update: false },
+          nationalOrInternational: { view: false, insert: false, update: false },
+          mouSigningDate: { view: false, insert: false, update: false },
+          validTill: { view: false, insert: false, update: false },
           departmentId: { view: true, insert: true, update: true }
         }
       },
@@ -845,8 +884,9 @@ router.get('/generateexcel/:tableNo/:index/',function(req,res,next){
   if(index == 5){
 	map[0] = "industrial_visit";
 	map[1] = "guest_lectures_invited";
-	map[2] = "events_organized";
-	  sqlExecute.getDepartmentActivities(callback, dId);
+  map[2] = "events_organized";
+  map[3] = "department_industrial_collaboration_mou";
+ 	  sqlExecute.getDepartmentActivities(callback, dId);
   }
   if(index == 6){
 	map[0] = "professional_activities";
