@@ -589,6 +589,26 @@ sqlObject.prototype.getStudentInformation = function(callback, departmentId){
 						}
 						data["higher_studies"] = result;
 
+						var sql = "select *\
+											from competative_exam_details\
+											where departmentId =?"
+						con.query(sql, [departmentId], function(error, result){
+							if(error){
+								callback(error, undefined);
+								return;
+							}
+							data["competative_exam_details"] = result;
+
+							var sql = "select *\
+												from placement_details\
+												where departmentId =?"
+							con.query(sql, [departmentId], function(error, result){
+								if(error){
+									callback(error, undefined);
+									return;
+								}
+								data["placement_details"] = result;
+
 
 			var sql = "select *\
 								from student_publication\
@@ -604,6 +624,8 @@ sqlObject.prototype.getStudentInformation = function(callback, departmentId){
 			})
 		})
 	})
+})
+})
 })
 })
 })

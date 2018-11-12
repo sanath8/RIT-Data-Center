@@ -146,11 +146,50 @@ router.get('/student-info', function(req, res, next) {
           yearOfPassing: higherStud[i].yearOfPassing,
           program: higherStud[i].program,
           course: higherStud[i].course,
+          university: higherStud[i].university,
+          country: higherStud[i].country,
+          yearOfJoining: higherStud[i].yearOfJoining,
           departmentId: higherStud[i].departmentId,
 
         };
 
         higherStudies.push(individualEntry);
+      }
+
+      var competativeExam = [];
+      var compExam = result.competative_exam_details;
+      for(var i=0; i<compExam.length; i++){
+        var individualEntry = {
+          studentName: compExam[i].studentName,
+          usn: compExam[i].usn,
+          yearOfPassing: compExam[i].yearOfPassing,
+          qualifyingExam: compExam[i].qualifyingExam,
+          examScore: compExam[i].examScore,
+          yearOfExam: compExam[i].yearOfExam,
+          status: compExam[i].status,
+
+          departmentId: compExam[i].departmentId,
+
+        };
+
+        competativeExam.push(individualEntry);
+      }
+      var placementDetails = [];
+      var placeDetails = result.placement_details;
+      for(var i=0; i<placeDetails.length; i++){
+        var individualEntry = {
+          slNo : placeDetails[i].slNO,
+          studentName: placeDetails[i].studentName,
+          usn: placeDetails[i].usn,
+          yearOfPassing: placeDetails[i].yearOfPassing,
+          companyName: placeDetails[i].companyName,
+          package: placeDetails[i].package,
+
+          departmentId: compExam[i].departmentId,
+
+        };
+
+        placementDetails.push(individualEntry);
       }
 
 
@@ -159,7 +198,7 @@ router.get('/student-info', function(req, res, next) {
       }
       res.render('department/student-info', { departmentId: departmentId, type:"student-info",
       //table change 5
-       data:{student_activities:studentActivites,student_achievement:studentAchievement,student_publication:studentPublication, student_conference_publications:studentConferencePublications, student_journal_publications:studentJournalPublications, higher_studies : higherStudies},
+       data:{student_activities:studentActivites,student_achievement:studentAchievement,student_publication:studentPublication, student_conference_publications:studentConferencePublications, student_journal_publications:studentJournalPublications, higher_studies : higherStudies, competative_exam_details : competativeExam, placement_details:placementDetails},
        authType:req.session.facultyId, GetParam:req.query.departmentId,
        index: {
          url: "/department/student-info",
@@ -234,8 +273,30 @@ router.get('/student-info', function(req, res, next) {
         yearOfPassing: "Year Of Passing",
         program: "Program",
         course: "Course",
+        university: "University",
+        country: "Country",
+        yearOfJoining: "Year Of Joining",
         departmentId: "departmentId"
-     }
+     },
+     competative_exam_details: {
+       studentName: "Student Name",
+       usn: "USN",
+       yearOfPassing: "Year Of Passing",
+       qualifyingExam: "Qualifying Exam",
+       examScore: "Exam Score",
+       yearOfExam:"Year of Exam",
+       status: "Status",
+       departmentId: "departmentId"
+    },
+    placement_details: {
+      slNo:"Sl No",
+      studentName: "Student Name",
+      usn: "USN",
+      yearOfPassing: "Year Of Passing",
+      companyName: "Company Name",
+      package: "Package",
+      departmentId: "departmentId"
+   }
        },
        hiddenFields:{
         student_activities: {
@@ -312,6 +373,29 @@ router.get('/student-info', function(req, res, next) {
           yearOfPassing: { view: false, insert: false, update: false },
           program: { view: false, insert: false, update: false },
           course: { view: false, insert: false, update: false },
+          university: { view: false, insert: false, update: false },
+          country: { view: false, insert: false, update: false },
+          yearOfJoining: { view: false, insert: false, update: false },
+          departmentId: { view: true, insert: true, update: true }
+        },
+        competative_exam_details: {
+
+          studentName: { view: false, insert: false, update: false },
+          usn: { view: false, insert: false, update: false },
+          yearOfPassing: { view: false, insert: false, update: false },
+          qualifyingExam: { view: false, insert: false, update: false },
+          examScore: { view: false, insert: false, update: false },
+          yearOfExam: { view: false, insert: false, update: false },
+          status: { view: false, insert: false, update: false },
+          departmentId: { view: true, insert: true, update: true }
+        },
+        placement_details: {
+          slNo: { view: true, insert: true, update: true },
+          studentName: { view: false, insert: false, update: false },
+          usn: { view: false, insert: false, update: false },
+          yearOfPassing: { view: false, insert: false, update: false },
+          companyName: { view: false, insert: false, update: false },
+          package: { view: false, insert: false, update: false },
           departmentId: { view: true, insert: true, update: true }
         }
 
@@ -981,6 +1065,9 @@ router.get('/generateexcel/:tableNo/:index/',function(req,res,next){
   map[3] = "student_conference_publications";
   map[4] = "student_journal_publications";
   map[5] = "higher_studies";
+  map[6] = "competative_exam_details";
+  map[7] = "placement_details";
+
 
 }
   if(index == 3){
