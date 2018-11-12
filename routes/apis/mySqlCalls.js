@@ -569,6 +569,58 @@ sqlObject.prototype.getStudentInformation = function(callback, departmentId){
 				return;
 			}
 			data["student_activities"] = result;
+      //table change 6
+			var sql = "select *\
+								from student_conference_publications\
+								where departmentId =?"
+			con.query(sql, [departmentId], function(error, result){
+				if(error){
+					callback(error, undefined);
+					return;
+				}
+				data["student_conference_publications"] = result;
+
+
+				var sql = "select *\
+									from student_journal_publications\
+									where departmentId =?"
+				con.query(sql, [departmentId], function(error, result){
+					if(error){
+						callback(error, undefined);
+						return;
+					}
+					data["student_journal_publications"] = result;
+
+					var sql = "select *\
+										from higher_studies\
+										where departmentId =?"
+					con.query(sql, [departmentId], function(error, result){
+						if(error){
+							callback(error, undefined);
+							return;
+						}
+						data["higher_studies"] = result;
+
+						var sql = "select *\
+											from competative_exam_details\
+											where departmentId =?"
+						con.query(sql, [departmentId], function(error, result){
+							if(error){
+								callback(error, undefined);
+								return;
+							}
+							data["competative_exam_details"] = result;
+
+							var sql = "select *\
+												from placement_details\
+												where departmentId =?"
+							con.query(sql, [departmentId], function(error, result){
+								if(error){
+									callback(error, undefined);
+									return;
+								}
+								data["placement_details"] = result;
+
 
 			var sql = "select *\
 								from student_publication\
@@ -584,7 +636,13 @@ sqlObject.prototype.getStudentInformation = function(callback, departmentId){
 			})
 		})
 	})
+})
+})
+})
+})
+})
 }
+
 
 sqlObject.prototype.getWholeTable = function(callback, url, email){
   var sql = "select * \

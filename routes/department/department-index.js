@@ -53,7 +53,7 @@ router.get('/student-info', function(req, res, next) {
           date: studentAchieve[i].date,
           place: studentAchieve[i].place,
           award: studentAchieve[i].award,
-          category: studentAchieve[i].category, 
+          category: studentAchieve[i].category,
           type: studentAchieve[i].type,
           slNo: studentAchieve[i].slNo
         };
@@ -68,7 +68,7 @@ router.get('/student-info', function(req, res, next) {
           date: studentActivity[i].date,
           industryOrOrganization: studentActivity[i].industryOrOrganization,
           category: studentActivity[i].category,
-          type: studentActivity[i].type,          
+          type: studentActivity[i].type,
           slNo: studentActivity[i].slNo
          };
          studentActivites.push(individualEntry);
@@ -90,11 +90,115 @@ router.get('/student-info', function(req, res, next) {
       // console.log(studentPublication);
       // console.log(studentActivites);
 
+      //table change 1
+      var studentConferencePublications = [];
+      var studentConfPublic = result.student_conference_publications;
+      for(var i=0; i<studentConfPublic.length; i++){
+        var individualEntry = {
+          authors: studentConfPublic[i].authors,
+          title: studentConfPublic[i].title,
+          conferenceType: studentConfPublic[i].conferenceType,
+          organizedBy: studentConfPublic[i].organizedBy,
+          publisher: studentConfPublic[i].publisher,
+          year: studentConfPublic[i].year,
+          slNo: studentConfPublic[i].slNo
+        };
+
+        studentConferencePublications.push(individualEntry);
+      }
+
+      var studentJournalPublications = [];
+      var studentJournPublic = result.student_journal_publications;
+      for(var i=0; i<studentJournPublic.length; i++){
+        var individualEntry = {
+          authors: studentJournPublic[i].authors,
+          title: studentJournPublic[i].title,
+          issnPrint: studentJournPublic[i].issnPrint,
+          issnOnline: studentJournPublic[i].issnOnline,
+          journalName: studentJournPublic[i].journalName,
+          journalType: studentJournPublic[i].journalType,
+          volumeNumber: studentJournPublic[i].volumeNumber,
+          pageNumbers: studentJournPublic[i].pageNumbers,
+          year: studentJournPublic[i].year,
+          issueNumber: studentJournPublic[i].issueNumber,
+          impactFactor: studentJournPublic[i].impactFactor,
+          citation: studentJournPublic[i].citation,
+          doi: studentJournPublic[i].doi,
+          sjrQuartile: studentJournPublic[i].sjrQuartile,
+          hIndex: studentJournPublic[i].hIndex,
+          iIndex: studentJournPublic[i].iIndex,
+          isbn: studentJournPublic[i].isbn,
+          indexing: studentJournPublic[i].indexing,
+          date: studentJournPublic[i].date,
+          departmentId: studentJournPublic[i].departmentId,
+
+        };
+
+        studentJournalPublications.push(individualEntry);
+      }
+
+      var higherStudies = [];
+      var higherStud = result.higher_studies;
+      for(var i=0; i<higherStud.length; i++){
+        var individualEntry = {
+          studentName: higherStud[i].studentName,
+          usn: higherStud[i].usn,
+          yearOfPassing: higherStud[i].yearOfPassing,
+          program: higherStud[i].program,
+          course: higherStud[i].course,
+          university: higherStud[i].university,
+          country: higherStud[i].country,
+          yearOfJoining: higherStud[i].yearOfJoining,
+          departmentId: higherStud[i].departmentId,
+
+        };
+
+        higherStudies.push(individualEntry);
+      }
+
+      var competativeExam = [];
+      var compExam = result.competative_exam_details;
+      for(var i=0; i<compExam.length; i++){
+        var individualEntry = {
+          studentName: compExam[i].studentName,
+          usn: compExam[i].usn,
+          yearOfPassing: compExam[i].yearOfPassing,
+          qualifyingExam: compExam[i].qualifyingExam,
+          examScore: compExam[i].examScore,
+          yearOfExam: compExam[i].yearOfExam,
+          status: compExam[i].status,
+
+          departmentId: compExam[i].departmentId,
+
+        };
+
+        competativeExam.push(individualEntry);
+      }
+      var placementDetails = [];
+      var placeDetails = result.placement_details;
+      for(var i=0; i<placeDetails.length; i++){
+        var individualEntry = {
+          slNo : placeDetails[i].slNO,
+          studentName: placeDetails[i].studentName,
+          usn: placeDetails[i].usn,
+          yearOfPassing: placeDetails[i].yearOfPassing,
+          companyName: placeDetails[i].companyName,
+          package: placeDetails[i].package,
+
+          departmentId: compExam[i].departmentId,
+
+        };
+
+        placementDetails.push(individualEntry);
+      }
+
+
       var data = {
 
       }
       res.render('department/student-info', { departmentId: departmentId, type:"student-info",
-       data:{student_activities:studentActivites,student_achievement:studentAchievement,student_publication:studentPublication},
+      //table change 5
+       data:{student_activities:studentActivites,student_achievement:studentAchievement,student_publication:studentPublication, student_conference_publications:studentConferencePublications, student_journal_publications:studentJournalPublications, higher_studies : higherStudies, competative_exam_details : competativeExam, placement_details:placementDetails},
        authType:req.session.facultyId, GetParam:req.query.departmentId,
        index: {
          url: "/department/student-info",
@@ -105,7 +209,7 @@ router.get('/student-info', function(req, res, next) {
            date: "Date",
            industryOrOrganization: "Industry/Organization",
            category: "Category",
-           type: "Type",           
+           type: "Type",
            departmentId: "departmentId"
          },
          student_achievement: {
@@ -127,7 +231,72 @@ router.get('/student-info', function(req, res, next) {
           conferenceOrJournal: "Conference/Journal",
           place: "Place",
           departmentId: "departmentId"
-        }
+        },
+        //table change 2
+        student_conference_publications: {
+          authors: "Authors",
+          title: "Title",
+          conferenceType: "Conference Type",
+          organizedBy: "Organized By",
+          publisher: "Publisher",
+          year: "Year",
+          slNo: "Sl No",
+          departmentId: "departmentId"
+
+       },
+       student_journal_publications: {
+         authors: "Authors",
+         title: "Title",
+         issnPrint: "Issn Print",
+         issnOnline: "Issn Online",
+         journalName: "Journal Name",
+         journalType: "Journal Type",
+         volumeNumber: "Volume Number",
+         pageNumbers: "Page Numbers",
+         year: "Year",
+         issueNumber: "Issue Number",
+         impactFactor: "Impact Factor",
+         citation: "Citation",
+         doi: "DOI",
+         sjrQuartile: "SJR Quartile",
+         hIndex: "h-index",
+         iIndex: "i-index",
+         isbn: "ISBN",
+         indexing: "indexing",
+         date: "Date",
+         departmentId: "departmentID",
+
+      },
+      higher_studies: {
+        studentName: "Student Name",
+        usn: "USN",
+        yearOfPassing: "Year Of Passing",
+        program: "Program",
+        course: "Course",
+        university: "University",
+        country: "Country",
+        yearOfJoining: "Year Of Joining",
+        departmentId: "departmentId"
+     },
+     competative_exam_details: {
+       studentName: "Student Name",
+       usn: "USN",
+       yearOfPassing: "Year Of Passing",
+       qualifyingExam: "Qualifying Exam",
+       examScore: "Exam Score",
+       yearOfExam:"Year of Exam",
+       status: "Status",
+       departmentId: "departmentId"
+    },
+    placement_details: {
+      slNo:"Sl No",
+      studentName: "Student Name",
+      usn: "USN",
+      yearOfPassing: "Year Of Passing",
+      companyName: "Company Name",
+      package: "Package",
+      departmentId: "departmentId"
+   }
        },
        hiddenFields:{
         student_activities: {
@@ -159,7 +328,77 @@ router.get('/student-info', function(req, res, next) {
           conferenceOrJournal: { view: false, insert: false, update: false },
           place: { view: false, insert: false, update: false },
           departmentId: { view: true, insert: true, update: true }
+        },
+        //table change 3
+        student_conference_publications: {
+
+          slNo: { view: true, insert: true, update: true } ,
+          authors: { view: false, insert: false, update: false },
+          title: { view: false, insert: false, update: false },
+          conferenceType: { view: false, insert: false, update: false },
+          organizedBy: { view: false, insert: false, update: false },
+          publisher: { view: false, insert: false, update: false },
+          year: { view: false, insert: false, update: false },
+          departmentId: { view: true, insert: true, update: true }
+        },
+
+        student_journal_publications: {
+
+          slNo: { view: true, insert: true, update: true } ,
+          authors: { view: false, insert: false, update: false },
+          title: { view: false, insert: false, update: false },
+          issnPrint: { view: false, insert: false, update: false },
+          issnOnline:{ view: false, insert: false, update: false },
+          journalName: { view: false, insert: false, update: false },
+          journalType:{ view: false, insert: false, update: false },
+          volumeNumber:{ view: false, insert: false, update: false },
+          pageNumbers:{ view: false, insert: false, update: false },
+          year: { view: false, insert: false, update: false },
+          issueNumber:{ view: false, insert: false, update: false },
+          impactFactor: { view: false, insert: false, update: false },
+          citation: { view: false, insert: false, update: false },
+          doi: { view: false, insert: false, update: false },
+          sjrQuartile:{ view: false, insert: false, update: false },
+          hIndex:{ view: false, insert: false, update: false },
+          iIndex:{ view: false, insert: false, update: false },
+          isbn:{ view: false, insert: false, update: false },
+          indexing: { view: false, insert: false, update: false },
+          date: { view: false, insert: false, update: false },
+           departmentId: { view: true, insert: true, update: true }
+        },
+        higher_studies: {
+
+          studentName: { view: false, insert: false, update: false },
+          usn: { view: false, insert: false, update: false },
+          yearOfPassing: { view: false, insert: false, update: false },
+          program: { view: false, insert: false, update: false },
+          course: { view: false, insert: false, update: false },
+          university: { view: false, insert: false, update: false },
+          country: { view: false, insert: false, update: false },
+          yearOfJoining: { view: false, insert: false, update: false },
+          departmentId: { view: true, insert: true, update: true }
+        },
+        competative_exam_details: {
+
+          studentName: { view: false, insert: false, update: false },
+          usn: { view: false, insert: false, update: false },
+          yearOfPassing: { view: false, insert: false, update: false },
+          qualifyingExam: { view: false, insert: false, update: false },
+          examScore: { view: false, insert: false, update: false },
+          yearOfExam: { view: false, insert: false, update: false },
+          status: { view: false, insert: false, update: false },
+          departmentId: { view: true, insert: true, update: true }
+        },
+        placement_details: {
+          slNo: { view: true, insert: true, update: true },
+          studentName: { view: false, insert: false, update: false },
+          usn: { view: false, insert: false, update: false },
+          yearOfPassing: { view: false, insert: false, update: false },
+          companyName: { view: false, insert: false, update: false },
+          package: { view: false, insert: false, update: false },
+          departmentId: { view: true, insert: true, update: true }
         }
+
        },
         insertPermission:departmentPermissions.insertPermission,
         updatePermission:departmentPermissions.updatePermission
@@ -334,7 +573,7 @@ router.get('/activities', function(req, res, next) {
        dateOfVisit: industrial[i].dateOfVisit,
        place: industrial[i].place,
        semester: industrial[i].semester,
-       noOfStudents: industrial[i].noOfStudents, 
+       noOfStudents: industrial[i].noOfStudents,
        departmentId: industrial[i].departmentId,
        slNo: industrial[i].slNo
       }
@@ -655,7 +894,7 @@ router.get('/bosboe', function(req, res, next) {
       otherMembership.push(singleEntry);
     }
 
-    
+
     res.render('department/bosboe', { departmentId: departmentId, type:'bosboe',
     data:{other_membership: otherMembership},
     authType:req.session.facultyId , GetParam:req.query.departmentId || req.session.departmentId,
@@ -871,6 +1110,13 @@ router.get('/generateexcel/:tableNo/:index/',function(req,res,next){
   map[0]="student_achievement";
   map[1]= "student_activities";
   map[2]= "student_publication";
+  map[3] = "student_conference_publications";
+  map[4] = "student_journal_publications";
+  map[5] = "higher_studies";
+  map[6] = "competative_exam_details";
+  map[7] = "placement_details";
+
+
 }
   if(index == 3){
     map[0] = "hardware";
