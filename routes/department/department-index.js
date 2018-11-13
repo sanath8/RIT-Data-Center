@@ -141,6 +141,7 @@ router.get('/student-info', function(req, res, next) {
       var higherStud = result.higher_studies;
       for(var i=0; i<higherStud.length; i++){
         var individualEntry = {
+          slNo: higherStud[i].slNo,
           studentName: higherStud[i].studentName,
           usn: higherStud[i].usn,
           yearOfPassing: higherStud[i].yearOfPassing,
@@ -160,6 +161,7 @@ router.get('/student-info', function(req, res, next) {
       var compExam = result.competative_exam_details;
       for(var i=0; i<compExam.length; i++){
         var individualEntry = {
+          slNo: compExam[i].slNo,
           studentName: compExam[i].studentName,
           usn: compExam[i].usn,
           yearOfPassing: compExam[i].yearOfPassing,
@@ -267,6 +269,7 @@ router.get('/student-info', function(req, res, next) {
 
       },
       higher_studies: {
+        slNo : "Sl No",
         studentName: "Student Name",
         usn: "USN",
         yearOfPassing: "Year Of Passing",
@@ -278,6 +281,7 @@ router.get('/student-info', function(req, res, next) {
         departmentId: "departmentId"
      },
      competative_exam_details: {
+       slNo : "Sl No",
        studentName: "Student Name",
        usn: "USN",
        yearOfPassing: "Year Of Passing",
@@ -366,7 +370,7 @@ router.get('/student-info', function(req, res, next) {
            departmentId: { view: true, insert: true, update: true }
         },
         higher_studies: {
-
+          slNo: { view: true, insert: true, update: true } ,
           studentName: { view: false, insert: false, update: false },
           usn: { view: false, insert: false, update: false },
           yearOfPassing: { view: false, insert: false, update: false },
@@ -378,7 +382,7 @@ router.get('/student-info', function(req, res, next) {
           departmentId: { view: true, insert: true, update: true }
         },
         competative_exam_details: {
-
+          slNo: { view: true, insert: true, update: true } ,
           studentName: { view: false, insert: false, update: false },
           usn: { view: false, insert: false, update: false },
           yearOfPassing: { view: false, insert: false, update: false },
@@ -514,7 +518,7 @@ router.get('/infrastructure-details', function(req, res, next) {
         hardware:
         {
           labName: { view: false, insert: false, update: true },
-          carpetArea: { view: false, insert: false, update: true },          
+          carpetArea: { view: false, insert: false, update: true },
           slNo: { view: true, insert: true, update: true } ,
           totalInvestment: { view: false, insert: false, update: false },
           departmentId: { view: true, insert: true, update: true },
