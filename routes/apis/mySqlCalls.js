@@ -999,12 +999,12 @@ sqlObject.prototype.fetchResults = function(columns, url, whereOptions, type, fa
 		{
 			query += " AND departmentId = '" + departmentId+"'";
 		}
-		// console.log(query);
+		 //console.log("indexer" + indexer);
 		// console.log(whereOptions);
 		// ordering by increasing year
 		if(indexer)
 		{
-				query += " ORDER BY " + indexer;
+				query += " ORDER BY " + indexer + " desc";
 		}
 
     this.connection.query(query,
