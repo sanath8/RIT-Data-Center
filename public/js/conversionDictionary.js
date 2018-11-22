@@ -1,7 +1,7 @@
 var converter = function()
 {
 
-  this.yearDictionary = {"faculty_qualification" : "passYear", "book" : "year", "book_chapter" : "year", "conference_paper" : "date",
+  this.yearDictionary = {"faculty_qualification" : "passYear", "book" : "year", "book_chapter" : "year", "conference_paper" : "year",
   "consultancy" : "sanctionedDate", "faculty" : "dob", "faculty_conference_symposia" : "date",
   "faculty_guest_lecture" : "date", "faculty_patent" : "publicationDate", "faculty_research" : "registrationYear", "faculty_workshop_fdp" : "date",
   "funded_projects" : "dateSanctioned", "department_industrial_collaboration_mou" : "mouSigningDate", "journal_paper" : "date", "phd_scholar" : "registrationYear",
