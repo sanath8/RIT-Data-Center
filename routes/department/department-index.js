@@ -180,7 +180,7 @@ router.get('/student-info', function(req, res, next) {
       var placeDetails = result.placement_details;
       for(var i=0; i<placeDetails.length; i++){
         var individualEntry = {
-          slNo : placeDetails[i].slNO,
+          slNo : placeDetails[i].slNo,
           studentName: placeDetails[i].studentName,
           usn: placeDetails[i].usn,
           yearOfPassing: placeDetails[i].yearOfPassing,
