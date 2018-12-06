@@ -2,7 +2,9 @@
 var fs = require('fs');
 var fileHandler = require('./fileManager');
 var dataCleaner = require('./dataCleaner');
+var json2xls = require('json2xls');
 var excelGenerator = module.exports = {};
+
 
 
 excelGenerator.getExcelSheet = function(tableData, fileName, response)
@@ -12,7 +14,8 @@ excelGenerator.getExcelSheet = function(tableData, fileName, response)
   var data = "";
  try{
         data = "";
-        var structuredData = excelGenerator.getStructuredData(tableData, data);
+
+        var structuredData = json2xls(tableData);//excelGenerator.getStructuredData(tableData, data);
         excelGenerator.writeIntoFile(structuredData, fileName, response, data);
         console.log("Process successfull\n");
 
@@ -84,13 +87,8 @@ excelGenerator.setDataEntries = function(noOfRows, noOfColumns, tableData, colum
 excelGenerator.writeIntoFile = function(structuredData, excelFileName, response)
 {
   var excelFileName = "file_" + new Date().getTime() + ".xls";
-  fs.writeFile(__dirname+ '/excelSheets/' + excelFileName, "\ufeff" + structuredData, 'utf8', (err) => {
-    console.log(excelFileName+ 'excel filesss created');
+  fs.writeFileSync(__dirname+ '/excelSheets/' + excelFileName, structuredData, 'binary');
+  if(response != false)
+    fileHandler.downloadExcel(response, excelFileName);
 
-      if (err)
-        throw err;
-      if(response != false)
-        fileHandler.downloadExcel(response, excelFileName);
-
-   });
 }
