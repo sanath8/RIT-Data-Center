@@ -111,6 +111,7 @@ router.get('/student-info', function(req, res, next) {
       var studentJournPublic = result.student_journal_publications;
       for(var i=0; i<studentJournPublic.length; i++){
         var individualEntry = {
+          slNo: studentJournPublic[i].slNo,
           authors: studentJournPublic[i].authors,
           title: studentJournPublic[i].title,
           issnPrint: studentJournPublic[i].issnPrint,
@@ -246,6 +247,7 @@ router.get('/student-info', function(req, res, next) {
 
        },
        student_journal_publications: {
+         slNo: "Sl No",
          authors: "Authors",
          title: "Title",
          issnPrint: "Issn Print",

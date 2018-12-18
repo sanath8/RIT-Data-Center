@@ -29,7 +29,7 @@ mailer.prototype.sendMail = function(mailTo, res)
         from: 'datacenterrit@gmail.com',
         to: mailTo,
         subject: 'Password Recovery',
-        text: 'Hello Sir/Madam,\n\nPassword for the user name '+ mailTo +' is ' + JSON.stringify(result[0].password) + '. Do not share this with anyone.\n\nWebsite link: 172.1.16.80:3000\nFor any queries, mail us to datacenterrit@gmail.com\n\nThank You,\nRIT Data Center.'
+        text: 'Hello Sir/Madam,\n\nPassword for the user name '+ mailTo +' is ' + JSON.stringify(result[0].password) + '. Do not share this with anyone.\n\nWebsite link: 172.1.16.80:3000\nFor any queries, mail us to datacenterrit@gmail.com\n\nRegards,\nDr. S. Seema, Dr. K. Indira\nRIT Data Center.'
       };
 
       transporter.sendMail(mailOptions, function(error, info){
