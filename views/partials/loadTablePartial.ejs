@@ -64,6 +64,8 @@
                 var path =  resultSet[i].Fid;
                 var address = "document.location.href =  '/faculty?fId="+path+"'";
             }
+            //changed on 18 jan 19 as per the request of Seema ma'am
+            if(authType == "principal" || authType == "admin" || authType == "hod" || authType == "coordinator")
             __append('<tr onclick="' + address + '" onmouseover="hoverEffect(this)" onmouseout="removeHoverEffect(this)">');
             for(var j in resultSet[i]){
                 if(j=="Fid"){
