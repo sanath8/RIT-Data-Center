@@ -528,19 +528,19 @@ sqlObject.prototype.getDepartmentActivities = function(callback, departmentId){
 					return;
 				}
 				data["events_organized"] = result;
-
-				var sql = "select *\
-									from department_industrial_collaboration_mou\
-									where departmentId = ?"
-
-				con.query(sql, [departmentId], function(error, result){
-					if(error){
-						callback(error,undefined);
-						return;
-					}
+				//
+				// var sql = "select *\
+				// 					from department_industrial_collaboration_mou\
+				// 					where departmentId = ?"
+				//
+				// con.query(sql, [departmentId], function(error, result){
+				// 	if(error){
+				// 		callback(error,undefined);
+				// 		return;
+				// 	}
 					data["department_industrial_collaboration_mou"] = result;
 					callback(undefined, data);
-				})
+
 			})
 		})
 	})
@@ -613,14 +613,24 @@ sqlObject.prototype.getStudentInformation = function(callback, departmentId){
 							data["competative_exam_details"] = result;
 
 							var sql = "select *\
-												from placement_details\
+												from placement_details_ug\
 												where departmentId =?"
 							con.query(sql, [departmentId], function(error, result){
 								if(error){
 									callback(error, undefined);
 									return;
 								}
-								data["placement_details"] = result;
+								data["placement_details_ug"] = result;
+
+							var sql = "select *\
+												from placement_details_pg\
+												where departmentId =?"
+							con.query(sql, [departmentId], function(error, result){
+								if(error){
+									callback(error, undefined);
+									return;
+								}
+								data["placement_details_pg"] = result;
 
 
 			var sql = "select *\
@@ -637,6 +647,7 @@ sqlObject.prototype.getStudentInformation = function(callback, departmentId){
 			})
 		})
 	})
+})
 })
 })
 })

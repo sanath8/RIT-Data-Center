@@ -146,7 +146,7 @@ router.get('/', function(req, res, next) {
 					membershipType: "Type of Membership",
 					subscriptionYear: "Year of Subscription",
 					facultyId: "facultyId"
-				  }				
+				  }
 			},
 			hiddenFields:{
 				faculty:{
@@ -190,7 +190,7 @@ router.get('/', function(req, res, next) {
 					membershipType: { view: false, insert: false, update: false },
 					subscriptionYear: { view: false, insert: false, update: false },
 					facultyId: { view: true, insert: true, update: true }
-				  }				
+				  }
 			},
 			fId:facultyId, about:about, GetParam:req.query.fId, authType:req.session.facultyId, departmentId:req.session.departmentId,
 			insertPermission:facultyPermissions.insertPermission,

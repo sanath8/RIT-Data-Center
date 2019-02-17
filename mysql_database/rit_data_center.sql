@@ -2937,10 +2937,10 @@ INSERT INTO `phd_scholar` (`slNo`, `role`, `scholarName`, `researchCentre`, `uni
 -- --------------------------------------------------------
 
 --
--- Table structure for table `placement_details`
+-- Table structure for table `placement_details_ug`
 --
 
-CREATE TABLE `placement_details` (
+CREATE TABLE `placement_details_ug` (
   `slNo` int(11) NOT NULL,
   `studentName` varchar(100) NOT NULL,
   `usn` varchar(50) NOT NULL,
@@ -2951,10 +2951,33 @@ CREATE TABLE `placement_details` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `placement_details`
+-- Dumping data for table `placement_details_ug`
 --
 
-INSERT INTO `placement_details` (`slNo`, `studentName`, `usn`, `yearOfPassing`, `companyName`, `package`, `departmentId`) VALUES
+INSERT INTO `placement_details_ug` (`slNo`, `studentName`, `usn`, `yearOfPassing`, `companyName`, `package`, `departmentId`) VALUES
+(1, 'a', 'b', 0, '', 'd', 'data');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `placement_details_pg`
+--
+
+CREATE TABLE `placement_details_pg` (
+  `slNo` int(11) NOT NULL,
+  `studentName` varchar(100) NOT NULL,
+  `usn` varchar(50) NOT NULL,
+  `yearOfPassing` int(11) NOT NULL,
+  `companyName` varchar(100) NOT NULL,
+  `package` varchar(100) NOT NULL,
+  `departmentId` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `placement_details_pg`
+--
+
+INSERT INTO `placement_details_pg` (`slNo`, `studentName`, `usn`, `yearOfPassing`, `companyName`, `package`, `departmentId`) VALUES
 (1, 'a', 'b', 0, '', 'd', 'data');
 
 -- --------------------------------------------------------

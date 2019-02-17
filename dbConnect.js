@@ -6,9 +6,9 @@ exports.connectDB = function ()
 	var con = mysql.createConnection
 	(
 		{
-			host: "172.1.16.110",
+			host: "localhost",
 			user: "root",
-			password: "mysql12345",
+			password: "",
 			database: "rit_data_center"
 		}
 	);
