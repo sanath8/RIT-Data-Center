@@ -103,7 +103,7 @@
                           </tbody>
                       </table>
                   </div>
-                  <a href = "/department/generateexcel/3/2/?departmentId=<%-GetParam%>">
+                  <a href = "/department/generateexcel/4/2/?departmentId=<%-GetParam%>">
                   <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
                   </a>
               <button class="btn btn-primary pull-right  insertButton" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataModularInsert('student_conference_publications')">Insert</button>
@@ -141,7 +141,7 @@
                         </tbody>
                     </table>
                 </div>
-                <a href = "/department/generateexcel/3/2/?departmentId=<%-GetParam%>">
+                <a href = "/department/generateexcel/5/2/?departmentId=<%-GetParam%>">
                 <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
                 </a>
             <button class="btn btn-primary pull-right  insertButton" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataModularInsert('student_journal_publications')">Insert</button>
@@ -169,7 +169,7 @@
                       </tbody>
                   </table>
               </div>
-              <a href = "/department/generateexcel/3/2/?departmentId=<%-GetParam%>">
+              <a href = "/department/generateexcel/6/2/?departmentId=<%-GetParam%>">
               <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
               </a>
           <button class="btn btn-primary pull-right  insertButton" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataModularInsert('higher_studies')">Insert</button>
@@ -196,7 +196,7 @@
                     </tbody>
                 </table>
             </div>
-            <a href = "/department/generateexcel/3/2/?departmentId=<%-GetParam%>">
+            <a href = "/department/generateexcel/7/2/?departmentId=<%-GetParam%>">
             <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
             </a>
         <button class="btn btn-primary pull-right  insertButton" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataModularInsert('competative_exam_details')">Insert</button>
@@ -207,7 +207,7 @@
 
         <div class="card">
             <div class="card-header" data-background-color="purple">
-                <h4 class="title">Placement</h4>
+                <h4 class="title">Placement UG</h4>
                 <p class="category">information about companies placed.</p>
             </div>
             <div class="card-content table-responsive">
@@ -220,15 +220,40 @@
                         <th>Package</th>
                     </thead>
                     <tbody>
-                        <% loadInTableModular('placement_details', updatePermission)%>
+                        <% loadInTableModular('placement_details_ug', updatePermission)%>
                     </tbody>
                 </table>
             </div>
-            <a href = "/department/generateexcel/3/2/?departmentId=<%-GetParam%>">
+            <a href = "/department/generateexcel/8/2/?departmentId=<%-GetParam%>">
             <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
             </a>
-        <button class="btn btn-primary pull-right  insertButton" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataModularInsert('placement_details')">Insert</button>
+        <button class="btn btn-primary pull-right  insertButton" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataModularInsert('placement_details_ug')">Insert</button>
       </div>
+
+      <div class="card">
+          <div class="card-header" data-background-color="purple">
+              <h4 class="title">Placement PG</h4>
+              <p class="category">information about companies placed.</p>
+          </div>
+          <div class="card-content table-responsive">
+              <table class="table">
+                  <thead class="text-primary">
+                      <th>Student Name</th>
+                      <th>USN</th>
+                      <th>Year Of Passing</th>
+                      <th>Company Name</th>
+                      <th>Package</th>
+                  </thead>
+                  <tbody>
+                      <% loadInTableModular('placement_details_pg', updatePermission)%>
+                  </tbody>
+              </table>
+          </div>
+          <a href = "/department/generateexcel/9/2/?departmentId=<%-GetParam%>">
+          <button class="btn btn-primary pull-left" style="margin:13px">Generate Excel file</button>
+          </a>
+      <button class="btn btn-primary pull-right  insertButton" data-toggle="modal" data-target="#myModalModular" style="margin:13px" onclick="fillDataModularInsert('placement_details_pg')">Insert</button>
+    </div>
 
             </div>
         </div>

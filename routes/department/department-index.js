@@ -177,8 +177,8 @@ router.get('/student-info', function(req, res, next) {
 
         competativeExam.push(individualEntry);
       }
-      var placementDetails = [];
-      var placeDetails = result.placement_details;
+      var placementDetailsUg = [];
+      var placeDetails = result.placement_details_ug;
       for(var i=0; i<placeDetails.length; i++){
         var individualEntry = {
           slNo : placeDetails[i].slNo,
@@ -191,7 +191,23 @@ router.get('/student-info', function(req, res, next) {
 
         };
 
-        placementDetails.push(individualEntry);
+        placementDetailsUg.push(individualEntry);
+      }
+      var placementDetailsPg = [];
+      var placeDetails = result.placement_details_pg;
+      for(var i=0; i<placeDetails.length; i++){
+        var individualEntry = {
+          slNo : placeDetails[i].slNo,
+          studentName: placeDetails[i].studentName,
+          usn: placeDetails[i].usn,
+          yearOfPassing: placeDetails[i].yearOfPassing,
+          companyName: placeDetails[i].companyName,
+          package: placeDetails[i].package,
+          departmentId: placeDetails[i].departmentId,
+
+        };
+
+        placementDetailsPg.push(individualEntry);
       }
 
 
@@ -200,7 +216,7 @@ router.get('/student-info', function(req, res, next) {
       }
       res.render('department/student-info', { departmentId: departmentId, type:"student-info",
       //table change 5
-       data:{student_activities:studentActivites,student_achievement:studentAchievement,student_publication:studentPublication, student_conference_publications:studentConferencePublications, student_journal_publications:studentJournalPublications, higher_studies : higherStudies, competative_exam_details : competativeExam, placement_details:placementDetails},
+       data:{student_activities:studentActivites,student_achievement:studentAchievement,student_publication:studentPublication, student_conference_publications:studentConferencePublications, student_journal_publications:studentJournalPublications, higher_studies : higherStudies, competative_exam_details : competativeExam, placement_details_ug:placementDetailsUg, placement_details_pg:placementDetailsPg},
        authType:req.session.facultyId, GetParam:req.query.departmentId,
        index: {
          url: "/department/student-info",
@@ -293,7 +309,7 @@ router.get('/student-info', function(req, res, next) {
        status: "Status",
        departmentId: "departmentId"
     },
-    placement_details: {
+    placement_details_ug: {
       slNo:"Sl No",
       studentName: "Student Name",
       usn: "USN",
@@ -301,7 +317,16 @@ router.get('/student-info', function(req, res, next) {
       companyName: "Company Name",
       package: "Package",
       departmentId: "departmentId"
-   }
+   },
+   placement_details_pg: {
+     slNo:"Sl No",
+     studentName: "Student Name",
+     usn: "USN",
+     yearOfPassing: "Year Of Passing",
+     companyName: "Company Name",
+     package: "Package",
+     departmentId: "departmentId"
+  }
        },
        hiddenFields:{
         student_activities: {
@@ -394,7 +419,16 @@ router.get('/student-info', function(req, res, next) {
           status: { view: false, insert: false, update: false },
           departmentId: { view: true, insert: true, update: true }
         },
-        placement_details: {
+        placement_details_ug: {
+          slNo: { view: true, insert: true, update: true },
+          studentName: { view: false, insert: false, update: false },
+          usn: { view: false, insert: false, update: false },
+          yearOfPassing: { view: false, insert: false, update: false },
+          companyName: { view: false, insert: false, update: false },
+          package: { view: false, insert: false, update: false },
+          departmentId: { view: true, insert: true, update: true }
+        },
+        placement_details_pg: {
           slNo: { view: true, insert: true, update: true },
           studentName: { view: false, insert: false, update: false },
           usn: { view: false, insert: false, update: false },
@@ -1134,7 +1168,8 @@ router.get('/generateexcel/:tableNo/:index/',function(req,res,next){
   map[4] = "student_journal_publications";
   map[5] = "higher_studies";
   map[6] = "competative_exam_details";
-  map[7] = "placement_details";
+  map[7] = "placement_details_ug";
+  map[8] = "placement_details_pg";
 
 
 }
