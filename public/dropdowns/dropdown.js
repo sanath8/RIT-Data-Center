@@ -31,11 +31,11 @@ var dropdowns = {
         "faculty_qualification_degree" : ["BE","BTech","ME","MTech","MS","PhD","BSc","MSc"],
         "faculty_qualification_passClass" : ["FCD", "First", "Second", "Third"],
         "faculty_payScale" : ["5th Pay","6th Pay","7th Pay"],
-        "fixed_journal_paper_indexing" : ["Web of Science", "Scopers", "Google Scholar"],
+        "fixed_journal_paper_indexing" : ["Web of Science", "Scopus", "Google Scholar", "Others"],
         "events_organized_event" : ["FDP", "Workshop", "Seminar", "Confernence", "Symposia"],
         "fixed_student_conference_publications_conferenceType" : ["National", "International"],
         "fixed_student_journal_publications_journalType":["National","International"],
-        "fixed_student_journal_publications_indexing" : ["Web of Science", "Scopers", "Google Scholar"],
+        "fixed_student_journal_publications_indexing" : ["Web of Science", "Scopus", "Google Scholar", "Others"],
         "higher_studies_program":["MS", "Mtech", "Others"],
         "fixed_competative_exam_details_status" : ["qualified", "not qualified"]
   
