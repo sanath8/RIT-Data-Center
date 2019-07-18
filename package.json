@@ -6,11 +6,13 @@
     "start": "forever start ./bin/www"
   },
   "dependencies": {
+    "@microsoft/office-js": "^1.1.15",
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "download-file": "^0.1.5",
     "ejs": "~2.5.7",
+    "exceljs": "^1.10.0",
     "express": "~4.15.5",
     "express-session": "^1.15.6",
     "express-validator": "^5.0.3",
